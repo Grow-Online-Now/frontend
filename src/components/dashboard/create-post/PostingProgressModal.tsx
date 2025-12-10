@@ -37,9 +37,16 @@ export function PostingProgressModal({
   const { t } = useTranslation()
 
   // Check if all platforms are done
-  const allComplete =
+  // Use platformPosts directly since it contains the actual posting status from the backend
+  // Also allow closing if the overall status is completed/failed (handles timeout or backend failure)
+  const allPlatformsDone =
     platformPosts.length > 0 &&
+    platformPosts.length >= selectedAccounts.length &&
     platformPosts.every((p) => p.status === 'posted' || p.status === 'failed')
+
+  const overallDone = overallStatus === 'completed' || overallStatus === 'failed'
+
+  const allComplete = allPlatformsDone || overallDone
 
   const completedCount = platformPosts.filter((p) => p.status === 'posted').length
   const totalCount = selectedAccounts.length || platformPosts.length
@@ -72,13 +79,21 @@ export function PostingProgressModal({
     }
   }
 
-  // Find platform post for a connection
-  const getPlatformPost = (accountId: string) => {
-    return platformPosts.find((p) => {
-      const account = selectedAccounts.find((a) => a.id === accountId)
-      return account && p.platform === account.platform
-    })
+  // Find account info for a platform post by matching platform
+  // Falls back to finding by index if multiple accounts have same platform
+  const getAccountForPlatformPost = (platformPost: PlatformPost, index: number) => {
+    // First try to find by platform (works when there's only one account per platform)
+    const accountsByPlatform = selectedAccounts.filter((a) => a.platform === platformPost.platform)
+    if (accountsByPlatform.length === 1) {
+      return accountsByPlatform[0]
+    }
+    // If multiple accounts on same platform, use index-based matching
+    // (assumes backend returns platform posts in same order as selected accounts)
+    return selectedAccounts[index] || accountsByPlatform[0]
   }
+
+  // Determine what to render - prefer platformPosts if available, fallback to selectedAccounts
+  const itemsToRender = platformPosts.length > 0 ? platformPosts : selectedAccounts
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && allComplete && onClose()}>
@@ -93,16 +108,23 @@ export function PostingProgressModal({
         </DialogHeader>
 
         <div className="space-y-3 py-4">
-          {selectedAccounts.map((account) => {
-            const platformPost = getPlatformPost(account.id)
+          {itemsToRender.map((item, index) => {
+            // Determine if item is a PlatformPost or Connection
+            const isPlatformPost = 'status' in item && typeof item.status === 'string'
+            const platformPost = isPlatformPost ? (item as PlatformPost) : null
+            const account = isPlatformPost
+              ? getAccountForPlatformPost(item as PlatformPost, index)
+              : (item as Connection)
+
             const status = platformPost?.status || 'queued'
             const statusInfo = getStatusInfo(status)
             const StatusIcon = statusInfo.icon
             const isPosting = status === 'queued' && overallStatus === 'processing'
+            const platform = platformPost?.platform || account?.platform
 
             return (
               <div
-                key={account.id}
+                key={platformPost?.id || account?.id || index}
                 className={cn(
                   'flex items-center gap-3 rounded-xl border p-3',
                   status === 'posted' && 'border-success/20 bg-success/5',
@@ -110,14 +132,14 @@ export function PostingProgressModal({
                   status === 'queued' && 'border-border-subtle'
                 )}
               >
-                <PlatformIcon platform={account.platform} size="sm" showBackground />
+                <PlatformIcon platform={platform} size="sm" showBackground />
 
                 <div className="min-w-0 flex-1">
                   <p className="text-foreground truncate text-sm font-medium">
-                    {account.displayName || account.platformUsername}
+                    {account?.displayName || account?.platformUsername || platform}
                   </p>
                   <p className="text-muted-foreground text-xs">
-                    {t(`dashboard.accounts.platforms.${account.platform}`)}
+                    {t(`dashboard.accounts.platforms.${platform}`)}
                   </p>
                 </div>
 
