@@ -5,7 +5,28 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { getPosts, deletePost } from '@/services/posts.service'
-import type { PostResponse, PaginationMeta, PostsQueryParams } from '@/types/posts'
+import type { PostResponse, PaginationMeta, PostsQueryParams, PostStatusTab } from '@/types/posts'
+
+/**
+ * Maps a status tab to the corresponding query parameters
+ */
+export function getFiltersForTab(tab: PostStatusTab): Partial<PostsQueryParams> {
+  switch (tab) {
+    case 'all':
+      return { status: undefined, is_draft: undefined, scheduled: undefined }
+    case 'draft':
+      return { status: undefined, is_draft: true, scheduled: undefined }
+    case 'scheduled':
+      // Scheduled = has scheduled_at, not a draft, and pending status
+      return { scheduled: true, is_draft: false, status: 'pending' }
+    case 'published':
+      return { status: 'completed', is_draft: false, scheduled: undefined }
+    case 'failed':
+      return { status: 'failed', is_draft: false, scheduled: undefined }
+    default:
+      return {}
+  }
+}
 
 interface UsePostsState {
   posts: PostResponse[]

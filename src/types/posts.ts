@@ -180,6 +180,30 @@ export interface PostsQueryParams {
 }
 
 /**
+ * Status tab type for filtering posts
+ */
+export type PostStatusTab = 'all' | 'draft' | 'scheduled' | 'published' | 'failed'
+
+/**
+ * Status counts for tabs
+ */
+export interface PostStatusCounts {
+  all: number
+  draft: number
+  scheduled: number
+  published: number
+  failed: number
+}
+
+/**
+ * Response from GET /api/posts/counts
+ * TODO: Backend endpoint needs to be implemented
+ */
+export interface PostsCountsResponse {
+  counts: PostStatusCounts
+}
+
+/**
  * Schedule type for form
  */
 export type ScheduleType = 'now' | 'scheduled' | 'draft'

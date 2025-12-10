@@ -8,10 +8,18 @@ import { Clock, Loader2, CheckCircle2, XCircle, FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { PostStatus } from '@/types/posts'
 
+type BadgeSize = 'sm' | 'md'
+
 interface PostStatusBadgeProps {
   status: PostStatus
   isDraft?: boolean
+  size?: BadgeSize
   className?: string
+}
+
+const sizeClasses: Record<BadgeSize, { badge: string; icon: string }> = {
+  sm: { badge: 'px-2 py-0.5 text-[10px]', icon: 'size-3' },
+  md: { badge: 'px-2.5 py-1 text-xs', icon: 'size-3.5' },
 }
 
 const statusConfig: Record<
@@ -49,23 +57,25 @@ const statusConfig: Record<
   },
 }
 
-export function PostStatusBadge({ status, isDraft, className }: PostStatusBadgeProps) {
+export function PostStatusBadge({ status, isDraft, size = 'md', className }: PostStatusBadgeProps) {
   const { t } = useTranslation()
 
   // If it's a draft, show draft status instead
   const displayStatus = isDraft ? 'draft' : status
   const config = statusConfig[displayStatus]
   const Icon = config.icon
+  const sizes = sizeClasses[size]
 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium',
+        'inline-flex items-center gap-1 rounded-full border font-medium',
+        sizes.badge,
         config.colorClasses,
         className
       )}
     >
-      <Icon className={cn('size-3.5', displayStatus === 'processing' && 'animate-spin')} />
+      <Icon className={cn(sizes.icon, displayStatus === 'processing' && 'animate-spin')} />
       {t(config.translationKey)}
     </span>
   )

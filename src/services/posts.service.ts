@@ -9,11 +9,13 @@ import type {
   PostResponse,
   PostsListResponse,
   PostsQueryParams,
+  PostsCountsResponse,
 } from '@/types/posts'
 
 const ENDPOINTS = {
   posts: '/api/posts',
   postById: (id: string) => `/api/posts/${id}`,
+  postsCounts: '/api/posts/counts',
 } as const
 
 /**
@@ -64,6 +66,14 @@ export async function deletePost(id: string): Promise<{ success: boolean }> {
 }
 
 /**
+ * Get post counts by status for tabs
+ * TODO: Backend endpoint needs to be implemented
+ */
+export async function getPostsCounts(): Promise<PostsCountsResponse> {
+  return apiClient.get<PostsCountsResponse>(ENDPOINTS.postsCounts)
+}
+
+/**
  * Posts service object (alternative API)
  */
 export const postsService = {
@@ -71,4 +81,5 @@ export const postsService = {
   getAll: getPosts,
   getById: getPost,
   delete: deletePost,
+  getCounts: getPostsCounts,
 }
