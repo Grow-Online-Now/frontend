@@ -6,6 +6,8 @@
     },
     "nav": {
       "createPost": "Create Post",
+      "createCampaign": "Create Campaign",
+      "create": "Create",
       "categories": {
         "general": "General",
         "posts": "Posts",
@@ -510,6 +512,174 @@
           "description": "Plan your content calendar"
         }
       }
+    },
+    "campaign": {
+      "header": {
+        "back": "Go back",
+        "namePlaceholder": "Untitled Campaign",
+        "nameAriaLabel": "Campaign name",
+        "subtitle": "Create and publish across platforms",
+        "platformCount": "{{count}} platforms",
+        "platformCount_one": "1 platform",
+        "platformCount_other": "{{count}} platforms",
+        "postNow": "Post Now",
+        "postTo": "Post to {{count}} accounts",
+        "postTo_one": "Post to 1 account",
+        "postTo_other": "Post to {{count}} accounts",
+        "schedule": "Schedule",
+        "scheduleTo": "Schedule {{count}} accounts",
+        "scheduleTo_one": "Schedule 1 account",
+        "scheduleTo_other": "Schedule {{count}} accounts",
+        "saveDraft": "Save Draft",
+        "publishing": "Publishing..."
+      },
+      "media": {
+        "panel": {
+          "title": "Media Assets",
+          "description": "Upload and drag to platform cards",
+          "ariaLabel": "Media assets panel",
+          "ready": "ready",
+          "failed": "failed"
+        },
+        "dropZone": {
+          "title": "Drop media here",
+          "subtitle": "or click to browse",
+          "dropHere": "Drop to upload",
+          "ariaLabel": "Media drop zone",
+          "images": "Images",
+          "videos": "Videos",
+          "uploading": "Uploading..."
+        },
+        "grid": {
+          "title": "Uploaded",
+          "empty": "No media uploaded yet",
+          "file": "file",
+          "files": "files",
+          "dragHint": "Drag assets to platform cards"
+        },
+        "asset": {
+          "ariaLabel": "Media asset: {{filename}}",
+          "remove": "Remove",
+          "retry": "Retry"
+        }
+      },
+      "platformCards": {
+        "title": "Platform Variations",
+        "subtitle": "{{count}} of {{total}} included",
+        "noConnections": {
+          "title": "No accounts connected",
+          "description": "Connect your social media accounts to create a campaign."
+        }
+      },
+      "platformCard": {
+        "include": "Include {{platform}} in campaign",
+        "excluded": "Not included in this campaign",
+        "mediaSlot": {
+          "empty": "Media drop zone",
+          "dragMedia": "Drag media here",
+          "dropHere": "Drop to add",
+          "required": "Media required",
+          "remove": "Remove media",
+          "replace": "Drop to replace"
+        },
+        "caption": {
+          "label": "Caption",
+          "placeholder": "Write your caption...",
+          "ariaLabel": "Caption for {{platform}}",
+          "synced": "Synced",
+          "custom": "Custom",
+          "link": "Sync to master caption",
+          "unlink": "Use custom caption",
+          "usingMaster": "Using master caption",
+          "clickToEdit": "Click to customize",
+          "syncedEmpty": "Type in master caption"
+        },
+        "settings": {
+          "title": "Platform Settings",
+          "hashtags": "Hashtags",
+          "hashtagsPlaceholder": "#growth #social",
+          "firstComment": "First Comment",
+          "firstCommentPlaceholder": "Add hashtags as first comment",
+          "altText": "Alt Text",
+          "altTextPlaceholder": "Describe the image"
+        },
+        "warnings": {
+          "mediaRequired": "This platform requires media"
+        }
+      },
+      "addPlatform": {
+        "title": "Add Platform",
+        "subtitle": "Connect more accounts",
+        "ariaLabel": "Add platform"
+      },
+      "settings": {
+        "title": "Campaign Settings",
+        "description": "Configure your campaign",
+        "ariaLabel": "Campaign settings panel",
+        "summary": {
+          "platforms": "Platforms",
+          "schedule": "Schedule"
+        }
+      },
+      "schedule": {
+        "title": "Schedule",
+        "now": {
+          "label": "Post Now",
+          "description": "Publish immediately"
+        },
+        "scheduled": {
+          "label": "Schedule",
+          "description": "Pick a date and time"
+        },
+        "draft": {
+          "label": "Save as Draft",
+          "description": "Finish later"
+        },
+        "date": "Date",
+        "time": "Time",
+        "pickDate": "Pick a date",
+        "bestTime": "Best time: 9 AM - 11 AM, 7 PM - 9 PM"
+      },
+      "masterCaption": {
+        "title": "Master Caption",
+        "description": "This caption syncs to all linked platforms",
+        "placeholder": "Write your caption here...",
+        "ariaLabel": "Master caption",
+        "aiAssist": "AI Assist",
+        "syncStatus": "{{synced}}/{{total}} synced",
+        "limitInfo": "Limit based on {{platform}}",
+        "noLimit": "No platforms selected"
+      },
+      "aiAssist": {
+        "title": "AI Assist",
+        "comingSoon": "AI features coming soon",
+        "generate": {
+          "label": "Generate Captions",
+          "description": "Create platform-optimized versions"
+        },
+        "hashtags": {
+          "label": "Suggest Hashtags",
+          "description": "Get relevant hashtags per platform"
+        },
+        "optimize": {
+          "label": "Optimize for Engagement",
+          "description": "Improve your caption for better reach"
+        }
+      },
+      "preview": {
+        "title": "View Mode",
+        "ariaLabel": "Toggle between edit and preview modes",
+        "edit": "Edit",
+        "preview": "Preview"
+      },
+      "validation": {
+        "noPlatformsSelected": "Select at least one platform",
+        "noContent": "Add a caption or media",
+        "noScheduledTime": "Select a date and time for scheduling",
+        "uploadsInProgress": "Please wait for uploads to complete"
+      },
+      "success": "Campaign published successfully!",
+      "error": "Failed to publish campaign. Please try again."
     },
     "posts": {
       "title": "All Posts",

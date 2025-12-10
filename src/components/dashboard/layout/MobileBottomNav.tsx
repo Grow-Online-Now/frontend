@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from '@/components/common/LocalizedLink'
-import { LayoutDashboard, Calendar, Users, Settings } from 'lucide-react'
+import { LayoutDashboard, Calendar, Users, Settings, PlusCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { SidebarNavItem } from '@/types/dashboard'
 
@@ -12,9 +12,14 @@ const navItems: SidebarNavItem[] = [
     href: '/dashboard',
   },
   {
-    labelKey: 'dashboard.nav.scheduler',
+    labelKey: 'dashboard.nav.calendar',
     icon: Calendar,
     href: '/dashboard/scheduler',
+  },
+  {
+    labelKey: 'dashboard.nav.create',
+    icon: PlusCircle,
+    href: '/dashboard/campaign/create',
   },
   {
     labelKey: 'dashboard.nav.accounts',

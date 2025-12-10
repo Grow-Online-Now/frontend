@@ -1148,3 +1148,329 @@ a:focus-visible,
 .transition-slower {
   transition-duration: 0.3s;
 }
+
+/* ============================================
+   CREATE CAMPAIGN - Premium Design System
+   ============================================ */
+
+/* Campaign page specific transitions */
+.campaign-transition-fast {
+  transition: all 150ms ease-out;
+}
+
+.campaign-transition-base {
+  transition: all 200ms ease-out;
+}
+
+.campaign-transition-slow {
+  transition: all 300ms ease-out;
+}
+
+.campaign-transition-layout {
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Spring animation for bouncy effects */
+.campaign-spring {
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Panel stagger animations */
+@keyframes campaign-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.campaign-panel-enter {
+  animation: campaign-panel-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.campaign-panel-enter-delay-1 {
+  animation-delay: 50ms;
+}
+
+.campaign-panel-enter-delay-2 {
+  animation-delay: 100ms;
+}
+
+/* Drop zone styling */
+.campaign-drop-zone {
+  border: 1px dashed var(--color-border-muted);
+  background: var(--color-surface-muted);
+  transition: all 200ms ease-out;
+}
+
+.campaign-drop-zone:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+.campaign-drop-zone-active {
+  border-color: var(--color-primary);
+  border-style: solid;
+  background: var(--color-accent-subtle);
+  box-shadow: 0 0 0 4px var(--color-accent-subtle);
+}
+
+/* Asset thumbnail styles */
+.campaign-asset-thumb {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-muted);
+  transition: all 150ms ease-out;
+}
+
+.campaign-asset-thumb:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.campaign-asset-thumb-dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+/* Platform card styles */
+.campaign-platform-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  transition: all 200ms ease-out;
+}
+
+.campaign-platform-card:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface-elevated);
+}
+
+.campaign-platform-card-active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.campaign-platform-card-excluded {
+  opacity: 0.5;
+  background: var(--color-surface-muted);
+}
+
+.campaign-platform-card-error {
+  border-color: var(--color-destructive);
+}
+
+/* Drag overlay for platform cards */
+.campaign-card-drag-over {
+  border-color: var(--color-primary);
+  background: var(--color-accent-subtle);
+  box-shadow:
+    0 0 0 2px var(--color-primary),
+    inset 0 0 20px var(--color-accent-subtle);
+}
+
+/* Sync indicator animation */
+@keyframes campaign-sync-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.campaign-sync-indicator {
+  transition: all 200ms ease-out;
+}
+
+.campaign-sync-indicator-synced {
+  color: var(--color-primary);
+}
+
+.campaign-sync-indicator-custom {
+  color: var(--color-muted-foreground);
+}
+
+/* Caption editor within cards */
+.campaign-caption-synced {
+  background: var(--color-surface-muted);
+  color: var(--color-muted-foreground);
+  cursor: default;
+}
+
+.campaign-caption-editable {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}
+
+/* Schedule radio cards */
+.campaign-schedule-card {
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 10px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.campaign-schedule-card:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface-elevated);
+}
+
+.campaign-schedule-card-selected {
+  border-color: var(--color-primary);
+  background: var(--color-accent-subtle);
+}
+
+/* Expand/collapse animation for settings */
+.campaign-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.campaign-expand-open {
+  grid-template-rows: 1fr;
+}
+
+.campaign-expand-content {
+  overflow: hidden;
+}
+
+/* Soft bounce animation for drop */
+@keyframes campaign-drop-bounce {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.campaign-drop-bounce {
+  animation: campaign-drop-bounce 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Ghost card for adding platforms */
+.campaign-add-card {
+  border: 1px dashed var(--color-border-muted);
+  border-radius: 12px;
+  background: transparent;
+  transition: all 200ms ease-out;
+  cursor: pointer;
+}
+
+.campaign-add-card:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+/* Media slot in platform cards */
+.campaign-media-slot {
+  aspect-ratio: 16 / 9;
+  border: 1px dashed var(--color-border-muted);
+  border-radius: 8px;
+  background: var(--color-surface-muted);
+  transition: all 200ms ease-out;
+}
+
+.campaign-media-slot:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+.campaign-media-slot-filled {
+  border: none;
+}
+
+.campaign-media-slot-drag-over {
+  border-color: var(--color-primary);
+  border-style: solid;
+  background: var(--color-accent-subtle);
+}
+
+/* Video duration badge */
+.campaign-duration-badge {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  background: hsla(0, 0%, 0%, 0.7);
+  color: white;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/* Character count indicator */
+.campaign-char-count {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  transition: color 150ms ease-out;
+}
+
+.campaign-char-count-normal {
+  color: var(--color-muted-foreground);
+}
+
+.campaign-char-count-warning {
+  color: var(--color-warning);
+}
+
+.campaign-char-count-error {
+  color: var(--color-destructive);
+}
+
+/* Publish button states */
+.campaign-publish-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.campaign-publish-btn-progress {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, hsla(199, 89%, 48%, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: campaign-publish-progress 1.5s ease-in-out infinite;
+}
+
+@keyframes campaign-publish-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Success checkmark animation */
+@keyframes campaign-success-check {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.campaign-success-check {
+  animation: campaign-success-check 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}

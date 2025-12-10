@@ -16,6 +16,7 @@ import {
   FileText,
   Sun,
   Moon,
+  Layers,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { SidebarNavItem } from '@/types/dashboard'
@@ -65,6 +66,11 @@ const navCategories: NavCategory[] = [
         labelKey: 'dashboard.nav.calendar',
         icon: Calendar,
         href: '/dashboard/scheduler',
+      },
+      {
+        labelKey: 'dashboard.nav.createCampaign',
+        icon: Layers,
+        href: '/dashboard/campaign/create',
       },
       {
         labelKey: 'dashboard.nav.createPost',
@@ -128,17 +134,17 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
         <Logo size="sm" showText />
       </div>
 
-      {/* Create Post Quick Action */}
+      {/* Create Campaign Quick Action */}
       <div className="px-3 pt-4 pb-2">
         <Button
           asChild
           className="group from-primary to-primary/90 shadow-primary/25 hover:shadow-primary/30 dark:shadow-primary/15 dark:hover:shadow-primary/20 relative w-full justify-center gap-2 overflow-hidden bg-gradient-to-r font-medium shadow-md transition-all duration-200 hover:-translate-y-px hover:shadow-lg active:translate-y-0 active:shadow-md"
         >
-          <NavLink to="/dashboard/posts/create">
+          <NavLink to="/dashboard/campaign/create">
             {/* Shimmer effect overlay */}
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             <Plus className="h-4 w-4 transition-transform duration-200 group-hover:rotate-90" />
-            <span>{t('dashboard.nav.createPost')}</span>
+            <span>{t('dashboard.nav.createCampaign')}</span>
           </NavLink>
         </Button>
       </div>
