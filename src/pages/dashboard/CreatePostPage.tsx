@@ -7,9 +7,9 @@ import { useState, useMemo, useCallback } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import { ArrowLeft, Users, Eye } from 'lucide-react'
+import { Users } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
+import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import {
   PlatformSelector,
@@ -251,48 +251,29 @@ export default function CreatePostPage() {
   // Show empty state if no accounts connected
   if (!connectionsLoading && connections.length === 0) {
     return (
-      <div className="flex h-full items-center justify-center p-6">
+      <div>
+        <PageHeader
+          titleKey="dashboard.createPost.title"
+          descriptionKey="dashboard.createPost.description"
+        />
         <EmptyState
           icon={<Users className="h-6 w-6" />}
           titleKey="dashboard.createPost.noAccounts.title"
           descriptionKey="dashboard.createPost.noAccounts.description"
           ctaKey="dashboard.createPost.noAccounts.cta"
           onCtaClick={() => navigate(`/${lang}/dashboard/accounts`)}
+          className="mt-6"
         />
       </div>
     )
   }
 
   return (
-    <div className="flex h-full flex-col overflow-hidden">
-      {/* Header */}
-      <header className="border-border-subtle flex shrink-0 items-center justify-between border-b px-6 py-4">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => navigate(`/${lang}/dashboard/posts`)}
-            className="text-muted-foreground hover:bg-surface-elevated hover:text-foreground flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {t('dashboard.createPost.backToPosts')}
-          </button>
-          <h1 className="text-foreground text-xl font-semibold tracking-tight">
-            {t('dashboard.createPost.title')}
-          </h1>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="hidden gap-2 lg:flex"
-            onClick={() => {
-              // Toggle preview visibility on mobile could be added here
-            }}
-          >
-            <Eye className="h-4 w-4" />
-            {t('dashboard.createPost.actions.preview')}
-          </Button>
-
+    <div>
+      <PageHeader
+        titleKey="dashboard.createPost.title"
+        descriptionKey="dashboard.createPost.description"
+        actions={
           <PostButton
             scheduleType={scheduleType}
             selectedAccounts={selectedAccounts}
@@ -300,13 +281,13 @@ export default function CreatePostPage() {
             isSubmitting={isSubmitDisabled}
             onSubmit={handleSubmit}
           />
-        </div>
-      </header>
+        }
+      />
 
       {/* Main Content - 3 Column Grid */}
-      <div className="grid min-h-0 flex-1 gap-6 overflow-hidden p-6 lg:grid-cols-[240px_1fr_320px]">
+      <div className="mt-6 grid gap-6 lg:grid-cols-[240px_1fr_320px]">
         {/* Left Column - Platforms & Schedule */}
-        <aside className="flex flex-col gap-6 overflow-y-auto lg:pr-2">
+        <aside className="flex flex-col gap-6">
           <div className="bg-card border-border-subtle rounded-xl border p-4">
             <PlatformSelector
               accounts={connections}
@@ -343,7 +324,7 @@ export default function CreatePostPage() {
         </aside>
 
         {/* Center Column - Composer */}
-        <main className="flex min-w-0 flex-col gap-4 overflow-y-auto">
+        <div className="flex min-w-0 flex-col gap-4">
           <MediaUploader
             media={media}
             onUpload={handleMediaUpload}
@@ -360,10 +341,10 @@ export default function CreatePostPage() {
           />
 
           <PlatformHints selectedPlatforms={selectedPlatforms} media={media} caption={caption} />
-        </main>
+        </div>
 
         {/* Right Column - Preview */}
-        <aside className="hidden overflow-y-auto lg:block">
+        <aside className="hidden lg:block">
           <PostPreview
             selectedPlatform={previewPlatform}
             onPlatformChange={setPreviewPlatform}
