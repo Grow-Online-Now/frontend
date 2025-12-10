@@ -1,0 +1,992 @@
+{
+  "hub": {
+    "hero": {
+      "title": "One Dashboard.",
+      "highlight": "Every Platform.",
+      "subtitle": "Stop juggling multiple tools. Grow Online lets you manage, schedule, and analyze all your social media from one powerful dashboard."
+    },
+    "seo": {
+      "title": "Social Media Platforms | Grow Online - All-In-One Growth Tool",
+      "description": "Grow your presence on Instagram, TikTok, LinkedIn, YouTube, and more. AI-powered content creation, scheduling, and analytics for every major social platform."
+    },
+    "exploreButton": "Explore tools",
+    "cta": {
+      "title": "Ready to grow everywhere?",
+      "subtitle": "Join thousands of creators and businesses using Grow Online to dominate social media.",
+      "button": "Start growing today"
+    }
+  },
+  "common": {
+    "cta": {
+      "getStarted": "Get started free",
+      "seeFeatures": "See all features"
+    },
+    "painPoints": {
+      "title": "Sound familiar?",
+      "subtitle": "You're not alone. These are the struggles that keep creators and marketers up at night."
+    },
+    "features": {
+      "title": "Built for your workflow",
+      "subtitle": "Every feature is designed specifically for {{platform}} success.",
+      "aiWriter": "AI Writer",
+      "scheduler": "Smart Scheduler",
+      "analytics": "Analytics",
+      "hashtagTool": "Hashtag Tool",
+      "trendTool": "Trend Finder",
+      "contentTool": "Content Tool",
+      "seoTool": "SEO Tool",
+      "benefits": {
+        "benefit1": "Save hours every week",
+        "benefit2": "Increase engagement rates",
+        "benefit3": "Never miss optimal posting times"
+      }
+    },
+    "useCases": {
+      "title": "Who is this for?",
+      "subtitle": "Grow Online on {{platform}} is perfect for...",
+      "learnMore": "Learn more"
+    },
+    "faq": {
+      "title": "{{platform}} Questions Answered",
+      "subtitle": "Got questions? We've got platform-specific answers.",
+      "stillHaveQuestions": "Still have questions?",
+      "contactUs": "Contact our support team"
+    },
+    "competitor": {
+      "title": "Why choose Grow Online over {{competitor}}?",
+      "feature": "Feature",
+      "cta": "Switch to Grow Online",
+      "comparison": {
+        "multiPlatform": "Multi-platform support",
+        "aiContent": "AI content generation",
+        "analytics": "Advanced analytics",
+        "scheduling": "Smart scheduling",
+        "repurposing": "Content repurposing"
+      }
+    },
+    "crossLinks": {
+      "title": "Grow everywhere",
+      "subtitle": "Your content doesn't have to live in a silo. Repurpose and expand to other platforms.",
+      "explore": "Explore {{platform}}",
+      "viewAll": "View all platforms"
+    }
+  },
+  "instagram": {
+    "name": "Instagram",
+    "hero": {
+      "title": "Turn Followers into Fans.",
+      "highlight": "The Aesthetic Growth Engine.",
+      "subtitle": "Stop posting into the void. Grow Online's AI crafts scroll-stopping captions, finds the perfect hashtags, and schedules your content for maximum engagement.",
+      "agitation": "Your feed looks messy. Your engagement is dropping. You're posting, but the algorithm is ignoring you."
+    },
+    "painPoints": {
+      "messyFeed": {
+        "title": "Feed Chaos",
+        "description": "Your grid looks random. No cohesion, no brand identity. Followers scroll past without a second glance."
+      },
+      "engagementDrop": {
+        "title": "Engagement Death Spiral",
+        "description": "Likes are down. Reach is plummeting. The algorithm has decided you don't exist."
+      },
+      "hashtagChaos": {
+        "title": "Hashtag Guesswork",
+        "description": "You're copy-pasting the same 30 hashtags hoping something sticks. Spoiler: it's not working."
+      },
+      "algorithmIgnore": {
+        "title": "Algorithm Shadowland",
+        "description": "You're posting consistently but your content never hits Explore. It's like shouting into a void."
+      }
+    },
+    "features": {
+      "captionArchitect": {
+        "name": "Caption & Hashtag Architect",
+        "description": "AI-powered captions that hook and convert, paired with strategic hashtags that actually get discovered."
+      },
+      "gridPlanner": {
+        "name": "Visual Grid Planner",
+        "description": "Preview your feed before posting. Drag, drop, and perfect your aesthetic with our visual grid editor."
+      },
+      "hashtagFinder": {
+        "name": "Smart Hashtag Finder",
+        "description": "Discover trending and niche hashtags tailored to your content. No more generic hashtag blocks."
+      },
+      "aestheticAnalytics": {
+        "name": "Aesthetic Analytics",
+        "description": "Track what colors, styles, and content types resonate with your audience. Data-driven aesthetic decisions."
+      }
+    },
+    "useCases": {
+      "ecommerce": {
+        "title": "For E-commerce Brands",
+        "description": "Turn your product photos into sales machines. Schedule shoppable posts and track conversion."
+      },
+      "coaches": {
+        "title": "For Coaches & Consultants",
+        "description": "Build authority and attract high-ticket clients with consistent, professional content."
+      },
+      "restaurants": {
+        "title": "For Restaurants & Cafes",
+        "description": "Make mouths water on autopilot. Schedule your food content for peak hungry hours."
+      },
+      "fitness": {
+        "title": "For Fitness Influencers",
+        "description": "Grow your community and land brand deals with content that actually performs."
+      }
+    },
+    "faqs": {
+      "autoPostReels": {
+        "question": "Does this auto-post Reels or just send a notification?",
+        "answer": "We auto-publish. No 'push notifications' at 3 AM. Set it and forget it. Your Reels go live exactly when scheduled."
+      },
+      "carouselSupport": {
+        "question": "Can I schedule carousel posts?",
+        "answer": "Yes! Upload up to 10 images or videos per carousel. Preview the swipe experience before publishing."
+      },
+      "hashtagLimit": {
+        "question": "How many hashtags should I use?",
+        "answer": "Our AI analyzes your niche and recommends 8-15 strategic hashtags. We focus on quality and relevance, not maxing out at 30."
+      },
+      "firstComment": {
+        "question": "Can I schedule the first comment with hashtags?",
+        "answer": "Absolutely. Keep your caption clean and drop hashtags in the first comment, scheduled to post automatically."
+      },
+      "storiesScheduling": {
+        "question": "Can I schedule Instagram Stories?",
+        "answer": "Yes! Schedule Stories up to 30 days in advance. We even remind you to add interactive stickers before publishing."
+      }
+    },
+    "competitor": {
+      "attack": "Later makes your grid look pretty. Grow Online makes your account grow. Don't just plan visuals — use AI to write captions that convert, find hashtags that work, and analyze what's actually driving engagement."
+    },
+    "crossLinks": {
+      "tiktok": {
+        "headline": "Your Reels deserve a second life.",
+        "body": "Turn your best-performing Reels into TikToks with one click. Different platform, same content, double the reach."
+      },
+      "facebook": {
+        "headline": "Cross-post to Facebook instantly.",
+        "body": "Your Instagram content can live on Facebook too. We handle the optimization for each platform's algorithm."
+      }
+    },
+    "seo": {
+      "title": "Instagram Growth Tool & Scheduler | Grow Online",
+      "description": "Grow your Instagram with AI-powered captions, smart hashtag finder, visual grid planner, and auto-scheduling. Join 1000+ creators using Grow Online."
+    }
+  },
+  "tiktok": {
+    "name": "TikTok",
+    "hero": {
+      "title": "Go Viral Without Dancing.",
+      "highlight": "The AI That Knows The Trends.",
+      "subtitle": "Stop wasting hours on editing. Grow Online's AI finds trending sounds, writes viral scripts, and schedules your content at peak FYP times.",
+      "agitation": "Editing takes hours. Finding trending sounds is a nightmare. By the time you post, the trend is dead."
+    },
+    "painPoints": {
+      "editingNightmare": {
+        "title": "Editing Black Hole",
+        "description": "You spend 3 hours on a 30-second video. The ROI is brutal, and you're burning out."
+      },
+      "trendChasing": {
+        "title": "Trend FOMO",
+        "description": "By the time you spot a trend, create content, and post it — everyone's moved on."
+      },
+      "soundHunting": {
+        "title": "Sound Hunting",
+        "description": "Scrolling endlessly for that perfect viral sound. It's a job within a job."
+      },
+      "fypMystery": {
+        "title": "FYP Roulette",
+        "description": "Sometimes you hit 100K views. Sometimes 47. Zero consistency, zero predictability."
+      }
+    },
+    "features": {
+      "scriptEngine": {
+        "name": "Script-to-Video Engine",
+        "description": "Describe your video idea, get a viral-optimized script with hooks, transitions, and CTAs built in."
+      },
+      "viralDetection": {
+        "name": "Viral Spike Detection",
+        "description": "Real-time alerts when your content starts gaining traction. Double down on what's working."
+      },
+      "trendFinder": {
+        "name": "Trending Sound Radar",
+        "description": "AI-curated trending sounds updated hourly. Jump on trends before they peak."
+      },
+      "smartScheduler": {
+        "name": "FYP Timing Optimizer",
+        "description": "Schedule posts when YOUR audience is most active. Not generic best times — your data, your audience."
+      }
+    },
+    "useCases": {
+      "ugcCreators": {
+        "title": "For UGC Creators",
+        "description": "Land more brand deals with a consistent posting schedule and professional-quality scripts."
+      },
+      "dropshippers": {
+        "title": "For Dropshippers",
+        "description": "Create product videos at scale. TikTok Shop integration coming soon."
+      },
+      "facelessChannels": {
+        "title": "For Faceless Channels",
+        "description": "Build faceless content empires. AI scripts, stock footage, and zero face-time required."
+      },
+      "gaming": {
+        "title": "For Gaming Content",
+        "description": "Clip, schedule, and post your best gaming moments without leaving your setup."
+      }
+    },
+    "faqs": {
+      "shadowban": {
+        "question": "Does scheduling kill my reach or cause shadowbans?",
+        "answer": "No. Grow Online uses the official TikTok API, which TikTok marks as 'Safe.' We simulate organic posting behavior — no red flags."
+      },
+      "watermark": {
+        "question": "Can I remove the watermark when repurposing?",
+        "answer": "Yes. Our AI repurposes your content clean, so you look native on every platform. No awkward watermarks."
+      },
+      "bestTime": {
+        "question": "What's the best time to post on TikTok?",
+        "answer": "It depends on YOUR audience. Our FYP Timing Optimizer analyzes your followers' activity and recommends personalized posting windows."
+      },
+      "duetStitch": {
+        "question": "Can I schedule Duets and Stitches?",
+        "answer": "Not yet — TikTok's API doesn't support this. But you can plan and draft them in Grow Online for manual posting."
+      },
+      "analyticsDelay": {
+        "question": "Why is TikTok analytics delayed?",
+        "answer": "TikTok's API has a 24-48 hour delay. We pull data as soon as it's available and show you real-time estimates based on patterns."
+      }
+    },
+    "competitor": {
+      "attack": "Repurpose.io moves content around. Grow Online creates content that actually performs. Our AI doesn't just reformat — it rewrites hooks, adjusts pacing, and optimizes for each platform's unique algorithm."
+    },
+    "crossLinks": {
+      "youtube": {
+        "headline": "Conquer YouTube Shorts instantly.",
+        "body": "Your TikToks are already vertical. Push them to YouTube without lifting a finger. Same content, new audience."
+      },
+      "instagram": {
+        "headline": "Reels are just TikToks for millennials.",
+        "body": "Automatically repurpose your best TikToks to Instagram Reels. Different algorithm, double the exposure."
+      }
+    },
+    "seo": {
+      "title": "TikTok Growth Tool & Scheduler | Grow Online",
+      "description": "Go viral on TikTok with AI-powered scripts, trending sound finder, FYP timing optimizer, and auto-scheduling. The tool for serious TikTok creators."
+    }
+  },
+  "linkedin": {
+    "name": "LinkedIn",
+    "hero": {
+      "title": "Become a Thought Leader.",
+      "highlight": "Automate Your Authority.",
+      "subtitle": "Stop staring at blank screens. Grow Online's AI writes in your voice, schedules for peak engagement, and tracks the leads your content generates.",
+      "agitation": "Stop staring at a blank screen wondering what 'professional' thing to say. Stop formatting 'bro-etry' manually."
+    },
+    "painPoints": {
+      "blankScreen": {
+        "title": "The Blank Screen Terror",
+        "description": "You know you should post. But what? 'Thought leadership' sounds exhausting."
+      },
+      "broetryFormat": {
+        "title": "Bro-etry Formatting Hell",
+        "description": "Single line. New paragraph. Single line. It's tedious, and LinkedIn's editor fights you."
+      },
+      "engagementTiming": {
+        "title": "Timing Guesswork",
+        "description": "Is 8 AM better than noon? Does it matter? You're posting when you remember, not when it counts."
+      },
+      "leadTracking": {
+        "title": "Lead Blindness",
+        "description": "Someone engaged with your post. Were they a potential client? You'll never know — the moment's gone."
+      }
+    },
+    "features": {
+      "b2bGhostwriter": {
+        "name": "The B2B Ghostwriter",
+        "description": "AI that writes in YOUR professional voice. Not generic corporate speak — your unique perspective, amplified."
+      },
+      "leadSignals": {
+        "name": "Lead Gen Signals",
+        "description": "Track who's engaging with your content. Identify decision-makers and warm leads automatically."
+      },
+      "carouselBuilder": {
+        "name": "PDF Carousel Builder",
+        "description": "Turn your insights into swipeable carousels. Upload content, get a perfectly formatted LinkedIn document."
+      },
+      "authorityScheduler": {
+        "name": "Authority Scheduler",
+        "description": "Post when YOUR network is online. Optimize for comments — the metric that drives LinkedIn reach."
+      }
+    },
+    "useCases": {
+      "saasFounders": {
+        "title": "For SaaS Founders",
+        "description": "Build in public, attract investors, and generate inbound leads with consistent thought leadership."
+      },
+      "realEstate": {
+        "title": "For Real Estate Agents",
+        "description": "Become the local market expert. Share insights that attract buyers and sellers."
+      },
+      "consultants": {
+        "title": "For Consultants",
+        "description": "Position yourself as the go-to expert. Turn LinkedIn into your highest-converting lead channel."
+      },
+      "coaches": {
+        "title": "For Executive Coaches",
+        "description": "Attract high-ticket clients with content that demonstrates your expertise and methodology."
+      }
+    },
+    "faqs": {
+      "personalVsCompany": {
+        "question": "Does this work for Personal Profiles or just Company Pages?",
+        "answer": "Both. But we prioritize Personal Profiles because that's where 90% of LinkedIn engagement happens. Company pages are dead — personal brands win."
+      },
+      "pdfCarousels": {
+        "question": "Can I schedule PDF Carousels?",
+        "answer": "Yes. Upload your PDF, and we auto-generate the caption to match the slide content. Full carousel support."
+      },
+      "connectionLimits": {
+        "question": "Will this get my account flagged?",
+        "answer": "No. We only use official LinkedIn APIs for scheduling. No automation, no connection requests, no risk."
+      },
+      "linkedinAlgorithm": {
+        "question": "How does the LinkedIn algorithm work?",
+        "answer": "LinkedIn prioritizes content that sparks conversation. Our AI writes posts designed to generate comments, not just likes."
+      },
+      "newsletterSupport": {
+        "question": "Can I schedule LinkedIn Newsletters?",
+        "answer": "Not directly — LinkedIn doesn't allow API scheduling for newsletters. But you can draft and plan them in Grow Online."
+      }
+    },
+    "competitor": {
+      "attack": "Taplio is great for LinkedIn. But your brand doesn't live in a silo. Grow Online gives you Taplio-level LinkedIn features + Instagram + TikTok + YouTube in one dashboard, for the same price. Why pay for multiple tools?"
+    },
+    "crossLinks": {
+      "x": {
+        "headline": "Don't let your LinkedIn threads die.",
+        "body": "One click turns your best LinkedIn posts into Twitter Threads. Same insight, new audience."
+      },
+      "threads": {
+        "headline": "Threads is LinkedIn for cool kids.",
+        "body": "Repurpose your professional insights to Threads. Shorter, punchier, but same substance."
+      }
+    },
+    "seo": {
+      "title": "LinkedIn Automation & Scheduler | Grow Online",
+      "description": "Build thought leadership on LinkedIn with AI-powered content, PDF carousel builder, lead tracking, and smart scheduling. The B2B growth tool."
+    }
+  },
+  "x": {
+    "name": "X (Twitter)",
+    "hero": {
+      "title": "Own The Conversation.",
+      "highlight": "The Viral Thread Builder.",
+      "subtitle": "Stop tweeting into the void. Grow Online's AI crafts hooks that stop the scroll, writes threads that get shared, and posts when engagement peaks.",
+      "agitation": "Thread formatting is tedious. Timing feels like gambling. Your tweets die in minutes."
+    },
+    "painPoints": {
+      "threadFormatting": {
+        "title": "Thread Formatting Hell",
+        "description": "Manually numbering tweets. Checking character counts. Breaking sentences awkwardly. It's painful."
+      },
+      "timingGame": {
+        "title": "The Timing Lottery",
+        "description": "Tweet at 2 PM — nothing. Tweet at 3 PM — viral. There's no rhyme or reason."
+      },
+      "engagementChaos": {
+        "title": "Engagement Roulette",
+        "description": "Some tweets pop. Most don't. You have no idea why, and you can't replicate success."
+      },
+      "algorithmShifts": {
+        "title": "Algorithm Whiplash",
+        "description": "What worked last month doesn't work now. The platform changes faster than you can adapt."
+      }
+    },
+    "features": {
+      "threadBuilder": {
+        "name": "Viral Thread Builder",
+        "description": "Write the idea, get a perfectly formatted thread with hooks, transitions, and a killer closing CTA."
+      },
+      "engagementRadar": {
+        "name": "Engagement Radar",
+        "description": "Real-time tracking of replies, quotes, and shares. See who's engaging and jump into conversations."
+      },
+      "hookGenerator": {
+        "name": "Hook Generator",
+        "description": "AI-crafted opening lines tested for scroll-stopping power. Never start with 'I think' again."
+      },
+      "primeScheduler": {
+        "name": "Prime Time Scheduler",
+        "description": "Post when YOUR followers are online, not generic 'best times.' Personalized to your audience."
+      }
+    },
+    "useCases": {
+      "journalists": {
+        "title": "For Journalists & Writers",
+        "description": "Build your following, break news first, and drive traffic to your long-form content."
+      },
+      "creatorsMonetizing": {
+        "title": "For Monetizing Creators",
+        "description": "Hit X Premium thresholds faster. Consistent posting = consistent revenue."
+      },
+      "podcasters": {
+        "title": "For Podcasters",
+        "description": "Tease episodes, share clips, and grow your listener base one thread at a time."
+      },
+      "brands": {
+        "title": "For Brand Accounts",
+        "description": "Stay relevant, respond to trends, and build community without a 24/7 social team."
+      }
+    },
+    "faqs": {
+      "threadAutoPublish": {
+        "question": "Can I schedule entire threads to auto-publish?",
+        "answer": "Yes. Write your thread, schedule it, and the entire thread posts sequentially. No manual posting required."
+      },
+      "apiLimits": {
+        "question": "Are there API limits I should know about?",
+        "answer": "X has rate limits, but our scheduling system is designed to stay well within them. No risk of account issues."
+      },
+      "mediaSupport": {
+        "question": "Can I schedule tweets with images and videos?",
+        "answer": "Absolutely. Images, videos, GIFs, polls — full media support across all scheduled content."
+      },
+      "spacesIntegration": {
+        "question": "Can I promote my X Spaces?",
+        "answer": "Yes! Schedule promotional tweets before, during, and after your Spaces. Build anticipation and drive attendance."
+      },
+      "premiumFeatures": {
+        "question": "Do I need X Premium to use Grow Online?",
+        "answer": "No. Grow Online works with free and premium accounts. Premium unlocks longer tweets, which we fully support."
+      }
+    },
+    "competitor": {
+      "attack": "Typefully and Hypefury are X-only tools. Great if you only live on Twitter. But if you're also on LinkedIn, TikTok, or Instagram, you're paying for multiple subscriptions. Grow Online does it all."
+    },
+    "crossLinks": {
+      "linkedin": {
+        "headline": "Turn threads into thought leadership.",
+        "body": "Your best Twitter threads are LinkedIn gold. One click reformats for the professional network."
+      },
+      "bluesky": {
+        "headline": "Hedge your bets on Bluesky.",
+        "body": "The decentralized alternative is growing. Cross-post your content and build your presence there too."
+      }
+    },
+    "seo": {
+      "title": "X (Twitter) Growth Tool & Scheduler | Grow Online",
+      "description": "Grow on X with AI-powered thread builder, hook generator, engagement tracking, and smart scheduling. The tool for serious Twitter growth."
+    }
+  },
+  "youtube": {
+    "name": "YouTube",
+    "hero": {
+      "title": "Shorts That Scale.",
+      "highlight": "The YouTube Growth Engine.",
+      "subtitle": "Stop guessing what works. Grow Online's AI writes click-worthy titles, repurposes long-form into Shorts, and optimizes every upload for search.",
+      "agitation": "Thumbnail burnout is real. YouTube SEO is a mystery. Your Shorts get 47 views while others hit millions."
+    },
+    "painPoints": {
+      "thumbnailBurnout": {
+        "title": "Thumbnail Exhaustion",
+        "description": "You've made 47 versions. They all look the same. Click-through rate? Still garbage."
+      },
+      "seoMystery": {
+        "title": "SEO Black Magic",
+        "description": "Tags, descriptions, chapters — what actually matters? YouTube won't tell you."
+      },
+      "shortsChaos": {
+        "title": "Shorts Confusion",
+        "description": "Should you post Shorts? Vertical long-form? Both? YouTube keeps changing the rules."
+      },
+      "editingTime": {
+        "title": "Editing Time Sink",
+        "description": "A 10-minute video takes 10 hours to edit. The math doesn't math."
+      }
+    },
+    "features": {
+      "titleHook": {
+        "name": "Title Hook Generator",
+        "description": "AI-crafted titles optimized for click-through rate. A/B test variations before you commit."
+      },
+      "shortsRepurposer": {
+        "name": "Shorts Repurposer",
+        "description": "Turn your long-form content into Shorts automatically. AI finds the best clips."
+      },
+      "seoOptimizer": {
+        "name": "YouTube SEO Optimizer",
+        "description": "Keyword research, tag suggestions, and description templates. Rank higher, get discovered."
+      },
+      "performanceTracker": {
+        "name": "Performance Tracker",
+        "description": "Track views, watch time, CTR, and revenue in one dashboard. Know what's working."
+      }
+    },
+    "useCases": {
+      "vloggers": {
+        "title": "For Vloggers",
+        "description": "Maintain a consistent upload schedule without sacrificing video quality or your sanity."
+      },
+      "gamers": {
+        "title": "For Gaming Channels",
+        "description": "Clip highlights, schedule uploads, and grow your gaming empire on autopilot."
+      },
+      "educators": {
+        "title": "For Educational Content",
+        "description": "Turn lectures into engaging content. SEO optimization that gets you discovered."
+      },
+      "musicians": {
+        "title": "For Musicians & Artists",
+        "description": "Promote releases, schedule music videos, and grow your fanbase systematically."
+      }
+    },
+    "faqs": {
+      "shortsScheduling": {
+        "question": "Can I schedule YouTube Shorts?",
+        "answer": "Yes! Full Shorts support including vertical video scheduling, hashtags, and optimal posting times."
+      },
+      "thumbnailGeneration": {
+        "question": "Do you generate thumbnails?",
+        "answer": "Not yet — but we integrate with Canva and other tools. Thumbnail AI is on our roadmap."
+      },
+      "monetizationImpact": {
+        "question": "Does scheduling affect monetization?",
+        "answer": "No. Scheduled videos are treated identically to manually uploaded ones. Your revenue is safe."
+      },
+      "descriptionSeo": {
+        "question": "How important are video descriptions for SEO?",
+        "answer": "Very. Our AI writes keyword-rich descriptions with timestamps, links, and calls to action built in."
+      },
+      "premiereSupport": {
+        "question": "Can I schedule YouTube Premieres?",
+        "answer": "Yes. Set up Premieres with countdowns, chat, and all the features you'd get uploading manually."
+      }
+    },
+    "competitor": {
+      "attack": "VidIQ and TubeBuddy are great for SEO research. But they don't create content, schedule posts, or manage your other platforms. Grow Online is the full toolkit — not just a browser extension."
+    },
+    "crossLinks": {
+      "tiktok": {
+        "headline": "Your Shorts are TikToks waiting to happen.",
+        "body": "Same vertical format, different audience. Push your Shorts to TikTok and double your reach."
+      },
+      "instagram": {
+        "headline": "Reels want your YouTube content.",
+        "body": "Repurpose Shorts to Instagram Reels. Same content, new discovery algorithm."
+      }
+    },
+    "seo": {
+      "title": "YouTube Growth Tool & Shorts Scheduler | Grow Online",
+      "description": "Grow your YouTube channel with AI-powered titles, Shorts repurposing, SEO optimization, and smart scheduling. The complete YouTube toolkit."
+    }
+  },
+  "facebook": {
+    "name": "Facebook",
+    "hero": {
+      "title": "Community Growth Machine.",
+      "highlight": "Revive Your Reach.",
+      "subtitle": "Facebook isn't dead — you just need better tools. Grow Online helps you schedule Groups, cross-post Reels, and actually reach your audience again.",
+      "agitation": "Organic reach is dead. Your Group is drowning in spam. Reels exist but you're still posting photos."
+    },
+    "painPoints": {
+      "organicDeath": {
+        "title": "The Organic Reach Apocalypse",
+        "description": "Pages get 2% reach. You're posting to 10,000 followers and 200 see it. Facebook wants your ad money."
+      },
+      "groupFatigue": {
+        "title": "Group Management Burnout",
+        "description": "Spam everywhere. Questions repeated daily. Moderation is a full-time job nobody's paying for."
+      },
+      "reelsTransition": {
+        "title": "The Reels Learning Curve",
+        "description": "Facebook wants video. You've been doing photos for 10 years. The pivot is painful."
+      },
+      "crossPosting": {
+        "title": "Cross-Platform Chaos",
+        "description": "Instagram, Facebook, Messenger — three apps, zero coordination. Meta wants it that way."
+      }
+    },
+    "features": {
+      "communityPulse": {
+        "name": "Community Pulse Analytics",
+        "description": "Track Group health, engagement patterns, and member activity. Catch spam before it spreads."
+      },
+      "reelCrosspost": {
+        "name": "Reel Crosspost Engine",
+        "description": "Post Reels to Facebook and Instagram simultaneously. Same content, double the reach."
+      },
+      "groupScheduler": {
+        "name": "Group Scheduler",
+        "description": "Schedule posts to multiple Groups. Consistent presence without constant attention."
+      },
+      "aiCaptions": {
+        "name": "Facebook-Optimized Captions",
+        "description": "AI that writes for Facebook's algorithm. Longer, story-driven content that gets shared."
+      }
+    },
+    "useCases": {
+      "localBusiness": {
+        "title": "For Local Businesses",
+        "description": "Stay top-of-mind in your community. Schedule promotions, events, and updates."
+      },
+      "agencies": {
+        "title": "For Marketing Agencies",
+        "description": "Manage multiple client pages from one dashboard. Efficient, organized, scalable."
+      },
+      "nonprofits": {
+        "title": "For Nonprofits",
+        "description": "Build community, share impact stories, and drive donations with consistent content."
+      },
+      "publishers": {
+        "title": "For Publishers & Media",
+        "description": "Distribute articles, drive traffic, and build an engaged readership."
+      }
+    },
+    "faqs": {
+      "pageVsProfile": {
+        "question": "Can I schedule to personal profiles or just Pages?",
+        "answer": "Pages and Groups only. Facebook's API doesn't allow personal profile scheduling — anyone claiming otherwise is breaking ToS."
+      },
+      "groupPosting": {
+        "question": "Can I post to Facebook Groups I don't own?",
+        "answer": "Only if you're an admin or moderator. We respect Group permissions and Facebook's guidelines."
+      },
+      "reelsAutoPost": {
+        "question": "Do Facebook Reels auto-publish?",
+        "answer": "Yes! Full auto-publish support for Reels. Set it, schedule it, forget it."
+      },
+      "instagramSync": {
+        "question": "Does this sync with Instagram automatically?",
+        "answer": "Yes — if your accounts are connected. Cross-post to both platforms with one click."
+      },
+      "storiesSupport": {
+        "question": "Can I schedule Facebook Stories?",
+        "answer": "Yes! Schedule Stories up to 30 days in advance. Same workflow as regular posts."
+      }
+    },
+    "competitor": {
+      "attack": "Meta Business Suite is free but painful. Clunky interface, limited scheduling, zero AI assistance. Grow Online gives you a professional toolkit that actually helps you grow — not just manage."
+    },
+    "crossLinks": {
+      "instagram": {
+        "headline": "You own Instagram already.",
+        "body": "Same parent company, same content strategy. Grow on both platforms with one tool."
+      },
+      "threads": {
+        "headline": "Threads is Meta's next bet.",
+        "body": "Get ahead on Threads while it's still growing. Cross-post your best Facebook content."
+      }
+    },
+    "seo": {
+      "title": "Facebook Scheduler & Growth Tool | Grow Online",
+      "description": "Revive your Facebook presence with Group scheduling, Reels cross-posting, community analytics, and AI captions. The modern Facebook toolkit."
+    }
+  },
+  "threads": {
+    "name": "Threads",
+    "hero": {
+      "title": "Early Mover Advantage.",
+      "highlight": "The Threads Growth Tool.",
+      "subtitle": "Threads is still young — the algorithm rewards consistent posters. Grow Online helps you build your presence before the competition arrives.",
+      "agitation": "New platform, new rules. You're guessing what works while others figure it out first."
+    },
+    "painPoints": {
+      "newPlatform": {
+        "title": "New Platform Anxiety",
+        "description": "Do I really need another app? What's the strategy? Nobody seems to know yet."
+      },
+      "algorithmUnknown": {
+        "title": "Algorithm Mystery",
+        "description": "Threads' algorithm is a black box. What gets reach? What gets buried? Pure experimentation."
+      },
+      "crossPlatform": {
+        "title": "Cross-Platform Confusion",
+        "description": "Should you repost from Twitter? Instagram? Original content only? No clear best practice."
+      },
+      "contentStrategy": {
+        "title": "Content Strategy Void",
+        "description": "Text-only like early Twitter? With images like Instagram? Threads hasn't decided what it is."
+      }
+    },
+    "features": {
+      "crossPostAi": {
+        "name": "Cross-Post Intelligence",
+        "description": "AI adapts your content for Threads' unique vibe. Not copy-paste — optimized repurposing."
+      },
+      "threadFormatter": {
+        "name": "Thread Formatter",
+        "description": "Write long-form, get perfectly formatted Threads threads. Automatic splitting and numbering."
+      },
+      "earlyAnalytics": {
+        "name": "Early Mover Analytics",
+        "description": "Track growth patterns on a new platform. Identify what's working before competitors catch on."
+      },
+      "smartTiming": {
+        "name": "Smart Timing",
+        "description": "Post when Threads' algorithm is most favorable. Early data suggests timing matters."
+      }
+    },
+    "useCases": {
+      "earlyAdopters": {
+        "title": "For Early Adopters",
+        "description": "Build authority while the platform is young. Early followers are the most loyal."
+      },
+      "brands": {
+        "title": "For Forward-Thinking Brands",
+        "description": "Establish your brand voice on Threads before your competitors wake up."
+      },
+      "creators": {
+        "title": "For Multi-Platform Creators",
+        "description": "Add another channel to your content distribution. Grow everywhere, not just somewhere."
+      },
+      "thoughtLeaders": {
+        "title": "For Thought Leaders",
+        "description": "Threads favors conversation. Perfect for building engaged communities around ideas."
+      }
+    },
+    "faqs": {
+      "instagramRequired": {
+        "question": "Do I need an Instagram account for Threads?",
+        "answer": "Yes. Threads is tied to Instagram. But you don't need to post on Instagram to use Threads actively."
+      },
+      "schedulingSupport": {
+        "question": "Can I actually schedule Threads posts?",
+        "answer": "Yes! We support Threads scheduling through Meta's official API. Full auto-publish."
+      },
+      "analyticsAvailable": {
+        "question": "Are Threads analytics available?",
+        "answer": "Basic analytics are live. We track followers, engagement, and best-performing content types."
+      },
+      "crossPosting": {
+        "question": "Should I just cross-post from Twitter?",
+        "answer": "Not exactly. Our AI adapts your content for Threads' audience — more casual, more conversational."
+      },
+      "characterLimit": {
+        "question": "What's the character limit on Threads?",
+        "answer": "500 characters per post. Our formatter automatically splits longer content into proper threads."
+      }
+    },
+    "competitor": {
+      "attack": "There's no dominant Threads tool yet. Grow Online is building the definitive toolkit while others wait. Early adopters get early mover advantage."
+    },
+    "crossLinks": {
+      "instagram": {
+        "headline": "Threads and Instagram are siblings.",
+        "body": "Your Instagram audience can follow you on Threads instantly. Use both to maximize reach."
+      },
+      "x": {
+        "headline": "Hedge your bets.",
+        "body": "Some audiences are on X, some on Threads. Cover both with one content strategy."
+      }
+    },
+    "seo": {
+      "title": "Threads Scheduler & Growth Tool | Grow Online",
+      "description": "Grow on Threads with cross-post intelligence, thread formatting, early analytics, and smart scheduling. The first serious Threads toolkit."
+    }
+  },
+  "pinterest": {
+    "name": "Pinterest",
+    "hero": {
+      "title": "Visual Discovery Engine.",
+      "highlight": "SEO That Converts.",
+      "subtitle": "Pinterest is a search engine disguised as a social network. Grow Online optimizes your pins for discovery, seasons your content, and drives traffic on autopilot.",
+      "agitation": "Pinterest SEO is complex. Seasonal timing is everything. Your pins get lost in boards nobody visits."
+    },
+    "painPoints": {
+      "seoHeavy": {
+        "title": "SEO Learning Curve",
+        "description": "Pinterest rewards keywords, descriptions, and titles. It's more Google than Instagram."
+      },
+      "seasonalTiming": {
+        "title": "Seasonal Timing Pressure",
+        "description": "Pin Christmas content in July. Valentine's in November. Always three months ahead or behind."
+      },
+      "pinDesign": {
+        "title": "Pin Design Fatigue",
+        "description": "Vertical images, text overlays, brand consistency — every pin is a mini design project."
+      },
+      "boardStrategy": {
+        "title": "Board Organization Chaos",
+        "description": "Too many boards. Wrong categories. Pinterest's algorithm ignores you because your structure is messy."
+      }
+    },
+    "features": {
+      "pinSeo": {
+        "name": "Pin SEO Optimizer",
+        "description": "Keyword research for Pinterest. Optimized titles, descriptions, and hashtags for maximum discoverability."
+      },
+      "boardStrategy": {
+        "name": "Board Strategy AI",
+        "description": "Organize your boards for algorithmic success. Smart categorization and keyword mapping."
+      },
+      "seasonalPlanner": {
+        "name": "Seasonal Content Planner",
+        "description": "Plan 3-6 months ahead with our seasonal calendar. Never miss a trending moment."
+      },
+      "visualAnalytics": {
+        "name": "Visual Performance Analytics",
+        "description": "Track which pin styles, colors, and formats drive the most saves and clicks."
+      }
+    },
+    "useCases": {
+      "ecommerce": {
+        "title": "For E-commerce",
+        "description": "Turn browsers into buyers. Product pins that drive traffic and sales."
+      },
+      "homeDecor": {
+        "title": "For Home & Decor",
+        "description": "Pinterest is where design decisions happen. Be part of the inspiration journey."
+      },
+      "creatives": {
+        "title": "For Creatives & Artists",
+        "description": "Showcase your portfolio. Pinterest drives more website traffic than you'd expect."
+      },
+      "foodBloggers": {
+        "title": "For Food Bloggers",
+        "description": "Recipe pins perform incredibly. Turn your recipes into traffic machines."
+      }
+    },
+    "faqs": {
+      "ideaPins": {
+        "question": "Do you support Idea Pins?",
+        "answer": "Yes! Full Idea Pin support including multi-page stories, video, and all creative formats."
+      },
+      "schedulingFrequency": {
+        "question": "How often should I pin?",
+        "answer": "Our AI recommends 5-25 pins per day depending on your niche. Consistency beats volume."
+      },
+      "richPins": {
+        "question": "What are Rich Pins and do you support them?",
+        "answer": "Rich Pins pull metadata from your website. We help you set them up for products, recipes, and articles."
+      },
+      "keywordResearch": {
+        "question": "How do I find Pinterest keywords?",
+        "answer": "Our Pin SEO Optimizer suggests keywords based on Pinterest's search trends and your niche performance."
+      },
+      "videoPins": {
+        "question": "Are video pins worth it?",
+        "answer": "Yes — Pinterest is pushing video hard. Our analytics show video pins get 2-3x the engagement."
+      }
+    },
+    "competitor": {
+      "attack": "Tailwind has been the Pinterest tool for years. But it's dated, complex, and expensive. Grow Online gives you modern Pinterest tools plus every other platform — one price, one dashboard."
+    },
+    "crossLinks": {
+      "instagram": {
+        "headline": "Your Instagram aesthetic belongs on Pinterest.",
+        "body": "Repurpose your best Instagram content as pins. Different audience, same visual quality."
+      },
+      "youtube": {
+        "headline": "Pin your YouTube content.",
+        "body": "Video pins perform great. Turn your YouTube thumbnails into Pinterest traffic drivers."
+      }
+    },
+    "seo": {
+      "title": "Pinterest Scheduler & SEO Tool | Grow Online",
+      "description": "Grow on Pinterest with Pin SEO optimization, seasonal planning, board strategy AI, and smart scheduling. The modern Pinterest toolkit."
+    }
+  },
+  "bluesky": {
+    "name": "Bluesky",
+    "hero": {
+      "title": "Decentralized Growth.",
+      "highlight": "The Open Social Future.",
+      "subtitle": "Bluesky is building what Twitter should have been. Grow Online helps you establish your presence on the decentralized social network before it explodes.",
+      "agitation": "New platform, unclear algorithm, small audience — but early movers win big."
+    },
+    "painPoints": {
+      "algorithmLearning": {
+        "title": "Algorithm Opacity",
+        "description": "Bluesky's algorithm is custom-feed-based. Learning which feeds matter takes time."
+      },
+      "smallAudience": {
+        "title": "Small (But Growing) Audience",
+        "description": "Fewer users means less reach. But also less competition and more intimate connections."
+      },
+      "feedComplexity": {
+        "title": "Custom Feed Confusion",
+        "description": "Bluesky's custom feeds are powerful but complex. Which feeds should you optimize for?"
+      },
+      "migrationChallenge": {
+        "title": "Audience Migration Struggle",
+        "description": "Your followers are on other platforms. Getting them to follow you on Bluesky is a challenge."
+      }
+    },
+    "features": {
+      "feedTrainer": {
+        "name": "Feed Algorithm Trainer",
+        "description": "Optimize your content for Bluesky's popular custom feeds. Get discovered where it matters."
+      },
+      "atProtocol": {
+        "name": "AT Protocol Native",
+        "description": "Built on Bluesky's native AT Protocol. Future-proof scheduling and analytics."
+      },
+      "aiPosts": {
+        "name": "Bluesky-Optimized AI",
+        "description": "AI that writes for Bluesky's culture — more thoughtful, less engagement-bait."
+      },
+      "growthScheduler": {
+        "name": "Growth Scheduler",
+        "description": "Post when Bluesky's active user base is online. Optimize for the platform's unique rhythms."
+      }
+    },
+    "useCases": {
+      "earlyMovers": {
+        "title": "For Early Adopters",
+        "description": "Build your audience before the masses arrive. Early followers are the most engaged."
+      },
+      "developers": {
+        "title": "For Developers & Tech",
+        "description": "Bluesky's tech-forward community is perfect for developer advocates and tech thought leaders."
+      },
+      "privacyFocused": {
+        "title": "For Privacy Advocates",
+        "description": "Bluesky's decentralized model appeals to users who care about data ownership."
+      },
+      "twitterMigrants": {
+        "title": "For X/Twitter Migrants",
+        "description": "Establish your Bluesky presence as a hedge against Twitter's ongoing changes."
+      }
+    },
+    "faqs": {
+      "atProtocol": {
+        "question": "What is the AT Protocol?",
+        "answer": "AT Protocol is Bluesky's open, decentralized framework. It means you own your data and can move it between services."
+      },
+      "schedulingSupport": {
+        "question": "Can I actually schedule Bluesky posts?",
+        "answer": "Yes! We support Bluesky scheduling through their official API. Full auto-publish support."
+      },
+      "customFeeds": {
+        "question": "How do custom feeds work?",
+        "answer": "Custom feeds are algorithm-like filters anyone can create. Our Feed Trainer helps you optimize for popular ones."
+      },
+      "crossPosting": {
+        "question": "Should I cross-post from Twitter?",
+        "answer": "Carefully. Bluesky's culture is different. Our AI adapts your content for a better fit."
+      },
+      "verification": {
+        "question": "How does verification work on Bluesky?",
+        "answer": "Bluesky uses domain-based verification. We can help you set up your custom domain handle."
+      }
+    },
+    "competitor": {
+      "attack": "There are no established Bluesky tools yet. Grow Online is building the first comprehensive toolkit. Get ahead of the competition before it exists."
+    },
+    "crossLinks": {
+      "x": {
+        "headline": "Don't put all your eggs in one basket.",
+        "body": "Post to both X and Bluesky. Hedge your bets on the future of short-form text."
+      },
+      "threads": {
+        "headline": "Cover all text-based platforms.",
+        "body": "Bluesky, Threads, and X — three platforms, one content strategy. Reach everyone."
+      }
+    },
+    "seo": {
+      "title": "Bluesky Scheduler & Growth Tool | Grow Online",
+      "description": "Grow on Bluesky with feed optimization, AT Protocol support, AI content, and smart scheduling. The first serious Bluesky toolkit."
+    }
+  }
+}

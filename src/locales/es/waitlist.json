@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "title": "Haz Crecer tus Redes Sociales.\n10x Más Rápido.",
+    "subtitle": "Programación de contenido y analíticas impulsadas por IA para creadores que van en serio. Únete a la lista de espera y obtén 3 meses gratis en el lanzamiento.",
+    "emailPlaceholder": "Ingresa tu email",
+    "cta": "Unirse a la Lista",
+    "socialProof": "Únete a {{count}} adoptadores tempranos"
+  },
+  "features": {
+    "title": "Todo lo que necesitas para crecer",
+    "subtitle": "Herramientas poderosas construidas para creadores modernos",
+    "ai": {
+      "title": "Generación de Contenido con IA",
+      "description": "Genera publicaciones, pies de foto y hashtags atractivos con IA avanzada que entiende la voz de tu marca."
+    },
+    "scheduling": {
+      "title": "Programación Multi-Plataforma",
+      "description": "Programa y publica en Instagram, TikTok, Twitter, LinkedIn y más desde un solo panel de control."
+    },
+    "analytics": {
+      "title": "Analíticas en Tiempo Real",
+      "description": "Rastrea tu crecimiento con insights detallados, métricas de engagement y análisis de competidores."
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "q1": {
+      "question": "¿Qué es Grow Online?",
+      "answer": "Grow Online es una plataforma de gestión de redes sociales impulsada por IA que ayuda a creadores y negocios a hacer crecer su audiencia 10x más rápido a través de programación inteligente de contenido, publicación automatizada y analíticas avanzadas en todas las principales plataformas."
+    },
+    "q2": {
+      "question": "¿Qué plataformas sociales están soportadas?",
+      "answer": "Soportamos Instagram, TikTok, Twitter (X), LinkedIn, Facebook, Pinterest y YouTube. Se están agregando más plataformas basadas en los comentarios de los usuarios."
+    },
+    "q3": {
+      "question": "¿Cuándo se lanzará Grow Online?",
+      "answer": "Lanzamos en Q1 2025. Los miembros de la lista de espera tendrán acceso anticipado 2 semanas antes del lanzamiento público, más 3 meses gratis cuando se registren."
+    },
+    "q4": {
+      "question": "¿Cuánto costará?",
+      "answer": "Los precios comienzan en $29/mes para creadores y $99/mes para agencias. Los miembros de la lista de espera obtienen 3 meses gratis y un 20% de descuento de por vida."
+    },
+    "q5": {
+      "question": "¿Cómo funciona la generación de contenido con IA?",
+      "answer": "Nuestra IA analiza la voz de tu marca, contenido pasado y temas en tendencia en tu nicho para generar publicaciones, pies de foto y hashtags que se alinean con tu marca y impulsan el engagement. Mantienes el control creativo total."
+    }
+  },
+  "finalCta": {
+    "title": "¿Listo para hacer crecer tu audiencia?",
+    "subtitle": "Únete a miles de creadores ya en la lista de espera",
+    "cta": "Obtener Acceso Anticipado"
+  },
+  "footer": {
+    "copyright": "© 2025 Grow Online. Todos los derechos reservados.",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad",
+    "company": {
+      "description": "Gestión de redes sociales impulsada por IA"
+    },
+    "sections": {
+      "product": {
+        "title": "Producto",
+        "pricing": "Precios",
+        "features": "Características",
+        "faq": "FAQ",
+        "blog": "Blog",
+        "affiliates": "Afiliados",
+        "freeTools": "Herramientas Gratis",
+        "whatsNew": "Novedades"
+      },
+      "freeTools": {
+        "title": "Herramientas Gratis",
+        "linkedinPreview": "Vista Previa de LinkedIn",
+        "bestTimeToPost": "Mejor Momento para Publicar"
+      },
+      "compare": {
+        "title": "Comparar",
+        "hootsuite": "vs Hootsuite",
+        "buffer": "vs Buffer",
+        "later": "vs Later",
+        "sproutsocial": "vs Sprout Social",
+        "planoly": "vs Planoly",
+        "metricool": "vs Metricool",
+        "postbridge": "vs Postbridge",
+        "postiz": "vs Postiz",
+        "postplanify": "vs Postplanify"
+      },
+      "platforms": {
+        "title": "Plataformas",
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "x": "X (Twitter)",
+        "linkedin": "LinkedIn",
+        "threads": "Threads",
+        "pinterest": "Pinterest",
+        "bluesky": "Bluesky"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Términos de Servicio",
+        "privacy": "Política de Privacidad",
+        "cookies": "Política de Cookies"
+      }
+    }
+  },
+  "form": {
+    "success": "¡Estás en la lista! Revisa tu email para confirmación.",
+    "error": "Algo salió mal. Por favor intenta de nuevo.",
+    "invalidEmail": "Por favor ingresa una dirección de email válida",
+    "required": "El email es requerido",
+    "submitting": "Uniéndose..."
+  }
+}

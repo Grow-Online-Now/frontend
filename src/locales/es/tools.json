@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "hubTitle": "Herramientas Gratuitas para Redes Sociales | Grow Online",
+    "hubDescription": "Utilidades gratuitas para dominar los algoritmos de LinkedIn, X y TikTok. Sin registro requerido.",
+    "linkedinPreviewTitle": "Vista Previa de Publicación LinkedIn & Analizador de Hook | Grow Online",
+    "linkedinPreviewDescription": "Visualiza exactamente cómo aparecerá tu publicación de LinkedIn en móvil y escritorio. Analiza la efectividad de tu gancho.",
+    "bestTimeTitle": "Calculadora del Mejor Momento para Publicar | Grow Online",
+    "bestTimeDescription": "Encuentra los momentos óptimos para publicar en LinkedIn, X y TikTok según tu industria."
+  },
+  "hub": {
+    "title": "La Suite de Ingeniería de Crecimiento",
+    "subtitle": "Utilidades gratuitas para dominar los algoritmos de LinkedIn, X y TikTok. Sin registro requerido.",
+    "tools": {
+      "linkedinPreview": {
+        "title": "Simulador 'Ver Más' de LinkedIn",
+        "description": "Visualiza exactamente dónde LinkedIn corta tu publicación. Optimiza tu gancho para maximizar el engagement.",
+        "cta": "Abrir Herramienta"
+      },
+      "bestTime": {
+        "title": "Mapa de Calor de Timing Viral",
+        "description": "Encuentra los momentos óptimos para publicar según tu industria. Ve cuándo tu audiencia está más activa.",
+        "cta": "Abrir Herramienta"
+      }
+    },
+    "comingSoon": {
+      "title": "Más Herramientas Próximamente",
+      "description": "Estamos construyendo más utilidades gratuitas para ayudarte a crecer. Únete a la lista de espera.",
+      "tools": {
+        "hashtagFinder": "Buscador de Hashtags",
+        "captionGenerator": "Generador de Captions con IA",
+        "bioOptimizer": "Optimizador de Bio",
+        "competitorAnalyzer": "Analizador de Competidores"
+      }
+    }
+  },
+  "linkedinPreview": {
+    "title": "Herramienta de Vista Previa de LinkedIn",
+    "subtitle": "Ve exactamente cómo aparecerá tu publicación antes de publicarla. Optimiza tu gancho.",
+    "input": {
+      "label": "Contenido de Tu Publicación",
+      "placeholder": "Escribe o pega tu publicación de LinkedIn aquí...\n\nConsejo: Comienza con un gancho que capture la atención en las primeras 3 líneas.",
+      "authorName": "Nombre del Autor",
+      "authorNamePlaceholder": "Tu Nombre",
+      "authorHeadline": "Título del Autor",
+      "authorHeadlinePlaceholder": "Tu título o puesto"
+    },
+    "preview": {
+      "title": "Vista Previa",
+      "mobile": "Móvil",
+      "desktop": "Escritorio",
+      "seeMore": "...ver más",
+      "reactions": "Me gusta",
+      "comments": "Comentar",
+      "repost": "Republicar",
+      "send": "Enviar"
+    },
+    "analysis": {
+      "title": "Análisis del Gancho",
+      "analyze": "Analizar Puntuación",
+      "analyzing": {
+        "step1": "Analizando estructura del texto...",
+        "step2": "Comparando con el top 1% de posts virales...",
+        "step3": "Simulando renderizado móvil...",
+        "step4": "Calculando potencial de engagement..."
+      },
+      "score": "Puntuación del Gancho",
+      "outOf": "de 100",
+      "metrics": {
+        "visibleWords": "Palabras Visibles",
+        "powerWords": "Palabras Poderosas Encontradas",
+        "hookLength": "Longitud del Gancho",
+        "firstLineImpact": "Impacto Primera Línea"
+      },
+      "ratings": {
+        "excellent": "Excelente",
+        "good": "Bueno",
+        "average": "Promedio",
+        "needsWork": "Necesita Mejora",
+        "weak": "Débil"
+      },
+      "tips": {
+        "title": "Consejos de Optimización",
+        "addPowerWords": "Añade palabras poderosas como 'Estrategia', 'Error', 'Secreto', o 'Cómo' para aumentar el engagement.",
+        "shortenHook": "Tu gancho es muy largo. Mantén las primeras 3 líneas impactantes.",
+        "addNumbers": "Incluye números o estadísticas específicas para construir credibilidad.",
+        "questionHook": "Considera comenzar con una pregunta provocativa para enganchar lectores.",
+        "great": "¡Excelente gancho! Tu publicación tiene fuerte potencial viral."
+      }
+    },
+    "cta": {
+      "weak": "Tu gancho es débil. Deja que la IA de Grow Online escriba ganchos virales para ti.",
+      "strong": "¡Gran gancho! Ahora prográmalo en el momento perfecto con Grow Online.",
+      "button": "Unirse a la Lista de Espera"
+    },
+    "seo": {
+      "howToUse": {
+        "title": "Cómo Usar Esta Herramienta",
+        "step1": {
+          "title": "1. Escribe Tu Publicación",
+          "description": "Escribe o pega el contenido de tu publicación de LinkedIn en el editor."
+        },
+        "step2": {
+          "title": "2. Previsualiza Ambas Vistas",
+          "description": "Alterna entre las vistas Móvil y Escritorio para ver dónde LinkedIn colocará el botón 'Ver más'."
+        },
+        "step3": {
+          "title": "3. Analiza Tu Gancho",
+          "description": "Haz clic en 'Analizar Puntuación' para obtener una evaluación del potencial viral de tu gancho."
+        },
+        "step4": {
+          "title": "4. Optimiza e Itera",
+          "description": "Usa los consejos proporcionados para mejorar tu gancho. Apunta a una puntuación de 80+."
+        }
+      },
+      "whyMatters": {
+        "title": "Por Qué el Botón 'Ver Más' Importa",
+        "content": "El algoritmo de LinkedIn valora mucho el 'tiempo de permanencia'. Si tu gancho no impulsa a los usuarios a hacer clic en 'Ver más', tu publicación es desprioritizada."
+      },
+      "methodology": {
+        "title": "Nuestra Metodología",
+        "content": "Analizamos miles de publicaciones virales de LinkedIn para identificar patrones en ganchos exitosos."
+      }
+    }
+  },
+  "bestTime": {
+    "title": "Calculadora del Mejor Momento para Publicar",
+    "subtitle": "Encuentra los momentos óptimos para publicar según tu plataforma e industria.",
+    "input": {
+      "platform": "Seleccionar Plataforma",
+      "platforms": {
+        "linkedin": "LinkedIn",
+        "x": "X (Twitter)",
+        "tiktok": "TikTok",
+        "instagram": "Instagram"
+      },
+      "industry": "Seleccionar Tu Industria",
+      "industries": {
+        "saas": "SaaS / Tech",
+        "coaching": "Coaching / Consultoría",
+        "ecommerce": "E-commerce / Retail",
+        "realestate": "Bienes Raíces",
+        "finance": "Finanzas / Inversión",
+        "health": "Salud & Bienestar",
+        "marketing": "Marketing / Agencia",
+        "creator": "Creador de Contenido"
+      },
+      "timezone": "Tu Zona Horaria",
+      "generate": "Generar Mapa de Calor"
+    },
+    "analyzing": {
+      "step1": "Conectando a Base de Datos Global...",
+      "step2": "Filtrando 10M+ publicaciones por industria...",
+      "step3": "Calculando patrones de engagement...",
+      "step4": "Ajustando para tu zona horaria..."
+    },
+    "heatmap": {
+      "title": "Tus Momentos Óptimos de Publicación",
+      "subtitle": "Verde = Alto engagement, Amarillo = Moderado, Rojo = Bajo engagement",
+      "days": {
+        "mon": "Lun",
+        "tue": "Mar",
+        "wed": "Mié",
+        "thu": "Jue",
+        "fri": "Vie",
+        "sat": "Sáb",
+        "sun": "Dom"
+      },
+      "legend": {
+        "hot": "Mejores Momentos",
+        "warm": "Buenos Momentos",
+        "cold": "Evitar"
+      },
+      "bestTimes": {
+        "title": "Tus 3 Mejores Ventanas",
+        "rank1": "Mejor",
+        "rank2": "2do Mejor",
+        "rank3": "3er Mejor"
+      }
+    },
+    "cta": {
+      "title": "Deja de Adivinar. Empieza a Crecer.",
+      "description": "Grow Online programa automáticamente tus publicaciones en estos momentos exactos.",
+      "button": "Agregar Estos Horarios a Mi Calendario"
+    },
+    "seo": {
+      "howToUse": {
+        "title": "Cómo Usar Esta Herramienta",
+        "step1": {
+          "title": "1. Selecciona Tu Plataforma",
+          "description": "Elige la plataforma que deseas optimizar."
+        },
+        "step2": {
+          "title": "2. Elige Tu Industria",
+          "description": "Selecciona tu industria o nicho."
+        },
+        "step3": {
+          "title": "3. Define Tu Zona Horaria",
+          "description": "Ajustaremos los horarios a tu zona local."
+        },
+        "step4": {
+          "title": "4. Analiza el Mapa de Calor",
+          "description": "Los bloques verdes indican los mejores momentos."
+        }
+      },
+      "whyMatters": {
+        "title": "Por Qué el Momento de Publicación Importa",
+        "content": "Los algoritmos favorecen publicaciones que obtienen engagement inicial rápido."
+      },
+      "methodology": {
+        "title": "Nuestra Metodología",
+        "content": "Analizamos millones de publicaciones para identificar patrones de engagement por industria."
+      }
+    }
+  },
+  "common": {
+    "backToTools": "Volver a Herramientas Gratuitas",
+    "joinWaitlist": "Unirse a la Lista de Espera",
+    "noSignup": "Sin registro requerido",
+    "freeForever": "Gratis para siempre"
+  }
+}

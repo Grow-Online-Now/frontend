@@ -1,0 +1,157 @@
+{
+  "alternatives": {
+    "meta": {
+      "title": "Alternative à {{competitor}} | Grow Online",
+      "description": "Vous cherchez une alternative à {{competitor}} ? Grow Online est l'outil IA qui écrit, planifie et optimise votre contenu automatiquement."
+    },
+    "hero": {
+      "titlePrefix": "Arrêtez de Juste Planifier.",
+      "titleSuffix": "Commencez à Grandir.",
+      "subtitleTemplate": "{{competitor}} vous aide à planifier du contenu que vous devez écrire vous-même. Grow Online l'écrit, le publie et l'optimise pour vous.",
+      "badge": "L'Alternative IA à {{competitor}}"
+    },
+    "obsolescence": {
+      "title": "Conçu pour {{legacyYear}}. Nous sommes en 2025.",
+      "subtitle": "Le paysage des réseaux sociaux a changé. Vos outils aussi devraient évoluer.",
+      "narrativeContinued": "Pendant que vous rédigez manuellement vos légendes et devinez quand publier, vos concurrents utilisent l'IA pour générer du contenu de marque à grande échelle. Ils publient aux moments algorithmiquement optimaux. Ils grandissent pendant que vous vous noyez dans les tâches répétitives. L'écart se creuse chaque jour que vous attendez.",
+      "callout": "La question n'est pas de savoir si vous pouvez vous permettre de changer. C'est de savoir si vous pouvez vous permettre de ne pas le faire."
+    },
+    "killTable": {
+      "title": "La Vraie Comparaison",
+      "subtitle": "Nous ne vous montrons que les fonctionnalités qui comptent. Pas de superflu.",
+      "headers": {
+        "feature": "Fonctionnalité",
+        "oldWay": "{{competitor}} (L'Ancienne Méthode)",
+        "newWay": "Grow Online (La Nouvelle Méthode)"
+      },
+      "features": {
+        "contentCreation": {
+          "name": "Création de Contenu",
+          "old": "Vous tapez manuellement",
+          "new": "L'IA génère avec votre voix"
+        },
+        "analytics": {
+          "name": "Analytiques",
+          "old": "Métriques de Vanité (Likes, Abonnés)",
+          "new": "Métriques de Croissance (Conversion, ROI)"
+        },
+        "workflow": {
+          "name": "Flux de Travail",
+          "old": "Planifier et espérer que ça marche",
+          "new": "Générer, Optimiser, Grandir"
+        },
+        "platformStrategy": {
+          "name": "Stratégie Plateforme",
+          "old": "Générique (Taille unique)",
+          "new": "Optimisé (Personnalisé par plateforme)"
+        },
+        "brandVoice": {
+          "name": "Voix de Marque",
+          "old": "Espérer être cohérent",
+          "new": "L'IA apprend et maintient votre voix"
+        },
+        "hashtagStrategy": {
+          "name": "Stratégie Hashtags",
+          "old": "Copier-coller les mêmes",
+          "new": "L'IA suggère des tags tendance et pertinents"
+        },
+        "bestTimePosting": {
+          "name": "Meilleur Moment pour Publier",
+          "old": "Suggestions basiques",
+          "new": "L'IA analyse le comportement de VOTRE audience"
+        },
+        "contentRepurposing": {
+          "name": "Réutilisation de Contenu",
+          "old": "Redimensionner et réécrire manuellement",
+          "new": "Adaptation automatique à chaque plateforme"
+        },
+        "pricing": {
+          "name": "Tarification",
+          "old": "{{competitorPrice}}",
+          "new": "{{ourPrice}}"
+        }
+      }
+    },
+    "cta": {
+      "title": "Prêt à Vraiment Grandir ?",
+      "subtitle": "Rejoignez des milliers de créateurs qui ont arrêté de planifier et ont commencé à grandir.",
+      "buttonText": "Passer de {{competitor}}",
+      "buttonTextAlt": "Commencer à Grandir en Autopilote",
+      "microcopy": "Pas de carte de crédit requise. Importez votre calendrier actuel en 1 clic.",
+      "socialProof": "Rejoignez {{count}}+ créateurs qui ont fait le changement"
+    },
+    "faq": {
+      "title": "FAQ Transition",
+      "subtitle": "Tout ce que vous devez savoir pour passer de {{competitor}}",
+      "questions": {
+        "pricing": {
+          "question": "Grow Online est-il plus abordable que {{competitor}} ?",
+          "answer": "Pour la plupart des utilisateurs, oui. {{competitor}} facture {{competitorPrice}} ce qui s'accumule vite à mesure que vous grandissez. Grow Online offre un forfait fixe de {{ourPrice}} avec publications illimitées, génération de contenu IA et toutes les plateformes incluses. Pas de frais par canal ou par utilisateur."
+        },
+        "migration": {
+          "question": "Puis-je importer mes données depuis {{competitor}} ?",
+          "answer": "Oui ! Notre processus d'intégration rend la migration fluide. Vous pouvez importer vos publications planifiées, votre calendrier de contenu et votre historique d'analytiques. La plupart des utilisateurs complètent la migration en moins de 10 minutes."
+        },
+        "features": {
+          "question": "Quelles fonctionnalités Grow Online a-t-il que {{competitor}} n'a pas ?",
+          "answer": "La plus grande différence est la génération de contenu alimentée par l'IA qui apprend votre voix de marque. Vous obtenez aussi une planification intelligente basée sur le comportement spécifique de votre audience, une optimisation de contenu cross-plateforme et des analytiques axées sur la croissance (pas seulement des métriques de vanité)."
+        },
+        "support": {
+          "question": "Quel support ai-je pendant la migration ?",
+          "answer": "Chaque nouvel utilisateur bénéficie d'un spécialiste d'intégration dédié qui vous aide à migrer depuis {{competitor}}. Nous importerons vos données, configurerons vos comptes et nous assurerons que vous obtenez de la valeur dès le premier jour. Le support email répond sous 24 heures."
+        },
+        "trial": {
+          "question": "Puis-je essayer Grow Online avant de changer complètement ?",
+          "answer": "Absolument. Commencez avec notre essai gratuit—pas de carte de crédit requise. Utilisez les deux outils en parallèle jusqu'à ce que vous soyez confiant que Grow Online livre des résultats. La plupart des utilisateurs changent complètement en 2 semaines."
+        },
+        "platforms": {
+          "question": "Grow Online supporte-t-il toutes les plateformes que {{competitor}} supporte ?",
+          "answer": "Oui, et plus encore. Nous supportons Instagram, TikTok, Twitter/X, LinkedIn, Facebook, Pinterest, YouTube et Threads. De plus, notre IA optimise automatiquement le format de votre contenu pour chaque plateforme."
+        }
+      }
+    },
+    "competitors": {
+      "buffer": {
+        "tagline": "Buffer facture par canal. Grow Online vous offre des canaux illimités pour un prix fixe.",
+        "obsolescence": "Buffer était révolutionnaire en 2010 quand « publier régulièrement » suffisait. Mais en 2025, leur modèle de tarification par canal rend la croissance coûteuse. Chaque nouvelle plateforme que vous ajoutez coûte plus cher. Chaque compte que vous gérez pèse sur votre budget. Avec 6 canaux, vous payez déjà plus que le tarif fixe de Grow Online—sans aucune IA pour vous aider à créer du contenu."
+      },
+      "hootsuite": {
+        "tagline": "Hootsuite a été conçu pour les entreprises en 2008. Vous méritez des outils conçus pour les créateurs en 2025.",
+        "obsolescence": "Hootsuite a été conçu pour des équipes d'entreprise avec des budgets illimités en 2008. Aujourd'hui, vous payez des prix d'entreprise (99$/mois minimum) pour un tableau de bord encombré et une IA qui génère du contenu générique et oubliable. Leurs 8+ augmentations de prix racontent la vraie histoire : ils optimisent pour leurs revenus, pas pour votre croissance."
+      },
+      "later": {
+        "tagline": "Later abandonne le support Twitter/X en 2025. Grow Online supporte toutes les plateformes dont vous avez besoin.",
+        "obsolescence": "Later retire le support Twitter/X en août 2025. Un outil qui abandonne des plateformes entières ne construit pas pour votre avenir—ils réduisent les coûts. S'ils abandonnent Twitter aujourd'hui, quelle plateforme sera la prochaine ? Votre stratégie sociale mérite un partenaire engagé sur chaque plateforme où vit votre audience."
+      },
+      "sproutsocial": {
+        "tagline": "Sprout Social facture 249$ par utilisateur. Grow Online donne accès à toute votre équipe pour 29$ fixe.",
+        "obsolescence": "Sprout Social facture 249$/mois par utilisateur. Pour une équipe de 5, c'est 15 000$/an avant même d'accéder à leurs fonctionnalités « premium » comme l'écoute sociale (qui coûte en plus). Leur modèle tarifaire suppose que vous êtes une entreprise du Fortune 500 avec un budget illimité. La plupart d'entre nous ne le sommes pas."
+      },
+      "planoly": {
+        "tagline": "Planoly se concentre sur Instagram. Grow Online vous aide à grandir partout.",
+        "obsolescence": "Planoly a supprimé leur offre gratuite et les utilisateurs se sont sentis trahis. Maintenant leurs forfaits payants vous donnent un outil centré sur Instagram avec une application mobile qui plante régulièrement. En 2025, être uniquement sur Instagram n'est pas une fonctionnalité—c'est une limitation. Votre audience est sur TikTok, LinkedIn, Twitter et plus encore."
+      },
+      "metricool": {
+        "tagline": "La tarification par « marque » de Metricool devient vite coûteuse. Grow Online reste simple.",
+        "obsolescence": "Le modèle de tarification par « marque » de Metricool semble simple jusqu'à ce que vous réalisiez que chaque page Facebook, chaque compte Instagram compte comme une marque séparée. Vous voulez gérer la page business d'un client ET son profil personnel ? C'est deux marques. Leur tarification croît plus vite que votre business. Et leur limite de 3 mois sur les analytiques signifie que vous perdez des données historiques précieuses."
+      },
+      "postbridge": {
+        "tagline": "Postbridge planifie des posts. Grow Online fait grandir votre audience.",
+        "obsolescence": "Postbridge fait le minimum : planifier des posts, choisir une heure, espérer que ça marche. Mais en 2025, « le minimum » ne suffit pas. Pas de suggestions de contenu IA. Pas de planification intelligente qui apprend de votre audience. Pas d'optimisation. Vous payez essentiellement pour un calendrier sophistiqué alors que vos concurrents utilisent des outils qui les aident activement à grandir."
+      },
+      "postiz": {
+        "tagline": "Postiz nécessite une configuration technique. Grow Online fonctionne immédiatement.",
+        "obsolescence": "Postiz est open-source et auto-hébergé—parfait si vous êtes développeur avec du temps à perdre. Mais la plupart des créateurs veulent créer du contenu, pas configurer des serveurs et des bases de données. Leur courbe d'apprentissage est raide, leurs fonctionnalités d'équipe sont limitées, et des fonctions basiques comme les posts récurrents sont absentes."
+      },
+      "postplanify": {
+        "tagline": "Postplanify fonctionne pour les créateurs solo. Grow Online évolue avec vos ambitions.",
+        "obsolescence": "Postplanify fonctionne bien pour les créateurs solo avec des besoins simples. Mais dès que vous voulez grandir—ajouter des membres d'équipe, obtenir des analytiques exportables, créer des workflows d'approbation—vous heurtez des murs. C'est conçu petit et ça reste petit. Vos ambitions méritent des outils qui évoluent avec vous."
+      }
+    },
+    "notFound": {
+      "title": "Concurrent Non Trouvé",
+      "subtitle": "Nous n'avons pas encore de comparaison spécifique pour cet outil.",
+      "cta": "Voir Toutes les Alternatives"
+    }
+  }
+}

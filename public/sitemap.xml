@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ============================================
+       CORE PAGES
+       ============================================ -->
+
+  <!-- Homepage / Waitlist -->
+  <url>
+    <loc>https://growonline.now/en</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en"/>
+    <image:image>
+      <image:loc>https://growonline.now/og-image.png</image:loc>
+      <image:title>Grow Online - AI-Powered Social Media Management</image:title>
+    </image:image>
+  </url>
+
+  <!-- ============================================
+       BLOG PAGES
+       ============================================ -->
+
+  <!-- Blog Listing -->
+  <url>
+    <loc>https://growonline.now/en/blog</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog"/>
+  </url>
+
+  <!-- Blog Article: Ultimate Guide to Social Media Scheduling 2025 -->
+  <url>
+    <loc>https://growonline.now/en/blog/ultimate-guide-social-media-scheduling-2025</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/ultimate-guide-social-media-scheduling-2025"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/ultimate-guide-social-media-scheduling-2025"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/ultimate-guide-social-media-scheduling-2025"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/ultimate-guide-social-media-scheduling-2025"/>
+  </url>
+
+  <!-- Blog Article: How AI is Transforming Content Creation -->
+  <url>
+    <loc>https://growonline.now/en/blog/how-ai-is-transforming-content-creation</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/how-ai-is-transforming-content-creation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/how-ai-is-transforming-content-creation"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/how-ai-is-transforming-content-creation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/how-ai-is-transforming-content-creation"/>
+  </url>
+
+  <!-- Blog Article: Instagram Algorithm Secrets Creators Need to Know -->
+  <url>
+    <loc>https://growonline.now/en/blog/instagram-algorithm-secrets-creators-need-know</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/instagram-algorithm-secrets-creators-need-know"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/instagram-algorithm-secrets-creators-need-know"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/instagram-algorithm-secrets-creators-need-know"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/instagram-algorithm-secrets-creators-need-know"/>
+  </url>
+
+  <!-- Blog Article: Case Study 10x Engagement in 90 Days -->
+  <url>
+    <loc>https://growonline.now/en/blog/case-study-10x-engagement-90-days</loc>
+    <lastmod>2024-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/case-study-10x-engagement-90-days"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/case-study-10x-engagement-90-days"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/case-study-10x-engagement-90-days"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/case-study-10x-engagement-90-days"/>
+  </url>
+
+  <!-- Blog Article: TikTok Growth Hacks That Actually Work -->
+  <url>
+    <loc>https://growonline.now/en/blog/tiktok-growth-hacks-that-actually-work</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/tiktok-growth-hacks-that-actually-work"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/tiktok-growth-hacks-that-actually-work"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/tiktok-growth-hacks-that-actually-work"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/tiktok-growth-hacks-that-actually-work"/>
+  </url>
+
+  <!-- Blog Article: Complete Guide to LinkedIn Personal Branding -->
+  <url>
+    <loc>https://growonline.now/en/blog/complete-guide-linkedin-personal-branding</loc>
+    <lastmod>2024-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/complete-guide-linkedin-personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/complete-guide-linkedin-personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/complete-guide-linkedin-personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/complete-guide-linkedin-personal-branding"/>
+  </url>
+
+  <!-- Blog Article: Why Consistency Beats Virality -->
+  <url>
+    <loc>https://growonline.now/en/blog/why-consistency-beats-virality</loc>
+    <lastmod>2024-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/why-consistency-beats-virality"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/why-consistency-beats-virality"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/why-consistency-beats-virality"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/why-consistency-beats-virality"/>
+  </url>
+
+  <!-- Blog Article: Cross-Platform Content Strategy Guide -->
+  <url>
+    <loc>https://growonline.now/en/blog/cross-platform-content-strategy-guide</loc>
+    <lastmod>2024-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/cross-platform-content-strategy-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/cross-platform-content-strategy-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/cross-platform-content-strategy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/cross-platform-content-strategy-guide"/>
+  </url>
+
+  <!-- ============================================
+       FREE TOOLS PAGES
+       ============================================ -->
+
+  <!-- Free Tools Hub -->
+  <url>
+    <loc>https://growonline.now/en/free-tools</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/free-tools"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/free-tools"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/free-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/free-tools"/>
+  </url>
+
+  <!-- LinkedIn Post Preview Tool -->
+  <url>
+    <loc>https://growonline.now/en/free-tools/linkedin-post-preview-tool</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/free-tools/linkedin-post-preview-tool"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/free-tools/linkedin-post-preview-tool"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/free-tools/linkedin-post-preview-tool"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/free-tools/linkedin-post-preview-tool"/>
+  </url>
+
+  <!-- Best Time to Post Calculator -->
+  <url>
+    <loc>https://growonline.now/en/free-tools/best-time-to-post-calculator</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/free-tools/best-time-to-post-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/free-tools/best-time-to-post-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/free-tools/best-time-to-post-calculator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/free-tools/best-time-to-post-calculator"/>
+  </url>
+
+  <!-- ============================================
+       PLATFORM PAGES
+       ============================================ -->
+
+  <!-- Platforms Hub -->
+  <url>
+    <loc>https://growonline.now/en/platforms</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms"/>
+  </url>
+
+  <!-- Instagram -->
+  <url>
+    <loc>https://growonline.now/en/platforms/instagram</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/instagram"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/instagram"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/instagram"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/instagram"/>
+  </url>
+
+  <!-- TikTok -->
+  <url>
+    <loc>https://growonline.now/en/platforms/tiktok</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/tiktok"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/tiktok"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/tiktok"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/tiktok"/>
+  </url>
+
+  <!-- LinkedIn -->
+  <url>
+    <loc>https://growonline.now/en/platforms/linkedin</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/linkedin"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/linkedin"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/linkedin"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/linkedin"/>
+  </url>
+
+  <!-- X (Twitter) -->
+  <url>
+    <loc>https://growonline.now/en/platforms/x</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/x"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/x"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/x"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/x"/>
+  </url>
+
+  <!-- YouTube -->
+  <url>
+    <loc>https://growonline.now/en/platforms/youtube</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/youtube"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/youtube"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/youtube"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/youtube"/>
+  </url>
+
+  <!-- Facebook -->
+  <url>
+    <loc>https://growonline.now/en/platforms/facebook</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/facebook"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/facebook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/facebook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/facebook"/>
+  </url>
+
+  <!-- Threads -->
+  <url>
+    <loc>https://growonline.now/en/platforms/threads</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/threads"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/threads"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/threads"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/threads"/>
+  </url>
+
+  <!-- Pinterest -->
+  <url>
+    <loc>https://growonline.now/en/platforms/pinterest</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/pinterest"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/pinterest"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/pinterest"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/pinterest"/>
+  </url>
+
+  <!-- Bluesky -->
+  <url>
+    <loc>https://growonline.now/en/platforms/bluesky</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/platforms/bluesky"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/platforms/bluesky"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/platforms/bluesky"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/platforms/bluesky"/>
+  </url>
+
+  <!-- ============================================
+       LEGAL PAGES
+       ============================================ -->
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://growonline.now/en/terms</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/terms"/>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://growonline.now/en/privacy</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/privacy"/>
+  </url>
+
+  <!-- Cookie Policy -->
+  <url>
+    <loc>https://growonline.now/en/cookies</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/cookies"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/cookies"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/cookies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/cookies"/>
+  </url>
+
+  <!-- ============================================
+       COMPETITOR ALTERNATIVE PAGES (SEO KILLERS)
+       ============================================ -->
+
+  <!-- Buffer Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/buffer</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/buffer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/buffer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/buffer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/buffer"/>
+  </url>
+
+  <!-- Hootsuite Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/hootsuite</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/hootsuite"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/hootsuite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/hootsuite"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/hootsuite"/>
+  </url>
+
+  <!-- Later Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/later</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/later"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/later"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/later"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/later"/>
+  </url>
+
+  <!-- Sprout Social Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/sproutsocial</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/sproutsocial"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/sproutsocial"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/sproutsocial"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/sproutsocial"/>
+  </url>
+
+  <!-- Planoly Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/planoly</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/planoly"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/planoly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/planoly"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/planoly"/>
+  </url>
+
+  <!-- Metricool Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/metricool</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/metricool"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/metricool"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/metricool"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/metricool"/>
+  </url>
+
+  <!-- Postbridge Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/postbridge</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/postbridge"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/postbridge"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/postbridge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/postbridge"/>
+  </url>
+
+  <!-- Postiz Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/postiz</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/postiz"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/postiz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/postiz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/postiz"/>
+  </url>
+
+  <!-- Postplanify Alternative -->
+  <url>
+    <loc>https://growonline.now/en/alternatives/postplanify</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/alternatives/postplanify"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/alternatives/postplanify"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/alternatives/postplanify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/alternatives/postplanify"/>
+  </url>
+
+</urlset>

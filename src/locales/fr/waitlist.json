@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "title": "Développez vos Réseaux Sociaux.\n10x Plus Vite.",
+    "subtitle": "Planification de contenu et analyses alimentées par l'IA pour les créateurs qui visent le succès. Rejoignez la liste d'attente et obtenez 3 mois gratuits au lancement.",
+    "emailPlaceholder": "Entrez votre email",
+    "cta": "Rejoindre la Liste",
+    "socialProof": "Rejoignez {{count}} adopteurs précoces"
+  },
+  "features": {
+    "title": "Tout ce dont vous avez besoin pour grandir",
+    "subtitle": "Des outils puissants conçus pour les créateurs modernes",
+    "ai": {
+      "title": "Génération de Contenu par IA",
+      "description": "Générez des publications, légendes et hashtags engageants avec une IA avancée qui comprend la voix de votre marque."
+    },
+    "scheduling": {
+      "title": "Planification Multi-Plateformes",
+      "description": "Planifiez et publiez sur Instagram, TikTok, Twitter, LinkedIn et plus encore depuis un seul tableau de bord."
+    },
+    "analytics": {
+      "title": "Analyses en Temps Réel",
+      "description": "Suivez votre croissance avec des insights détaillés, des métriques d'engagement et une analyse de la concurrence."
+    }
+  },
+  "faq": {
+    "title": "Questions Fréquentes",
+    "q1": {
+      "question": "Qu'est-ce que Grow Online ?",
+      "answer": "Grow Online est une plateforme de gestion des réseaux sociaux alimentée par l'IA qui aide les créateurs et les entreprises à développer leur audience 10x plus rapidement grâce à la planification intelligente de contenu, à la publication automatisée et à des analyses avancées sur toutes les principales plateformes."
+    },
+    "q2": {
+      "question": "Quelles plateformes sociales sont supportées ?",
+      "answer": "Nous supportons Instagram, TikTok, Twitter (X), LinkedIn, Facebook, Pinterest et YouTube. D'autres plateformes sont ajoutées en fonction des retours des utilisateurs."
+    },
+    "q3": {
+      "question": "Quand Grow Online sera-t-il lancé ?",
+      "answer": "Nous lançons au Q1 2025. Les membres de la liste d'attente auront un accès anticipé 2 semaines avant le lancement public, plus 3 mois gratuits lors de leur inscription."
+    },
+    "q4": {
+      "question": "Combien cela coûtera-t-il ?",
+      "answer": "Les tarifs commencent à 29$/mois pour les créateurs et 99$/mois pour les agences. Les membres de la liste d'attente obtiennent 3 mois gratuits et une réduction à vie de 20%."
+    },
+    "q5": {
+      "question": "Comment fonctionne la génération de contenu par IA ?",
+      "answer": "Notre IA analyse la voix de votre marque, votre contenu passé et les sujets tendance dans votre niche pour générer des publications, légendes et hashtags qui correspondent à votre marque et stimulent l'engagement. Vous gardez le contrôle créatif total."
+    }
+  },
+  "finalCta": {
+    "title": "Prêt à développer votre audience ?",
+    "subtitle": "Rejoignez des milliers de créateurs déjà sur la liste d'attente",
+    "cta": "Obtenir un Accès Anticipé"
+  },
+  "footer": {
+    "copyright": "© 2025 Grow Online. Tous droits réservés.",
+    "terms": "Conditions d'Utilisation",
+    "privacy": "Politique de Confidentialité",
+    "company": {
+      "description": "Gestion des réseaux sociaux alimentée par l'IA"
+    },
+    "sections": {
+      "product": {
+        "title": "Produit",
+        "pricing": "Tarifs",
+        "features": "Fonctionnalités",
+        "faq": "FAQ",
+        "blog": "Blog",
+        "affiliates": "Affiliés",
+        "freeTools": "Outils Gratuits",
+        "whatsNew": "Nouveautés"
+      },
+      "freeTools": {
+        "title": "Outils Gratuits",
+        "linkedinPreview": "Aperçu de Publication LinkedIn",
+        "bestTimeToPost": "Meilleur Moment pour Publier"
+      },
+      "compare": {
+        "title": "Comparer",
+        "hootsuite": "vs Hootsuite",
+        "buffer": "vs Buffer",
+        "later": "vs Later",
+        "sproutsocial": "vs Sprout Social",
+        "planoly": "vs Planoly",
+        "metricool": "vs Metricool",
+        "postbridge": "vs Postbridge",
+        "postiz": "vs Postiz",
+        "postplanify": "vs Postplanify"
+      },
+      "platforms": {
+        "title": "Plateformes",
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "x": "X (Twitter)",
+        "linkedin": "LinkedIn",
+        "threads": "Threads",
+        "pinterest": "Pinterest",
+        "bluesky": "Bluesky"
+      },
+      "legal": {
+        "title": "Légal",
+        "terms": "Conditions d'Utilisation",
+        "privacy": "Politique de Confidentialité",
+        "cookies": "Politique des Cookies"
+      }
+    }
+  },
+  "form": {
+    "success": "Vous êtes sur la liste ! Vérifiez votre email pour confirmation.",
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "invalidEmail": "Veuillez entrer une adresse email valide",
+    "required": "L'email est requis",
+    "submitting": "Inscription..."
+  }
+}

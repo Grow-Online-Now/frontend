@@ -1,0 +1,392 @@
+{
+  "navbar": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "platforms": "Platforms",
+    "login": "Log in",
+    "getStarted": "Get Started Free",
+    "mobileMenuAriaLabel": "Toggle menu",
+    "platformsSubmenu": {
+      "instagram": "Instagram",
+      "instagramDesc": "Grow your Instagram presence with AI",
+      "tiktok": "TikTok",
+      "tiktokDesc": "Create viral TikTok content",
+      "youtube": "YouTube",
+      "youtubeDesc": "Optimize your YouTube channel",
+      "linkedin": "LinkedIn",
+      "linkedinDesc": "Build your professional brand",
+      "twitter": "X (Twitter)",
+      "twitterDesc": "Engage your Twitter audience"
+    },
+    "blogSubmenu": {
+      "featured": "Latest Articles",
+      "featuredDesc": "Read our newest insights on social media growth",
+      "tips": "Tips & Tricks",
+      "tutorials": "Tutorials",
+      "caseStudies": "Case Studies",
+      "news": "News"
+    }
+  },
+  "hero": {
+    "titleStart": "Meet your AI growth assistant that",
+    "titleHighlight": "actually",
+    "titleEnd": "works",
+    "subtitle": "Grow Online helps creators and businesses automate their social media presence with AI-powered content scheduling, smart analytics, and cross-platform publishing.",
+    "ctaPrimary": "Get started",
+    "ctaSecondary": "Talk to sales",
+    "socialProof": "Join {{count}}+ early adopters",
+    "videoPlaceholder": "Watch how it works"
+  },
+  "problem": {
+    "title": "Social Media Shouldn't Feel Like a Full-Time Job",
+    "subtitle": "You started creating content to share your passion and grow your brand. But somewhere along the way, it became an exhausting cycle of posting, analyzing, and struggling to stay consistent.",
+    "pain1": {
+      "title": "Spending Hours on Manual Posting",
+      "description": "You're juggling 5+ platforms, each with different formats, optimal times, and quirks. What should take 10 minutes ends up consuming your entire afternoon. You're copy-pasting captions, resizing images, and setting reminders just to stay consistent."
+    },
+    "pain2": {
+      "title": "Inconsistent Posting Schedule",
+      "description": "Life gets busy. You miss posting for a few days, and suddenly your engagement tanks. The algorithm punishes you. Your hard-earned audience starts forgetting who you are. You know consistency is key, but maintaining it feels impossible without burning out."
+    },
+    "pain3": {
+      "title": "No Real Strategy or Insights",
+      "description": "You're posting blindly, hoping something sticks. You have no idea which posts actually work, what your audience wants, or when they're most active. You're drowning in data across multiple platforms, but you have zero actionable insights to guide your content strategy."
+    },
+    "pain4": {
+      "title": "Mediocre Content That Doesn't Convert",
+      "description": "You stare at a blank screen for 30 minutes trying to craft the perfect caption. Your posts get buried in feeds. Engagement is lukewarm at best. You see other creators going viral while your content plateaus. You know you need better hooks, better captions, better strategy—but where do you even start?"
+    },
+    "stat": {
+      "number": "73%",
+      "description": "of creators quit in their first year due to burnout and lack of growth"
+    }
+  },
+  "agitation": {
+    "title": "The Cost of Staying Where You Are",
+    "subtitle": "Every day you spend wrestling with outdated tools and manual workflows is a day your competitors are pulling ahead. Here's what you're really losing:",
+    "consequence1": {
+      "stat": "15+ hrs",
+      "label": "wasted weekly on manual content management"
+    },
+    "consequence2": {
+      "stat": "$50k+",
+      "label": "in lost opportunities from poor growth"
+    },
+    "consequence3": {
+      "stat": "60%",
+      "label": "drop in engagement from inconsistent posting"
+    },
+    "consequence4": {
+      "stat": "87%",
+      "label": "of your audience never sees your content without strategy"
+    },
+    "story": "Imagine this: You wake up, excited to share your latest idea. You spend an hour crafting the perfect post for Instagram. Then you realize you need to resize it for TikTok. Then rewrite it for Twitter's character limit. Then adapt it again for LinkedIn's professional tone.\n\nBy the time you're done, you've spent 3 hours on a single piece of content. You still haven't analyzed last week's performance. You have no content planned for tomorrow. And you're already exhausted.\n\nMeanwhile, other creators in your niche are publishing consistently, growing rapidly, and building businesses—while you're stuck in the weeds of manual busywork.\n\nThe algorithm doesn't care that you're busy. It only rewards consistency, quality, and strategic timing. And right now? You're losing on all three fronts.",
+    "callout": "You didn't become a creator to spend your life scheduling posts. You deserve tools that work as hard as you do."
+  },
+  "solution": {
+    "badge": "Introducing Grow Online",
+    "title": "The AI-Powered Platform That Does the Heavy Lifting",
+    "subtitle": "Stop fighting with tools built for 2015. Grow Online uses cutting-edge AI to handle everything you hate about social media management, so you can focus on what you love: creating.",
+    "benefit1": {
+      "title": "AI That Actually Understands Your Brand",
+      "description": "Not generic, robotic AI. Our system learns your unique voice, style, and audience preferences. It generates on-brand captions, hooks, and hashtags that sound like you—not like ChatGPT.",
+      "features": [
+        "Brand voice analysis and learning",
+        "Context-aware content suggestions",
+        "Trending topic integration for your niche",
+        "Hook generation that drives engagement",
+        "Smart hashtag strategy based on your audience"
+      ]
+    },
+    "benefit2": {
+      "title": "Intelligent Scheduling That Maximizes Reach",
+      "description": "Forget guessing when to post. Our AI analyzes your audience behavior across all platforms and automatically schedules your content for maximum visibility and engagement.",
+      "features": [
+        "AI-powered best time to post analysis",
+        "Automatic queue management across platforms",
+        "Timezone optimization for global audiences",
+        "Conflict detection (never double-post)",
+        "One-click publishing to 7+ platforms"
+      ]
+    },
+    "benefit3": {
+      "title": "Analytics That Actually Make Sense",
+      "description": "No more drowning in vanity metrics. Get crystal-clear insights into what's working, what's not, and exactly what to do next to grow faster.",
+      "features": [
+        "Unified dashboard for all platforms",
+        "Engagement rate tracking and trends",
+        "Competitor analysis and benchmarking",
+        "Content performance predictions",
+        "Actionable recommendations, not just data"
+      ]
+    },
+    "benefit4": {
+      "title": "Built for Creators, Not Enterprises",
+      "description": "Most tools are bloated, expensive, and overwhelming. Grow Online is designed for solo creators, small teams, and growing brands who want power without the complexity.",
+      "features": [
+        "Affordable pricing (starts at $29/mo)",
+        "Intuitive interface you'll master in 5 minutes",
+        "No contracts or hidden fees",
+        "Cancel anytime, no questions asked",
+        "Personal support from real humans"
+      ]
+    },
+    "valueProposition": {
+      "title": "Reclaim 15 Hours a Week. Grow 10x Faster.",
+      "description": "Grow Online isn't just a tool. It's your AI co-pilot that handles the tedious work while you focus on creativity and strategy. Join the waitlist now and get 3 months free when we launch in Q1 2025."
+    },
+    "cta": "Get Early Access Now"
+  },
+  "features": {
+    "title": "Everything you need to grow",
+    "subtitle": "Powerful tools built for modern creators",
+    "ai": {
+      "title": "Never Stare at a Blank Screen Again",
+      "description": "Our AI writes scroll-stopping captions, hooks, and hashtags that sound exactly like you. Just approve and post—your audience won't know the difference.",
+      "imageAlt": "AI content generation interface"
+    },
+    "scheduling": {
+      "title": "Post Once, Reach Everywhere",
+      "description": "Create once, publish to all your platforms with one click. No more copy-pasting, resizing, or switching tabs. Reclaim hours of your week.",
+      "imageAlt": "Multi-platform scheduling dashboard"
+    },
+    "analytics": {
+      "title": "Know Exactly What's Working",
+      "description": "Stop guessing, start growing. See which posts drive real results across all platforms in one beautiful dashboard. Finally, data that makes sense.",
+      "imageAlt": "Analytics and insights dashboard"
+    }
+  },
+  "faq": {
+    "title": "Everything You Need to Know",
+    "subtitle": "Get answers to the most common questions about Grow Online",
+    "categories": {
+      "general": "General",
+      "features": "Features",
+      "pricing": "Pricing",
+      "technical": "Technical"
+    },
+    "q1": {
+      "question": "What is Grow Online?",
+      "answer": "Grow Online is an AI-powered social media management platform that helps creators and businesses grow their audience 10x faster through intelligent content scheduling, automated posting, and advanced analytics across all major platforms."
+    },
+    "q2": {
+      "question": "Which social platforms are supported?",
+      "answer": "We support Instagram, TikTok, Twitter (X), LinkedIn, Facebook, Pinterest, and YouTube. More platforms are being added based on user feedback."
+    },
+    "q3": {
+      "question": "When will Grow Online launch?",
+      "answer": "We're launching in Q1 2025. Waitlist members will get early access 2 weeks before the public launch, plus 3 months free when they sign up."
+    },
+    "q4": {
+      "question": "What makes Grow Online different from other tools?",
+      "answer": "Unlike bloated enterprise tools, we're built specifically for creators. Our AI actually learns your brand voice, our scheduling is intelligent (not just a calendar), and our pricing is affordable. Plus, we don't overwhelm you with features you'll never use."
+    },
+    "q5": {
+      "question": "How does the AI content generation work?",
+      "answer": "Our AI analyzes your brand voice, past content, and trending topics in your niche to generate on-brand posts, captions, and hashtags that drive engagement. You maintain full creative control—the AI is a co-pilot, not a replacement for your creativity."
+    },
+    "q6": {
+      "question": "Can I schedule to multiple platforms at once?",
+      "answer": "Yes! You create your content once, and Grow Online automatically adapts it for each platform's format, character limits, and best practices. Then it publishes to all your connected accounts with one click."
+    },
+    "q7": {
+      "question": "Does Grow Online provide analytics for all platforms?",
+      "answer": "Absolutely. We provide a unified analytics dashboard that combines data from all your platforms. You'll see engagement rates, follower growth, best-performing content, optimal posting times, and competitor insights—all in one place."
+    },
+    "q8": {
+      "question": "Is there a content calendar feature?",
+      "answer": "Yes. You'll have a visual content calendar where you can see all your scheduled posts across all platforms. You can drag-and-drop to reschedule, duplicate successful posts, and maintain a bird's-eye view of your entire content strategy."
+    },
+    "q9": {
+      "question": "How much will it cost?",
+      "answer": "Pricing starts at $29/month for creators (up to 5 platforms, unlimited posts) and $99/month for agencies (unlimited everything + team features). Waitlist members get 3 months free and a 20% lifetime discount."
+    },
+    "q10": {
+      "question": "Is there a free trial?",
+      "answer": "Waitlist members get 3 months completely free when we launch. After that, you can continue on a paid plan or cancel anytime. No credit card required to join the waitlist."
+    },
+    "q11": {
+      "question": "Can I cancel anytime?",
+      "answer": "Yes, always. We don't believe in locking people into contracts. If Grow Online isn't right for you, cancel with one click. No hidden fees, no retention dark patterns, no questions asked."
+    },
+    "q12": {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and Apple Pay. For annual plans, we also support bank transfers and invoicing."
+    },
+    "q13": {
+      "question": "Is my data secure?",
+      "answer": "Absolutely. We use bank-level encryption (AES-256), secure OAuth authentication for all platform connections, and never store your passwords. We're SOC 2 Type II compliant and GDPR ready."
+    },
+    "q14": {
+      "question": "Do I need technical skills to use Grow Online?",
+      "answer": "Not at all. If you can use Instagram, you can use Grow Online. Our interface is designed for creators, not engineers. Most users are up and running in under 5 minutes."
+    },
+    "q15": {
+      "question": "Can I import my existing content?",
+      "answer": "Yes. You can import your past posts from any platform to help our AI learn your brand voice faster. This also lets you identify your best-performing content and repurpose it across other platforms."
+    },
+    "q16": {
+      "question": "What kind of support do you offer?",
+      "answer": "We offer email support for all users (responses within 24 hours), live chat for premium plans, and a comprehensive help center with video tutorials. Plus, our community forum connects you with other creators for tips and strategies."
+    },
+    "stillHaveQuestions": "Still have questions?",
+    "contactUs": "Contact us at hello@growonline.now"
+  },
+  "alternatives": {
+    "title": "Grow Online vs The Alternatives",
+    "subtitle": "See why creators are ditching outdated tools and switching to Grow Online",
+    "legacy": {
+      "title": "Legacy Tools",
+      "subtitle": "Built for 2015",
+      "problems": [
+        "Rigid, manual scheduling with no intelligence",
+        "Generic AI that sounds robotic and off-brand",
+        "Overwhelming dashboards designed for enterprises",
+        "Expensive pricing ($99+ per month)",
+        "Siloed analytics that require constant tab-switching",
+        "Poor mobile experience—desktop only",
+        "Slow, bloated interfaces that waste your time"
+      ]
+    },
+    "growonline": {
+      "title": "Grow Online",
+      "subtitle": "Built for 2025",
+      "solutions": [
+        "AI-powered intelligent scheduling for maximum reach",
+        "Brand voice learning that sounds authentically you",
+        "Clean, intuitive interface built for creators",
+        "Affordable pricing starting at $29/month",
+        "Unified analytics dashboard for all platforms",
+        "Mobile-first design—manage on the go",
+        "Lightning-fast performance that respects your time"
+      ]
+    },
+    "table": {
+      "feature": "Feature",
+      "legacy": "Legacy Tools",
+      "growonline": "Grow Online"
+    },
+    "features": {
+      "aiContentGeneration": "AI Content Generation (Brand Voice)",
+      "intelligentScheduling": "Intelligent Scheduling (Best Time AI)",
+      "unifiedAnalytics": "Unified Analytics Dashboard",
+      "brandVoiceLearning": "Brand Voice Learning",
+      "multiPlatform": "Multi-Platform Support",
+      "competitorAnalysis": "Competitor Analysis",
+      "autoHashtags": "Smart Hashtag Recommendations",
+      "basicScheduling": "Basic Scheduling",
+      "realTimeInsights": "Real-Time Growth Insights",
+      "affordablePricing": "Affordable Pricing ($29+)"
+    },
+    "cta": "Ready to make the switch? Join the waitlist and get 3 months free."
+  },
+  "finalCta": {
+    "titleLine1": "Get back an hour a day.",
+    "titleLine2": "Start using Grow Online.",
+    "subtitle": "Less time in your inbox. More time for what actually matters.",
+    "ctaPrimary": "Get started for free",
+    "ctaSecondary": "Talk to sales"
+  },
+  "testimonials": {
+    "title": "Loved by creators & businesses worldwide",
+    "subtitle": "Join thousands who are growing faster with Grow Online."
+  },
+  "footer": {
+    "copyright": "© 2025 Grow Online. All rights reserved.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  },
+  "form": {
+    "emailPlaceholder": "Enter your email",
+    "success": "You're on the list! Check your email for confirmation.",
+    "error": "Something went wrong. Please try again.",
+    "invalidEmail": "Please enter a valid email address",
+    "required": "Email is required",
+    "submitting": "Joining..."
+  },
+  "getStarted": {
+    "title": "Get Started in Seconds",
+    "subtitle": "Create your account securely with Google or Github and start growing today",
+    "step1": {
+      "badge": "STEP 1",
+      "title": "Sign up in seconds with secure authentication",
+      "description": "Create your account instantly with Google or Github. No passwords to remember, bank-level security guaranteed."
+    },
+    "step2": {
+      "badge": "STEP 2",
+      "title": "Grow your social media presence exactly how you want it",
+      "description": "Our AI will help you grow your social media presence organically."
+    },
+    "step3": {
+      "badge": "STEP 3",
+      "title": "Pre-written posts based on your social media history and calendar",
+      "description": "Never worry about what to post again. Our AI will help you write posts that will get you the most engagement.",
+      "imageAlt": "Pre-written posts preview"
+    },
+    "tags": {
+      "newsletter": "Newsletter",
+      "toReply": "To Reply",
+      "marketing": "Marketing",
+      "calendar": "Calendar",
+      "notification": "Notification",
+      "coldEmail": "Cold Email",
+      "team": "Team",
+      "urgent": "Urgent"
+    }
+  },
+  "pricing": {
+    "title": "Try for free, affordable paid plans",
+    "subtitle": "No hidden fees. Cancel anytime.",
+    "frequency": {
+      "annually": "Annually",
+      "monthly": "Monthly"
+    },
+    "billedAnnually": "/user /month (billed annually)",
+    "billedMonthly": "/user /month (billed monthly)",
+    "contactUs": "Contact us",
+    "badges": {
+      "savePercent": "Save {{percent}}%",
+      "popular": "Popular"
+    },
+    "tiers": {
+      "starter": {
+        "name": "Starter",
+        "description": "For creators and solopreneurs ready to grow their social presence.",
+        "cta": "Try free for 7 days",
+        "features": {
+          "0": "Post to 5 social platforms",
+          "1": "AI-powered content suggestions",
+          "2": "Basic analytics dashboard",
+          "3": "Content calendar",
+          "4": "Best time to post recommendations"
+        }
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "For growing businesses and teams managing multiple brands.",
+        "includesPrevious": "Everything in Starter, plus:",
+        "cta": "Try free for 7 days",
+        "features": {
+          "0": "Unlimited social accounts",
+          "1": "Advanced AI content generation",
+          "2": "Team collaboration tools",
+          "3": "Competitor analysis",
+          "4": "Priority support"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For organizations with enterprise-grade security and compliance requirements.",
+        "includesPrevious": "Everything in Professional, plus:",
+        "cta": "Speak to sales",
+        "features": {
+          "0": "SSO login",
+          "1": "On-premise deployment (optional)",
+          "2": "Advanced security & SLA",
+          "3": "Dedicated account manager & training"
+        }
+      }
+    }
+  }
+}

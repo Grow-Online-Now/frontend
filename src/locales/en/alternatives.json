@@ -1,0 +1,157 @@
+{
+  "alternatives": {
+    "meta": {
+      "title": "{{competitor}} Alternative | Grow Online",
+      "description": "Looking for a {{competitor}} alternative? Grow Online is the AI-powered social media tool that writes, schedules, and optimizes your content automatically."
+    },
+    "hero": {
+      "titlePrefix": "Stop Just Scheduling.",
+      "titleSuffix": "Start Growing.",
+      "subtitleTemplate": "{{competitor}} helps you schedule content you had to write yourself. Grow Online writes, posts, and optimizes it for you.",
+      "badge": "The AI Alternative to {{competitor}}"
+    },
+    "obsolescence": {
+      "title": "Built for {{legacyYear}}. It's Now 2025.",
+      "subtitle": "The social media landscape has changed. Your tools should too.",
+      "narrativeContinued": "While you're manually crafting captions and guessing when to post, your competitors are using AI to generate on-brand content at scale. They're posting at algorithmically optimal times. They're growing while you're stuck doing busywork. The gap widens every day you wait.",
+      "callout": "The question isn't whether you can afford to switch. It's whether you can afford not to."
+    },
+    "killTable": {
+      "title": "The Real Comparison",
+      "subtitle": "We only show you features that matter. No fluff, no ties.",
+      "headers": {
+        "feature": "Feature",
+        "oldWay": "{{competitor}} (The Old Way)",
+        "newWay": "Grow Online (The New Way)"
+      },
+      "features": {
+        "contentCreation": {
+          "name": "Content Creation",
+          "old": "You type it manually",
+          "new": "AI generates in your voice"
+        },
+        "analytics": {
+          "name": "Analytics",
+          "old": "Vanity Metrics (Likes, Follows)",
+          "new": "Growth Metrics (Conversion, ROI)"
+        },
+        "workflow": {
+          "name": "Workflow",
+          "old": "Schedule and hope for the best",
+          "new": "Generate, Optimize, Grow"
+        },
+        "platformStrategy": {
+          "name": "Platform Strategy",
+          "old": "Generic (One size fits all)",
+          "new": "Optimized (Custom per platform)"
+        },
+        "brandVoice": {
+          "name": "Brand Voice",
+          "old": "Hope you're consistent",
+          "new": "AI learns and maintains your voice"
+        },
+        "hashtagStrategy": {
+          "name": "Hashtag Strategy",
+          "old": "Copy-paste the same ones",
+          "new": "AI suggests trending, relevant tags"
+        },
+        "bestTimePosting": {
+          "name": "Best Time to Post",
+          "old": "Basic suggestions",
+          "new": "AI analyzes YOUR audience behavior"
+        },
+        "contentRepurposing": {
+          "name": "Content Repurposing",
+          "old": "Manual resize and rewrite",
+          "new": "Auto-adapt to each platform"
+        },
+        "pricing": {
+          "name": "Pricing",
+          "old": "{{competitorPrice}}",
+          "new": "{{ourPrice}}"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Actually Grow?",
+      "subtitle": "Join thousands of creators who stopped scheduling and started growing.",
+      "buttonText": "Switch from {{competitor}}",
+      "buttonTextAlt": "Start Growing on Autopilot",
+      "microcopy": "No credit card required. Import your current schedule in 1 click.",
+      "socialProof": "Join {{count}}+ creators who made the switch"
+    },
+    "faq": {
+      "title": "Switching FAQ",
+      "subtitle": "Everything you need to know about switching from {{competitor}}",
+      "questions": {
+        "pricing": {
+          "question": "Is Grow Online more affordable than {{competitor}}?",
+          "answer": "For most users, yes. {{competitor}} charges {{competitorPrice}} which adds up quickly as you grow. Grow Online offers a flat {{ourPrice}} with unlimited posts, AI content generation, and all platforms included. No per-channel or per-user fees."
+        },
+        "migration": {
+          "question": "Can I import my data from {{competitor}}?",
+          "answer": "Yes! Our onboarding process makes migration seamless. You can import your scheduled posts, content calendar, and analytics history. Most users complete the migration in under 10 minutes."
+        },
+        "features": {
+          "question": "What features does Grow Online have that {{competitor}} doesn't?",
+          "answer": "The biggest difference is AI-powered content generation that learns your brand voice. You also get intelligent scheduling based on your specific audience behavior, cross-platform content optimization, and growth-focused analytics (not just vanity metrics)."
+        },
+        "support": {
+          "question": "What kind of support do I get during migration?",
+          "answer": "Every new user gets a dedicated onboarding specialist who helps you migrate from {{competitor}}. We'll import your data, set up your accounts, and ensure you're getting value from day one. Email support responds within 24 hours."
+        },
+        "trial": {
+          "question": "Can I try Grow Online before fully switching?",
+          "answer": "Absolutely. Start with our free trial—no credit card required. Run both tools in parallel until you're confident Grow Online delivers results. Most users switch completely within 2 weeks."
+        },
+        "platforms": {
+          "question": "Does Grow Online support all the platforms {{competitor}} does?",
+          "answer": "Yes, and more. We support Instagram, TikTok, Twitter/X, LinkedIn, Facebook, Pinterest, YouTube, and Threads. Plus, our AI optimizes your content format for each platform automatically."
+        }
+      }
+    },
+    "competitors": {
+      "buffer": {
+        "tagline": "Buffer charges per channel. Grow Online gives you unlimited channels for one flat price.",
+        "obsolescence": "Buffer was revolutionary in 2010 when 'just posting regularly' was enough. But in 2025, their per-channel pricing model makes growth expensive. Every new platform you add costs more. Every account you manage drains your budget. With 6 channels, you're already paying more than Grow Online's flat rate—without any AI to help you create content."
+      },
+      "hootsuite": {
+        "tagline": "Hootsuite was built for enterprises in 2008. You deserve tools built for creators in 2025.",
+        "obsolescence": "Hootsuite was built for enterprise teams with unlimited budgets back in 2008. Today, you're paying enterprise prices ($99/mo minimum) for a cluttered dashboard and AI that generates generic, forgettable content. Their 8+ price increases tell the real story: they're optimizing for revenue, not your growth. Small teams and creators deserve better."
+      },
+      "later": {
+        "tagline": "Later is dropping Twitter/X support in 2025. Grow Online supports every platform you need.",
+        "obsolescence": "Later is removing Twitter/X support in August 2025. A tool that drops entire platforms isn't building for your future—they're cutting costs. If they'll drop Twitter today, what platform is next? Your social strategy deserves a partner committed to every platform where your audience lives, not one that abandons channels when they become inconvenient."
+      },
+      "sproutsocial": {
+        "tagline": "Sprout Social charges $249 per seat. Grow Online gives your whole team access for $29 flat.",
+        "obsolescence": "Sprout Social charges $249/month per seat. For a team of 5, that's $15,000/year before you even access their 'premium' features like social listening (which costs extra). Their pricing model assumes you're a Fortune 500 company with an unlimited budget. Most of us aren't, and we shouldn't pay like we are."
+      },
+      "planoly": {
+        "tagline": "Planoly focuses on Instagram. Grow Online helps you grow everywhere.",
+        "obsolescence": "Planoly removed their free plan and users felt betrayed. Now their paid plans get you an Instagram-focused tool with a mobile app that crashes regularly. In 2025, being Instagram-only isn't a feature—it's a limitation. Your audience is on TikTok, LinkedIn, Twitter, and more. Your tools should meet them everywhere."
+      },
+      "metricool": {
+        "tagline": "Metricool's 'brand' pricing gets expensive fast. Grow Online stays simple.",
+        "obsolescence": "Metricool's 'brand' pricing model sounds simple until you realize every Facebook page, every Instagram account counts as a separate brand. Want to manage a client's business page AND their personal profile? That's two brands. Their pricing grows faster than your business does. Plus, their 3-month analytics limit means you lose valuable historical data."
+      },
+      "postbridge": {
+        "tagline": "Postbridge schedules posts. Grow Online grows your audience.",
+        "obsolescence": "Postbridge does the basics: schedule posts, pick a time, hope for the best. But in 2025, 'basic' isn't enough. No AI content suggestions. No smart scheduling that learns your audience. No optimization. You're essentially paying for a fancy calendar when your competitors are using tools that actively help them grow."
+      },
+      "postiz": {
+        "tagline": "Postiz requires technical setup. Grow Online works out of the box.",
+        "obsolescence": "Postiz is open-source and self-hosted—great if you're a developer with time to spare. But most creators want to create content, not configure servers and databases. Their learning curve is steep, their team features are limited, and basic features like recurring posts are missing. Technical debt shouldn't be part of your content strategy."
+      },
+      "postplanify": {
+        "tagline": "Postplanify works for solo creators. Grow Online scales with your ambitions.",
+        "obsolescence": "Postplanify works fine for solo creators with simple needs. But the moment you want to grow—add team members, get exportable analytics, build approval workflows—you hit walls. It's designed small and stays small. Your ambitions deserve tools that scale with you, not tools that hold you back."
+      }
+    },
+    "notFound": {
+      "title": "Competitor Not Found",
+      "subtitle": "We don't have a specific comparison for this tool yet.",
+      "cta": "See All Alternatives"
+    }
+  }
+}

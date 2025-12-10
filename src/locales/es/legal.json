@@ -1,0 +1,413 @@
+{
+  "common": {
+    "lastUpdated": "Última actualización",
+    "effectiveDate": "Fecha de entrada en vigor",
+    "tableOfContents": "Tabla de Contenidos",
+    "contactUs": "Contáctanos",
+    "allRightsReserved": "Todos los derechos reservados.",
+    "businessName": "Bastien Youssfi",
+    "businessAddress": "18 mail Renaissance, 95200 Ermont, Francia",
+    "supportEmail": "support@growonline.now",
+    "privacyEmail": "privacy@growonline.now"
+  },
+  "terms": {
+    "title": "Términos de Servicio",
+    "subtitle": "Por favor lea estos términos cuidadosamente antes de usar Grow Online",
+    "sections": {
+      "introduction": {
+        "title": "1. Introducción y Aceptación",
+        "p1": "Bienvenido a Grow Online (\"Plataforma\", \"Servicio\", \"nosotros\", \"nuestro\"). Estos Términos de Servicio (\"Términos\") constituyen un acuerdo legalmente vinculante entre usted (\"Usuario\", \"usted\", \"su\") y Bastien Youssfi, operando como micro-empresa bajo la ley francesa, ubicado en 18 mail Renaissance, 95200 Ermont, Francia.",
+        "p2": "Al crear una cuenta, acceder o usar nuestros Servicios, usted reconoce que ha leído, entendido y acepta estar sujeto a estos Términos. Si no está de acuerdo con estos Términos, no debe acceder ni usar la Plataforma.",
+        "p3": "Debe tener al menos 13 años para usar nuestros Servicios. Al usar nuestros Servicios, usted declara y garantiza que cumple con este requisito de edad y tiene la capacidad legal para aceptar estos Términos."
+      },
+      "services": {
+        "title": "2. Descripción de los Servicios",
+        "p1": "Grow Online es una plataforma de gestión de redes sociales impulsada por IA diseñada para ayudar a creadores, marcas y empresas a hacer crecer su presencia en línea de manera eficiente. Nuestros Servicios incluyen:",
+        "list": {
+          "item1": "Programación y publicación de contenido multiplataforma en redes sociales",
+          "item2": "Integración OAuth con las principales plataformas de redes sociales",
+          "item3": "Herramientas de generación y optimización de contenido impulsadas por IA",
+          "item4": "Panel de analíticas e insights para seguimiento de rendimiento",
+          "item5": "Gestión de contenido multiplataforma en una interfaz unificada",
+          "item6": "Programación inteligente basada en momentos óptimos de publicación"
+        },
+        "p2": "Nos reservamos el derecho de modificar, suspender o discontinuar cualquier parte de los Servicios en cualquier momento con aviso razonable."
+      },
+      "accounts": {
+        "title": "3. Registro y Seguridad de la Cuenta",
+        "p1": "Para acceder a ciertas funciones, debe crear una cuenta. Usted acepta:",
+        "list": {
+          "item1": "Proporcionar información de registro precisa, actual y completa",
+          "item2": "Mantener y actualizar oportunamente la información de su cuenta",
+          "item3": "Mantener sus credenciales de acceso seguras y confidenciales",
+          "item4": "Aceptar responsabilidad por todas las actividades bajo su cuenta",
+          "item5": "Notificarnos inmediatamente de cualquier acceso no autorizado a su cuenta"
+        },
+        "p2": "Nos reservamos el derecho de suspender o terminar cuentas que violen estos Términos o parezcan ser fraudulentas."
+      },
+      "payments": {
+        "title": "4. Suscripción y Pagos",
+        "p1": "Grow Online ofrece varios planes de suscripción con diferentes características y precios. Al suscribirse a un plan de pago:",
+        "list": {
+          "item1": "Nos autoriza a cobrar su método de pago a través de Stripe, nuestro procesador de pagos",
+          "item2": "Las suscripciones se renuevan automáticamente a menos que se cancelen antes de la fecha de renovación",
+          "item3": "Los precios están sujetos a cambios con 30 días de aviso anticipado",
+          "item4": "No hay reembolsos por períodos de facturación parciales, excepto según lo requerido por la ley"
+        },
+        "refundTitle": "Garantía de Devolución de 7 Días",
+        "refundText": "Los nuevos suscriptores pueden solicitar un reembolso completo dentro de los 7 días de su compra inicial de suscripción si no están satisfechos con el Servicio. Esta garantía aplica solo a suscripciones iniciales y excluye renovaciones.",
+        "p2": "No almacenamos los detalles de su tarjeta de pago. Todo el procesamiento de pagos es manejado de forma segura por Stripe en cumplimiento con los estándares PCI-DSS."
+      },
+      "acceptableUse": {
+        "title": "5. Política de Uso Aceptable",
+        "p1": "Usted acepta usar nuestros Servicios solo para propósitos legales. No debe:",
+        "list": {
+          "item1": "Violar cualquier ley o regulación local, nacional o internacional aplicable",
+          "item2": "Infringir los derechos de propiedad intelectual de otros",
+          "item3": "Distribuir spam, malware o contenido malicioso",
+          "item4": "Intentar obtener acceso no autorizado a nuestros sistemas o cuentas de otros usuarios",
+          "item5": "Interferir o interrumpir la integridad o rendimiento de nuestros Servicios",
+          "item6": "Usar sistemas automatizados para extraer o recopilar datos de nuestra Plataforma",
+          "item7": "Suplantar a cualquier persona o entidad o tergiversar su afiliación",
+          "item8": "Publicar contenido difamatorio, obsceno o dañino",
+          "item9": "Participar en cualquier actividad que pueda dañar nuestra reputación o negocio"
+        },
+        "p2": "La violación de estos términos puede resultar en la terminación inmediata de la cuenta sin reembolso."
+      },
+      "content": {
+        "title": "6. Contenido del Usuario y Propiedad Intelectual",
+        "p1": "Usted retiene la propiedad del contenido que crea y publica a través de nuestra Plataforma. Al usar nuestros Servicios, nos otorga una licencia limitada y no exclusiva para:",
+        "list": {
+          "item1": "Almacenar y procesar su contenido para proporcionar los Servicios",
+          "item2": "Mostrar su contenido según sus instrucciones a las plataformas conectadas",
+          "item3": "Crear analíticas agregadas y anonimizadas a partir de patrones de uso"
+        },
+        "p2": "Todo el contenido, características y funcionalidad de nuestra Plataforma, incluyendo pero no limitado a texto, gráficos, logos, íconos y software, son propiedad de Grow Online y están protegidos por leyes de propiedad intelectual. No puede copiar, modificar, distribuir o crear obras derivadas sin nuestro consentimiento previo por escrito."
+      },
+      "thirdParty": {
+        "title": "7. Plataformas de Terceros",
+        "p1": "Nuestros Servicios se integran con las siguientes plataformas de redes sociales de terceros:",
+        "platforms": "Google, YouTube, Facebook, Instagram, Twitter/X, LinkedIn, TikTok, Pinterest, Threads y Bluesky",
+        "p2": "Su uso de estas plataformas a través de nuestros Servicios también está sujeto a sus respectivos términos de servicio y políticas de privacidad. No somos responsables de:",
+        "list": {
+          "item1": "La disponibilidad, precisión o contenido de plataformas de terceros",
+          "item2": "Cambios realizados por terceros a sus APIs o servicios",
+          "item3": "Acciones tomadas por terceros respecto a sus cuentas",
+          "item4": "Pérdida de datos o interrupciones de servicio causadas por plataformas de terceros"
+        },
+        "p3": "Las integraciones de plataformas pueden cambiar sin aviso debido a modificaciones de APIs de terceros."
+      },
+      "aiContent": {
+        "title": "8. Contenido Generado por IA",
+        "p1": "Nuestra Plataforma utiliza inteligencia artificial (impulsada por Anthropic y OpenAI) para asistir en la creación de contenido. Respecto al contenido generado por IA:",
+        "list": {
+          "item1": "Usted es responsable de revisar y aprobar todo el contenido generado por IA antes de su publicación",
+          "item2": "Las sugerencias de IA se proporcionan tal cual sin garantía de precisión o adecuación",
+          "item3": "Usted retiene total responsabilidad por el contenido publicado en sus cuentas de redes sociales",
+          "item4": "El contenido generado por IA puede requerir edición para coincidir con la voz de su marca",
+          "item5": "No reclamamos propiedad del contenido generado por IA creado para su uso"
+        },
+        "p2": "Siempre revise el contenido generado por IA para verificar precisión factual y cumplimiento con las políticas de las plataformas antes de publicar."
+      },
+      "liability": {
+        "title": "9. Limitación de Responsabilidad",
+        "p1": "EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE:",
+        "list": {
+          "item1": "NUESTROS SERVICIOS SE PROPORCIONAN \"TAL CUAL\" Y \"SEGÚN DISPONIBILIDAD\" SIN GARANTÍAS DE NINGÚN TIPO",
+          "item2": "NO GARANTIZAMOS QUE NUESTROS SERVICIOS SERÁN ININTERRUMPIDOS, SEGUROS O LIBRES DE ERRORES",
+          "item3": "NO SEREMOS RESPONSABLES POR NINGÚN DAÑO INDIRECTO, INCIDENTAL, ESPECIAL, CONSECUENTE O PUNITIVO",
+          "item4": "NUESTRA RESPONSABILIDAD TOTAL NO EXCEDERÁ EL MONTO PAGADO POR USTED EN LOS 12 MESES ANTERIORES A LA RECLAMACIÓN"
+        },
+        "p2": "Algunas jurisdicciones no permiten la limitación de responsabilidad por ciertos daños. En tales casos, nuestra responsabilidad se limitará a la mayor medida permitida por la ley."
+      },
+      "termination": {
+        "title": "10. Terminación",
+        "p1": "Puede cancelar su suscripción y cerrar su cuenta en cualquier momento a través de la configuración de su cuenta. Nos reservamos el derecho de:",
+        "list": {
+          "item1": "Suspender o terminar su acceso por violación de estos Términos",
+          "item2": "Terminar cuentas inactivas por más de 12 meses",
+          "item3": "Discontinuar el Servicio con 30 días de aviso"
+        },
+        "p2": "Al terminar, su derecho a usar los Servicios cesa inmediatamente. Retendremos sus datos por 30 días después de la eliminación de la cuenta, después de lo cual serán eliminados permanentemente."
+      },
+      "governingLaw": {
+        "title": "11. Ley Aplicable y Resolución de Disputas",
+        "p1": "Estos Términos se regirán e interpretarán de acuerdo con las leyes de Francia, sin consideración a las disposiciones sobre conflictos de leyes.",
+        "p2": "Para usuarios en la Unión Europea, usted se beneficia de las disposiciones obligatorias de las leyes de protección al consumidor en su país de residencia. Nada en estos Términos afecta sus derechos como consumidor.",
+        "p3": "Cualquier disputa que surja de estos Términos será resuelta a través de los tribunales competentes de Francia. Los consumidores de la UE también pueden usar la plataforma europea de Resolución de Disputas en Línea en https://ec.europa.eu/consumers/odr"
+      },
+      "contact": {
+        "title": "12. Información de Contacto",
+        "p1": "Si tiene preguntas sobre estos Términos de Servicio, por favor contáctenos:",
+        "emailLabel": "Email:",
+        "addressLabel": "Dirección:"
+      }
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "subtitle": "Cómo recopilamos, usamos y protegemos su información personal",
+    "sections": {
+      "introduction": {
+        "title": "1. Introducción y Controlador de Datos",
+        "p1": "En Grow Online, estamos comprometidos a proteger su privacidad y asegurar la seguridad de su información personal. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos sus datos cuando usa nuestros Servicios.",
+        "p2": "El controlador de datos responsable de sus datos personales es:",
+        "controllerInfo": "Bastien Youssfi (micro-entreprise), 18 mail Renaissance, 95200 Ermont, Francia",
+        "p3": "Esta política aplica a todos los usuarios en todo el mundo y está diseñada para cumplir con el Reglamento General de Protección de Datos (GDPR) de la UE, la Ley de Privacidad del Consumidor de California (CCPA) y otras leyes de privacidad aplicables."
+      },
+      "dataCollected": {
+        "title": "2. Información que Recopilamos",
+        "accountData": {
+          "title": "Información de Cuenta",
+          "list": {
+            "item1": "Dirección de email y nombre cuando se registra",
+            "item2": "Foto de perfil (si se proporciona)",
+            "item3": "Contraseña (encriptada y almacenada de forma segura)",
+            "item4": "Información de facturación (procesada por Stripe, no almacenada por nosotros)"
+          }
+        },
+        "socialData": {
+          "title": "Datos de Redes Sociales",
+          "list": {
+            "item1": "Tokens OAuth para conectar sus cuentas de redes sociales",
+            "item2": "Información de perfil de plataformas conectadas (nombre de usuario, avatar, seguidores)",
+            "item3": "Contenido que crea, programa o publica a través de nuestra Plataforma",
+            "item4": "Datos de analíticas y engagement de sus cuentas conectadas"
+          }
+        },
+        "usageData": {
+          "title": "Datos de Uso y Técnicos",
+          "list": {
+            "item1": "Información del dispositivo (tipo de navegador, sistema operativo)",
+            "item2": "Dirección IP y ubicación aproximada",
+            "item3": "Páginas visitadas y funciones utilizadas",
+            "item4": "Tiempo pasado en la Plataforma",
+            "item5": "Registros de errores y datos de rendimiento"
+          }
+        }
+      },
+      "dataUse": {
+        "title": "3. Cómo Usamos Su Información",
+        "p1": "Usamos sus datos personales para los siguientes propósitos:",
+        "list": {
+          "item1": "Para proporcionar, mantener y mejorar nuestros Servicios",
+          "item2": "Para autenticar su identidad y gestionar su cuenta",
+          "item3": "Para conectar e interactuar con sus cuentas de redes sociales en su nombre",
+          "item4": "Para procesar pagos y gestionar suscripciones",
+          "item5": "Para enviar actualizaciones y notificaciones importantes del servicio",
+          "item6": "Para responder a sus consultas y proporcionar soporte al cliente",
+          "item7": "Para analizar patrones de uso y optimizar la experiencia del usuario",
+          "item8": "Para detectar, prevenir y abordar problemas de seguridad y fraude",
+          "item9": "Para cumplir con obligaciones legales"
+        }
+      },
+      "legalBasis": {
+        "title": "4. Base Legal para el Procesamiento (GDPR)",
+        "p1": "Bajo el GDPR, procesamos sus datos personales basándonos en los siguientes fundamentos legales:",
+        "list": {
+          "item1": "Ejecución del Contrato: Procesamiento necesario para proporcionarle nuestros Servicios",
+          "item2": "Intereses Legítimos: Analíticas, seguridad y mejora del servicio",
+          "item3": "Consentimiento: Comunicaciones de marketing y funciones opcionales",
+          "item4": "Obligación Legal: Cumplimiento con leyes y regulaciones aplicables"
+        },
+        "p2": "Puede retirar su consentimiento en cualquier momento sin afectar la legalidad del procesamiento basado en el consentimiento antes de su retiro."
+      },
+      "dataSharing": {
+        "title": "5. Compartición de Datos y Terceros",
+        "p1": "Compartimos su información con las siguientes categorías de terceros:",
+        "socialPlatforms": {
+          "title": "Plataformas de Redes Sociales",
+          "text": "Para habilitar las funciones que solicita: Google, YouTube, Facebook, Instagram, Twitter/X, LinkedIn, TikTok, Pinterest, Threads y Bluesky"
+        },
+        "serviceProviders": {
+          "title": "Proveedores de Servicios",
+          "list": {
+            "item1": "Stripe: Procesamiento de pagos",
+            "item2": "Canva: Integración de herramientas de diseño",
+            "item3": "Vercel & AWS & Hetzner: Alojamiento en la nube e infraestructura",
+            "item4": "Anthropic & OpenAI: Generación de contenido por IA",
+            "item5": "PostHog: Analíticas"
+          }
+        },
+        "legalRequirements": {
+          "title": "Requisitos Legales",
+          "text": "Podemos divulgar datos cuando lo requiera la ley, orden judicial o autoridad gubernamental."
+        },
+        "noSale": "No vendemos su información personal a terceros."
+      },
+      "dataTransfers": {
+        "title": "6. Transferencias Internacionales de Datos",
+        "p1": "Su información puede ser transferida y procesada en países fuera de su país de residencia, incluyendo Estados Unidos (para proveedores de IA) y estados miembros de la UE.",
+        "p2": "Para transferencias fuera del EEE, implementamos salvaguardas apropiadas incluyendo:",
+        "list": {
+          "item1": "Cláusulas Contractuales Estándar aprobadas por la Comisión Europea",
+          "item2": "Decisiones de adecuación donde aplique",
+          "item3": "Acuerdos de Procesamiento de Datos con todos los proveedores de servicios"
+        }
+      },
+      "dataRetention": {
+        "title": "7. Retención de Datos",
+        "p1": "Retenemos su información personal mientras sea necesario para proporcionar nuestros Servicios y cumplir los propósitos descritos en esta Política de Privacidad:",
+        "list": {
+          "item1": "Datos de cuenta: Hasta que elimine su cuenta",
+          "item2": "Contenido y analíticas: Hasta la eliminación de la cuenta",
+          "item3": "Registros de pago: Según lo requieran las leyes fiscales (típicamente 10 años)",
+          "item4": "Registros del servidor: 90 días"
+        },
+        "p2": "Cuando elimina su cuenta, eliminaremos o anonimizaremos su información personal dentro de 30 días, a menos que la retención sea requerida para propósitos legales."
+      },
+      "rights": {
+        "title": "8. Sus Derechos",
+        "p1": "Dependiendo de su ubicación, tiene los siguientes derechos respecto a sus datos personales:",
+        "gdprRights": {
+          "title": "Derechos GDPR (Usuarios UE/EEE)",
+          "list": {
+            "item1": "Derecho de Acceso: Solicitar una copia de sus datos personales",
+            "item2": "Derecho de Rectificación: Solicitar corrección de datos inexactos",
+            "item3": "Derecho de Supresión: Solicitar eliminación de sus datos personales",
+            "item4": "Derecho a la Limitación: Solicitar limitación del procesamiento de datos",
+            "item5": "Derecho a la Portabilidad: Recibir sus datos en un formato portable",
+            "item6": "Derecho de Oposición: Oponerse al procesamiento basado en intereses legítimos",
+            "item7": "Derecho a Retirar el Consentimiento: Retirar el consentimiento en cualquier momento"
+          }
+        },
+        "p2": "Para ejercer estos derechos, contáctenos en privacy@growonline.now. Responderemos dentro de 30 días."
+      },
+      "children": {
+        "title": "9. Privacidad de los Niños",
+        "p1": "Nuestros Servicios no están destinados a niños menores de 13 años. No recopilamos conscientemente información personal de niños menores de 13 años.",
+        "p2": "Si nos enteramos de que hemos recopilado información personal de un niño menor de 13 años, tomaremos medidas para eliminar dicha información prontamente. Si cree que hemos recopilado información de un niño, por favor contáctenos inmediatamente."
+      },
+      "cookies": {
+        "title": "10. Cookies y Seguimiento",
+        "p1": "Usamos cookies y tecnologías similares para mejorar su experiencia. Para información detallada sobre las cookies que usamos y cómo gestionarlas, por favor vea nuestra Política de Cookies.",
+        "p2": "Puede controlar las cookies a través de la configuración de su navegador. Tenga en cuenta que deshabilitar ciertas cookies puede afectar la funcionalidad de nuestros Servicios."
+      },
+      "security": {
+        "title": "11. Seguridad de los Datos",
+        "p1": "Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger su información personal, incluyendo:",
+        "list": {
+          "item1": "Encriptación de datos en tránsito (TLS/SSL) y en reposo",
+          "item2": "Evaluaciones de seguridad regulares y pruebas de penetración",
+          "item3": "Controles de acceso y mecanismos de autenticación",
+          "item4": "Almacenamiento y gestión seguros de tokens OAuth",
+          "item5": "Respaldos regulares y procedimientos de recuperación ante desastres"
+        },
+        "p2": "Sin embargo, ningún método de transmisión por Internet es 100% seguro. No podemos garantizar la seguridad absoluta de sus datos."
+      },
+      "changes": {
+        "title": "12. Cambios a Esta Política",
+        "p1": "Podemos actualizar esta Política de Privacidad de vez en cuando. Le notificaremos de cualquier cambio material mediante:",
+        "list": {
+          "item1": "Publicando la política actualizada en nuestro sitio web",
+          "item2": "Enviando una notificación por email para cambios significativos",
+          "item3": "Actualizando la fecha de \"Última actualización\" en la parte superior de esta política"
+        },
+        "p2": "Su uso continuado de nuestros Servicios después de tales cambios constituye su aceptación de la Política de Privacidad actualizada."
+      },
+      "ccpa": {
+        "title": "13. Derechos de Privacidad de California (CCPA)",
+        "p1": "Si es residente de California, tiene derechos adicionales bajo la Ley de Privacidad del Consumidor de California:",
+        "list": {
+          "item1": "Derecho a Saber: Solicitar divulgación de categorías y piezas específicas de información personal recopilada",
+          "item2": "Derecho a Eliminar: Solicitar eliminación de información personal",
+          "item3": "Derecho a Optar por No Participar: No vendemos información personal, por lo que este derecho no aplica",
+          "item4": "Derecho a No Discriminación: No lo discriminaremos por ejercer sus derechos"
+        },
+        "p2": "Para ejercer estos derechos, contáctenos en privacy@growonline.now o use la configuración de cuenta en su panel de control."
+      },
+      "contact": {
+        "title": "14. Información de Contacto",
+        "p1": "Si tiene preguntas sobre esta Política de Privacidad o nuestras prácticas de datos, por favor contáctenos:",
+        "emailLabel": "Consultas de privacidad:",
+        "generalLabel": "Soporte general:",
+        "addressLabel": "Dirección:",
+        "dpoText": "También puede contactar a nuestro representante de Protección de Datos para consultas relacionadas con GDPR en la dirección de email anterior."
+      }
+    }
+  },
+  "cookies": {
+    "title": "Política de Cookies",
+    "subtitle": "Cómo usamos cookies y tecnologías similares",
+    "sections": {
+      "whatAreCookies": {
+        "title": "1. Qué Son las Cookies",
+        "p1": "Las cookies son pequeños archivos de texto que se colocan en su dispositivo cuando visita un sitio web. Se usan ampliamente para hacer que los sitios web funcionen más eficientemente y proporcionar información a los propietarios de sitios web.",
+        "p2": "Las cookies pueden ser \"persistentes\" (permanecen en su dispositivo hasta que se eliminan) o cookies de \"sesión\" (se eliminan cuando cierra su navegador)."
+      },
+      "howWeUse": {
+        "title": "2. Cómo Usamos las Cookies",
+        "p1": "Usamos cookies y tecnologías similares para los siguientes propósitos:",
+        "list": {
+          "item1": "Para mantenerlo conectado a su cuenta",
+          "item2": "Para recordar sus preferencias y configuraciones",
+          "item3": "Para entender cómo usa nuestra Plataforma",
+          "item4": "Para mejorar nuestros Servicios basándonos en patrones de uso",
+          "item5": "Para asegurar la seguridad de su cuenta"
+        }
+      },
+      "types": {
+        "title": "3. Tipos de Cookies que Usamos",
+        "essential": {
+          "title": "Cookies Esenciales",
+          "text": "Estas cookies son necesarias para que la Plataforma funcione correctamente. Habilitan funciones básicas como autenticación, seguridad y gestión de sesiones. No puede optar por no usar estas cookies.",
+          "examples": "Ejemplos: Cookies de sesión, tokens de autenticación, protección CSRF"
+        },
+        "analytics": {
+          "title": "Cookies de Analíticas",
+          "text": "Usamos PostHog para analíticas para entender cómo los visitantes interactúan con nuestra Plataforma. Estas cookies nos ayudan a mejorar nuestros Servicios recopilando datos de uso anónimos.",
+          "examples": "Ejemplos: Vistas de página, uso de funciones, duración de sesión",
+          "optOut": "Puede optar por no usar cookies de analíticas a través de nuestro banner de consentimiento de cookies."
+        }
+      },
+      "thirdParty": {
+        "title": "4. Cookies de Terceros",
+        "p1": "Cuando conecta cuentas de redes sociales, esas plataformas pueden establecer sus propias cookies. No controlamos estas cookies. Por favor consulte la política de cookies de cada plataforma:",
+        "list": {
+          "item1": "Google/YouTube: https://policies.google.com/technologies/cookies",
+          "item2": "Facebook/Instagram: https://www.facebook.com/policies/cookies",
+          "item3": "Twitter/X: https://twitter.com/privacy",
+          "item4": "LinkedIn: https://www.linkedin.com/legal/cookie-policy",
+          "item5": "TikTok: https://www.tiktok.com/legal/cookie-policy"
+        }
+      },
+      "duration": {
+        "title": "5. Duración de las Cookies",
+        "p1": "Las cookies que usamos tienen diferentes duraciones:",
+        "list": {
+          "item1": "Cookies de sesión: Se eliminan cuando cierra su navegador",
+          "item2": "Cookies de autenticación: Hasta 30 días (o hasta que cierre sesión)",
+          "item3": "Cookies de preferencias: Hasta 1 año",
+          "item4": "Cookies de analíticas: Hasta 1 año"
+        }
+      },
+      "managing": {
+        "title": "6. Gestión de Cookies",
+        "p1": "Puede gestionar las cookies de varias maneras:",
+        "consent": {
+          "title": "Banner de Consentimiento de Cookies",
+          "text": "Cuando visita nuestra Plataforma por primera vez, puede elegir qué cookies opcionales aceptar o rechazar."
+        },
+        "browser": {
+          "title": "Configuración del Navegador",
+          "text": "La mayoría de los navegadores le permiten bloquear o eliminar cookies. Sin embargo, bloquear todas las cookies puede afectar su capacidad de usar nuestra Plataforma."
+        },
+        "settings": {
+          "title": "Configuración de la Plataforma",
+          "text": "Puede actualizar sus preferencias de cookies en cualquier momento a través de nuestra configuración de cookies."
+        },
+        "p2": "Nota: Si deshabilita las cookies esenciales, puede que no pueda acceder a ciertas funciones o usar la Plataforma en absoluto."
+      },
+      "changes": {
+        "title": "7. Cambios a Esta Política",
+        "p1": "Podemos actualizar esta Política de Cookies de vez en cuando para reflejar cambios en nuestras prácticas o por razones legales, operativas o regulatorias.",
+        "p2": "Le notificaremos de cualquier cambio significativo actualizando la fecha de \"Última actualización\" y, donde sea apropiado, proporcionando aviso adicional."
+      },
+      "contact": {
+        "title": "8. Contáctenos",
+        "p1": "Si tiene preguntas sobre nuestro uso de cookies, por favor contáctenos:",
+        "emailLabel": "Email:"
+      }
+    }
+  }
+}

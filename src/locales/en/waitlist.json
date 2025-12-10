@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "title": "Grow Your Social Media.\n10x Faster.",
+    "subtitle": "AI-powered content scheduling and analytics for creators who mean business. Join the waitlist and get 3 months free at launch.",
+    "emailPlaceholder": "Enter your email",
+    "cta": "Join Waitlist",
+    "socialProof": "Join {{count}} early adopters"
+  },
+  "features": {
+    "title": "Everything you need to grow",
+    "subtitle": "Powerful tools built for modern creators",
+    "ai": {
+      "title": "AI Content Generation",
+      "description": "Generate engaging posts, captions, and hashtags with advanced AI that understands your brand voice."
+    },
+    "scheduling": {
+      "title": "Multi-Platform Scheduling",
+      "description": "Schedule and publish to Instagram, TikTok, Twitter, LinkedIn, and more from one dashboard."
+    },
+    "analytics": {
+      "title": "Real-Time Analytics",
+      "description": "Track your growth with detailed insights, engagement metrics, and competitor analysis."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "What is Grow Online?",
+      "answer": "Grow Online is an AI-powered social media management platform that helps creators and businesses grow their audience 10x faster through intelligent content scheduling, automated posting, and advanced analytics across all major platforms."
+    },
+    "q2": {
+      "question": "Which social platforms are supported?",
+      "answer": "We support Instagram, TikTok, Twitter (X), LinkedIn, Facebook, Pinterest, and YouTube. More platforms are being added based on user feedback."
+    },
+    "q3": {
+      "question": "When will Grow Online launch?",
+      "answer": "We're launching in Q1 2025. Waitlist members will get early access 2 weeks before the public launch, plus 3 months free when they sign up."
+    },
+    "q4": {
+      "question": "How much will it cost?",
+      "answer": "Pricing starts at $29/month for creators and $99/month for agencies. Waitlist members get 3 months free and a 20% lifetime discount."
+    },
+    "q5": {
+      "question": "How does the AI content generation work?",
+      "answer": "Our AI analyzes your brand voice, past content, and trending topics in your niche to generate on-brand posts, captions, and hashtags that drive engagement. You maintain full creative control."
+    }
+  },
+  "finalCta": {
+    "title": "Ready to grow your audience?",
+    "subtitle": "Join thousands of creators already on the waitlist",
+    "cta": "Get Early Access"
+  },
+  "footer": {
+    "copyright": "© 2025 Grow Online. All rights reserved.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "company": {
+      "description": "Grow Online is an AI-powered social media management platform designed to help creators, brands, and companies grow their online presence efficiently."
+    },
+    "sections": {
+      "product": {
+        "title": "Product",
+        "pricing": "Pricing",
+        "features": "Features",
+        "faq": "FAQ",
+        "blog": "Blog",
+        "affiliates": "Affiliates",
+        "freeTools": "Free Tools",
+        "whatsNew": "What's New"
+      },
+      "freeTools": {
+        "title": "Free Tools",
+        "linkedinPreview": "LinkedIn Post Preview",
+        "bestTimeToPost": "Best Time to Post"
+      },
+      "compare": {
+        "title": "Compare",
+        "hootsuite": "vs Hootsuite",
+        "buffer": "vs Buffer",
+        "later": "vs Later",
+        "sproutsocial": "vs Sprout Social",
+        "planoly": "vs Planoly",
+        "metricool": "vs Metricool",
+        "postbridge": "vs Postbridge",
+        "postiz": "vs Postiz",
+        "postplanify": "vs Postplanify"
+      },
+      "platforms": {
+        "title": "Platforms",
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "x": "X (Twitter)",
+        "linkedin": "LinkedIn",
+        "threads": "Threads",
+        "pinterest": "Pinterest",
+        "bluesky": "Bluesky"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy",
+        "cookies": "Cookie Policy"
+      }
+    }
+  },
+  "form": {
+    "success": "You're on the list! Check your email for confirmation.",
+    "error": "Something went wrong. Please try again.",
+    "invalidEmail": "Please enter a valid email address",
+    "required": "Email is required",
+    "submitting": "Joining..."
+  }
+}

@@ -1,0 +1,539 @@
+{
+  "dashboard": {
+    "seo": {
+      "title": "Tableau de bord - Grow Online",
+      "description": "Gérez votre présence sur les réseaux sociaux avec le tableau de bord Grow Online."
+    },
+    "nav": {
+      "createPost": "Créer une publication",
+      "categories": {
+        "general": "Général",
+        "posts": "Publications",
+        "configuration": "Configuration"
+      },
+      "overview": "Vue d'ensemble",
+      "analytics": "Analytiques",
+      "allPosts": "Toutes les publications",
+      "calendar": "Calendrier",
+      "accounts": "Comptes",
+      "settings": "Paramètres",
+      "comingSoon": "Bientôt"
+    },
+    "user": {
+      "plan": "Plan Gratuit"
+    },
+    "header": {
+      "welcome": "Bon retour, {{name}}",
+      "signOut": "Se déconnecter",
+      "profile": "Profil",
+      "settings": "Paramètres"
+    },
+    "overview": {
+      "title": "Tableau de bord",
+      "description": "Votre centre de commande pour les réseaux sociaux",
+      "quickActions": {
+        "title": "Actions rapides",
+        "createPost": "Créer une publication",
+        "connectAccount": "Connecter un compte",
+        "viewAnalytics": "Voir les analytics"
+      },
+      "stats": {
+        "scheduledPosts": "Publications planifiées",
+        "connectedAccounts": "Comptes connectés",
+        "postsThisWeek": "Publications cette semaine"
+      },
+      "empty": {
+        "title": "Commencez avec Grow Online",
+        "description": "Connectez votre premier compte de réseau social pour commencer à planifier du contenu.",
+        "cta": "Connecter un compte"
+      }
+    },
+    "streak": {
+      "title": "Série de publications",
+      "currentStreak": "Série actuelle",
+      "days": "jours",
+      "day": "jour",
+      "bestStreak": "Record : {{count}} jours",
+      "nextMilestone": "Prochain palier : {{count}}",
+      "postedToday": "Publié aujourd'hui",
+      "postToKeepStreak": "Publiez aujourd'hui pour maintenir votre série !",
+      "noStreak": "Commencez votre série en publiant !",
+      "milestoneReached": "Palier atteint !",
+      "keepItUp": "Continuez comme ça !"
+    },
+    "scheduler": {
+      "title": "Planificateur de contenu",
+      "description": "Planifiez et programmez vos publications sur toutes les plateformes",
+      "createPost": "Créer une publication",
+      "views": {
+        "month": "Mois",
+        "week": "Semaine"
+      },
+      "calendar": {
+        "today": "Aujourd'hui",
+        "moreCount": "+{{count}} autres",
+        "weekOf": "Semaine du {{date}}",
+        "navigation": {
+          "previousMonth": "Mois précédent",
+          "nextMonth": "Mois suivant",
+          "previousWeek": "Semaine précédente",
+          "nextWeek": "Semaine suivante"
+        }
+      },
+      "post": {
+        "scheduled": "Planifié pour le {{date}}",
+        "draft": "Brouillon",
+        "published": "Publié",
+        "failed": "Échoué"
+      },
+      "empty": {
+        "title": "Aucune publication planifiée",
+        "description": "Créez votre première publication pour la voir ici.",
+        "cta": "Créer une publication"
+      },
+      "modal": {
+        "createTitle": "Créer une nouvelle publication",
+        "editTitle": "Modifier la publication",
+        "content": "Contenu",
+        "contentPlaceholder": "Que voulez-vous partager ?",
+        "platforms": "Sélectionner les plateformes",
+        "scheduleDate": "Date de publication",
+        "scheduleTime": "Heure de publication",
+        "saveDraft": "Enregistrer comme brouillon",
+        "schedule": "Planifier la publication",
+        "cancel": "Annuler"
+      }
+    },
+    "accounts": {
+      "title": "Comptes connectés",
+      "description": "Gérez vos comptes de réseaux sociaux",
+      "connectNew": "Connecter un compte",
+      "status": {
+        "connected": "Connecté",
+        "disconnected": "Déconnecté",
+        "error": "Erreur de connexion"
+      },
+      "actions": {
+        "disconnect": "Déconnecter",
+        "reconnect": "Reconnecter",
+        "settings": "Paramètres"
+      },
+      "platforms": {
+        "instagram": "Instagram",
+        "twitter": "X (Twitter)",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "tiktok": "TikTok",
+        "youtube": "YouTube",
+        "pinterest": "Pinterest",
+        "threads": "Threads"
+      },
+      "empty": {
+        "title": "Aucun compte connecté",
+        "description": "Connectez vos comptes de réseaux sociaux pour commencer à publier.",
+        "cta": "Connecter votre premier compte"
+      },
+      "row": {
+        "connect": "Connecter",
+        "noAccounts": "Aucun compte connecté",
+        "accountCount": "{{count}} compte",
+        "accountCount_other": "{{count}} comptes"
+      },
+      "modal": {
+        "title": "Connecter un compte social",
+        "description": "Choisissez une plateforme à connecter",
+        "connecting": "Connexion en cours...",
+        "success": "Compte connecté avec succès !",
+        "error": "Échec de la connexion du compte. Veuillez réessayer."
+      },
+      "connectModal": {
+        "title": "Connecter {{platform}}",
+        "subtitle": "Avant de connecter :",
+        "continue": "Continuer vers {{platform}}",
+        "privacyNotice": "Nous ne demandons que les autorisations nécessaires pour créer et planifier des publications. Vous pouvez vous déconnecter à tout moment. Les mots de passe ne sont jamais stockés.",
+        "havingIssues": "Des problèmes ?",
+        "contactSupport": "Contacter le support"
+      },
+      "requirements": {
+        "youtube": {
+          "channel": "Doit être une chaîne YouTube que vous possédez ou gérez",
+          "permissions": "Vous devez avoir l'autorisation de télécharger des vidéos sur la chaîne"
+        },
+        "instagram": {
+          "business": "Doit être un compte Business ou Créateur, pas un profil personnel",
+          "facebook": "Doit être connecté à une Page Facebook"
+        },
+        "tiktok": {
+          "creator": "Doit être un compte TikTok avec la publication activée",
+          "permissions": "Vous devez avoir l'autorisation de publier du contenu"
+        },
+        "twitter": {
+          "account": "Doit être un compte Twitter/X que vous possédez",
+          "permissions": "Vous devez avoir l'autorisation de publier des tweets"
+        },
+        "linkedin": {
+          "page": "Peut être un profil personnel ou une Page Entreprise que vous gérez",
+          "permissions": "Vous devez avoir l'autorisation de publier au nom de la page"
+        },
+        "pinterest": {
+          "business": "Doit être un compte Pinterest Business",
+          "permissions": "Vous devez avoir l'autorisation de créer des épingles"
+        },
+        "facebook": {
+          "page": "Doit être administrateur d'au moins une Page Facebook",
+          "permissions": "Vous devez avoir l'autorisation de gérer la Page"
+        }
+      }
+    },
+    "facebook": {
+      "selectPage": {
+        "title": "Sélectionner une Page Facebook",
+        "description": "Choisissez quelle Page Facebook vous souhaitez connecter à Grow Online.",
+        "category": "Catégorie : {{category}}",
+        "confirm": "Connecter la Page",
+        "cancel": "Annuler",
+        "hint": "Vous pouvez connecter plusieurs pages en répétant ce processus.",
+        "loading": "Connexion...",
+        "noPages": "Aucune Page Facebook trouvée. Vous devez être administrateur d'au moins une Page.",
+        "sessionExpired": "Votre session a expiré. Veuillez réessayer de vous connecter.",
+        "error": "Échec de la connexion de la page. Veuillez réessayer."
+      }
+    },
+    "createPost": {
+      "title": "Créer une publication",
+      "description": "Partagez votre contenu sur toutes les plateformes connectées",
+      "backToPosts": "Publications",
+      "platforms": {
+        "title": "Plateformes",
+        "selected": "{{count}} sélectionné(s)",
+        "selected_zero": "0 sélectionné",
+        "selected_one": "1 sélectionné",
+        "selected_other": "{{count}} sélectionnés",
+        "noAccounts": "Aucun compte connecté",
+        "reconnect": "Reconnecter"
+      },
+      "caption": {
+        "label": "Légende",
+        "placeholder": "Que voulez-vous partager ?",
+        "addEmoji": "Ajouter un emoji",
+        "addHashtag": "Ajouter un hashtag",
+        "addMention": "Ajouter une mention",
+        "aiAssist": "Assistance IA"
+      },
+      "media": {
+        "addRequired": "Ajoutez un média pour continuer",
+        "addOptional": "Ajoutez des photos ou vidéos",
+        "dragHint": "Glissez-déposez ou cliquez pour parcourir",
+        "photo": "Photo",
+        "video": "Vidéo",
+        "carousel": "Carrousel",
+        "addMore": "Ajouter plus"
+      },
+      "preview": {
+        "title": "Aperçu",
+        "bestTime": "Meilleur moment pour publier",
+        "bestTimeValue": "Aujourd'hui, 14h00"
+      },
+      "hints": {
+        "mediaRequired": "{{platforms}} nécessitent un média pour publier",
+        "captionExceeds": "La légende dépasse la limite de {{platform}} de {{excess}} caractères",
+        "captionNearLimit": "La légende atteint {{percent}}% de la limite de {{platform}}",
+        "linkedinMedia": "Les publications avec images obtiennent 2x plus d'engagement sur LinkedIn",
+        "twitterLength": "Les tweets entre 100-280 caractères obtiennent le plus d'engagement",
+        "instagramReels": "Les vidéos verticales (9:16) fonctionnent mieux comme Reels"
+      },
+      "postButton": {
+        "postCount": "Publier sur {{count}}",
+        "postCount_one": "Publier sur 1",
+        "postCount_other": "Publier sur {{count}}",
+        "scheduleCount": "Planifier pour {{count}}",
+        "scheduleCount_one": "Planifier pour 1",
+        "scheduleCount_other": "Planifier pour {{count}}",
+        "readyToPost": "Prêt à publier",
+        "postReady": "Publier {{count}} prêt(s)",
+        "postReady_one": "Publier 1 prêt",
+        "postReady_other": "Publier {{count}} prêts",
+        "scheduleReady": "Planifier {{count}} prêt(s)",
+        "scheduleReady_one": "Planifier 1 prêt",
+        "scheduleReady_other": "Planifier {{count}} prêts",
+        "status": {
+          "ready": "Prêt",
+          "warning": "Attention",
+          "error": "Erreur"
+        }
+      },
+      "accounts": {
+        "label": "Sélectionner les comptes",
+        "noAccounts": "Aucun compte connecté. Connectez un compte pour commencer à publier.",
+        "selectAll": "Tout sélectionner",
+        "deselectAll": "Tout désélectionner",
+        "reconnectRequired": "Reconnecter"
+      },
+      "schedule": {
+        "label": "Quand publier",
+        "selectDate": "Sélectionner une date",
+        "now": {
+          "label": "Publier maintenant",
+          "description": "Publier immédiatement"
+        },
+        "scheduled": {
+          "label": "Planifier",
+          "description": "Choisir date et heure"
+        },
+        "draft": {
+          "label": "Enregistrer comme brouillon",
+          "description": "Terminer plus tard"
+        }
+      },
+      "actions": {
+        "postNow": "Publier maintenant",
+        "schedule": "Planifier la publication",
+        "saveDraft": "Enregistrer le brouillon",
+        "preview": "Aperçu"
+      },
+      "validation": {
+        "captionRequired": "Veuillez entrer le contenu de votre publication",
+        "accountsRequired": "Veuillez sélectionner au moins un compte",
+        "dateRequired": "Veuillez sélectionner une date et une heure"
+      },
+      "success": {
+        "posted": "Publication publiée avec succès !",
+        "scheduled": "Publication planifiée avec succès !",
+        "draft": "Brouillon enregistré avec succès !"
+      },
+      "noAccounts": {
+        "title": "Aucun compte connecté",
+        "description": "Connectez au moins un compte de réseau social pour commencer à créer des publications.",
+        "cta": "Connecter un compte"
+      },
+      "platformConfig": {
+        "title": "Paramètres des plateformes",
+        "instagram": {
+          "title": "Instagram",
+          "contentType": "Type de contenu",
+          "types": {
+            "post": "Photo",
+            "postDesc": "Image unique dans le fil",
+            "reel": "Reel",
+            "reelDesc": "Vidéo verticale (9:16)",
+            "story": "Story",
+            "storyDesc": "Disparaît après 24 heures",
+            "carousel": "Carrousel",
+            "carouselDesc": "Plusieurs images/vidéos"
+          },
+          "shareToFeed": "Partager aussi dans le fil"
+        },
+        "tiktok": {
+          "title": "TikTok",
+          "contentType": "Type de contenu",
+          "types": {
+            "video": "Vidéo",
+            "videoDesc": "Vidéo TikTok standard",
+            "photo": "Carrousel photo",
+            "photoDesc": "Jusqu'à 35 images avec musique"
+          },
+          "privacy": "Confidentialité",
+          "privacyLevels": {
+            "PUBLIC_TO_EVERYONE": "Public",
+            "MUTUAL_FOLLOW_FRIENDS": "Amis",
+            "FOLLOWER_OF_CREATOR": "Abonnés",
+            "SELF_ONLY": "Privé"
+          },
+          "disableComment": "Désactiver les commentaires",
+          "autoAddMusic": "Ajouter musique auto"
+        },
+        "youtube": {
+          "title": "YouTube",
+          "contentType": "Type de contenu",
+          "types": {
+            "video": "Vidéo",
+            "videoDesc": "Vidéo YouTube standard",
+            "short": "Short",
+            "shortDesc": "Vidéo verticale de moins de 60s"
+          },
+          "privacy": "Visibilité",
+          "privacyLevels": {
+            "public": "Publique",
+            "unlisted": "Non répertoriée",
+            "private": "Privée"
+          },
+          "tags": "Tags",
+          "tagsPlaceholder": "Entrez des tags, séparés par des virgules",
+          "notifySubscribers": "Notifier les abonnés",
+          "madeForKids": "Conçu pour les enfants"
+        }
+      },
+      "posting": {
+        "title": "Publication en cours",
+        "subtitle": "Publication sur vos comptes...",
+        "status": {
+          "queued": "En file d'attente",
+          "posting": "Publication...",
+          "posted": "Publié",
+          "failed": "Échoué"
+        },
+        "progress": "{{completed}} sur {{total}} terminé(s)",
+        "viewPost": "Voir",
+        "done": "Terminé",
+        "close": "Fermer",
+        "error": "Erreur : {{message}}"
+      }
+    },
+    "settings": {
+      "title": "Paramètres",
+      "description": "Gérez les préférences de votre compte",
+      "profile": {
+        "title": "Profil",
+        "name": "Nom complet",
+        "namePlaceholder": "Entrez votre nom",
+        "email": "Adresse e-mail",
+        "avatar": "Photo de profil",
+        "changeAvatar": "Modifier",
+        "save": "Enregistrer les modifications",
+        "saving": "Enregistrement..."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "email": "Notifications par e-mail",
+        "emailDescription": "Recevoir des mises à jour par e-mail concernant vos publications",
+        "push": "Notifications push",
+        "pushDescription": "Recevoir des notifications dans le navigateur"
+      },
+      "language": {
+        "title": "Langue",
+        "description": "Choisissez votre langue préférée",
+        "options": {
+          "en": "English",
+          "fr": "Français",
+          "es": "Español"
+        }
+      },
+      "danger": {
+        "title": "Zone de danger",
+        "deleteAccount": "Supprimer le compte",
+        "deleteDescription": "Supprimer définitivement votre compte et toutes vos données",
+        "deleteConfirm": "Êtes-vous sûr ? Cette action est irréversible."
+      }
+    },
+    "common": {
+      "loading": "Chargement...",
+      "error": "Une erreur s'est produite",
+      "retry": "Réessayer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "edit": "Modifier",
+      "back": "Retour",
+      "learnMore": "En savoir plus"
+    },
+    "hints": {
+      "overview": {
+        "gettingStarted": "Complétez ces étapes pour tirer le meilleur parti de Grow Online",
+        "quickActions": "Planifiez vos publications à l'avance pour un engagement constant",
+        "stats": {
+          "scheduledPosts": "Publications en attente de publication",
+          "connectedAccounts": "Plateformes sociales liées à votre compte",
+          "postsThisWeek": "Contenu publié au cours des 7 derniers jours"
+        }
+      },
+      "accounts": {
+        "intro": "Connectez vos comptes pour commencer à publier sur toutes les plateformes",
+        "progress": "{{current}} sur {{total}} plateformes connectées",
+        "platformTips": {
+          "youtube": "Idéal pour le contenu vidéo long format",
+          "instagram": "Parfait pour les stories visuelles et les reels",
+          "tiktok": "Idéal pour le contenu viral court",
+          "twitter": "Parfait pour les mises à jour rapides et l'engagement",
+          "linkedin": "Réseautage professionnel et contenu B2B",
+          "pinterest": "Découverte visuelle et inspiration"
+        }
+      },
+      "createPost": {
+        "optimalTiming": "Les publications performent mieux aux heures de pointe (9h-11h, 19h-21h)",
+        "multiPlatform": "Sélectionnez plusieurs comptes pour partager partout en une fois",
+        "scheduling": "Les publications planifiées aident à maintenir une présence constante"
+      },
+      "scheduler": {
+        "calendarUsage": "Cliquez sur une date pour voir les publications planifiées et en ajouter",
+        "emptyHint": "Planifiez votre contenu à l'avance pour maintenir une présence constante",
+        "viewTips": {
+          "month": "Vue d'ensemble de tout votre mois",
+          "week": "Planning hebdomadaire détaillé",
+          "day": "Focus sur une seule journée"
+        }
+      },
+      "settings": {
+        "profile": "Ces informations sont visibles par les autres utilisateurs",
+        "notifications": "Contrôlez comment nous vous contactons concernant l'activité",
+        "emailNotifications": "Mises à jour des publications et résumés hebdomadaires",
+        "pushNotifications": "Alertes en temps réel pour les commentaires et mentions"
+      }
+    },
+    "gettingStarted": {
+      "title": "Premiers pas",
+      "dismiss": "Fermer",
+      "completed": "terminé",
+      "allComplete": "Vous êtes prêt ! Bonne publication !",
+      "steps": {
+        "connectAccount": {
+          "title": "Connectez votre premier compte",
+          "description": "Liez une plateforme sociale pour commencer à publier"
+        },
+        "createPost": {
+          "title": "Créez votre première publication",
+          "description": "Rédigez et planifiez du contenu"
+        },
+        "setupSchedule": {
+          "title": "Planifiez une publication",
+          "description": "Planifiez votre calendrier de contenu"
+        }
+      }
+    },
+    "posts": {
+      "title": "Toutes les publications",
+      "description": "Consultez et gérez toutes vos publications planifiées et publiées",
+      "filters": {
+        "all": "Tout",
+        "status": "Statut",
+        "type": "Type",
+        "platform": "Plateforme",
+        "scheduled": "Planifiées",
+        "drafts": "Brouillons",
+        "clearFilters": "Effacer les filtres"
+      },
+      "table": {
+        "caption": "Contenu",
+        "platforms": "Plateformes",
+        "status": "Statut",
+        "scheduledFor": "Planifié pour",
+        "createdAt": "Créé le",
+        "actions": "Actions",
+        "notScheduled": "Non planifié",
+        "view": "Voir",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette publication ?"
+      },
+      "status": {
+        "pending": "En attente",
+        "processing": "En cours",
+        "completed": "Publié",
+        "failed": "Échoué",
+        "draft": "Brouillon"
+      },
+      "empty": {
+        "title": "Aucune publication",
+        "description": "Créez votre première publication pour la voir ici",
+        "cta": "Créer une publication",
+        "noResults": "Aucune publication ne correspond à vos filtres",
+        "noResultsDescription": "Essayez d'ajuster vos filtres ou créez une nouvelle publication"
+      },
+      "pagination": {
+        "showing": "Affichage {{from}}-{{to}} sur {{total}}",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "page": "Page {{page}} sur {{totalPages}}"
+      }
+    }
+  }
+}

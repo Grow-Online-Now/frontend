@@ -1,0 +1,90 @@
+import { useTranslation } from 'react-i18next'
+import { Button } from '@/components/ui/button'
+import { AccountBadge } from './AccountBadge'
+import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
+import { Plus } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import type { Connection, SocialPlatform } from '@/types/connections'
+
+interface PlatformConfig {
+  id: SocialPlatform
+}
+
+interface PlatformRowProps {
+  platform: PlatformConfig
+  connections: Connection[]
+  onConnect: (platform: SocialPlatform) => void
+  onDisconnect?: (connection: Connection) => void
+  onReconnect?: (connection: Connection) => void
+}
+
+export function PlatformRow({
+  platform,
+  connections,
+  onConnect,
+  onDisconnect,
+  onReconnect,
+}: PlatformRowProps) {
+  const { t } = useTranslation()
+
+  // Check if any connection has an error
+  const hasErrorConnection = connections.some((c) => c.isExpired || c.needsRefresh || !c.isActive)
+
+  return (
+    <div
+      className={cn(
+        'group bg-card flex items-center gap-4 rounded-xl border px-4 py-3 transition-all duration-150',
+        hasErrorConnection
+          ? 'border-destructive/20 bg-destructive/[0.02] hover:border-destructive/30 hover:bg-destructive/[0.04]'
+          : 'border-border-subtle hover:border-border hover:bg-surface-elevated'
+      )}
+    >
+      {/* Platform Logo */}
+      <PlatformIcon
+        platform={platform.id}
+        size="lg"
+        showBackground
+        className="shrink-0 transition-transform duration-150 group-hover:scale-105"
+      />
+
+      {/* Platform Name */}
+      <div className="hidden w-28 shrink-0 sm:block">
+        <p className="text-foreground text-sm font-medium">
+          {t(`dashboard.accounts.platforms.${platform.id}`)}
+        </p>
+        <p className="text-muted-foreground text-xs">
+          {t('dashboard.accounts.row.accountCount', { count: connections.length })}
+        </p>
+      </div>
+
+      {/* Connect Button */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onConnect(platform.id)}
+        className="text-muted-foreground hover:border-border hover:text-foreground shrink-0 gap-1.5 rounded-lg border-dashed transition-all duration-150 hover:border-solid"
+      >
+        <Plus className="h-3.5 w-3.5" />
+        <span className="hidden sm:inline">{t('dashboard.accounts.row.connect')}</span>
+      </Button>
+
+      {/* Connected Accounts */}
+      <div className="flex flex-1 flex-wrap items-center gap-2 py-1">
+        {connections.length === 0 ? (
+          <p className="text-muted-foreground/70 text-sm">
+            {t('dashboard.accounts.row.noAccounts')}
+          </p>
+        ) : (
+          connections.map((connection) => (
+            <AccountBadge
+              key={connection.id}
+              connection={connection}
+              onRemove={onDisconnect}
+              onReconnect={onReconnect}
+            />
+          ))
+        )}
+      </div>
+    </div>
+  )
+}

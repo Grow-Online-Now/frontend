@@ -1,0 +1,561 @@
+{
+  "dashboard": {
+    "seo": {
+      "title": "Dashboard - Grow Online",
+      "description": "Manage your social media presence with Grow Online dashboard."
+    },
+    "nav": {
+      "createPost": "Create Post",
+      "categories": {
+        "general": "General",
+        "posts": "Posts",
+        "configuration": "Configuration"
+      },
+      "overview": "Overview",
+      "analytics": "Analytics",
+      "allPosts": "All Posts",
+      "calendar": "Calendar",
+      "accounts": "Accounts",
+      "settings": "Settings",
+      "comingSoon": "Soon"
+    },
+    "user": {
+      "plan": "Free Plan"
+    },
+    "header": {
+      "welcome": "Welcome back, {{name}}",
+      "signOut": "Sign out",
+      "profile": "Profile",
+      "settings": "Settings"
+    },
+    "overview": {
+      "title": "Dashboard",
+      "description": "Your social media command center",
+      "quickActions": {
+        "title": "Quick Actions",
+        "createPost": "Create Post",
+        "connectAccount": "Connect Account",
+        "viewAnalytics": "View Analytics"
+      },
+      "stats": {
+        "scheduledPosts": "Scheduled Posts",
+        "connectedAccounts": "Connected Accounts",
+        "postsThisWeek": "Posts This Week"
+      },
+      "empty": {
+        "title": "Get started with Grow Online",
+        "description": "Connect your first social media account to start scheduling content.",
+        "cta": "Connect Account"
+      }
+    },
+    "streak": {
+      "title": "Posting Streak",
+      "currentStreak": "Current Streak",
+      "days": "days",
+      "day": "day",
+      "bestStreak": "Best: {{count}} days",
+      "nextMilestone": "Next milestone: {{count}}",
+      "postedToday": "Posted today",
+      "postToKeepStreak": "Post today to keep your streak!",
+      "noStreak": "Start your streak by posting!",
+      "milestoneReached": "Milestone reached!",
+      "keepItUp": "Keep it up!"
+    },
+    "scheduler": {
+      "title": "Content Scheduler",
+      "description": "Plan and schedule your posts across all platforms",
+      "createPost": "Create Post",
+      "views": {
+        "month": "Month",
+        "week": "Week"
+      },
+      "calendar": {
+        "today": "Today",
+        "moreCount": "+{{count}} more",
+        "weekOf": "Week of {{date}}",
+        "navigation": {
+          "previousMonth": "Previous month",
+          "nextMonth": "Next month",
+          "previousWeek": "Previous week",
+          "nextWeek": "Next week"
+        }
+      },
+      "post": {
+        "scheduled": "Scheduled for {{date}}",
+        "draft": "Draft",
+        "published": "Published",
+        "failed": "Failed"
+      },
+      "empty": {
+        "title": "No posts scheduled",
+        "description": "Create your first post to see it here.",
+        "cta": "Create Post"
+      },
+      "modal": {
+        "createTitle": "Create New Post",
+        "editTitle": "Edit Post",
+        "content": "Content",
+        "contentPlaceholder": "What do you want to share?",
+        "platforms": "Select Platforms",
+        "scheduleDate": "Schedule Date",
+        "scheduleTime": "Schedule Time",
+        "saveDraft": "Save as Draft",
+        "schedule": "Schedule Post",
+        "cancel": "Cancel"
+      }
+    },
+    "accounts": {
+      "title": "Connected Accounts",
+      "description": "Manage your social media accounts",
+      "connectNew": "Connect Account",
+      "status": {
+        "connected": "Connected",
+        "disconnected": "Disconnected",
+        "error": "Connection Error"
+      },
+      "actions": {
+        "disconnect": "Disconnect",
+        "reconnect": "Reconnect",
+        "settings": "Settings"
+      },
+      "platforms": {
+        "instagram": "Instagram",
+        "twitter": "X (Twitter)",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "tiktok": "TikTok",
+        "youtube": "YouTube",
+        "pinterest": "Pinterest",
+        "threads": "Threads"
+      },
+      "empty": {
+        "title": "No accounts connected",
+        "description": "Connect your social media accounts to start posting.",
+        "cta": "Connect Your First Account"
+      },
+      "row": {
+        "connect": "Connect",
+        "noAccounts": "No accounts connected",
+        "accountCount": "{{count}} account",
+        "accountCount_other": "{{count}} accounts"
+      },
+      "modal": {
+        "title": "Connect a Social Account",
+        "description": "Choose a platform to connect",
+        "connecting": "Connecting...",
+        "success": "Account connected successfully!",
+        "error": "Failed to connect account. Please try again."
+      },
+      "connectModal": {
+        "title": "Connect {{platform}}",
+        "subtitle": "Before you connect:",
+        "continue": "Continue to {{platform}}",
+        "privacyNotice": "We only ask for the permissions needed to create and schedule posts. You can disconnect anytime. Passwords are never stored.",
+        "havingIssues": "Having issues?",
+        "contactSupport": "Contact support"
+      },
+      "requirements": {
+        "youtube": {
+          "channel": "Must be a YouTube channel you own or manage",
+          "permissions": "You need permission to upload videos to the channel"
+        },
+        "instagram": {
+          "business": "Must be a Business or Creator account, not a personal profile",
+          "facebook": "Must be connected to a Facebook Page"
+        },
+        "tiktok": {
+          "creator": "Must be a TikTok account with posting enabled",
+          "permissions": "You need permission to publish content"
+        },
+        "twitter": {
+          "account": "Must be a Twitter/X account you own",
+          "permissions": "You need permission to post tweets"
+        },
+        "linkedin": {
+          "page": "Can be a personal profile or a Company Page you manage",
+          "permissions": "You need permission to post on behalf of the page"
+        },
+        "pinterest": {
+          "business": "Must be a Pinterest Business account",
+          "permissions": "You need permission to create pins"
+        },
+        "facebook": {
+          "page": "Must be an admin of at least one Facebook Page",
+          "permissions": "You need permission to manage the Page"
+        }
+      }
+    },
+    "facebook": {
+      "selectPage": {
+        "title": "Select a Facebook Page",
+        "description": "Choose which Facebook Page you want to connect to Grow Online.",
+        "category": "Category: {{category}}",
+        "confirm": "Connect Page",
+        "cancel": "Cancel",
+        "hint": "You can connect multiple pages by repeating this process.",
+        "loading": "Connecting...",
+        "noPages": "No Facebook Pages found. You must be an admin of at least one Page.",
+        "sessionExpired": "Your session has expired. Please try connecting again.",
+        "error": "Failed to connect page. Please try again."
+      }
+    },
+    "createPost": {
+      "title": "Create Post",
+      "description": "Share your content across all connected platforms",
+      "backToPosts": "Posts",
+      "platforms": {
+        "title": "Platforms",
+        "selected": "{{count}} selected",
+        "selected_zero": "0 selected",
+        "selected_one": "1 selected",
+        "selected_other": "{{count}} selected",
+        "noAccounts": "No accounts connected",
+        "reconnect": "Reconnect"
+      },
+      "caption": {
+        "label": "Caption",
+        "placeholder": "What do you want to share?",
+        "addEmoji": "Add emoji",
+        "addHashtag": "Add hashtag",
+        "addMention": "Add mention",
+        "aiAssist": "AI Assist"
+      },
+      "media": {
+        "addRequired": "Add media to continue",
+        "addOptional": "Add photos or videos",
+        "dragHint": "Drag and drop or click to browse",
+        "photo": "Photo",
+        "video": "Video",
+        "carousel": "Carousel",
+        "addMore": "Add more",
+        "upload": {
+          "uploading": "Uploading...",
+          "processing": "Processing...",
+          "complete": "Upload complete",
+          "failed": "Upload failed",
+          "retry": "Retry",
+          "cancel": "Cancel",
+          "progress": "{{percentage}}%"
+        },
+        "errors": {
+          "invalidType": "Only image and video files are allowed",
+          "mimeNotAllowed": "File type {{type}} is not supported",
+          "imageTooLarge": "Image exceeds {{maxSize}}MB limit",
+          "videoTooLarge": "Video exceeds {{maxSize}}MB limit",
+          "uploadFailed": "Failed to upload {{fileName}}",
+          "networkError": "Network error. Please check your connection.",
+          "s3Error": "Upload to storage failed. Please try again."
+        },
+        "validation": {
+          "uploadsInProgress": "Please wait for uploads to complete",
+          "uploadsFailed": "Some uploads failed. Please retry or remove them."
+        }
+      },
+      "preview": {
+        "title": "Preview",
+        "bestTime": "Best time to post",
+        "bestTimeValue": "Today, 2:00 PM"
+      },
+      "hints": {
+        "mediaRequired": "{{platforms}} require media to post",
+        "captionExceeds": "Caption exceeds {{platform}} limit by {{excess}} characters",
+        "captionNearLimit": "Caption is {{percent}}% of {{platform}} limit",
+        "linkedinMedia": "Posts with images get 2x more engagement on LinkedIn",
+        "twitterLength": "Tweets between 100-280 characters get the most engagement",
+        "instagramReels": "Vertical videos (9:16) perform best as Reels"
+      },
+      "postButton": {
+        "postCount": "Post to {{count}}",
+        "postCount_one": "Post to 1",
+        "postCount_other": "Post to {{count}}",
+        "scheduleCount": "Schedule for {{count}}",
+        "scheduleCount_one": "Schedule for 1",
+        "scheduleCount_other": "Schedule for {{count}}",
+        "readyToPost": "Ready to post",
+        "postReady": "Post {{count}} ready",
+        "postReady_one": "Post 1 ready",
+        "postReady_other": "Post {{count}} ready",
+        "scheduleReady": "Schedule {{count}} ready",
+        "scheduleReady_one": "Schedule 1 ready",
+        "scheduleReady_other": "Schedule {{count}} ready",
+        "status": {
+          "ready": "Ready",
+          "warning": "Warning",
+          "error": "Error"
+        }
+      },
+      "accounts": {
+        "label": "Select Accounts",
+        "noAccounts": "No accounts connected. Connect an account to start posting.",
+        "selectAll": "Select all",
+        "deselectAll": "Deselect all",
+        "reconnectRequired": "Reconnect"
+      },
+      "schedule": {
+        "label": "When to post",
+        "selectDate": "Select date",
+        "now": {
+          "label": "Post Now",
+          "description": "Publish immediately"
+        },
+        "scheduled": {
+          "label": "Schedule",
+          "description": "Pick a date and time"
+        },
+        "draft": {
+          "label": "Save as Draft",
+          "description": "Finish later"
+        }
+      },
+      "actions": {
+        "postNow": "Post Now",
+        "schedule": "Schedule Post",
+        "saveDraft": "Save Draft",
+        "preview": "Preview"
+      },
+      "validation": {
+        "captionRequired": "Please enter your post content",
+        "accountsRequired": "Please select at least one account",
+        "dateRequired": "Please select a date and time"
+      },
+      "success": {
+        "posted": "Post published successfully!",
+        "scheduled": "Post scheduled successfully!",
+        "draft": "Draft saved successfully!"
+      },
+      "noAccounts": {
+        "title": "No accounts connected",
+        "description": "Connect at least one social media account to start creating posts.",
+        "cta": "Connect Account"
+      },
+      "platformConfig": {
+        "title": "Platform Settings",
+        "instagram": {
+          "title": "Instagram",
+          "contentType": "Content Type",
+          "types": {
+            "post": "Photo Post",
+            "postDesc": "Single image in feed",
+            "reel": "Reel",
+            "reelDesc": "Vertical video (9:16)",
+            "story": "Story",
+            "storyDesc": "Disappears in 24 hours",
+            "carousel": "Carousel",
+            "carouselDesc": "Multiple images/videos"
+          },
+          "shareToFeed": "Also share to Feed"
+        },
+        "tiktok": {
+          "title": "TikTok",
+          "contentType": "Content Type",
+          "types": {
+            "video": "Video",
+            "videoDesc": "Standard TikTok video",
+            "photo": "Photo Carousel",
+            "photoDesc": "Up to 35 images with music"
+          },
+          "privacy": "Privacy",
+          "privacyLevels": {
+            "PUBLIC_TO_EVERYONE": "Public",
+            "MUTUAL_FOLLOW_FRIENDS": "Friends",
+            "FOLLOWER_OF_CREATOR": "Followers",
+            "SELF_ONLY": "Private"
+          },
+          "disableComment": "Disable comments",
+          "autoAddMusic": "Auto-add music"
+        },
+        "youtube": {
+          "title": "YouTube",
+          "contentType": "Content Type",
+          "types": {
+            "video": "Video",
+            "videoDesc": "Standard YouTube video",
+            "short": "Short",
+            "shortDesc": "Vertical video under 60s"
+          },
+          "privacy": "Visibility",
+          "privacyLevels": {
+            "public": "Public",
+            "unlisted": "Unlisted",
+            "private": "Private"
+          },
+          "tags": "Tags",
+          "tagsPlaceholder": "Enter tags, separated by commas",
+          "notifySubscribers": "Notify subscribers",
+          "madeForKids": "Made for kids"
+        }
+      },
+      "posting": {
+        "title": "Posting Your Content",
+        "subtitle": "Publishing to your accounts...",
+        "status": {
+          "queued": "Queued",
+          "posting": "Posting...",
+          "posted": "Posted",
+          "failed": "Failed"
+        },
+        "progress": "{{completed}} of {{total}} complete",
+        "viewPost": "View",
+        "done": "Done",
+        "close": "Close",
+        "error": "Error: {{message}}"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Manage your account preferences",
+      "profile": {
+        "title": "Profile",
+        "name": "Full Name",
+        "namePlaceholder": "Enter your name",
+        "email": "Email Address",
+        "avatar": "Profile Picture",
+        "changeAvatar": "Change",
+        "save": "Save Changes",
+        "saving": "Saving..."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "email": "Email Notifications",
+        "emailDescription": "Receive email updates about your posts",
+        "push": "Push Notifications",
+        "pushDescription": "Receive browser notifications"
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose your preferred language",
+        "options": {
+          "en": "English",
+          "fr": "Français",
+          "es": "Español"
+        }
+      },
+      "danger": {
+        "title": "Danger Zone",
+        "deleteAccount": "Delete Account",
+        "deleteDescription": "Permanently delete your account and all data",
+        "deleteConfirm": "Are you sure? This action cannot be undone."
+      }
+    },
+    "common": {
+      "loading": "Loading...",
+      "error": "Something went wrong",
+      "retry": "Try Again",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "back": "Back",
+      "learnMore": "Learn more"
+    },
+    "hints": {
+      "overview": {
+        "gettingStarted": "Complete these steps to get the most out of Grow Online",
+        "quickActions": "Schedule posts in advance for consistent engagement",
+        "stats": {
+          "scheduledPosts": "Posts waiting to be published",
+          "connectedAccounts": "Social platforms linked to your account",
+          "postsThisWeek": "Content published in the last 7 days"
+        }
+      },
+      "accounts": {
+        "intro": "Connect your accounts to start posting across platforms",
+        "progress": "{{current}} of {{total}} platforms connected",
+        "platformTips": {
+          "youtube": "Best for long-form video content",
+          "instagram": "Perfect for visual stories and reels",
+          "tiktok": "Ideal for short-form viral content",
+          "twitter": "Great for quick updates and engagement",
+          "linkedin": "Professional networking and B2B content",
+          "pinterest": "Visual discovery and inspiration"
+        }
+      },
+      "createPost": {
+        "optimalTiming": "Posts perform better during peak hours (9-11 AM, 7-9 PM)",
+        "multiPlatform": "Select multiple accounts to share everywhere at once",
+        "scheduling": "Scheduled posts help maintain consistent presence"
+      },
+      "scheduler": {
+        "calendarUsage": "Click any date to see scheduled posts and add new ones",
+        "emptyHint": "Plan your content ahead to maintain a consistent presence",
+        "viewTips": {
+          "month": "Overview of your entire month",
+          "week": "Detailed weekly schedule",
+          "day": "Focus on a single day"
+        }
+      },
+      "settings": {
+        "profile": "This information is visible to other users",
+        "notifications": "Control how we contact you about activity",
+        "emailNotifications": "Post updates and weekly summaries",
+        "pushNotifications": "Real-time alerts for comments and mentions"
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "dismiss": "Dismiss",
+      "completed": "completed",
+      "allComplete": "You're all set! Happy posting!",
+      "steps": {
+        "connectAccount": {
+          "title": "Connect your first account",
+          "description": "Link a social platform to start posting"
+        },
+        "createPost": {
+          "title": "Create your first post",
+          "description": "Write and schedule content"
+        },
+        "setupSchedule": {
+          "title": "Schedule a post",
+          "description": "Plan your content calendar"
+        }
+      }
+    },
+    "posts": {
+      "title": "All Posts",
+      "description": "View and manage all your scheduled and published posts",
+      "filters": {
+        "all": "All",
+        "status": "Status",
+        "type": "Type",
+        "platform": "Platform",
+        "scheduled": "Scheduled",
+        "drafts": "Drafts",
+        "clearFilters": "Clear filters"
+      },
+      "table": {
+        "caption": "Caption",
+        "platforms": "Platforms",
+        "status": "Status",
+        "scheduledFor": "Scheduled For",
+        "createdAt": "Created",
+        "actions": "Actions",
+        "notScheduled": "Not scheduled",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this post?"
+      },
+      "status": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Published",
+        "failed": "Failed",
+        "draft": "Draft"
+      },
+      "empty": {
+        "title": "No posts yet",
+        "description": "Create your first post to see it here",
+        "cta": "Create Post",
+        "noResults": "No posts match your filters",
+        "noResultsDescription": "Try adjusting your filters or create a new post"
+      },
+      "pagination": {
+        "showing": "Showing {{from}}-{{to}} of {{total}}",
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page {{page}} of {{totalPages}}"
+      }
+    }
+  }
+}

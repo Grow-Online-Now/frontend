@@ -1,0 +1,392 @@
+{
+  "navbar": {
+    "features": "Características",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "platforms": "Plataformas",
+    "login": "Iniciar Sesión",
+    "getStarted": "Comenzar Gratis",
+    "mobileMenuAriaLabel": "Alternar menú",
+    "platformsSubmenu": {
+      "instagram": "Instagram",
+      "instagramDesc": "Haz crecer tu presencia en Instagram con IA",
+      "tiktok": "TikTok",
+      "tiktokDesc": "Crea contenido viral en TikTok",
+      "youtube": "YouTube",
+      "youtubeDesc": "Optimiza tu canal de YouTube",
+      "linkedin": "LinkedIn",
+      "linkedinDesc": "Construye tu marca profesional",
+      "twitter": "X (Twitter)",
+      "twitterDesc": "Conecta con tu audiencia en Twitter"
+    },
+    "blogSubmenu": {
+      "featured": "Últimos Artículos",
+      "featuredDesc": "Lee nuestros últimos análisis sobre crecimiento en redes sociales",
+      "tips": "Consejos",
+      "tutorials": "Tutoriales",
+      "caseStudies": "Casos de Estudio",
+      "news": "Noticias"
+    }
+  },
+  "hero": {
+    "titleStart": "Conoce a tu asistente IA de crecimiento que",
+    "titleHighlight": "funciona",
+    "titleEnd": "de verdad",
+    "subtitle": "Grow Online ayuda a creadores y empresas a automatizar su presencia en redes sociales con planificación de contenido impulsada por IA, analíticas inteligentes y publicación multiplataforma.",
+    "ctaPrimary": "Comenzar",
+    "ctaSecondary": "Hablar con ventas",
+    "socialProof": "Únete a {{count}}+ early adopters",
+    "videoPlaceholder": "Ver cómo funciona"
+  },
+  "problem": {
+    "title": "Las Redes Sociales No Deberían Ser un Trabajo de Tiempo Completo",
+    "subtitle": "Comenzaste a crear contenido para compartir tu pasión y hacer crecer tu marca. Pero en algún momento, se convirtió en un ciclo agotador de publicaciones, análisis y lucha por mantener la consistencia.",
+    "pain1": {
+      "title": "Horas Perdidas en Publicación Manual",
+      "description": "Haces malabares con 5+ plataformas, cada una con formatos diferentes, horarios óptimos y peculiaridades. Lo que debería tomar 10 minutos termina consumiendo toda tu tarde. Copias y pegas descripciones, redimensionas imágenes y configuras recordatorios solo para mantenerte consistente."
+    },
+    "pain2": {
+      "title": "Calendario de Publicación Inconsistente",
+      "description": "La vida es ocupada. Te saltas algunos días de publicación, y de repente tu engagement se desploma. El algoritmo te penaliza. Tu audiencia ganada con esfuerzo empieza a olvidarte. Sabes que la consistencia es clave, pero mantenerla parece imposible sin quemarte."
+    },
+    "pain3": {
+      "title": "Sin Estrategia Real ni Insights",
+      "description": "Publicas a ciegas, esperando que algo funcione. No tienes idea de qué posts realmente funcionan, qué quiere tu audiencia, o cuándo están más activos. Te ahogas en datos de múltiples plataformas, pero no tienes insights accionables para guiar tu estrategia de contenido."
+    },
+    "pain4": {
+      "title": "Contenido Mediocre Que No Convierte",
+      "description": "Miras una pantalla en blanco por 30 minutos tratando de crear la descripción perfecta. Tus posts se pierden en los feeds. El engagement es tibio en el mejor de los casos. Ves a otros creadores volverse virales mientras tu contenido se estanca. Sabes que necesitas mejores ganchos, mejores descripciones, mejor estrategia—pero ¿por dónde empezar?"
+    },
+    "stat": {
+      "number": "73%",
+      "description": "de los creadores abandonan en su primer año debido al agotamiento y falta de crecimiento"
+    }
+  },
+  "agitation": {
+    "title": "El Costo de Quedarte Donde Estás",
+    "subtitle": "Cada día luchando con herramientas obsoletas y flujos de trabajo manuales es un día donde tus competidores te adelantan. Esto es lo que realmente estás perdiendo:",
+    "consequence1": {
+      "stat": "15+ h",
+      "label": "desperdiciadas cada semana en gestión manual de contenido"
+    },
+    "consequence2": {
+      "stat": "50k€+",
+      "label": "de oportunidades perdidas debido a bajo crecimiento"
+    },
+    "consequence3": {
+      "stat": "60%",
+      "label": "de caída en engagement por publicación inconsistente"
+    },
+    "consequence4": {
+      "stat": "87%",
+      "label": "de tu audiencia nunca ve tu contenido sin estrategia"
+    },
+    "story": "Imagina esto: Te despiertas, emocionado por compartir tu última idea. Pasas una hora creando el post perfecto para Instagram. Luego te das cuenta de que necesitas redimensionarlo para TikTok. Luego reescribirlo para el límite de caracteres de Twitter. Luego adaptarlo de nuevo para el tono profesional de LinkedIn.\n\nPara cuando terminas, has pasado 3 horas en una sola pieza de contenido. Todavía no has analizado el rendimiento de la semana pasada. No tienes nada programado para mañana. Y ya estás agotado.\n\nMientras tanto, otros creadores en tu nicho publican consistentemente, crecen rápidamente y construyen negocios—mientras tú estás atrapado en el trabajo manual.\n\nAl algoritmo no le importa que estés ocupado. Solo recompensa la consistencia, la calidad y el timing estratégico. ¿Y ahora mismo? Estás perdiendo en los tres frentes.",
+    "callout": "No te convertiste en creador para pasar tu vida programando posts. Mereces herramientas que trabajen tan duro como tú."
+  },
+  "solution": {
+    "badge": "Presentando Grow Online",
+    "title": "La Plataforma IA Que Hace el Trabajo Pesado",
+    "subtitle": "Deja de luchar con herramientas diseñadas para 2015. Grow Online usa IA de vanguardia para manejar todo lo que odias de la gestión de redes sociales, para que puedas enfocarte en lo que amas: crear.",
+    "benefit1": {
+      "title": "Una IA Que Realmente Entiende Tu Marca",
+      "description": "No es IA genérica y robótica. Nuestro sistema aprende tu voz, estilo y preferencias de audiencia únicas. Genera descripciones, ganchos y hashtags fieles a tu marca que suenan como tú—no como ChatGPT.",
+      "features": [
+        "Análisis y aprendizaje de voz de marca",
+        "Sugerencias de contenido contextuales",
+        "Integración de temas trending para tu nicho",
+        "Generación de ganchos que impulsan engagement",
+        "Estrategia de hashtags inteligente basada en tu audiencia"
+      ]
+    },
+    "benefit2": {
+      "title": "Programación Inteligente Que Maximiza el Alcance",
+      "description": "Olvídate de adivinar cuándo publicar. Nuestra IA analiza el comportamiento de tu audiencia en todas las plataformas y programa automáticamente tu contenido para máxima visibilidad y engagement.",
+      "features": [
+        "Análisis IA del mejor momento para publicar",
+        "Gestión automática de cola en todas las plataformas",
+        "Optimización de zonas horarias para audiencias globales",
+        "Detección de conflictos (nunca doble publicación)",
+        "Publicación en un clic a 7+ plataformas"
+      ]
+    },
+    "benefit3": {
+      "title": "Analíticas Que Tienen Sentido",
+      "description": "No más ahogarse en métricas de vanidad. Obtén insights claros sobre qué funciona, qué no funciona, y exactamente qué hacer después para crecer más rápido.",
+      "features": [
+        "Dashboard unificado para todas las plataformas",
+        "Seguimiento y tendencias de tasas de engagement",
+        "Análisis y benchmarking de competencia",
+        "Predicciones de rendimiento de contenido",
+        "Recomendaciones accionables, no solo datos"
+      ]
+    },
+    "benefit4": {
+      "title": "Construido para Creadores, No para Corporaciones",
+      "description": "La mayoría de herramientas son pesadas, caras y abrumadoras. Grow Online está diseñado para creadores solos, equipos pequeños y marcas en crecimiento que quieren potencia sin la complejidad.",
+      "features": [
+        "Precios accesibles (desde 29€/mes)",
+        "Interfaz intuitiva que dominarás en 5 minutos",
+        "Sin contratos ni tarifas ocultas",
+        "Cancela cuando quieras, sin preguntas",
+        "Soporte personal de personas reales"
+      ]
+    },
+    "valueProposition": {
+      "title": "Recupera 15 Horas por Semana. Crece 10x Más Rápido.",
+      "description": "Grow Online no es solo una herramienta. Es tu copiloto IA que maneja el trabajo tedioso mientras tú te enfocas en la creatividad y la estrategia. Únete a la lista de espera ahora y obtén 3 meses gratis en el lanzamiento en Q1 2025."
+    },
+    "cta": "Obtener Acceso Anticipado Ahora"
+  },
+  "features": {
+    "title": "Todo lo que necesitas para crecer",
+    "subtitle": "Herramientas poderosas construidas para creadores modernos",
+    "ai": {
+      "title": "Nunca Más Pantalla en Blanco",
+      "description": "Nuestra IA escribe descripciones, ganchos y hashtags irresistibles que suenan exactamente como tú. Solo aprueba y publica—tu audiencia no notará la diferencia.",
+      "imageAlt": "Interfaz de generación de contenido IA"
+    },
+    "scheduling": {
+      "title": "Publica Una Vez, Llega a Todos",
+      "description": "Crea una vez, publica en todas tus plataformas con un clic. Adiós al copiar y pegar, redimensionar y cambiar de pestañas. Recupera horas de tu semana.",
+      "imageAlt": "Panel de programación multi-plataforma"
+    },
+    "analytics": {
+      "title": "Sabe Exactamente Qué Funciona",
+      "description": "Deja de adivinar, empieza a crecer. Ve qué posts generan resultados reales en todas tus plataformas en un panel elegante. Por fin, datos que tienen sentido.",
+      "imageAlt": "Panel de analíticas e insights"
+    }
+  },
+  "faq": {
+    "title": "Todo Lo Que Necesitas Saber",
+    "subtitle": "Obtén respuestas a las preguntas más comunes sobre Grow Online",
+    "categories": {
+      "general": "General",
+      "features": "Características",
+      "pricing": "Precios",
+      "technical": "Técnico"
+    },
+    "q1": {
+      "question": "¿Qué es Grow Online?",
+      "answer": "Grow Online es una plataforma de gestión de redes sociales impulsada por IA que ayuda a creadores y negocios a hacer crecer su audiencia 10x más rápido a través de programación inteligente de contenido, publicación automatizada y analíticas avanzadas en todas las principales plataformas."
+    },
+    "q2": {
+      "question": "¿Qué plataformas sociales están soportadas?",
+      "answer": "Soportamos Instagram, TikTok, Twitter (X), LinkedIn, Facebook, Pinterest y YouTube. Se están agregando más plataformas basadas en los comentarios de los usuarios."
+    },
+    "q3": {
+      "question": "¿Cuándo se lanzará Grow Online?",
+      "answer": "Lanzamos en Q1 2025. Los miembros de la lista de espera tendrán acceso anticipado 2 semanas antes del lanzamiento público, más 3 meses gratis cuando se registren."
+    },
+    "q4": {
+      "question": "¿Qué diferencia a Grow Online de otras herramientas?",
+      "answer": "A diferencia de las herramientas empresariales pesadas, estamos diseñados específicamente para creadores. Nuestra IA realmente aprende tu voz de marca, nuestra programación es inteligente (no solo un calendario), y nuestros precios son accesibles. Además, no te abrumamos con funciones que nunca usarás."
+    },
+    "q5": {
+      "question": "¿Cómo funciona la generación de contenido IA?",
+      "answer": "Nuestra IA analiza tu voz de marca, contenido pasado y temas trending en tu nicho para generar posts, descripciones y hashtags fieles a tu marca que impulsan el engagement. Mantienes el control creativo total—la IA es un copiloto, no un reemplazo de tu creatividad."
+    },
+    "q6": {
+      "question": "¿Puedo programar en múltiples plataformas a la vez?",
+      "answer": "¡Sí! Creas tu contenido una vez, y Grow Online lo adapta automáticamente al formato, límites de caracteres y mejores prácticas de cada plataforma. Luego lo publica en todas tus cuentas conectadas con un clic."
+    },
+    "q7": {
+      "question": "¿Grow Online proporciona analíticas para todas las plataformas?",
+      "answer": "Absolutamente. Proporcionamos un dashboard analítico unificado que combina datos de todas tus plataformas. Verás tasas de engagement, crecimiento de seguidores, contenido más exitoso, horarios óptimos de publicación e insights competitivos—todo en un solo lugar."
+    },
+    "q8": {
+      "question": "¿Hay una función de calendario de contenido?",
+      "answer": "Sí. Tendrás un calendario de contenido visual donde puedes ver todos tus posts programados en todas las plataformas. Puedes arrastrar y soltar para reprogramar, duplicar posts exitosos, y obtener una vista panorámica de toda tu estrategia de contenido."
+    },
+    "q9": {
+      "question": "¿Cuánto costará?",
+      "answer": "Los precios comienzan en 29€/mes para creadores (hasta 5 plataformas, posts ilimitados) y 99€/mes para agencias (todo ilimitado + funciones de equipo). Los miembros de la lista de espera obtienen 3 meses gratis y 20% de descuento de por vida."
+    },
+    "q10": {
+      "question": "¿Hay una prueba gratuita?",
+      "answer": "Los miembros de la lista de espera obtienen 3 meses completamente gratis en el lanzamiento. Después de eso, puedes continuar con un plan de pago o cancelar en cualquier momento. No se requiere tarjeta de crédito para unirse a la lista de espera."
+    },
+    "q11": {
+      "question": "¿Puedo cancelar en cualquier momento?",
+      "answer": "Sí, siempre. No creemos en contratos que encierren a la gente. Si Grow Online no es para ti, cancela con un clic. Sin tarifas ocultas, sin dark patterns de retención, sin preguntas."
+    },
+    "q12": {
+      "question": "¿Qué métodos de pago aceptan?",
+      "answer": "Aceptamos todas las principales tarjetas de crédito (Visa, Mastercard, Amex), PayPal y Apple Pay. Para planes anuales, también soportamos transferencias bancarias y facturación."
+    },
+    "q13": {
+      "question": "¿Están seguros mis datos?",
+      "answer": "Absolutamente. Usamos encriptación de grado bancario (AES-256), autenticación OAuth segura para todas las conexiones de plataforma, y nunca almacenamos tus contraseñas. Cumplimos con SOC 2 Type II y estamos preparados para GDPR."
+    },
+    "q14": {
+      "question": "¿Necesito habilidades técnicas para usar Grow Online?",
+      "answer": "Para nada. Si sabes usar Instagram, puedes usar Grow Online. Nuestra interfaz está diseñada para creadores, no para ingenieros. La mayoría de usuarios están operativos en menos de 5 minutos."
+    },
+    "q15": {
+      "question": "¿Puedo importar mi contenido existente?",
+      "answer": "Sí. Puedes importar tus posts pasados de cualquier plataforma para ayudar a nuestra IA a aprender tu voz de marca más rápido. Esto también te permite identificar tu contenido más exitoso y reutilizarlo en otras plataformas."
+    },
+    "q16": {
+      "question": "¿Qué tipo de soporte ofrecen?",
+      "answer": "Ofrecemos soporte por email para todos los usuarios (respuestas en 24 horas), chat en vivo para planes premium, y un centro de ayuda completo con tutoriales en video. Además, nuestro foro comunitario te conecta con otros creadores para consejos y estrategias."
+    },
+    "stillHaveQuestions": "¿Todavía tienes preguntas?",
+    "contactUs": "Contáctanos en hello@growonline.now"
+  },
+  "alternatives": {
+    "title": "Grow Online vs Las Alternativas",
+    "subtitle": "Descubre por qué los creadores abandonan herramientas obsoletas y cambian a Grow Online",
+    "legacy": {
+      "title": "Herramientas Tradicionales",
+      "subtitle": "Diseñadas para 2015",
+      "problems": [
+        "Programación rígida y manual sin inteligencia",
+        "IA genérica que suena robótica y fuera de marca",
+        "Dashboards abrumadores diseñados para empresas",
+        "Precios altos (99€+ por mes)",
+        "Analíticas en silos que requieren cambiar de pestaña constantemente",
+        "Mala experiencia móvil—solo escritorio",
+        "Interfaces lentas y pesadas que desperdician tu tiempo"
+      ]
+    },
+    "growonline": {
+      "title": "Grow Online",
+      "subtitle": "Construido para 2025",
+      "solutions": [
+        "Programación inteligente impulsada por IA para máximo alcance",
+        "Aprendizaje de voz de marca que suena auténticamente como tú",
+        "Interfaz limpia e intuitiva diseñada para creadores",
+        "Precios accesibles desde 29€/mes",
+        "Dashboard analítico unificado para todas las plataformas",
+        "Diseño mobile-first—gestiona en movimiento",
+        "Rendimiento ultrarrápido que respeta tu tiempo"
+      ]
+    },
+    "table": {
+      "feature": "Característica",
+      "legacy": "Herramientas Tradicionales",
+      "growonline": "Grow Online"
+    },
+    "features": {
+      "aiContentGeneration": "Generación de Contenido IA (Voz de Marca)",
+      "intelligentScheduling": "Programación Inteligente (IA Mejor Momento)",
+      "unifiedAnalytics": "Dashboard Analítico Unificado",
+      "brandVoiceLearning": "Aprendizaje de Voz de Marca",
+      "multiPlatform": "Soporte Multi-Plataforma",
+      "competitorAnalysis": "Análisis de Competencia",
+      "autoHashtags": "Recomendaciones Inteligentes de Hashtags",
+      "basicScheduling": "Programación Básica",
+      "realTimeInsights": "Insights de Crecimiento en Tiempo Real",
+      "affordablePricing": "Precios Accesibles (29€+)"
+    },
+    "cta": "¿Listo para hacer el cambio? Únete a la lista de espera y obtén 3 meses gratis."
+  },
+  "finalCta": {
+    "titleLine1": "Recupera una hora al día.",
+    "titleLine2": "Empieza a usar Grow Online.",
+    "subtitle": "Menos tiempo en tu bandeja de entrada. Más tiempo para lo que realmente importa.",
+    "ctaPrimary": "Comenzar gratis",
+    "ctaSecondary": "Hablar con ventas"
+  },
+  "testimonials": {
+    "title": "Amado por creadores y empresas de todo el mundo",
+    "subtitle": "Únete a miles de personas que crecen más rápido con Grow Online."
+  },
+  "footer": {
+    "copyright": "© 2025 Grow Online. Todos los derechos reservados.",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad"
+  },
+  "form": {
+    "emailPlaceholder": "Ingresa tu email",
+    "success": "¡Estás en la lista! Revisa tu email para confirmación.",
+    "error": "Algo salió mal. Por favor intenta de nuevo.",
+    "invalidEmail": "Por favor ingresa una dirección de email válida",
+    "required": "El email es requerido",
+    "submitting": "Registrando..."
+  },
+  "getStarted": {
+    "title": "Comienza en Segundos",
+    "subtitle": "Crea tu cuenta de forma segura con Google o Github y empieza a crecer hoy",
+    "step1": {
+      "badge": "PASO 1",
+      "title": "Regístrate en segundos con autenticación segura",
+      "description": "Crea tu cuenta al instante con Google o Github. Sin contraseñas que recordar, seguridad de nivel bancario garantizada."
+    },
+    "step2": {
+      "badge": "PASO 2",
+      "title": "Haz crecer tu presencia en redes sociales exactamente como quieras",
+      "description": "Nuestra IA te ayudará a hacer crecer tu presencia en redes sociales de forma orgánica."
+    },
+    "step3": {
+      "badge": "PASO 3",
+      "title": "Posts pre-escritos basados en tu historial y calendario de redes sociales",
+      "description": "No te preocupes más por qué publicar. Nuestra IA te ayudará a escribir posts que generen el mayor engagement.",
+      "imageAlt": "Vista previa de posts pre-escritos"
+    },
+    "tags": {
+      "newsletter": "Newsletter",
+      "toReply": "Por Responder",
+      "marketing": "Marketing",
+      "calendar": "Calendario",
+      "notification": "Notificación",
+      "coldEmail": "Email Frío",
+      "team": "Equipo",
+      "urgent": "Urgente"
+    }
+  },
+  "pricing": {
+    "title": "Prueba gratis, planes de pago accesibles",
+    "subtitle": "Sin tarifas ocultas. Cancela cuando quieras.",
+    "frequency": {
+      "annually": "Anual",
+      "monthly": "Mensual"
+    },
+    "billedAnnually": "/usuario /mes (facturado anualmente)",
+    "billedMonthly": "/usuario /mes (facturado mensualmente)",
+    "contactUs": "Contáctanos",
+    "badges": {
+      "savePercent": "Ahorra {{percent}}%",
+      "popular": "Popular"
+    },
+    "tiers": {
+      "starter": {
+        "name": "Starter",
+        "description": "Para creadores y solopreneurs listos para hacer crecer su presencia social.",
+        "cta": "Prueba gratis por 7 días",
+        "features": {
+          "0": "Publica en 5 plataformas sociales",
+          "1": "Sugerencias de contenido impulsadas por IA",
+          "2": "Panel de analíticas básico",
+          "3": "Calendario de contenido",
+          "4": "Recomendaciones del mejor momento para publicar"
+        }
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Para negocios en crecimiento y equipos que gestionan múltiples marcas.",
+        "includesPrevious": "Todo lo incluido en Starter, más:",
+        "cta": "Prueba gratis por 7 días",
+        "features": {
+          "0": "Cuentas sociales ilimitadas",
+          "1": "Generación de contenido IA avanzada",
+          "2": "Herramientas de colaboración en equipo",
+          "3": "Análisis de competencia",
+          "4": "Soporte prioritario"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Para organizaciones con requisitos de seguridad y cumplimiento de nivel empresarial.",
+        "includesPrevious": "Todo lo incluido en Professional, más:",
+        "cta": "Hablar con ventas",
+        "features": {
+          "0": "Inicio de sesión SSO",
+          "1": "Despliegue local (opcional)",
+          "2": "Seguridad avanzada & SLA",
+          "3": "Gerente de cuenta dedicado & capacitación"
+        }
+      }
+    }
+  }
+}

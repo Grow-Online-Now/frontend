@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "hubTitle": "Free Social Media Tools | Grow Online",
+    "hubDescription": "Free utilities to hack the algorithms of LinkedIn, X, and TikTok. No signup required. Optimize your posts, find the best times to post, and more.",
+    "linkedinPreviewTitle": "LinkedIn Post Preview Tool & Hook Analyzer | Grow Online",
+    "linkedinPreviewDescription": "Preview exactly how your LinkedIn post will appear on mobile and desktop. Analyze your hook's effectiveness and optimize for the 'See More' button.",
+    "bestTimeTitle": "Best Time to Post Calculator | Grow Online",
+    "bestTimeDescription": "Find the optimal posting times for LinkedIn, X, and TikTok based on your industry. Data-driven heatmap shows when your audience is most active."
+  },
+  "hub": {
+    "title": "The Growth Engineering Suite",
+    "subtitle": "Free utilities to hack the algorithms of LinkedIn, X, and TikTok. No signup required.",
+    "tools": {
+      "linkedinPreview": {
+        "title": "LinkedIn 'See More' Simulator",
+        "description": "Preview exactly where LinkedIn cuts off your post. Optimize your hook to maximize engagement before the fold.",
+        "cta": "Open Tool"
+      },
+      "bestTime": {
+        "title": "Viral Timing Heatmap",
+        "description": "Find the optimal posting times for your industry. See when your audience is most active across platforms.",
+        "cta": "Open Tool"
+      }
+    },
+    "comingSoon": {
+      "title": "More Tools Coming Soon",
+      "description": "We're building more free utilities to help you grow. Join the waitlist to be notified when new tools launch.",
+      "tools": {
+        "hashtagFinder": "Hashtag Finder",
+        "captionGenerator": "AI Caption Generator",
+        "bioOptimizer": "Bio Optimizer",
+        "competitorAnalyzer": "Competitor Analyzer"
+      }
+    }
+  },
+  "linkedinPreview": {
+    "title": "LinkedIn Post Preview Tool",
+    "subtitle": "See exactly how your post will appear before publishing. Optimize your hook to beat the 'See More' button.",
+    "input": {
+      "label": "Your Post Content",
+      "placeholder": "Type or paste your LinkedIn post here...\n\nTip: Start with a hook that grabs attention in the first 3 lines.",
+      "authorName": "Author Name",
+      "authorNamePlaceholder": "Your Name",
+      "authorHeadline": "Author Headline",
+      "authorHeadlinePlaceholder": "Your headline or job title"
+    },
+    "preview": {
+      "title": "Preview",
+      "mobile": "Mobile",
+      "desktop": "Desktop",
+      "seeMore": "...see more",
+      "reactions": "Like",
+      "comments": "Comment",
+      "repost": "Repost",
+      "send": "Send"
+    },
+    "analysis": {
+      "title": "Hook Analysis",
+      "analyze": "Analyze Hook Score",
+      "analyzing": {
+        "step1": "Parsing text structure...",
+        "step2": "Comparing against top 1% of viral posts...",
+        "step3": "Simulating mobile render...",
+        "step4": "Calculating engagement potential..."
+      },
+      "score": "Hook Score",
+      "outOf": "out of 100",
+      "metrics": {
+        "visibleWords": "Visible Words",
+        "powerWords": "Power Words Found",
+        "hookLength": "Hook Length",
+        "firstLineImpact": "First Line Impact"
+      },
+      "ratings": {
+        "excellent": "Excellent",
+        "good": "Good",
+        "average": "Average",
+        "needsWork": "Needs Work",
+        "weak": "Weak"
+      },
+      "tips": {
+        "title": "Optimization Tips",
+        "addPowerWords": "Add power words like 'Strategy', 'Mistake', 'Secret', or 'How I' to increase engagement.",
+        "shortenHook": "Your hook is too long. Keep the first 3 lines punchy and curiosity-inducing.",
+        "addNumbers": "Include specific numbers or statistics to build credibility.",
+        "questionHook": "Consider starting with a provocative question to hook readers.",
+        "great": "Great hook! Your post has strong viral potential."
+      }
+    },
+    "cta": {
+      "weak": "Your hook is weak. Let Grow Online's AI write viral hooks for you.",
+      "strong": "Great hook! Now schedule it at the perfect time with Grow Online.",
+      "button": "Join the Waitlist"
+    },
+    "seo": {
+      "howToUse": {
+        "title": "How to Use This Tool",
+        "step1": {
+          "title": "1. Write Your Post",
+          "description": "Type or paste your LinkedIn post content into the editor. Include your complete post, not just the hook."
+        },
+        "step2": {
+          "title": "2. Preview Both Views",
+          "description": "Toggle between Mobile and Desktop views to see exactly where LinkedIn will place the 'See More' button."
+        },
+        "step3": {
+          "title": "3. Analyze Your Hook",
+          "description": "Click 'Analyze Hook Score' to get an AI-powered assessment of your hook's viral potential."
+        },
+        "step4": {
+          "title": "4. Optimize and Iterate",
+          "description": "Use the tips provided to improve your hook. Aim for a score of 80+ for best results."
+        }
+      },
+      "whyMatters": {
+        "title": "Why the 'See More' Button Matters",
+        "content": "LinkedIn's algorithm heavily weighs 'dwell time' - how long users spend on your post. If your hook doesn't compel users to click 'See More', your post gets deprioritized. Studies show that posts with strong hooks get 3-5x more engagement than those with weak openings.\n\nThe first 3 lines on mobile (5 on desktop) are your only chance to capture attention. This tool shows you exactly what users see before they decide to engage or scroll past."
+      },
+      "methodology": {
+        "title": "Our Methodology",
+        "content": "We analyzed thousands of viral LinkedIn posts to identify patterns in successful hooks. Our scoring algorithm evaluates:\n\n- Power word usage (words that trigger curiosity and emotion)\n- Hook length optimization (shorter is often better)\n- First line impact (does it stop the scroll?)\n- Question vs. statement effectiveness\n- Number and statistic inclusion\n\nOther tools charge $10/month for this functionality. We provide it free because we believe growth should be accessible to everyone."
+      }
+    }
+  },
+  "bestTime": {
+    "title": "Best Time to Post Calculator",
+    "subtitle": "Find the optimal posting times for your platform and industry. Data-driven insights from millions of posts.",
+    "input": {
+      "platform": "Select Platform",
+      "platforms": {
+        "linkedin": "LinkedIn",
+        "x": "X (Twitter)",
+        "tiktok": "TikTok",
+        "instagram": "Instagram"
+      },
+      "industry": "Select Your Industry",
+      "industries": {
+        "saas": "SaaS / Tech",
+        "coaching": "Coaching / Consulting",
+        "ecommerce": "E-commerce / Retail",
+        "realestate": "Real Estate",
+        "finance": "Finance / Investing",
+        "health": "Health & Wellness",
+        "marketing": "Marketing / Agency",
+        "creator": "Content Creator"
+      },
+      "timezone": "Your Timezone",
+      "generate": "Generate Heatmap"
+    },
+    "analyzing": {
+      "step1": "Connecting to Global Engagement Database...",
+      "step2": "Filtering 10M+ posts by your industry...",
+      "step3": "Calculating engagement patterns...",
+      "step4": "Adjusting for your timezone..."
+    },
+    "heatmap": {
+      "title": "Your Optimal Posting Times",
+      "subtitle": "Green = High engagement, Yellow = Moderate, Red = Low engagement",
+      "days": {
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat",
+        "sun": "Sun"
+      },
+      "legend": {
+        "hot": "Best Times",
+        "warm": "Good Times",
+        "cold": "Avoid"
+      },
+      "bestTimes": {
+        "title": "Your Top 3 Posting Windows",
+        "rank1": "Best",
+        "rank2": "2nd Best",
+        "rank3": "3rd Best"
+      }
+    },
+    "cta": {
+      "title": "Stop Guessing. Start Growing.",
+      "description": "Grow Online auto-schedules your posts at these exact times. Plus AI content generation, analytics, and more.",
+      "button": "Add These Times to My Schedule"
+    },
+    "seo": {
+      "howToUse": {
+        "title": "How to Use This Tool",
+        "step1": {
+          "title": "1. Select Your Platform",
+          "description": "Choose the social media platform you want to optimize for. Each platform has different peak engagement times."
+        },
+        "step2": {
+          "title": "2. Choose Your Industry",
+          "description": "Select your industry or niche. Posting times vary significantly by audience type."
+        },
+        "step3": {
+          "title": "3. Set Your Timezone",
+          "description": "We'll adjust the times to your local timezone for accurate scheduling."
+        },
+        "step4": {
+          "title": "4. Analyze the Heatmap",
+          "description": "Green blocks indicate the best posting times. Yellow is moderate, red should be avoided."
+        }
+      },
+      "whyMatters": {
+        "title": "Why Posting Time Matters",
+        "content": "Social media algorithms favor posts that get quick initial engagement. If you post when your audience is offline, your content gets buried before anyone sees it.\n\nOur data shows that posts published at optimal times receive 2-4x more impressions and engagement compared to random posting. The first 30-60 minutes after posting are crucial for algorithmic distribution."
+      },
+      "methodology": {
+        "title": "Our Methodology",
+        "content": "We analyzed millions of posts across LinkedIn, X, TikTok, and Instagram to identify engagement patterns by industry. Our database is updated regularly to reflect changing user behaviors.\n\nKey factors we consider:\n- Peak activity hours by platform\n- Industry-specific audience behavior\n- Day of week patterns\n- Timezone distribution of your target audience\n\nWhile individual results may vary, these times represent the statistical best windows for maximum reach."
+      }
+    }
+  },
+  "common": {
+    "backToTools": "Back to Free Tools",
+    "joinWaitlist": "Join the Waitlist",
+    "noSignup": "No signup required",
+    "freeForever": "Free forever"
+  }
+}

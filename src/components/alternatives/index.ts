@@ -1,0 +1,5 @@
+export { MigrationHero } from './MigrationHero'
+export { ObsolescenceSection } from './ObsolescenceSection'
+export { KillTable } from './KillTable'
+export { MigrationCTA } from './MigrationCTA'
+export { MigrationFAQ } from './MigrationFAQ'

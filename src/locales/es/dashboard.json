@@ -1,0 +1,468 @@
+{
+  "dashboard": {
+    "seo": {
+      "title": "Panel de control - Grow Online",
+      "description": "Gestiona tu presencia en redes sociales con el panel de control de Grow Online."
+    },
+    "nav": {
+      "createPost": "Crear publicación",
+      "categories": {
+        "general": "General",
+        "posts": "Publicaciones",
+        "configuration": "Configuración"
+      },
+      "overview": "Resumen",
+      "analytics": "Analíticas",
+      "allPosts": "Todas las publicaciones",
+      "calendar": "Calendario",
+      "scheduler": "Programador",
+      "accounts": "Cuentas",
+      "settings": "Configuración",
+      "comingSoon": "Pronto"
+    },
+    "user": {
+      "plan": "Plan Gratuito"
+    },
+    "header": {
+      "welcome": "Bienvenido de nuevo, {{name}}",
+      "signOut": "Cerrar sesión",
+      "profile": "Perfil",
+      "settings": "Configuración"
+    },
+    "overview": {
+      "title": "Panel de control",
+      "description": "Tu centro de mando para redes sociales",
+      "quickActions": {
+        "title": "Acciones rápidas",
+        "createPost": "Crear publicación",
+        "connectAccount": "Conectar cuenta",
+        "viewAnalytics": "Ver analíticas"
+      },
+      "stats": {
+        "scheduledPosts": "Publicaciones programadas",
+        "connectedAccounts": "Cuentas conectadas",
+        "postsThisWeek": "Publicaciones esta semana"
+      },
+      "empty": {
+        "title": "Comienza con Grow Online",
+        "description": "Conecta tu primera cuenta de redes sociales para empezar a programar contenido.",
+        "cta": "Conectar cuenta"
+      }
+    },
+    "streak": {
+      "title": "Racha de publicaciones",
+      "currentStreak": "Racha actual",
+      "days": "días",
+      "day": "día",
+      "bestStreak": "Récord: {{count}} días",
+      "nextMilestone": "Próximo hito: {{count}}",
+      "postedToday": "Publicado hoy",
+      "postToKeepStreak": "¡Publica hoy para mantener tu racha!",
+      "noStreak": "¡Comienza tu racha publicando!",
+      "milestoneReached": "¡Hito alcanzado!",
+      "keepItUp": "¡Sigue así!"
+    },
+    "scheduler": {
+      "title": "Programador de contenido",
+      "description": "Planifica y programa tus publicaciones en todas las plataformas",
+      "createPost": "Crear publicación",
+      "views": {
+        "month": "Mes",
+        "week": "Semana"
+      },
+      "calendar": {
+        "today": "Hoy",
+        "moreCount": "+{{count}} más",
+        "weekOf": "Semana del {{date}}",
+        "navigation": {
+          "previousMonth": "Mes anterior",
+          "nextMonth": "Mes siguiente",
+          "previousWeek": "Semana anterior",
+          "nextWeek": "Semana siguiente"
+        }
+      },
+      "post": {
+        "scheduled": "Programado para {{date}}",
+        "draft": "Borrador",
+        "published": "Publicado",
+        "failed": "Fallido"
+      },
+      "empty": {
+        "title": "No hay publicaciones programadas",
+        "description": "Crea tu primera publicación para verla aquí.",
+        "cta": "Crear publicación"
+      },
+      "modal": {
+        "createTitle": "Crear nueva publicación",
+        "editTitle": "Editar publicación",
+        "content": "Contenido",
+        "contentPlaceholder": "¿Qué quieres compartir?",
+        "platforms": "Seleccionar plataformas",
+        "scheduleDate": "Fecha de publicación",
+        "scheduleTime": "Hora de publicación",
+        "saveDraft": "Guardar como borrador",
+        "schedule": "Programar publicación",
+        "cancel": "Cancelar"
+      }
+    },
+    "accounts": {
+      "title": "Cuentas conectadas",
+      "description": "Gestiona tus cuentas de redes sociales",
+      "connectNew": "Conectar cuenta",
+      "status": {
+        "connected": "Conectada",
+        "disconnected": "Desconectada",
+        "error": "Error de conexión"
+      },
+      "actions": {
+        "disconnect": "Desconectar",
+        "reconnect": "Reconectar",
+        "settings": "Configuración"
+      },
+      "platforms": {
+        "instagram": "Instagram",
+        "twitter": "X (Twitter)",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "tiktok": "TikTok",
+        "youtube": "YouTube",
+        "pinterest": "Pinterest",
+        "threads": "Threads"
+      },
+      "empty": {
+        "title": "No hay cuentas conectadas",
+        "description": "Conecta tus cuentas de redes sociales para empezar a publicar.",
+        "cta": "Conecta tu primera cuenta"
+      },
+      "row": {
+        "connect": "Conectar",
+        "noAccounts": "Sin cuentas conectadas",
+        "accountCount": "{{count}} cuenta",
+        "accountCount_other": "{{count}} cuentas"
+      },
+      "modal": {
+        "title": "Conectar una cuenta social",
+        "description": "Elige una plataforma para conectar",
+        "connecting": "Conectando...",
+        "success": "¡Cuenta conectada con éxito!",
+        "error": "Error al conectar la cuenta. Por favor, inténtalo de nuevo."
+      },
+      "connectModal": {
+        "title": "Conectar {{platform}}",
+        "subtitle": "Antes de conectar:",
+        "continue": "Continuar a {{platform}}",
+        "privacyNotice": "Solo solicitamos los permisos necesarios para crear y programar publicaciones. Puedes desconectarte en cualquier momento. Las contraseñas nunca se almacenan.",
+        "havingIssues": "¿Tienes problemas?",
+        "contactSupport": "Contactar soporte"
+      },
+      "requirements": {
+        "youtube": {
+          "channel": "Debe ser un canal de YouTube que poseas o administres",
+          "permissions": "Necesitas permiso para subir videos al canal"
+        },
+        "instagram": {
+          "business": "Debe ser una cuenta Business o de Creador, no un perfil personal",
+          "facebook": "Debe estar conectada a una Página de Facebook"
+        },
+        "tiktok": {
+          "creator": "Debe ser una cuenta de TikTok con publicación habilitada",
+          "permissions": "Necesitas permiso para publicar contenido"
+        },
+        "twitter": {
+          "account": "Debe ser una cuenta de Twitter/X que poseas",
+          "permissions": "Necesitas permiso para publicar tweets"
+        },
+        "linkedin": {
+          "page": "Puede ser un perfil personal o una Página de Empresa que administres",
+          "permissions": "Necesitas permiso para publicar en nombre de la página"
+        },
+        "pinterest": {
+          "business": "Debe ser una cuenta de Pinterest Business",
+          "permissions": "Necesitas permiso para crear pines"
+        },
+        "facebook": {
+          "page": "Debes ser administrador de al menos una Página de Facebook",
+          "permissions": "Necesitas permiso para administrar la Página"
+        }
+      }
+    },
+    "facebook": {
+      "selectPage": {
+        "title": "Seleccionar una Página de Facebook",
+        "description": "Elige qué Página de Facebook quieres conectar a Grow Online.",
+        "category": "Categoría: {{category}}",
+        "confirm": "Conectar Página",
+        "cancel": "Cancelar",
+        "hint": "Puedes conectar múltiples páginas repitiendo este proceso.",
+        "loading": "Conectando...",
+        "noPages": "No se encontraron Páginas de Facebook. Debes ser administrador de al menos una Página.",
+        "sessionExpired": "Tu sesión ha expirado. Por favor, intenta conectar de nuevo.",
+        "error": "Error al conectar la página. Por favor, inténtalo de nuevo."
+      }
+    },
+    "createPost": {
+      "title": "Crear publicación",
+      "description": "Comparte tu contenido en todas las plataformas conectadas",
+      "backToPosts": "Publicaciones",
+      "platforms": {
+        "title": "Plataformas",
+        "selected": "{{count}} seleccionado(s)",
+        "selected_zero": "0 seleccionado",
+        "selected_one": "1 seleccionado",
+        "selected_other": "{{count}} seleccionados",
+        "noAccounts": "No hay cuentas conectadas",
+        "reconnect": "Reconectar"
+      },
+      "caption": {
+        "label": "Descripción",
+        "placeholder": "¿Qué quieres compartir?",
+        "addEmoji": "Añadir emoji",
+        "addHashtag": "Añadir hashtag",
+        "addMention": "Añadir mención",
+        "aiAssist": "Asistente IA"
+      },
+      "media": {
+        "addRequired": "Añade contenido multimedia para continuar",
+        "addOptional": "Añade fotos o vídeos",
+        "dragHint": "Arrastra y suelta o haz clic para explorar",
+        "photo": "Foto",
+        "video": "Vídeo",
+        "carousel": "Carrusel",
+        "addMore": "Añadir más"
+      },
+      "preview": {
+        "title": "Vista previa",
+        "bestTime": "Mejor momento para publicar",
+        "bestTimeValue": "Hoy, 14:00"
+      },
+      "hints": {
+        "mediaRequired": "{{platforms}} requieren contenido multimedia para publicar",
+        "captionExceeds": "La descripción excede el límite de {{platform}} por {{excess}} caracteres",
+        "captionNearLimit": "La descripción está al {{percent}}% del límite de {{platform}}",
+        "linkedinMedia": "Las publicaciones con imágenes obtienen 2x más interacción en LinkedIn",
+        "twitterLength": "Los tweets entre 100-280 caracteres obtienen más interacción",
+        "instagramReels": "Los vídeos verticales (9:16) funcionan mejor como Reels"
+      },
+      "postButton": {
+        "postCount": "Publicar en {{count}}",
+        "postCount_one": "Publicar en 1",
+        "postCount_other": "Publicar en {{count}}",
+        "scheduleCount": "Programar para {{count}}",
+        "scheduleCount_one": "Programar para 1",
+        "scheduleCount_other": "Programar para {{count}}",
+        "readyToPost": "Listo para publicar",
+        "postReady": "Publicar {{count}} listo(s)",
+        "postReady_one": "Publicar 1 listo",
+        "postReady_other": "Publicar {{count}} listos",
+        "scheduleReady": "Programar {{count}} listo(s)",
+        "scheduleReady_one": "Programar 1 listo",
+        "scheduleReady_other": "Programar {{count}} listos",
+        "status": {
+          "ready": "Listo",
+          "warning": "Advertencia",
+          "error": "Error"
+        }
+      },
+      "accounts": {
+        "label": "Seleccionar cuentas",
+        "noAccounts": "No hay cuentas conectadas. Conecta una cuenta para empezar a publicar.",
+        "selectAll": "Seleccionar todo",
+        "deselectAll": "Deseleccionar todo",
+        "reconnectRequired": "Reconectar"
+      },
+      "schedule": {
+        "label": "Cuándo publicar",
+        "selectDate": "Seleccionar fecha",
+        "now": {
+          "label": "Publicar ahora",
+          "description": "Publicar inmediatamente"
+        },
+        "scheduled": {
+          "label": "Programar",
+          "description": "Elegir fecha y hora"
+        },
+        "draft": {
+          "label": "Guardar como borrador",
+          "description": "Terminar más tarde"
+        }
+      },
+      "actions": {
+        "postNow": "Publicar ahora",
+        "schedule": "Programar publicación",
+        "saveDraft": "Guardar borrador",
+        "preview": "Vista previa"
+      },
+      "validation": {
+        "captionRequired": "Por favor ingresa el contenido de tu publicación",
+        "accountsRequired": "Por favor selecciona al menos una cuenta",
+        "dateRequired": "Por favor selecciona una fecha y hora"
+      },
+      "success": {
+        "posted": "¡Publicación publicada con éxito!",
+        "scheduled": "¡Publicación programada con éxito!",
+        "draft": "¡Borrador guardado con éxito!"
+      },
+      "noAccounts": {
+        "title": "No hay cuentas conectadas",
+        "description": "Conecta al menos una cuenta de redes sociales para empezar a crear publicaciones.",
+        "cta": "Conectar cuenta"
+      }
+    },
+    "settings": {
+      "title": "Configuración",
+      "description": "Gestiona las preferencias de tu cuenta",
+      "profile": {
+        "title": "Perfil",
+        "name": "Nombre completo",
+        "namePlaceholder": "Introduce tu nombre",
+        "email": "Correo electrónico",
+        "avatar": "Foto de perfil",
+        "changeAvatar": "Cambiar",
+        "save": "Guardar cambios",
+        "saving": "Guardando..."
+      },
+      "notifications": {
+        "title": "Notificaciones",
+        "email": "Notificaciones por correo",
+        "emailDescription": "Recibir actualizaciones por correo sobre tus publicaciones",
+        "push": "Notificaciones push",
+        "pushDescription": "Recibir notificaciones en el navegador"
+      },
+      "language": {
+        "title": "Idioma",
+        "description": "Elige tu idioma preferido",
+        "options": {
+          "en": "English",
+          "fr": "Français",
+          "es": "Español"
+        }
+      },
+      "danger": {
+        "title": "Zona de peligro",
+        "deleteAccount": "Eliminar cuenta",
+        "deleteDescription": "Eliminar permanentemente tu cuenta y todos tus datos",
+        "deleteConfirm": "¿Estás seguro? Esta acción no se puede deshacer."
+      }
+    },
+    "common": {
+      "loading": "Cargando...",
+      "error": "Algo salió mal",
+      "retry": "Reintentar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "back": "Volver",
+      "learnMore": "Más información"
+    },
+    "hints": {
+      "overview": {
+        "gettingStarted": "Completa estos pasos para aprovechar al máximo Grow Online",
+        "quickActions": "Programa publicaciones con anticipación para un engagement constante",
+        "stats": {
+          "scheduledPosts": "Publicaciones pendientes de publicar",
+          "connectedAccounts": "Plataformas sociales vinculadas a tu cuenta",
+          "postsThisWeek": "Contenido publicado en los últimos 7 días"
+        }
+      },
+      "accounts": {
+        "intro": "Conecta tus cuentas para empezar a publicar en todas las plataformas",
+        "progress": "{{current}} de {{total}} plataformas conectadas",
+        "platformTips": {
+          "youtube": "Ideal para contenido de video largo",
+          "instagram": "Perfecto para stories visuales y reels",
+          "tiktok": "Ideal para contenido viral corto",
+          "twitter": "Genial para actualizaciones rápidas y engagement",
+          "linkedin": "Networking profesional y contenido B2B",
+          "pinterest": "Descubrimiento visual e inspiración"
+        }
+      },
+      "createPost": {
+        "optimalTiming": "Las publicaciones funcionan mejor en horas pico (9-11 AM, 7-9 PM)",
+        "multiPlatform": "Selecciona múltiples cuentas para compartir en todos lados a la vez",
+        "scheduling": "Las publicaciones programadas ayudan a mantener una presencia constante"
+      },
+      "scheduler": {
+        "calendarUsage": "Haz clic en cualquier fecha para ver publicaciones programadas y agregar nuevas",
+        "emptyHint": "Planifica tu contenido con anticipación para mantener una presencia constante",
+        "viewTips": {
+          "month": "Vista general de todo tu mes",
+          "week": "Horario semanal detallado",
+          "day": "Enfoque en un solo día"
+        }
+      },
+      "settings": {
+        "profile": "Esta información es visible para otros usuarios",
+        "notifications": "Controla cómo te contactamos sobre la actividad",
+        "emailNotifications": "Actualizaciones de publicaciones y resúmenes semanales",
+        "pushNotifications": "Alertas en tiempo real para comentarios y menciones"
+      }
+    },
+    "gettingStarted": {
+      "title": "Primeros pasos",
+      "dismiss": "Cerrar",
+      "completed": "completado",
+      "allComplete": "¡Todo listo! ¡Feliz publicación!",
+      "steps": {
+        "connectAccount": {
+          "title": "Conecta tu primera cuenta",
+          "description": "Vincula una plataforma social para empezar a publicar"
+        },
+        "createPost": {
+          "title": "Crea tu primera publicación",
+          "description": "Escribe y programa contenido"
+        },
+        "setupSchedule": {
+          "title": "Programa una publicación",
+          "description": "Planifica tu calendario de contenido"
+        }
+      }
+    },
+    "posts": {
+      "title": "Todas las publicaciones",
+      "description": "Visualiza y gestiona todas tus publicaciones programadas y publicadas",
+      "filters": {
+        "all": "Todo",
+        "status": "Estado",
+        "type": "Tipo",
+        "platform": "Plataforma",
+        "scheduled": "Programadas",
+        "drafts": "Borradores",
+        "clearFilters": "Borrar filtros"
+      },
+      "table": {
+        "caption": "Contenido",
+        "platforms": "Plataformas",
+        "status": "Estado",
+        "scheduledFor": "Programado para",
+        "createdAt": "Creado",
+        "actions": "Acciones",
+        "notScheduled": "No programado",
+        "view": "Ver",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "confirmDelete": "¿Estás seguro de que quieres eliminar esta publicación?"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "processing": "Procesando",
+        "completed": "Publicado",
+        "failed": "Fallido",
+        "draft": "Borrador"
+      },
+      "empty": {
+        "title": "No hay publicaciones",
+        "description": "Crea tu primera publicación para verla aquí",
+        "cta": "Crear publicación",
+        "noResults": "Ninguna publicación coincide con tus filtros",
+        "noResultsDescription": "Intenta ajustar tus filtros o crea una nueva publicación"
+      },
+      "pagination": {
+        "showing": "Mostrando {{from}}-{{to}} de {{total}}",
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "page": "Página {{page}} de {{totalPages}}"
+      }
+    }
+  }
+}

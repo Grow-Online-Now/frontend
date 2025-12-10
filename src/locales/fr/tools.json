@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "hubTitle": "Outils Gratuits pour Réseaux Sociaux | Grow Online",
+    "hubDescription": "Utilitaires gratuits pour maîtriser les algorithmes de LinkedIn, X et TikTok. Aucune inscription requise.",
+    "linkedinPreviewTitle": "Aperçu de Publication LinkedIn & Analyseur de Hook | Grow Online",
+    "linkedinPreviewDescription": "Visualisez exactement comment votre publication LinkedIn apparaîtra sur mobile et desktop. Analysez l'efficacité de votre accroche.",
+    "bestTimeTitle": "Calculateur du Meilleur Moment pour Publier | Grow Online",
+    "bestTimeDescription": "Trouvez les moments optimaux pour publier sur LinkedIn, X et TikTok selon votre industrie."
+  },
+  "hub": {
+    "title": "La Suite d'Ingénierie de Croissance",
+    "subtitle": "Utilitaires gratuits pour maîtriser les algorithmes de LinkedIn, X et TikTok. Aucune inscription requise.",
+    "tools": {
+      "linkedinPreview": {
+        "title": "Simulateur 'Voir Plus' LinkedIn",
+        "description": "Visualisez exactement où LinkedIn coupe votre publication. Optimisez votre accroche pour maximiser l'engagement.",
+        "cta": "Ouvrir l'Outil"
+      },
+      "bestTime": {
+        "title": "Carte Thermique de Timing Viral",
+        "description": "Trouvez les moments optimaux pour publier selon votre industrie. Voyez quand votre audience est la plus active.",
+        "cta": "Ouvrir l'Outil"
+      }
+    },
+    "comingSoon": {
+      "title": "Plus d'Outils à Venir",
+      "description": "Nous construisons plus d'utilitaires gratuits pour vous aider à grandir. Rejoignez la liste d'attente pour être notifié.",
+      "tools": {
+        "hashtagFinder": "Recherche de Hashtags",
+        "captionGenerator": "Générateur de Légendes IA",
+        "bioOptimizer": "Optimiseur de Bio",
+        "competitorAnalyzer": "Analyseur de Concurrents"
+      }
+    }
+  },
+  "linkedinPreview": {
+    "title": "Outil d'Aperçu LinkedIn",
+    "subtitle": "Voyez exactement comment votre publication apparaîtra avant de publier. Optimisez votre accroche.",
+    "input": {
+      "label": "Contenu de Votre Publication",
+      "placeholder": "Tapez ou collez votre publication LinkedIn ici...\n\nConseil: Commencez par une accroche qui capte l'attention dans les 3 premières lignes.",
+      "authorName": "Nom de l'Auteur",
+      "authorNamePlaceholder": "Votre Nom",
+      "authorHeadline": "Titre de l'Auteur",
+      "authorHeadlinePlaceholder": "Votre titre ou poste"
+    },
+    "preview": {
+      "title": "Aperçu",
+      "mobile": "Mobile",
+      "desktop": "Desktop",
+      "seeMore": "...voir plus",
+      "reactions": "J'aime",
+      "comments": "Commenter",
+      "repost": "Republier",
+      "send": "Envoyer"
+    },
+    "analysis": {
+      "title": "Analyse de l'Accroche",
+      "analyze": "Analyser le Score",
+      "analyzing": {
+        "step1": "Analyse de la structure du texte...",
+        "step2": "Comparaison avec le top 1% des posts viraux...",
+        "step3": "Simulation du rendu mobile...",
+        "step4": "Calcul du potentiel d'engagement..."
+      },
+      "score": "Score d'Accroche",
+      "outOf": "sur 100",
+      "metrics": {
+        "visibleWords": "Mots Visibles",
+        "powerWords": "Mots Puissants Trouvés",
+        "hookLength": "Longueur de l'Accroche",
+        "firstLineImpact": "Impact Première Ligne"
+      },
+      "ratings": {
+        "excellent": "Excellent",
+        "good": "Bon",
+        "average": "Moyen",
+        "needsWork": "À Améliorer",
+        "weak": "Faible"
+      },
+      "tips": {
+        "title": "Conseils d'Optimisation",
+        "addPowerWords": "Ajoutez des mots puissants comme 'Stratégie', 'Erreur', 'Secret', ou 'Comment j'ai' pour augmenter l'engagement.",
+        "shortenHook": "Votre accroche est trop longue. Gardez les 3 premières lignes percutantes.",
+        "addNumbers": "Incluez des chiffres ou statistiques spécifiques pour renforcer la crédibilité.",
+        "questionHook": "Envisagez de commencer par une question provocante pour accrocher les lecteurs.",
+        "great": "Excellente accroche! Votre publication a un fort potentiel viral."
+      }
+    },
+    "cta": {
+      "weak": "Votre accroche est faible. Laissez l'IA de Grow Online écrire des accroches virales pour vous.",
+      "strong": "Excellente accroche! Maintenant planifiez-la au moment parfait avec Grow Online.",
+      "button": "Rejoindre la Liste d'Attente"
+    },
+    "seo": {
+      "howToUse": {
+        "title": "Comment Utiliser Cet Outil",
+        "step1": {
+          "title": "1. Écrivez Votre Publication",
+          "description": "Tapez ou collez le contenu de votre publication LinkedIn dans l'éditeur."
+        },
+        "step2": {
+          "title": "2. Prévisualisez les Deux Vues",
+          "description": "Basculez entre les vues Mobile et Desktop pour voir où LinkedIn placera le bouton 'Voir Plus'."
+        },
+        "step3": {
+          "title": "3. Analysez Votre Accroche",
+          "description": "Cliquez sur 'Analyser le Score' pour obtenir une évaluation du potentiel viral de votre accroche."
+        },
+        "step4": {
+          "title": "4. Optimisez et Itérez",
+          "description": "Utilisez les conseils fournis pour améliorer votre accroche. Visez un score de 80+."
+        }
+      },
+      "whyMatters": {
+        "title": "Pourquoi le Bouton 'Voir Plus' Est Important",
+        "content": "L'algorithme de LinkedIn accorde beaucoup d'importance au 'temps de lecture'. Si votre accroche ne pousse pas les utilisateurs à cliquer 'Voir Plus', votre publication est déprioritisée."
+      },
+      "methodology": {
+        "title": "Notre Méthodologie",
+        "content": "Nous avons analysé des milliers de publications LinkedIn virales pour identifier les patterns des accroches réussies."
+      }
+    }
+  },
+  "bestTime": {
+    "title": "Calculateur du Meilleur Moment pour Publier",
+    "subtitle": "Trouvez les moments optimaux pour publier selon votre plateforme et industrie.",
+    "input": {
+      "platform": "Sélectionner la Plateforme",
+      "platforms": {
+        "linkedin": "LinkedIn",
+        "x": "X (Twitter)",
+        "tiktok": "TikTok",
+        "instagram": "Instagram"
+      },
+      "industry": "Sélectionner Votre Industrie",
+      "industries": {
+        "saas": "SaaS / Tech",
+        "coaching": "Coaching / Consulting",
+        "ecommerce": "E-commerce / Retail",
+        "realestate": "Immobilier",
+        "finance": "Finance / Investissement",
+        "health": "Santé & Bien-être",
+        "marketing": "Marketing / Agence",
+        "creator": "Créateur de Contenu"
+      },
+      "timezone": "Votre Fuseau Horaire",
+      "generate": "Générer la Carte Thermique"
+    },
+    "analyzing": {
+      "step1": "Connexion à la Base de Données Globale...",
+      "step2": "Filtrage de 10M+ publications par industrie...",
+      "step3": "Calcul des patterns d'engagement...",
+      "step4": "Ajustement pour votre fuseau horaire..."
+    },
+    "heatmap": {
+      "title": "Vos Moments Optimaux de Publication",
+      "subtitle": "Vert = Fort engagement, Jaune = Modéré, Rouge = Faible engagement",
+      "days": {
+        "mon": "Lun",
+        "tue": "Mar",
+        "wed": "Mer",
+        "thu": "Jeu",
+        "fri": "Ven",
+        "sat": "Sam",
+        "sun": "Dim"
+      },
+      "legend": {
+        "hot": "Meilleurs Moments",
+        "warm": "Bons Moments",
+        "cold": "À Éviter"
+      },
+      "bestTimes": {
+        "title": "Vos 3 Meilleures Fenêtres",
+        "rank1": "Meilleur",
+        "rank2": "2ème",
+        "rank3": "3ème"
+      }
+    },
+    "cta": {
+      "title": "Arrêtez de Deviner. Commencez à Grandir.",
+      "description": "Grow Online planifie automatiquement vos publications à ces moments précis.",
+      "button": "Ajouter Ces Heures à Mon Calendrier"
+    },
+    "seo": {
+      "howToUse": {
+        "title": "Comment Utiliser Cet Outil",
+        "step1": {
+          "title": "1. Sélectionnez Votre Plateforme",
+          "description": "Choisissez la plateforme que vous souhaitez optimiser."
+        },
+        "step2": {
+          "title": "2. Choisissez Votre Industrie",
+          "description": "Sélectionnez votre industrie ou niche."
+        },
+        "step3": {
+          "title": "3. Définissez Votre Fuseau Horaire",
+          "description": "Nous ajusterons les heures à votre fuseau local."
+        },
+        "step4": {
+          "title": "4. Analysez la Carte Thermique",
+          "description": "Les blocs verts indiquent les meilleurs moments."
+        }
+      },
+      "whyMatters": {
+        "title": "Pourquoi le Moment de Publication Compte",
+        "content": "Les algorithmes favorisent les publications qui obtiennent un engagement initial rapide."
+      },
+      "methodology": {
+        "title": "Notre Méthodologie",
+        "content": "Nous avons analysé des millions de publications pour identifier les patterns d'engagement par industrie."
+      }
+    }
+  },
+  "common": {
+    "backToTools": "Retour aux Outils Gratuits",
+    "joinWaitlist": "Rejoindre la Liste d'Attente",
+    "noSignup": "Aucune inscription requise",
+    "freeForever": "Gratuit pour toujours"
+  }
+}
