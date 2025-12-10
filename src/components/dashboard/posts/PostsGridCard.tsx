@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { AccountAvatar } from '@/components/common/AccountAvatar'
+import { AccountAvatarStack } from '@/components/common/AccountAvatar'
 import { PostStatusBadge } from './PostStatusBadge'
 import { cn } from '@/lib/utils'
 import type { PostResponse } from '@/types/posts'
@@ -89,10 +89,16 @@ export function PostsGridCard({
   // TODO: Add media_urls support when backend returns it
   const hasMedia = false
   const gradient = getGradientForPost(post.id)
-  const mainAccount = post.social_accounts[0]
-  const additionalAccounts = post.social_accounts.slice(1)
   const displayDate = post.scheduled_at || post.created_at
   const canPublishNow = post.is_draft || (post.scheduled_at && post.status === 'pending')
+
+  // Map social accounts to the format expected by AccountAvatarStack
+  const stackAccounts = post.social_accounts.map((account) => ({
+    id: account.id,
+    platform: account.platform,
+    name: account.display_name,
+    username: account.username,
+  }))
 
   return (
     <div
@@ -107,31 +113,7 @@ export function PostsGridCard({
         <div className="flex min-w-0 flex-1 flex-col">
           {/* Account Avatar Row */}
           <div className="mb-3 flex items-center gap-2">
-            {mainAccount && (
-              <AccountAvatar
-                platform={mainAccount.platform}
-                name={mainAccount.username}
-                size="sm"
-              />
-            )}
-            {additionalAccounts.length > 0 && (
-              <div className="flex -space-x-1.5">
-                {additionalAccounts.slice(0, 2).map((account, idx) => (
-                  <AccountAvatar
-                    key={account.id}
-                    platform={account.platform}
-                    name={account.username}
-                    size="xs"
-                    style={{ zIndex: 2 - idx }}
-                  />
-                ))}
-                {additionalAccounts.length > 2 && (
-                  <span className="text-muted-foreground ml-1.5 text-xs">
-                    +{additionalAccounts.length - 2}
-                  </span>
-                )}
-              </div>
-            )}
+            <AccountAvatarStack accounts={stackAccounts} max={4} size="sm" />
             <PostStatusBadge
               status={post.status}
               isDraft={post.is_draft}

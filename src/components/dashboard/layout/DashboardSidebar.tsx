@@ -14,6 +14,8 @@ import {
   LogOut,
   ChevronRight,
   FileText,
+  Sun,
+  Moon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { SidebarNavItem } from '@/types/dashboard'
@@ -27,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useTheme } from '@/hooks/useTheme'
 
 interface NavCategory {
   labelKey: string
@@ -96,6 +99,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
   const { data: session } = useSession()
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
+  const { isDark, toggleTheme } = useTheme()
 
   const user = session?.user
   const userName = user?.name || 'User'
@@ -218,6 +222,10 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
                 <Settings className="h-4 w-4" />
                 <span>{t('dashboard.header.settings')}</span>
               </NavLink>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
+              {isDark ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
+              <span>{isDark ? t('common.theme.light') : t('common.theme.dark')}</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem

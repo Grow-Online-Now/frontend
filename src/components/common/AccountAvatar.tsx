@@ -79,6 +79,8 @@ interface AccountAvatarProps {
   className?: string
   /** Show platform badge (default: true) */
   showBadge?: boolean
+  /** Show border around avatar (for stacking) */
+  showBorder?: boolean
   /** Inline styles */
   style?: React.CSSProperties
 }
@@ -116,6 +118,7 @@ export function AccountAvatar({
   size = 'md',
   className,
   showBadge = true,
+  showBorder = false,
   style,
 }: AccountAvatarProps) {
   const config = SIZE_CONFIG[size]
@@ -125,7 +128,13 @@ export function AccountAvatar({
   return (
     <div className={cn('relative inline-flex shrink-0', className)} style={style}>
       {/* Avatar */}
-      <div className={cn('bg-muted relative overflow-hidden rounded-full', config.avatar)}>
+      <div
+        className={cn(
+          'bg-muted relative overflow-hidden rounded-full',
+          config.avatar,
+          showBorder && 'border-background box-content border-2'
+        )}
+      >
         {src ? (
           <img src={src} alt={name || 'Account avatar'} className="size-full object-cover" />
         ) : (
@@ -152,15 +161,13 @@ export function AccountAvatar({
   )
 }
 
-/**
- * Stacked AccountAvatars for showing multiple accounts
- */
 interface AccountAvatarStackProps {
   accounts: Array<{
     id: string
     platform: SocialPlatform
     avatarUrl?: string | null
     name?: string
+    username?: string
   }>
   /** Maximum avatars to show before +N */
   max?: number
@@ -179,24 +186,43 @@ export function AccountAvatarStack({
   const visible = accounts.slice(0, max)
   const remaining = accounts.length - max
 
-  return (
+  // Overlap amounts based on size
+  const overlapClass = {
+    xs: '-space-x-2',
+    sm: '-space-x-3',
+    md: '-space-x-3.5',
+    lg: '-space-x-4',
+    xl: '-space-x-5',
+  }[size]
+
+  const stackContent = (
     <div className={cn('flex items-center', className)}>
-      <div className="flex -space-x-2">
+      <div className={cn('flex', overlapClass)}>
         {visible.map((account, idx) => (
           <AccountAvatar
             key={account.id}
             src={account.avatarUrl}
             platform={account.platform}
-            name={account.name}
+            name={account.name || account.username}
             size={size}
-            className="ring-background ring-2"
+            showBorder
             style={{ zIndex: visible.length - idx }}
           />
         ))}
+        {remaining > 0 && (
+          <div
+            className={cn(
+              'border-background bg-muted text-muted-foreground box-content flex items-center justify-center rounded-full border-2',
+              SIZE_CONFIG[size].avatar
+            )}
+            style={{ zIndex: 0 }}
+          >
+            <span className="text-[0.6em] font-medium">+{remaining}</span>
+          </div>
+        )}
       </div>
-      {remaining > 0 && (
-        <span className="text-muted-foreground ml-2 text-xs font-medium">+{remaining}</span>
-      )}
     </div>
   )
+
+  return stackContent
 }
