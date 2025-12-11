@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
 import { Clock, Calendar, ArrowLeft } from 'lucide-react'
 import { Link } from '@/components/common/LocalizedLink'
 import { cn } from '@/lib/utils'
@@ -28,14 +27,10 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
   })
 
   return (
-    <header className="from-secondary/50 to-background relative overflow-hidden bg-gradient-to-b pt-24 pb-12">
+    <header className="from-secondary/50 to-background relative overflow-hidden bg-gradient-to-b pt-32 pb-12">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div>
           <Link
             to="/blog"
             className={cn(
@@ -47,15 +42,10 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
             <ArrowLeft className="h-4 w-4" />
             {t('blog.article.backToBlog')}
           </Link>
-        </motion.div>
+        </div>
 
         {/* Category Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="mt-6"
-        >
+        <div className="mt-6">
           <span
             className={cn(
               'inline-flex items-center rounded-full px-3 py-1',
@@ -65,13 +55,10 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           >
             {t(`blog.categories.${article.category}`)}
           </span>
-        </motion.div>
+        </div>
 
         {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+        <h1
           className={cn(
             'text-foreground mt-4 text-3xl font-bold tracking-tight',
             'sm:text-4xl md:text-5xl',
@@ -79,33 +66,19 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           )}
         >
           {t(article.titleKey)}
-        </motion.h1>
+        </h1>
 
         {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-muted-foreground mt-6 text-lg sm:text-xl"
-        >
-          {t(article.descriptionKey)}
-        </motion.p>
+        <p className="text-muted-foreground mt-6 text-lg sm:text-xl">{t(article.descriptionKey)}</p>
 
         {/* Meta Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 flex flex-wrap items-center gap-6"
-        >
+        <div className="mt-8 flex flex-wrap items-center gap-6">
           {/* Author */}
           <div className="flex items-center gap-3">
             <div
               className={cn(
-                'h-10 w-10 rounded-full',
-                'from-primary/20 to-primary/5 bg-gradient-to-br',
-                'flex items-center justify-center',
-                'text-primary text-sm font-medium'
+                'flex h-10 w-10 items-center justify-center rounded-full',
+                'bg-secondary text-foreground text-sm font-medium'
               )}
             >
               {article.authorName
@@ -133,7 +106,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
             <Clock className="h-4 w-4" />
             <span>{t('blog.card.readTime', { minutes: article.readingTime })}</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </header>
   )

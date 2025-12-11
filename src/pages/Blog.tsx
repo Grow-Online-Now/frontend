@@ -1,18 +1,18 @@
 import { HelmetProvider } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
 import { SEOHead } from '@/lib/seo/SEOHead'
 import { BlogListingSchema, BreadcrumbSchema, OrganizationSchema } from '@/lib/seo/StructuredData'
 import { Navbar } from '@/components/layouts/Navbar'
 import { WaitlistFooter } from '@/components/waitlist/WaitlistFooter'
-import { BlogCard } from '@/components/blog'
+import { BlogCard, BlogHero } from '@/components/blog'
 import { articles, getFeaturedArticles } from '@/data/articles'
 
 export function Blog() {
   const { t, i18n } = useTranslation()
 
   const featuredArticles = getFeaturedArticles()
-  const regularArticles = articles.filter((article) => !article.featured)
+  const heroArticle = featuredArticles[0]
+  const remainingArticles = articles.filter((article) => article.slug !== heroArticle?.slug)
 
   // Prepare article data for structured data schema
   const articlesForSchema = articles.map((article) => ({
@@ -50,43 +50,29 @@ export function Blog() {
         <Navbar />
 
         {/* Page Content */}
-        <main className="pt-24 pb-24">
+        <main className="pt-32 pb-24">
           {/* Hero Section */}
           <header className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <div className="text-center">
+              <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl">
                 {t('blog.hero.title')}
               </h1>
-              <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg sm:text-xl">
+              <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-lg">
                 {t('blog.hero.subtitle')}
               </p>
-            </motion.div>
+            </div>
           </header>
 
-          {/* Featured Articles Section */}
-          {featuredArticles.length > 0 && (
+          {/* Featured Article Hero */}
+          {heroArticle && (
             <section
               aria-labelledby="featured-heading"
               className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8"
             >
               <h2 id="featured-heading" className="sr-only">
-                Featured Articles
+                Featured Article
               </h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-                {featuredArticles.map((article, index) => (
-                  <BlogCard
-                    key={article.slug}
-                    article={article}
-                    featured
-                    className={index === 0 ? 'md:col-span-2' : ''}
-                  />
-                ))}
-              </div>
+              <BlogHero article={heroArticle} />
             </section>
           )}
 
@@ -99,7 +85,7 @@ export function Blog() {
               All Articles
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-              {regularArticles.map((article) => (
+              {remainingArticles.map((article) => (
                 <BlogCard key={article.slug} article={article} />
               ))}
             </div>

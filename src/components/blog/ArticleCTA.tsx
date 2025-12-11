@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useLocalizedHref } from '@/hooks/useLocalizedHref'
@@ -9,11 +8,7 @@ export function ArticleCTA() {
   const localizeHref = useLocalizedHref()
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+    <section
       className={cn(
         'mt-16 rounded-2xl',
         'from-primary/10 via-primary/5 bg-gradient-to-br to-transparent',
@@ -41,6 +36,6 @@ export function ArticleCTA() {
           <p className="text-muted-foreground text-sm">{t('blog.article.cta.note')}</p>
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

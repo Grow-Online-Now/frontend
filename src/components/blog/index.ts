@@ -1,4 +1,5 @@
 export { BlogCard } from './BlogCard'
+export { BlogHero } from './BlogHero'
 export { ArticleHeader } from './ArticleHeader'
 export { ArticleSection } from './ArticleSection'
 export { ArticleCTA } from './ArticleCTA'

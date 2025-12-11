@@ -1,13 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from '@/components/common/LocalizedLink'
-import { motion } from 'framer-motion'
 import { Clock, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Article, ArticleCategory } from '@/data/articles'
 
 interface BlogCardProps {
   article: Article
-  featured?: boolean
   className?: string
 }
 
@@ -20,7 +18,7 @@ const categoryColors: Record<ArticleCategory, string> = {
   growth: 'bg-cyan-100 text-cyan-700',
 }
 
-export function BlogCard({ article, featured = false, className }: BlogCardProps) {
+export function BlogCard({ article, className }: BlogCardProps) {
   const { t } = useTranslation()
 
   const formattedDate = new Date(article.publishedAt).toLocaleDateString('en-US', {
@@ -30,49 +28,34 @@ export function BlogCard({ article, featured = false, className }: BlogCardProps
   })
 
   return (
-    <Link
-      to={`/blog/${article.slug}`}
-      className={cn(featured && 'md:col-span-2 md:row-span-2', className)}
-    >
-      <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+    <Link to={`/blog/${article.slug}`} className={cn('block', className)}>
+      <article
         className={cn(
-          'group relative h-full overflow-hidden rounded-2xl bg-white',
-          'border-border/50 border shadow-sm',
-          'transition-all duration-500 ease-out',
-          'hover:shadow-primary/5 hover:shadow-xl',
-          'hover:border-primary/20'
+          'group relative h-full overflow-hidden rounded-2xl',
+          'border-border/50 bg-card border',
+          'transition-all duration-300',
+          'hover:border-border hover:shadow-lg'
         )}
       >
         {/* Image Container */}
-        <div
-          className={cn(
-            'relative overflow-hidden',
-            featured ? 'aspect-[16/9] md:aspect-[2/1]' : 'aspect-[16/10]'
-          )}
-        >
-          {/* Image with gradient overlay */}
-          <div className="from-primary/20 to-primary/10 absolute inset-0 bg-gradient-to-br via-transparent" />
+        <div className="relative aspect-16/10 overflow-hidden">
+          {/* Placeholder gradient (fallback) */}
           <div
             className={cn(
-              'absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent',
-              'transition-opacity duration-500',
-              'group-hover:from-black/70 group-hover:via-black/30'
+              'absolute inset-0',
+              'from-secondary via-muted to-secondary/80 bg-linear-to-br'
             )}
           />
 
-          {/* Placeholder image - using a gradient since we don't have real images */}
-          <div
-            className={cn(
-              'h-full w-full',
-              'from-secondary via-muted to-secondary bg-gradient-to-br',
-              'transition-transform duration-700 ease-out',
-              'group-hover:scale-105'
-            )}
+          {/* Article Image */}
+          <img
+            src={article.imageUrl}
+            alt={t(article.titleKey)}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300"
           />
+
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent" />
 
           {/* Category Badge */}
           <div className="absolute top-4 left-4">
@@ -80,7 +63,6 @@ export function BlogCard({ article, featured = false, className }: BlogCardProps
               className={cn(
                 'inline-flex items-center rounded-full px-3 py-1',
                 'text-xs font-medium tracking-wide',
-                'backdrop-blur-sm',
                 categoryColors[article.category]
               )}
             >
@@ -88,25 +70,9 @@ export function BlogCard({ article, featured = false, className }: BlogCardProps
             </span>
           </div>
 
-          {/* Featured Badge */}
-          {featured && (
-            <div className="absolute top-4 right-4">
-              <span
-                className={cn(
-                  'inline-flex items-center rounded-full px-3 py-1',
-                  'text-xs font-semibold tracking-wide',
-                  'bg-primary text-white',
-                  'shadow-primary/30 shadow-lg'
-                )}
-              >
-                Featured
-              </span>
-            </div>
-          )}
-
           {/* Bottom Content Overlay */}
-          <div className="absolute inset-x-0 bottom-0 p-5">
-            <div className="flex items-center gap-3 text-xs text-white/80">
+          <div className="absolute inset-x-0 bottom-0 p-4">
+            <div className="flex items-center gap-3 text-xs text-white/90">
               <time dateTime={article.publishedAt}>{formattedDate}</time>
               <span className="h-1 w-1 rounded-full bg-white/50" />
               <span className="flex items-center gap-1">
@@ -118,26 +84,19 @@ export function BlogCard({ article, featured = false, className }: BlogCardProps
         </div>
 
         {/* Content */}
-        <div className={cn('p-5', featured && 'md:p-6')}>
+        <div className="p-5">
           <h3
             className={cn(
-              'text-foreground font-semibold',
+              'text-foreground text-lg font-semibold',
               'line-clamp-2 leading-tight',
-              'transition-colors duration-300',
-              'group-hover:text-primary',
-              featured ? 'text-xl md:text-2xl' : 'text-lg'
+              'transition-colors duration-200',
+              'group-hover:text-primary'
             )}
           >
             {t(article.titleKey)}
           </h3>
 
-          <p
-            className={cn(
-              'text-muted-foreground mt-3',
-              'line-clamp-2 leading-relaxed',
-              featured ? 'text-base' : 'text-sm'
-            )}
-          >
+          <p className="text-muted-foreground mt-3 line-clamp-2 text-sm leading-relaxed">
             {t(article.descriptionKey)}
           </p>
 
@@ -147,10 +106,8 @@ export function BlogCard({ article, featured = false, className }: BlogCardProps
             <div className="flex items-center gap-3">
               <div
                 className={cn(
-                  'h-9 w-9 rounded-full',
-                  'from-primary/20 to-primary/5 bg-gradient-to-br',
-                  'flex items-center justify-center',
-                  'text-primary text-sm font-medium'
+                  'flex h-8 w-8 items-center justify-center rounded-full',
+                  'bg-secondary text-foreground text-xs font-medium'
                 )}
               >
                 {article.authorName
@@ -165,33 +122,20 @@ export function BlogCard({ article, featured = false, className }: BlogCardProps
             </div>
 
             {/* Read More CTA */}
-            <motion.span
+            <span
               className={cn(
                 'flex items-center gap-1.5',
                 'text-primary text-sm font-medium',
-                'opacity-0 transition-opacity duration-300',
+                'opacity-0 transition-opacity duration-200',
                 'group-hover:opacity-100'
               )}
-              initial={false}
-              animate={{ x: 0 }}
-              whileHover={{ x: 3 }}
             >
               {t('blog.card.readMore')}
               <ArrowRight className="h-4 w-4" />
-            </motion.span>
+            </span>
           </div>
         </div>
-
-        {/* Hover Glow Effect */}
-        <div
-          className={cn(
-            'pointer-events-none absolute inset-0 rounded-2xl',
-            'opacity-0 transition-opacity duration-500',
-            'group-hover:opacity-100',
-            'ring-primary/10 ring-1'
-          )}
-        />
-      </motion.article>
+      </article>
     </Link>
   )
 }

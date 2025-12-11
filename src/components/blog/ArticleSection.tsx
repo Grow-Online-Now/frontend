@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface ArticleSectionProps {
@@ -20,13 +19,7 @@ export function ArticleSection({
   const { t } = useTranslation()
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5 }}
-      className={cn('mt-10', className)}
-    >
+    <section className={cn('mt-10', className)}>
       {titleKey && (
         <h2 className="text-foreground text-2xl font-semibold sm:text-3xl">{t(titleKey)}</h2>
       )}
@@ -60,6 +53,6 @@ export function ArticleSection({
           <p className="text-foreground font-medium italic">{t(highlightKey)}</p>
         </div>
       )}
-    </motion.section>
+    </section>
   )
 }
