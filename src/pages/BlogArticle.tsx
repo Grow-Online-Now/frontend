@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { Navigate } from '@/components/common/LocalizedLink'
 import { HelmetProvider } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
-import { SEOHead } from '@/lib/seo/SEOHead'
+import { SEOHead, SITE_URL } from '@/lib/seo/SEOHead'
 import { BlogPostingSchema, BreadcrumbSchema, OrganizationSchema } from '@/lib/seo/StructuredData'
 import { Navbar } from '@/components/layouts/Navbar'
 import { WaitlistFooter } from '@/components/waitlist/WaitlistFooter'
@@ -36,7 +36,11 @@ export function BlogArticle() {
         <SEOHead
           title={`${t(article.titleKey)} | Grow Online Blog`}
           description={t(article.descriptionKey)}
-          canonicalUrl={`https://growonline.now/blog/${article.slug}`}
+          ogImage={`${SITE_URL}${article.imageUrl}`}
+          ogType="article"
+          publishedTime={article.publishedAt}
+          canonicalUrl={`${SITE_URL}/blog/og/${article.slug}`}
+          keywords={article.keywords}
           lang={i18n.language}
         />
 
