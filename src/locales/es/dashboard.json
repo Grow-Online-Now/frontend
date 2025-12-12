@@ -230,7 +230,19 @@
         "photo": "Foto",
         "video": "Vídeo",
         "carousel": "Carrusel",
-        "addMore": "Añadir más"
+        "addMore": "Añadir más",
+        "errors": {
+          "invalidType": "Solo se permiten archivos de imagen y vídeo",
+          "mimeNotAllowed": "El tipo de archivo {{type}} no es compatible",
+          "imageTooLarge": "La imagen excede el límite de {{maxSize}}MB",
+          "videoTooLarge": "El vídeo excede el límite de {{maxSize}}MB",
+          "uploadFailed": "Error al subir {{fileName}}",
+          "networkError": "Error de red. Por favor, verifica tu conexión.",
+          "s3Error": "Error al subir al almacenamiento. Por favor, inténtalo de nuevo.",
+          "mixedMediaNotAllowed": "No se pueden mezclar imágenes y vídeos para las plataformas seleccionadas",
+          "tooManyImages": "Máximo {{max}} imágenes permitidas",
+          "tooManyVideos": "Máximo {{max}} vídeos permitidos"
+        }
       },
       "preview": {
         "title": "Vista previa",
@@ -397,6 +409,16 @@
             "cancel": "Cancelar",
             "select": "Usar este fotograma",
             "extracting": "Extrayendo fotograma..."
+          }
+        },
+        "linkedin": {
+          "title": "LinkedIn",
+          "visibility": "Visibilidad",
+          "visibilityLevels": {
+            "PUBLIC": "Público",
+            "PUBLICDesc": "Cualquiera en LinkedIn puede ver esta publicación",
+            "CONNECTIONS": "Solo conexiones",
+            "CONNECTIONSDesc": "Solo tus conexiones pueden ver esta publicación"
           }
         }
       }

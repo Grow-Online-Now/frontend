@@ -12,6 +12,7 @@ export { PostPreview } from './PostPreview'
 export { PostButton } from './PostButton'
 export { PlatformConfigPanel } from './PlatformConfigPanel'
 export { PostingProgressModal } from './PostingProgressModal'
+export { LinkedInConfigSection } from './LinkedInConfigSection'
 
 // Twitter thread components
 export { TwitterCharacterCounter } from './TwitterCharacterCounter'

@@ -27,6 +27,11 @@ export type TikTokPrivacyLevel =
 export type YouTubePrivacyStatus = 'public' | 'private' | 'unlisted'
 
 /**
+ * LinkedIn visibility options
+ */
+export type LinkedInVisibility = 'PUBLIC' | 'CONNECTIONS'
+
+/**
  * YouTube video categories
  * Official YouTube category IDs: https://developers.google.com/youtube/v3/docs/videoCategories
  */
@@ -117,6 +122,13 @@ export interface YouTubeConfig {
 }
 
 /**
+ * LinkedIn platform configuration
+ */
+export interface LinkedInConfig {
+  visibility?: LinkedInVisibility
+}
+
+/**
  * Platform-specific configurations for post creation
  */
 export interface PlatformConfigurations {
@@ -124,6 +136,7 @@ export interface PlatformConfigurations {
   tiktok?: TikTokConfig
   youtube?: YouTubeConfig
   twitter?: TwitterConfig
+  linkedin?: LinkedInConfig
 }
 
 /**

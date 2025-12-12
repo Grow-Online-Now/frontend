@@ -39,6 +39,7 @@ import type {
 } from '@/types/posts'
 import type { SocialPlatform } from '@/types/connections'
 import type { MediaItem } from '@/types/media'
+import { validateMediaForPlatforms } from '@/lib/platformMediaRules'
 
 // Location state type for pre-selected media
 interface LocationState {
@@ -230,12 +231,32 @@ export default function CreatePostPage() {
     })
   }, [selectedPlatforms, media, t, twitterThreadValidation])
 
-  // Handle media upload
+  // Handle media upload with platform-specific validation
   const handleMediaUpload = useCallback(
     (files: FileList) => {
-      addFiles(files)
+      const existingMedia = media.map((m) => ({ type: m.type }))
+      const validFiles: File[] = []
+
+      Array.from(files).forEach((file) => {
+        const validation = validateMediaForPlatforms(file, existingMedia, selectedPlatforms)
+        if (!validation.valid && validation.errorKey) {
+          toast.error(t(validation.errorKey, validation.errorParams))
+        } else {
+          validFiles.push(file)
+          // Update existingMedia for next validation in the batch
+          const isImage = file.type.startsWith('image/')
+          existingMedia.push({ type: isImage ? 'image' : 'video' })
+        }
+      })
+
+      if (validFiles.length > 0) {
+        // Create a new FileList-like object
+        const dataTransfer = new DataTransfer()
+        validFiles.forEach((file) => dataTransfer.items.add(file))
+        addFiles(dataTransfer.files)
+      }
     },
-    [addFiles]
+    [addFiles, media, selectedPlatforms, t]
   )
 
   // Handle media remove
@@ -509,7 +530,8 @@ export default function CreatePostPage() {
           {/* Platform-specific configuration */}
           {(selectedPlatforms.includes('instagram') ||
             selectedPlatforms.includes('tiktok') ||
-            selectedPlatforms.includes('youtube')) && (
+            selectedPlatforms.includes('youtube') ||
+            selectedPlatforms.includes('linkedin')) && (
             <div className="bg-card border-border-subtle rounded-xl border p-4">
               <PlatformConfigPanel
                 selectedPlatforms={selectedPlatforms}

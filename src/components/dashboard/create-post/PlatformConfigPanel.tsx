@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { InstagramConfigSection } from './InstagramConfigSection'
 import { TikTokConfigSection } from './TikTokConfigSection'
 import { YouTubeConfigSection } from './YouTubeConfigSection'
+import { LinkedInConfigSection } from './LinkedInConfigSection'
 import type { PlatformConfigurations } from '@/types/posts'
 import type { SocialPlatform } from '@/types/connections'
 import type { MediaFile } from './MediaUploader'
@@ -39,9 +40,10 @@ export function PlatformConfigPanel({
   const hasInstagram = selectedPlatforms.includes('instagram')
   const hasTikTok = selectedPlatforms.includes('tiktok')
   const hasYouTube = selectedPlatforms.includes('youtube')
+  const hasLinkedIn = selectedPlatforms.includes('linkedin')
 
   // Only show if at least one configurable platform is selected
-  if (!hasInstagram && !hasTikTok && !hasYouTube) {
+  if (!hasInstagram && !hasTikTok && !hasYouTube && !hasLinkedIn) {
     return null
   }
 
@@ -76,6 +78,13 @@ export function PlatformConfigPanel({
             onThumbnailUpload={onYouTubeThumbnailUpload}
             thumbnailPreviewUrl={youTubeThumbnailPreviewUrl}
             isUploadingThumbnail={isUploadingYouTubeThumbnail}
+          />
+        )}
+
+        {hasLinkedIn && (
+          <LinkedInConfigSection
+            config={platformConfigs.linkedin || {}}
+            onChange={(linkedin) => onConfigChange({ ...platformConfigs, linkedin })}
           />
         )}
       </div>

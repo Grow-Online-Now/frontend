@@ -246,7 +246,10 @@
           "videoTooLarge": "Video exceeds {{maxSize}}MB limit",
           "uploadFailed": "Failed to upload {{fileName}}",
           "networkError": "Network error. Please check your connection.",
-          "s3Error": "Upload to storage failed. Please try again."
+          "s3Error": "Upload to storage failed. Please try again.",
+          "mixedMediaNotAllowed": "Cannot mix images and videos for selected platforms",
+          "tooManyImages": "Maximum {{max}} images allowed",
+          "tooManyVideos": "Maximum {{max}} videos allowed"
         },
         "validation": {
           "uploadsInProgress": "Please wait for uploads to complete",
@@ -418,6 +421,16 @@
             "cancel": "Cancel",
             "select": "Use This Frame",
             "extracting": "Extracting frame..."
+          }
+        },
+        "linkedin": {
+          "title": "LinkedIn",
+          "visibility": "Visibility",
+          "visibilityLevels": {
+            "PUBLIC": "Public",
+            "PUBLICDesc": "Anyone on LinkedIn can see this post",
+            "CONNECTIONS": "Connections only",
+            "CONNECTIONSDesc": "Only your connections can see this post"
           }
         }
       },

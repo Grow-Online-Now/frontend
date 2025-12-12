@@ -137,6 +137,17 @@ interface CreatePostRequest {
   scheduled_at?: string | null
   is_draft?: boolean
   media_urls?: string[]  // S3 URLs from confirmed uploads
+  media_ids?: string[]   // Backend media IDs from confirmed uploads
+  platform_configurations?: PlatformConfigurations
+}
+
+// Platform-specific configurations (per platform)
+interface PlatformConfigurations {
+  instagram?: InstagramConfig   // contentType, shareToFeed, coverMediaId
+  tiktok?: TikTokConfig         // contentType, privacyLevel, disableComment
+  youtube?: YouTubeConfig       // privacyStatus, categoryId, tags, thumbnailMediaId
+  twitter?: TwitterConfig       // thread, firstComment
+  linkedin?: LinkedInConfig     // visibility (PUBLIC/CONNECTIONS)
 }
 
 interface PostResponse {
@@ -192,6 +203,24 @@ const ALLOWED_MIME_TYPES = {
   video: ['video/mp4', 'video/quicktime', 'video/webm'],
 }
 ```
+
+### Platform Feature Support (Frontend)
+
+| Platform | Text | Media | Config Panel | Special Features |
+|----------|------|-------|--------------|------------------|
+| Twitter | ✅ 280 chars | ✅ | ✅ | Threads, first comment |
+| Instagram | ✅ 2200 chars | ✅ | ✅ | Content type, share to feed |
+| TikTok | ✅ 2200 chars | ✅ | ✅ | Privacy level, disable comments |
+| YouTube | ✅ 5000 chars | ✅ | ✅ | Privacy, category, tags, thumbnail |
+| LinkedIn | ✅ 3000 chars | ✅ | ✅ | Visibility (PUBLIC/CONNECTIONS), media validation |
+| Facebook | ✅ 63206 chars | ✅ | ❌ | None |
+| Pinterest | ✅ 500 chars | ✅ | ❌ | None |
+
+**LinkedIn media validation** (enforced in frontend):
+- Max 5MB per image (stricter than generic 10MB)
+- Max 200MB per video
+- Cannot mix images and videos in same post
+- Only 1 video per post allowed
 
 ---
 
