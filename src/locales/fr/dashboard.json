@@ -8,9 +8,11 @@
       "createPost": "Créer une publication",
       "categories": {
         "general": "Général",
+        "create": "Créer",
         "posts": "Publications",
         "configuration": "Configuration"
       },
+      "media": "Médiathèque",
       "overview": "Vue d'ensemble",
       "analytics": "Analytiques",
       "allPosts": "Toutes les publications",
@@ -533,6 +535,54 @@
         "previous": "Précédent",
         "next": "Suivant",
         "page": "Page {{page}} sur {{totalPages}}"
+      }
+    },
+    "media": {
+      "title": "Médiathèque",
+      "description": "Parcourez et gérez vos médias téléchargés",
+      "filters": {
+        "all": "Tous",
+        "images": "Images",
+        "videos": "Vidéos"
+      },
+      "card": {
+        "view": "Voir",
+        "delete": "Supprimer",
+        "useInPost": "Utiliser dans une publication",
+        "download": "Télécharger"
+      },
+      "details": {
+        "fileName": "Nom du fichier",
+        "fileSize": "Taille",
+        "fileType": "Type",
+        "uploadedAt": "Téléchargé le",
+        "status": "Statut"
+      },
+      "status": {
+        "ready": "Prêt",
+        "pending": "En cours",
+        "failed": "Échoué"
+      },
+      "empty": {
+        "title": "Aucun média",
+        "description": "Téléchargez des médias lors de la création de publications pour les voir ici",
+        "cta": "Créer une publication"
+      },
+      "noResults": {
+        "title": "Aucun média trouvé",
+        "description": "Essayez un autre filtre ou téléchargez de nouveaux médias"
+      },
+      "delete": {
+        "title": "Supprimer le média",
+        "description": "Êtes-vous sûr de vouloir supprimer ce média ? Cette action est irréversible.",
+        "confirm": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "preview": {
+        "title": "Aperçu du média"
+      },
+      "loading": {
+        "more": "Chargement..."
       }
     }
   }

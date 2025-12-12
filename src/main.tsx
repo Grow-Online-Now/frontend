@@ -31,6 +31,7 @@ const DashboardOverview = lazy(() => import('./pages/dashboard/DashboardOverview
 const PostsPage = lazy(() => import('./pages/dashboard/PostsPage.tsx'))
 const SchedulerPage = lazy(() => import('./pages/dashboard/SchedulerPage.tsx'))
 const CreatePostPage = lazy(() => import('./pages/dashboard/CreatePostPage.tsx'))
+const MediaLibraryPage = lazy(() => import('./pages/dashboard/MediaLibraryPage.tsx'))
 const AccountsPage = lazy(() => import('./pages/dashboard/AccountsPage.tsx'))
 const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage.tsx'))
 
@@ -113,6 +114,14 @@ const localizedRoutes = [
         element: (
           <Suspense fallback={<DashboardPageLoader />}>
             <CreatePostPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'media',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <MediaLibraryPage />
           </Suspense>
         ),
       },

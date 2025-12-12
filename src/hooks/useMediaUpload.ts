@@ -52,6 +52,7 @@ export interface UseMediaUploadReturn {
 
   // Actions
   addFiles: (files: FileList | File[]) => string[]
+  addPreloadedMedia: (mediaItem: MediaItem) => string
   removeFile: (id: string) => Promise<void>
   retryUpload: (id: string) => Promise<void>
   cancelUpload: (id: string) => void
@@ -247,6 +248,42 @@ export function useMediaUpload(): UseMediaUploadReturn {
   )
 
   /**
+   * Add an already-uploaded media item (from media library)
+   */
+  const addPreloadedMedia = useCallback(
+    (mediaItem: MediaItem): string => {
+      const id = crypto.randomUUID()
+
+      // Create a dummy file object for the state (not used since already uploaded)
+      const dummyFile = new File([], mediaItem.fileName, { type: mediaItem.contentType })
+
+      const uploadState: FileUploadState = {
+        id,
+        file: dummyFile,
+        localUrl: mediaItem.url || '',
+        type: mediaItem.mediaType,
+        status: 'ready',
+        progress: { loaded: mediaItem.fileSize, total: mediaItem.fileSize, percentage: 100 },
+        error: null,
+        mediaId: mediaItem.id,
+        mediaItem,
+      }
+
+      setState((prev) => {
+        const newUploads = new Map(prev.uploads)
+        newUploads.set(id, uploadState)
+        return {
+          uploads: newUploads,
+          isUploading: checkIsUploading(newUploads),
+        }
+      })
+
+      return id
+    },
+    [checkIsUploading]
+  )
+
+  /**
    * Remove a file (and delete from backend if uploaded)
    */
   const removeFile = useCallback(
@@ -362,6 +399,7 @@ export function useMediaUpload(): UseMediaUploadReturn {
     uploads: state.uploads,
     isUploading: state.isUploading,
     addFiles,
+    addPreloadedMedia,
     removeFile,
     retryUpload,
     cancelUpload,

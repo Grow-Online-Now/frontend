@@ -16,6 +16,7 @@ import {
   FileText,
   Sun,
   Moon,
+  ImageIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { SidebarNavItem } from '@/types/dashboard'
@@ -54,6 +55,21 @@ const navCategories: NavCategory[] = [
     ],
   },
   {
+    labelKey: 'dashboard.nav.categories.create',
+    items: [
+      {
+        labelKey: 'dashboard.nav.createPost',
+        icon: PenSquare,
+        href: '/dashboard/posts/create',
+      },
+      {
+        labelKey: 'dashboard.nav.media',
+        icon: ImageIcon,
+        href: '/dashboard/media',
+      },
+    ],
+  },
+  {
     labelKey: 'dashboard.nav.categories.posts',
     items: [
       {
@@ -65,11 +81,6 @@ const navCategories: NavCategory[] = [
         labelKey: 'dashboard.nav.calendar',
         icon: Calendar,
         href: '/dashboard/scheduler',
-      },
-      {
-        labelKey: 'dashboard.nav.createPost',
-        icon: PenSquare,
-        href: '/dashboard/posts/create',
       },
     ],
   },

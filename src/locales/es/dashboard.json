@@ -8,9 +8,11 @@
       "createPost": "Crear publicación",
       "categories": {
         "general": "General",
+        "create": "Crear",
         "posts": "Publicaciones",
         "configuration": "Configuración"
       },
+      "media": "Biblioteca de medios",
       "overview": "Resumen",
       "analytics": "Analíticas",
       "allPosts": "Todas las publicaciones",
@@ -462,6 +464,54 @@
         "previous": "Anterior",
         "next": "Siguiente",
         "page": "Página {{page}} de {{totalPages}}"
+      }
+    },
+    "media": {
+      "title": "Biblioteca de medios",
+      "description": "Explora y gestiona tus medios subidos",
+      "filters": {
+        "all": "Todos",
+        "images": "Imágenes",
+        "videos": "Videos"
+      },
+      "card": {
+        "view": "Ver",
+        "delete": "Eliminar",
+        "useInPost": "Usar en publicación",
+        "download": "Descargar"
+      },
+      "details": {
+        "fileName": "Nombre del archivo",
+        "fileSize": "Tamaño",
+        "fileType": "Tipo",
+        "uploadedAt": "Subido el",
+        "status": "Estado"
+      },
+      "status": {
+        "ready": "Listo",
+        "pending": "Procesando",
+        "failed": "Fallido"
+      },
+      "empty": {
+        "title": "Sin medios",
+        "description": "Sube medios al crear publicaciones para verlos aquí",
+        "cta": "Crear publicación"
+      },
+      "noResults": {
+        "title": "No se encontraron medios",
+        "description": "Prueba con otro filtro o sube nuevos medios"
+      },
+      "delete": {
+        "title": "Eliminar medio",
+        "description": "¿Estás seguro de que quieres eliminar este medio? Esta acción no se puede deshacer.",
+        "confirm": "Eliminar",
+        "cancel": "Cancelar"
+      },
+      "preview": {
+        "title": "Vista previa del medio"
+      },
+      "loading": {
+        "more": "Cargando más..."
       }
     }
   }

@@ -3,8 +3,8 @@
  * Redesigned three-column layout for creating social media posts
  */
 
-import { useState, useMemo, useCallback, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { Users } from 'lucide-react'
@@ -38,6 +38,12 @@ import type {
   TwitterFirstComment as TwitterFirstCommentType,
 } from '@/types/posts'
 import type { SocialPlatform } from '@/types/connections'
+import type { MediaItem } from '@/types/media'
+
+// Location state type for pre-selected media
+interface LocationState {
+  preselectedMedia?: MediaItem
+}
 
 // Platforms that require media
 const MEDIA_REQUIRED_PLATFORMS: SocialPlatform[] = ['instagram', 'tiktok', 'youtube', 'pinterest']
@@ -45,7 +51,11 @@ const MEDIA_REQUIRED_PLATFORMS: SocialPlatform[] = ['instagram', 'tiktok', 'yout
 export default function CreatePostPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const { lang = 'en' } = useParams<{ lang: string }>()
+
+  // Track if we've handled preselected media
+  const preselectedMediaHandledRef = useRef(false)
 
   // Hooks
   const { connections, isLoading: connectionsLoading } = useConnections()
@@ -61,6 +71,7 @@ export default function CreatePostPage() {
   const {
     uploadsArray,
     addFiles,
+    addPreloadedMedia,
     removeFile,
     retryUpload,
     cancelUpload,
@@ -68,6 +79,17 @@ export default function CreatePostPage() {
     isUploading,
     hasErrors,
   } = useMediaUpload()
+
+  // Handle pre-selected media from navigation (e.g., from Media Library)
+  useEffect(() => {
+    const state = location.state as LocationState | null
+    if (state?.preselectedMedia && !preselectedMediaHandledRef.current) {
+      preselectedMediaHandledRef.current = true
+      addPreloadedMedia(state.preselectedMedia)
+      // Clear the location state to prevent re-adding on re-renders
+      navigate(location.pathname, { replace: true, state: {} })
+    }
+  }, [location, addPreloadedMedia, navigate])
 
   // Thread media uploads (for Twitter threads and first comment)
   const threadMediaUpload = useThreadMediaUpload()

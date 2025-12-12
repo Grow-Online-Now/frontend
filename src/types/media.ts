@@ -119,3 +119,8 @@ export type AllowedVideoMimeType = (typeof ALLOWED_MIME_TYPES.video)[number]
  * Type for all allowed MIME types
  */
 export type AllowedMimeType = AllowedImageMimeType | AllowedVideoMimeType
+
+/**
+ * Media type filter tabs for Media Library page
+ */
+export type MediaTypeTab = 'all' | 'image' | 'video'

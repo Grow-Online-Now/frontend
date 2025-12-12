@@ -8,9 +8,11 @@
       "createPost": "Create Post",
       "categories": {
         "general": "General",
+        "create": "Create",
         "posts": "Posts",
         "configuration": "Configuration"
       },
+      "media": "Media Library",
       "overview": "Overview",
       "analytics": "Analytics",
       "allPosts": "All Posts",
@@ -597,6 +599,54 @@
         "previous": "Previous",
         "next": "Next",
         "page": "Page {{page}} of {{totalPages}}"
+      }
+    },
+    "media": {
+      "title": "Media Library",
+      "description": "Browse and manage your uploaded media",
+      "filters": {
+        "all": "All",
+        "images": "Images",
+        "videos": "Videos"
+      },
+      "card": {
+        "view": "View",
+        "delete": "Delete",
+        "useInPost": "Use in Post",
+        "download": "Download"
+      },
+      "details": {
+        "fileName": "File Name",
+        "fileSize": "Size",
+        "fileType": "Type",
+        "uploadedAt": "Uploaded",
+        "status": "Status"
+      },
+      "status": {
+        "ready": "Ready",
+        "pending": "Processing",
+        "failed": "Failed"
+      },
+      "empty": {
+        "title": "No media yet",
+        "description": "Upload media when creating posts to see it here",
+        "cta": "Create Post"
+      },
+      "noResults": {
+        "title": "No media found",
+        "description": "Try a different filter or upload new media"
+      },
+      "delete": {
+        "title": "Delete Media",
+        "description": "Are you sure you want to delete this media? This action cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      },
+      "preview": {
+        "title": "Media Preview"
+      },
+      "loading": {
+        "more": "Loading more..."
       }
     }
   }
