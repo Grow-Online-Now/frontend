@@ -104,6 +104,10 @@ export default function CreatePostPage() {
   const [previewPlatform, setPreviewPlatform] = useState<SocialPlatform>('instagram')
   const [platformConfigs, setPlatformConfigs] = useState<PlatformConfigurations>({})
 
+  // YouTube thumbnail state
+  const [youtubeThumbnailPreviewUrl, setYoutubeThumbnailPreviewUrl] = useState<string | null>(null)
+  const [isUploadingYoutubeThumbnail, setIsUploadingYoutubeThumbnail] = useState(false)
+
   // Twitter thread state
   const [twitterThread, setTwitterThread] = useState<TwitterThreadTweet[]>([])
   const [firstCommentEnabled, setFirstCommentEnabled] = useState(false)
@@ -256,6 +260,60 @@ export default function CreatePostPage() {
       cancelUpload(id)
     },
     [cancelUpload]
+  )
+
+  // Handle YouTube thumbnail upload
+  const handleYoutubeThumbnailUpload = useCallback(
+    async (file: File): Promise<string | null> => {
+      setIsUploadingYoutubeThumbnail(true)
+
+      // Create preview URL immediately
+      const previewUrl = URL.createObjectURL(file)
+      setYoutubeThumbnailPreviewUrl(previewUrl)
+
+      // Add the file to upload queue
+      const uploadIds = addFiles([file])
+      const uploadId = uploadIds[0]
+
+      // Wait for upload to complete by polling
+      return new Promise((resolve) => {
+        const checkUpload = () => {
+          const upload = uploadsArray.find((u) => u.id === uploadId)
+
+          if (!upload) {
+            // Upload was removed or not found
+            setIsUploadingYoutubeThumbnail(false)
+            URL.revokeObjectURL(previewUrl)
+            setYoutubeThumbnailPreviewUrl(null)
+            resolve(null)
+            return
+          }
+
+          if (upload.status === 'ready' && upload.mediaId) {
+            // Upload completed successfully
+            setIsUploadingYoutubeThumbnail(false)
+            resolve(upload.mediaId)
+            return
+          }
+
+          if (upload.status === 'error') {
+            // Upload failed
+            setIsUploadingYoutubeThumbnail(false)
+            URL.revokeObjectURL(previewUrl)
+            setYoutubeThumbnailPreviewUrl(null)
+            resolve(null)
+            return
+          }
+
+          // Still uploading, check again
+          setTimeout(checkUpload, 100)
+        }
+
+        // Start checking after a brief delay to allow state to update
+        setTimeout(checkUpload, 100)
+      })
+    },
+    [addFiles, uploadsArray]
   )
 
   // Handle form submission
@@ -458,6 +516,9 @@ export default function CreatePostPage() {
                 media={media}
                 platformConfigs={platformConfigs}
                 onConfigChange={setPlatformConfigs}
+                onYouTubeThumbnailUpload={handleYoutubeThumbnailUpload}
+                youTubeThumbnailPreviewUrl={youtubeThumbnailPreviewUrl}
+                isUploadingYouTubeThumbnail={isUploadingYoutubeThumbnail}
               />
             </div>
           )}

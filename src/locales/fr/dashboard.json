@@ -359,10 +359,44 @@
             "unlisted": "Non répertoriée",
             "private": "Privée"
           },
+          "category": "Catégorie",
+          "categoryPlaceholder": "Sélectionner une catégorie",
+          "categories": {
+            "filmAnimation": "Films et animations",
+            "autosVehicles": "Automobiles et véhicules",
+            "music": "Musique",
+            "petsAnimals": "Animaux",
+            "sports": "Sports",
+            "travel": "Voyages et événements",
+            "gaming": "Jeux vidéo",
+            "peopleBlogs": "People et blogs",
+            "comedy": "Comédie",
+            "entertainment": "Divertissement",
+            "newsPolitics": "Actualités et politique",
+            "howtoStyle": "Conseils et style",
+            "education": "Éducation",
+            "scienceTech": "Science et technologie",
+            "nonprofits": "Associations et activisme"
+          },
           "tags": "Tags",
           "tagsPlaceholder": "Entrez des tags, séparés par des virgules",
           "notifySubscribers": "Notifier les abonnés",
-          "madeForKids": "Conçu pour les enfants"
+          "madeForKids": "Conçu pour les enfants",
+          "thumbnail": {
+            "title": "Miniature personnalisée",
+            "selectFrame": "Sélectionner depuis la vidéo",
+            "selected": "Miniature sélectionnée",
+            "remove": "Supprimer",
+            "needsVideo": "Téléchargez une vidéo pour sélectionner une miniature"
+          },
+          "thumbnailSelector": {
+            "title": "Sélectionner une image",
+            "description": "Faites défiler la vidéo pour trouver l'image parfaite",
+            "currentTime": "Position : {{time}}",
+            "cancel": "Annuler",
+            "select": "Utiliser cette image",
+            "extracting": "Extraction en cours..."
+          }
         }
       },
       "posting": {

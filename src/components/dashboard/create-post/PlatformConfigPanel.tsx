@@ -18,6 +18,10 @@ interface PlatformConfigPanelProps {
   platformConfigs: PlatformConfigurations
   onConfigChange: (configs: PlatformConfigurations) => void
   className?: string
+  // YouTube thumbnail props
+  onYouTubeThumbnailUpload?: (file: File) => Promise<string | null>
+  youTubeThumbnailPreviewUrl?: string | null
+  isUploadingYouTubeThumbnail?: boolean
 }
 
 export function PlatformConfigPanel({
@@ -26,6 +30,9 @@ export function PlatformConfigPanel({
   platformConfigs,
   onConfigChange,
   className,
+  onYouTubeThumbnailUpload,
+  youTubeThumbnailPreviewUrl,
+  isUploadingYouTubeThumbnail,
 }: PlatformConfigPanelProps) {
   const { t } = useTranslation()
 
@@ -66,6 +73,9 @@ export function PlatformConfigPanel({
             config={platformConfigs.youtube || {}}
             onChange={(youtube) => onConfigChange({ ...platformConfigs, youtube })}
             media={media}
+            onThumbnailUpload={onYouTubeThumbnailUpload}
+            thumbnailPreviewUrl={youTubeThumbnailPreviewUrl}
+            isUploadingThumbnail={isUploadingYouTubeThumbnail}
           />
         )}
       </div>

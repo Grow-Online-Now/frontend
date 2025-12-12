@@ -27,6 +27,28 @@ export type TikTokPrivacyLevel =
 export type YouTubePrivacyStatus = 'public' | 'private' | 'unlisted'
 
 /**
+ * YouTube video categories
+ * Official YouTube category IDs: https://developers.google.com/youtube/v3/docs/videoCategories
+ */
+export const YOUTUBE_CATEGORIES = [
+  { id: '1', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.filmAnimation' },
+  { id: '2', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.autosVehicles' },
+  { id: '10', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.music' },
+  { id: '15', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.petsAnimals' },
+  { id: '17', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.sports' },
+  { id: '19', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.travel' },
+  { id: '20', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.gaming' },
+  { id: '22', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.peopleBlogs' },
+  { id: '23', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.comedy' },
+  { id: '24', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.entertainment' },
+  { id: '25', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.newsPolitics' },
+  { id: '26', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.howtoStyle' },
+  { id: '27', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.education' },
+  { id: '28', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.scienceTech' },
+  { id: '29', labelKey: 'dashboard.createPost.platformConfig.youtube.categories.nonprofits' },
+] as const
+
+/**
  * Twitter thread tweet item (for local state management)
  */
 export interface TwitterThreadTweet {

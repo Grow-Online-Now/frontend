@@ -381,10 +381,44 @@
             "unlisted": "Unlisted",
             "private": "Private"
           },
+          "category": "Category",
+          "categoryPlaceholder": "Select a category",
+          "categories": {
+            "filmAnimation": "Film & Animation",
+            "autosVehicles": "Autos & Vehicles",
+            "music": "Music",
+            "petsAnimals": "Pets & Animals",
+            "sports": "Sports",
+            "travel": "Travel & Events",
+            "gaming": "Gaming",
+            "peopleBlogs": "People & Blogs",
+            "comedy": "Comedy",
+            "entertainment": "Entertainment",
+            "newsPolitics": "News & Politics",
+            "howtoStyle": "Howto & Style",
+            "education": "Education",
+            "scienceTech": "Science & Technology",
+            "nonprofits": "Nonprofits & Activism"
+          },
           "tags": "Tags",
           "tagsPlaceholder": "Enter tags, separated by commas",
           "notifySubscribers": "Notify subscribers",
-          "madeForKids": "Made for kids"
+          "madeForKids": "Made for kids",
+          "thumbnail": {
+            "title": "Custom Thumbnail",
+            "selectFrame": "Select from video",
+            "selected": "Thumbnail selected",
+            "remove": "Remove",
+            "needsVideo": "Upload a video to select a thumbnail"
+          },
+          "thumbnailSelector": {
+            "title": "Select Thumbnail Frame",
+            "description": "Scrub through the video to find the perfect frame",
+            "currentTime": "Current: {{time}}",
+            "cancel": "Cancel",
+            "select": "Use This Frame",
+            "extracting": "Extracting frame..."
+          }
         }
       },
       "twitter": {

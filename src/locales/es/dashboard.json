@@ -308,6 +308,97 @@
         "title": "No hay cuentas conectadas",
         "description": "Conecta al menos una cuenta de redes sociales para empezar a crear publicaciones.",
         "cta": "Conectar cuenta"
+      },
+      "platformConfig": {
+        "title": "Configuración de plataforma",
+        "instagram": {
+          "title": "Instagram",
+          "contentType": "Tipo de contenido",
+          "types": {
+            "post": "Publicación",
+            "postDesc": "Imagen única en el feed",
+            "reel": "Reel",
+            "reelDesc": "Video vertical (9:16)",
+            "story": "Historia",
+            "storyDesc": "Desaparece en 24 horas",
+            "carousel": "Carrusel",
+            "carouselDesc": "Múltiples imágenes/videos"
+          },
+          "shareToFeed": "También compartir en Feed"
+        },
+        "tiktok": {
+          "title": "TikTok",
+          "contentType": "Tipo de contenido",
+          "types": {
+            "video": "Video",
+            "videoDesc": "Video estándar de TikTok",
+            "photo": "Carrusel de fotos",
+            "photoDesc": "Hasta 35 imágenes con música"
+          },
+          "privacy": "Privacidad",
+          "privacyLevels": {
+            "PUBLIC_TO_EVERYONE": "Público",
+            "MUTUAL_FOLLOW_FRIENDS": "Amigos",
+            "FOLLOWER_OF_CREATOR": "Seguidores",
+            "SELF_ONLY": "Privado"
+          },
+          "disableComment": "Desactivar comentarios",
+          "autoAddMusic": "Añadir música automáticamente"
+        },
+        "youtube": {
+          "title": "YouTube",
+          "contentType": "Tipo de contenido",
+          "types": {
+            "video": "Video",
+            "videoDesc": "Video estándar de YouTube",
+            "short": "Short",
+            "shortDesc": "Video vertical de menos de 60s"
+          },
+          "privacy": "Visibilidad",
+          "privacyLevels": {
+            "public": "Público",
+            "unlisted": "No listado",
+            "private": "Privado"
+          },
+          "category": "Categoría",
+          "categoryPlaceholder": "Seleccionar categoría",
+          "categories": {
+            "filmAnimation": "Cine y animación",
+            "autosVehicles": "Automóviles y vehículos",
+            "music": "Música",
+            "petsAnimals": "Mascotas y animales",
+            "sports": "Deportes",
+            "travel": "Viajes y eventos",
+            "gaming": "Videojuegos",
+            "peopleBlogs": "Gente y blogs",
+            "comedy": "Comedia",
+            "entertainment": "Entretenimiento",
+            "newsPolitics": "Noticias y política",
+            "howtoStyle": "Tutoriales y estilo",
+            "education": "Educación",
+            "scienceTech": "Ciencia y tecnología",
+            "nonprofits": "ONGs y activismo"
+          },
+          "tags": "Etiquetas",
+          "tagsPlaceholder": "Introduce etiquetas, separadas por comas",
+          "notifySubscribers": "Notificar a suscriptores",
+          "madeForKids": "Hecho para niños",
+          "thumbnail": {
+            "title": "Miniatura personalizada",
+            "selectFrame": "Seleccionar del video",
+            "selected": "Miniatura seleccionada",
+            "remove": "Eliminar",
+            "needsVideo": "Sube un video para seleccionar una miniatura"
+          },
+          "thumbnailSelector": {
+            "title": "Seleccionar fotograma",
+            "description": "Desplázate por el video para encontrar el fotograma perfecto",
+            "currentTime": "Posición: {{time}}",
+            "cancel": "Cancelar",
+            "select": "Usar este fotograma",
+            "extracting": "Extrayendo fotograma..."
+          }
+        }
       }
     },
     "settings": {
