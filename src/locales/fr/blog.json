@@ -32,6 +32,59 @@
     }
   },
   "articles": {
+    "repurposing2025": {
+      "title": "Maîtrisez le Recyclage de Contenu : Transformez Un Post en 10+ Publications",
+      "description": "Découvrez la méthode éprouvée pour multiplier votre production de contenu sans multiplier votre charge de travail. Transformez un contenu en 10+ publications optimisées pour chaque plateforme.",
+      "content": {
+        "intro": {
+          "p1": "La plupart des créateurs gaspillent 90% du potentiel de leur contenu en créant une fois et en publiant une fois. Les créateurs les plus malins en 2025 comprennent qu'une seule bonne idée peut alimenter des semaines de contenu sur toutes les plateformes.",
+          "p2": "Ce guide révèle le framework exact pour transformer un seul contenu en 10+ publications optimisées pour chaque plateforme — sans sacrifier la qualité ni s'épuiser."
+        },
+        "section1": {
+          "title": "Comprendre la Stratégie des Piliers de Contenu",
+          "p1": "Les piliers de contenu sont vos contenus longs fondamentaux. Ces ancres — vidéos YouTube, articles de blog, podcasts ou lives — contiennent suffisamment de valeur pour être atomisées en dizaines de contenus plus courts.",
+          "p2": "L'approche pilier inverse la logique de création de contenu. Au lieu de créer de zéro pour chaque plateforme, vous :",
+          "list": {
+            "item1": "Créez un contenu pilier complet chaque semaine (vidéo de 30-60 min, article de 2000+ mots, ou podcast de 45 min)",
+            "item2": "Extrayez 10-15 insights clés, citations ou moments de ce pilier",
+            "item3": "Transformez chaque extrait en format natif pour chaque plateforme",
+            "item4": "Programmez sur la semaine pour une présence constante partout"
+          }
+        },
+        "section2": {
+          "title": "Adapter le Contenu pour Chaque Plateforme",
+          "p1": "Recycler n'est pas copier-coller. Chaque plateforme a ses propres modes de consommation, formats et attentes. La même idée nécessite un packaging différent selon le contexte.",
+          "p2": "Un tutoriel YouTube de 10 minutes devient : un TikTok de 60 secondes montrant la technique clé, un carrousel Instagram décomposant les étapes, un thread LinkedIn avec un contexte professionnel, et une épingle Pinterest avec un résumé visuel.",
+          "highlight": "Une vidéo YouTube de 10 minutes peut générer 15+ contenus : 3 TikToks, 2 Reels, 1 carrousel, 3 Stories, 2 tweets, 1 post LinkedIn, 1 épingle Pinterest, un article de blog et une newsletter."
+        },
+        "section3": {
+          "title": "Construire Votre Système de Recyclage",
+          "p1": "Le recyclage aléatoire mène à une qualité inconsistante. Un workflow systématique garantit que chaque pilier est maximisé sans créer de fatigue décisionnelle.",
+          "p2": "Suivez ce workflow en trois étapes :",
+          "list": {
+            "item1": "Extraire : Regardez ou lisez votre contenu pilier et notez les meilleurs moments, citations et points d'enseignement",
+            "item2": "Transformer : Créez par lots chaque type de contenu — faites tous les TikToks ensemble, tous les carrousels ensemble",
+            "item3": "Distribuer : Programmez le contenu sur toutes les plateformes aux heures optimales avec des outils comme Grow Online"
+          }
+        },
+        "section4": {
+          "title": "La Transformation de Contenu en Action",
+          "p1": "La théorie c'est bien, mais voir des exemples concrets rend le framework tangible. Voici comment les créateurs à succès transforment leur contenu pilier :",
+          "p2": "Ces templates fonctionnent pour n'importe quelle niche :",
+          "list": {
+            "item1": "Le Visuel Citation : Prenez votre meilleure phrase et créez une image partageable pour Instagram et Pinterest",
+            "item2": "Le Micro-Tutoriel : Extrayez une technique de 60 secondes d'un tutoriel plus long pour TikTok et Reels",
+            "item3": "Le Thread : Décomposez votre argument principal en 5-7 posts connectés pour Twitter et LinkedIn"
+          }
+        },
+        "conclusion": {
+          "title": "Commencez à Multiplier Votre Contenu Dès Aujourd'hui",
+          "p1": "Le recyclage de contenu ne consiste pas à travailler plus — mais à extraire la valeur maximale du travail que vous faites déjà. Les créateurs qui maîtrisent ce framework passent moins de temps à créer tout en maintenant une présence sur toutes les plateformes.",
+          "p2": "Commencez avec votre prochain contenu. Avant de publier, demandez-vous : 'Quelles sont les 10 façons différentes de partager cette idée ?' Puis construisez votre workflow de recyclage autour de la réponse.",
+          "highlight": "Les créateurs qui gagnent en 2025 ne créent pas plus — ils créent plus intelligemment. Une bonne idée, bien recyclée, bat dix posts médiocres à tous les coups."
+        }
+      }
+    },
     "scheduling2025": {
       "title": "Le Guide Ultime de la Programmation sur les Réseaux Sociaux en 2025",
       "description": "Maîtrisez l'art de la programmation de contenu avec des outils alimentés par l'IA. Apprenez quand publier, comment planifier votre contenu et les stratégies pour maximiser l'engagement.",

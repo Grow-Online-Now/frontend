@@ -32,6 +32,59 @@
     }
   },
   "articles": {
+    "repurposing2025": {
+      "title": "Content Repurposing Mastery: Turn One Post Into 10+ Pieces of Content",
+      "description": "Learn the proven framework to multiply your content output without multiplying your workload. Transform one piece of content into 10+ platform-optimized posts.",
+      "content": {
+        "intro": {
+          "p1": "Most creators waste 90% of their content's potential by creating once and posting once. The smartest creators in 2025 understand that one great idea can fuel weeks of content across every platform.",
+          "p2": "This guide reveals the exact framework to transform a single piece of content into 10+ platform-optimized posts—without sacrificing quality or burning out."
+        },
+        "section1": {
+          "title": "Understanding the Content Pillar Strategy",
+          "p1": "Content pillars are your foundational long-form pieces. These anchors—YouTube videos, blog posts, podcasts, or live streams—contain enough value to be atomized into dozens of smaller pieces.",
+          "p2": "The pillar approach flips content creation on its head. Instead of creating from scratch for each platform, you:",
+          "list": {
+            "item1": "Create one comprehensive pillar piece weekly (30-60 min video, 2000+ word blog, or 45 min podcast)",
+            "item2": "Extract 10-15 key insights, quotes, or moments from that pillar",
+            "item3": "Transform each extract into platform-native content formats",
+            "item4": "Schedule across the week for consistent presence on every platform"
+          }
+        },
+        "section2": {
+          "title": "Adapting Content for Each Platform",
+          "p1": "Repurposing isn't copying and pasting. Each platform has unique consumption patterns, format requirements, and audience expectations. The same insight needs different packaging for different contexts.",
+          "p2": "A 10-minute YouTube tutorial becomes: a 60-second TikTok showing the key technique, a carousel post breaking down the steps on Instagram, a text thread on LinkedIn with professional context, and a Pinterest pin with a visual summary.",
+          "highlight": "One 10-minute YouTube video can generate 15+ pieces of content: 3 TikToks, 2 Reels, 1 carousel, 3 Stories, 2 tweets, 1 LinkedIn post, 1 Pinterest pin, a blog post, and an email newsletter."
+        },
+        "section3": {
+          "title": "Building Your Repurposing System",
+          "p1": "Random repurposing leads to inconsistent quality. A systematic workflow ensures every pillar piece gets maximized without creating decision fatigue.",
+          "p2": "Follow this three-stage workflow:",
+          "list": {
+            "item1": "Extract: Watch or read your pillar content and timestamp the best moments, quotes, and teaching points",
+            "item2": "Transform: Batch-create each content type—do all TikToks together, all carousels together, all tweets together",
+            "item3": "Distribute: Schedule content across platforms at optimal times using tools like Grow Online"
+          }
+        },
+        "section4": {
+          "title": "Content Transformation in Action",
+          "p1": "Theory is useful, but seeing real examples makes the framework concrete. Here's how successful creators transform their pillar content:",
+          "p2": "These templates work for any niche:",
+          "list": {
+            "item1": "The Quote Graphic: Take your best one-liner and design it as a shareable image for Instagram and Pinterest",
+            "item2": "The Micro-Tutorial: Extract a 60-second technique from a longer tutorial for TikTok and Reels",
+            "item3": "The Thread: Break down your main argument into 5-7 connected posts for Twitter and LinkedIn"
+          }
+        },
+        "conclusion": {
+          "title": "Start Multiplying Your Content Today",
+          "p1": "Content repurposing isn't about working more—it's about extracting maximum value from the work you already do. Creators who master this framework spend less time creating while maintaining presence across every platform.",
+          "p2": "Start with your next piece of content. Before you publish, ask: 'What are the 10 different ways I can share this idea?' Then build your repurposing workflow around the answer.",
+          "highlight": "The creators winning in 2025 aren't creating more—they're creating smarter. One great idea, properly repurposed, beats ten mediocre posts every time."
+        }
+      }
+    },
     "scheduling2025": {
       "title": "The Ultimate Guide to Social Media Scheduling in 2025",
       "description": "Master the art of content scheduling with AI-powered tools. Learn when to post, how to batch content, and strategies for maximum engagement across platforms.",

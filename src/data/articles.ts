@@ -17,6 +17,26 @@ export type ArticleCategory = 'strategy' | 'tips' | 'case-study' | 'news' | 'tut
 
 export const articles: Article[] = [
   {
+    slug: 'content-repurposing-mastery-2025',
+    titleKey: 'blog.articles.repurposing2025.title',
+    descriptionKey: 'blog.articles.repurposing2025.description',
+    contentKey: 'blog.articles.repurposing2025.content',
+    category: 'strategy',
+    publishedAt: '2025-12-12',
+    readingTime: 9,
+    authorName: 'Bastien Youssfi',
+    authorRole: 'Founder of Grow Online',
+    imageUrl: '/images/blog/og/repurposing.webp',
+    featured: true,
+    keywords: [
+      'content repurposing',
+      'repurpose content',
+      'content multiplication',
+      'content strategy',
+      'cross-platform content',
+    ],
+  },
+  {
     slug: 'ultimate-guide-social-media-scheduling-2025',
     titleKey: 'blog.articles.scheduling2025.title',
     descriptionKey: 'blog.articles.scheduling2025.description',

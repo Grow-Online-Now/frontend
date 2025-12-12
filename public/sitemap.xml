@@ -30,13 +30,25 @@
   <!-- Blog Listing -->
   <url>
     <loc>https://growonline.now/en/blog</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog"/>
+  </url>
+
+  <!-- Blog Article: Content Repurposing Mastery 2025 -->
+  <url>
+    <loc>https://growonline.now/en/blog/content-repurposing-mastery-2025</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://growonline.now/en/blog/content-repurposing-mastery-2025"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://growonline.now/fr/blog/content-repurposing-mastery-2025"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://growonline.now/es/blog/content-repurposing-mastery-2025"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://growonline.now/en/blog/content-repurposing-mastery-2025"/>
   </url>
 
   <!-- Blog Article: Ultimate Guide to Social Media Scheduling 2025 -->

@@ -32,6 +32,59 @@
     }
   },
   "articles": {
+    "repurposing2025": {
+      "title": "Domina el Reciclaje de Contenido: Transforma Un Post en 10+ Publicaciones",
+      "description": "Aprende el framework probado para multiplicar tu producción de contenido sin multiplicar tu carga de trabajo. Transforma un contenido en 10+ posts optimizados para cada plataforma.",
+      "content": {
+        "intro": {
+          "p1": "La mayoría de los creadores desperdician el 90% del potencial de su contenido al crear una vez y publicar una vez. Los creadores más inteligentes en 2025 entienden que una gran idea puede alimentar semanas de contenido en todas las plataformas.",
+          "p2": "Esta guía revela el framework exacto para transformar una pieza de contenido en 10+ posts optimizados para cada plataforma — sin sacrificar calidad ni quemarte."
+        },
+        "section1": {
+          "title": "Entendiendo la Estrategia de Pilares de Contenido",
+          "p1": "Los pilares de contenido son tus piezas fundamentales de formato largo. Estos anclajes — videos de YouTube, posts de blog, podcasts o transmisiones en vivo — contienen suficiente valor para ser atomizados en docenas de piezas más pequeñas.",
+          "p2": "El enfoque de pilares invierte la lógica de creación de contenido. En lugar de crear desde cero para cada plataforma:",
+          "list": {
+            "item1": "Crea un pilar de contenido completo cada semana (video de 30-60 min, blog de 2000+ palabras, o podcast de 45 min)",
+            "item2": "Extrae 10-15 insights clave, citas o momentos de ese pilar",
+            "item3": "Transforma cada extracto en formato nativo para cada plataforma",
+            "item4": "Programa a lo largo de la semana para presencia constante en todas partes"
+          }
+        },
+        "section2": {
+          "title": "Adaptando Contenido para Cada Plataforma",
+          "p1": "Reciclar no es copiar y pegar. Cada plataforma tiene patrones de consumo, formatos y expectativas únicos. La misma idea necesita un empaquetado diferente según el contexto.",
+          "p2": "Un tutorial de YouTube de 10 minutos se convierte en: un TikTok de 60 segundos mostrando la técnica clave, un carrusel de Instagram desglosando los pasos, un hilo en LinkedIn con contexto profesional, y un pin de Pinterest con resumen visual.",
+          "highlight": "Un video de YouTube de 10 minutos puede generar 15+ piezas de contenido: 3 TikToks, 2 Reels, 1 carrusel, 3 Stories, 2 tweets, 1 post de LinkedIn, 1 pin de Pinterest, un post de blog y un newsletter."
+        },
+        "section3": {
+          "title": "Construyendo Tu Sistema de Reciclaje",
+          "p1": "El reciclaje aleatorio lleva a calidad inconsistente. Un workflow sistemático asegura que cada pilar se maximice sin crear fatiga de decisiones.",
+          "p2": "Sigue este workflow de tres etapas:",
+          "list": {
+            "item1": "Extraer: Mira o lee tu contenido pilar y marca los mejores momentos, citas y puntos de enseñanza",
+            "item2": "Transformar: Crea por lotes cada tipo de contenido — haz todos los TikToks juntos, todos los carruseles juntos",
+            "item3": "Distribuir: Programa contenido en todas las plataformas en horarios óptimos usando herramientas como Grow Online"
+          }
+        },
+        "section4": {
+          "title": "Transformación de Contenido en Acción",
+          "p1": "La teoría es útil, pero ver ejemplos reales hace el framework concreto. Así es como los creadores exitosos transforman su contenido pilar:",
+          "p2": "Estas plantillas funcionan para cualquier nicho:",
+          "list": {
+            "item1": "El Gráfico de Cita: Toma tu mejor frase y diseña una imagen compartible para Instagram y Pinterest",
+            "item2": "El Micro-Tutorial: Extrae una técnica de 60 segundos de un tutorial más largo para TikTok y Reels",
+            "item3": "El Hilo: Desglosa tu argumento principal en 5-7 posts conectados para Twitter y LinkedIn"
+          }
+        },
+        "conclusion": {
+          "title": "Empieza a Multiplicar Tu Contenido Hoy",
+          "p1": "El reciclaje de contenido no se trata de trabajar más — se trata de extraer el máximo valor del trabajo que ya haces. Los creadores que dominan este framework pasan menos tiempo creando mientras mantienen presencia en todas las plataformas.",
+          "p2": "Empieza con tu próximo contenido. Antes de publicar, pregúntate: '¿Cuáles son las 10 formas diferentes de compartir esta idea?' Luego construye tu workflow de reciclaje alrededor de la respuesta.",
+          "highlight": "Los creadores que ganan en 2025 no están creando más — están creando más inteligentemente. Una gran idea, bien reciclada, supera a diez posts mediocres siempre."
+        }
+      }
+    },
     "scheduling2025": {
       "title": "La Guía Definitiva de Programación de Redes Sociales en 2025",
       "description": "Domina el arte de la programación de contenido con herramientas potenciadas por IA. Aprende cuándo publicar, cómo planificar contenido y estrategias para máximo engagement.",
