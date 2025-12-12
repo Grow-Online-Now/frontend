@@ -27,6 +27,39 @@ export type TikTokPrivacyLevel =
 export type YouTubePrivacyStatus = 'public' | 'private' | 'unlisted'
 
 /**
+ * Twitter thread tweet item (for local state management)
+ */
+export interface TwitterThreadTweet {
+  id: string // Local UUID for React keys and reordering
+  text: string // Tweet text (max 280 chars)
+  mediaIds?: string[] // Backend media IDs (max 4 per tweet)
+}
+
+/**
+ * Twitter thread tweet for API request (without local id)
+ */
+export interface TwitterThreadTweetRequest {
+  text: string
+  mediaIds?: string[]
+}
+
+/**
+ * Twitter first comment configuration
+ */
+export interface TwitterFirstComment {
+  text: string // Comment text (max 280 chars)
+  mediaIds?: string[] // Backend media IDs (max 4)
+}
+
+/**
+ * Twitter platform configuration (for API request)
+ */
+export interface TwitterConfig {
+  thread?: TwitterThreadTweetRequest[]
+  firstComment?: TwitterFirstComment
+}
+
+/**
  * Instagram platform configuration
  */
 export interface InstagramConfig {
@@ -68,6 +101,7 @@ export interface PlatformConfigurations {
   instagram?: InstagramConfig
   tiktok?: TikTokConfig
   youtube?: YouTubeConfig
+  twitter?: TwitterConfig
 }
 
 /**

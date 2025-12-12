@@ -385,6 +385,48 @@
           "madeForKids": "Made for kids"
         }
       },
+      "twitter": {
+        "thread": {
+          "title": "Thread",
+          "addTweet": "Add to thread",
+          "removeTweet": "Remove tweet",
+          "tweetNumber": "Tweet {{current}}/{{total}}",
+          "dragToReorder": "Drag to reorder",
+          "placeholder": "Continue your thread...",
+          "mainTweet": "main tweet",
+          "empty": {
+            "title": "Create a thread",
+            "description": "Add more tweets to create a thread"
+          },
+          "summary": "Thread: {{count}} tweets",
+          "summary_one": "Thread: 1 tweet",
+          "summary_other": "Thread: {{count}} tweets",
+          "maxReached": "Maximum {{max}} tweets per thread",
+          "validation": {
+            "textRequired": "Tweet text is required",
+            "tooLong": "Tweet exceeds 280 characters"
+          }
+        },
+        "firstComment": {
+          "title": "First Comment",
+          "enable": "Add first comment",
+          "description": "Auto-reply to your tweet - great for links and CTAs",
+          "placeholder": "Add a comment...",
+          "validation": {
+            "textRequired": "Comment text is required when enabled",
+            "tooLong": "Comment exceeds 280 characters"
+          }
+        },
+        "media": {
+          "addMedia": "Add media",
+          "maxImages": "Max {{count}} images per tweet",
+          "removeMedia": "Remove"
+        },
+        "characterCount": {
+          "remaining": "{{count}} characters remaining",
+          "over": "{{count}} characters over limit"
+        }
+      },
       "posting": {
         "title": "Posting Your Content",
         "subtitle": "Publishing to your accounts...",

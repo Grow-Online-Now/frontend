@@ -36,10 +36,13 @@ export function PostingProgressModal({
 }: PostingProgressModalProps) {
   const { t } = useTranslation()
 
-  // Check if all platforms are done
-  const allComplete =
+  // Check if all platforms are done (or if overall status indicates completion/failure)
+  const allPlatformsDone =
     platformPosts.length > 0 &&
     platformPosts.every((p) => p.status === 'posted' || p.status === 'failed')
+
+  // Allow closing if overall status is done OR all platforms are done
+  const canClose = overallStatus === 'completed' || overallStatus === 'failed' || allPlatformsDone
 
   const completedCount = platformPosts.filter((p) => p.status === 'posted').length
   const totalCount = selectedAccounts.length || platformPosts.length
@@ -81,11 +84,11 @@ export function PostingProgressModal({
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && allComplete && onClose()}>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && canClose && onClose()}>
       <DialogContent
         className="sm:max-w-md"
-        onPointerDownOutside={(e) => !allComplete && e.preventDefault()}
-        onEscapeKeyDown={(e) => !allComplete && e.preventDefault()}
+        onPointerDownOutside={(e) => !canClose && e.preventDefault()}
+        onEscapeKeyDown={(e) => !canClose && e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle>{t('dashboard.createPost.posting.title')}</DialogTitle>
@@ -181,8 +184,8 @@ export function PostingProgressModal({
             })}
           </p>
 
-          <Button onClick={onClose} disabled={!allComplete} size="sm">
-            {allComplete
+          <Button onClick={onClose} disabled={!canClose} size="sm">
+            {canClose
               ? t('dashboard.createPost.posting.done')
               : t('dashboard.createPost.posting.close')}
           </Button>

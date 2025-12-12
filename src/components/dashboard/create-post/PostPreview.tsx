@@ -24,6 +24,7 @@ import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { cn } from '@/lib/utils'
 import type { SocialPlatform, Connection } from '@/types/connections'
 import type { MediaFile } from './MediaUploader'
+import type { TwitterThreadTweet, TwitterFirstComment } from '@/types/posts'
 
 interface PostPreviewProps {
   selectedPlatform: SocialPlatform
@@ -33,6 +34,9 @@ interface PostPreviewProps {
   media: MediaFile[]
   caption: string
   className?: string
+  // Twitter thread props
+  twitterThread?: TwitterThreadTweet[]
+  twitterFirstComment?: TwitterFirstComment | null
 }
 
 export function PostPreview({
@@ -43,6 +47,8 @@ export function PostPreview({
   media,
   caption,
   className,
+  twitterThread = [],
+  twitterFirstComment,
 }: PostPreviewProps) {
   const { t } = useTranslation()
 
@@ -107,6 +113,8 @@ export function PostPreview({
                 account={account}
                 media={firstMedia}
                 caption={truncateCaption(caption, 280)}
+                thread={twitterThread}
+                firstComment={twitterFirstComment}
               />
             )}
             {selectedPlatform === 'facebook' && (
@@ -272,40 +280,108 @@ function TwitterPreview({
   account,
   media,
   caption,
+  thread = [],
+  firstComment,
 }: {
   account?: Connection
   media?: MediaFile
   caption: string
+  thread?: TwitterThreadTweet[]
+  firstComment?: TwitterFirstComment | null
 }) {
+  const { t } = useTranslation()
+  const hasThread = thread.length > 0
+  const hasFirstComment = firstComment && firstComment.text.length > 0
+
   return (
-    <div className="overflow-hidden rounded-2xl p-3">
-      <div className="flex gap-2.5">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
-          {account?.platformUsername?.[0]?.toUpperCase() || 'U'}
-        </div>
-        <div className="flex-1">
-          <div className="flex items-center gap-1.5">
-            <span className="text-[14px] font-bold text-black">
-              {account?.displayName || account?.platformUsername || 'Display Name'}
-            </span>
-            <span className="text-[13px] text-neutral-500">
-              @{account?.platformUsername || 'username'}
-            </span>
+    <div className="overflow-hidden rounded-2xl">
+      {/* Thread indicator */}
+      {(hasThread || hasFirstComment) && (
+        <div className="border-b border-neutral-200 bg-neutral-50 px-3 py-2 dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="flex items-center gap-2 text-xs text-neutral-500">
+            <MessageCircle className="h-3 w-3" />
+            {hasThread && (
+              <span>
+                {t('dashboard.createPost.twitter.thread.summary', { count: thread.length + 1 })}
+              </span>
+            )}
+            {hasThread && hasFirstComment && <span>•</span>}
+            {hasFirstComment && <span>{t('dashboard.createPost.twitter.firstComment.title')}</span>}
           </div>
+        </div>
+      )}
 
-          {caption && <p className="mt-1 text-[14px] leading-[1.4] text-black">{caption}</p>}
-
-          {media && (
-            <div className="mt-2 overflow-hidden rounded-xl bg-neutral-100">
-              {media.type === 'video' ? (
-                <video src={media.url} className="w-full" />
-              ) : (
-                <img src={media.url} alt="" className="w-full" />
-              )}
+      {/* Main tweet */}
+      <div className="p-3">
+        <div className="flex gap-2.5">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
+            {account?.platformUsername?.[0]?.toUpperCase() || 'U'}
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[14px] font-bold text-black dark:text-white">
+                {account?.displayName || account?.platformUsername || 'Display Name'}
+              </span>
+              <span className="text-[13px] text-neutral-500">
+                @{account?.platformUsername || 'username'}
+              </span>
             </div>
-          )}
+
+            {caption && (
+              <p className="mt-1 text-[14px] leading-[1.4] text-black dark:text-white">{caption}</p>
+            )}
+
+            {media && (
+              <div className="mt-2 overflow-hidden rounded-xl bg-neutral-100">
+                {media.type === 'video' ? (
+                  <video src={media.url} className="w-full" />
+                ) : (
+                  <img src={media.url} alt="" className="w-full" />
+                )}
+              </div>
+            )}
+
+            {/* Thread number indicator */}
+            {hasThread && (
+              <div className="mt-2 text-xs text-neutral-400">
+                {t('dashboard.createPost.twitter.thread.tweetNumber', {
+                  current: 1,
+                  total: thread.length + 1,
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* Thread preview snippets */}
+      {hasThread && thread.length > 0 && (
+        <div className="border-t border-neutral-200 px-3 py-2 dark:border-neutral-800">
+          <div className="space-y-1.5">
+            {thread.slice(0, 2).map((tweet) => (
+              <div key={tweet.id} className="flex items-start gap-2">
+                <div className="mt-0.5 h-1.5 w-1.5 rounded-full bg-neutral-300" />
+                <p className="line-clamp-1 text-xs text-neutral-500">
+                  {tweet.text || t('dashboard.createPost.twitter.thread.placeholder')}
+                </p>
+              </div>
+            ))}
+            {thread.length > 2 && (
+              <div className="text-xs text-neutral-400">+{thread.length - 2} more...</div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* First comment preview */}
+      {hasFirstComment && (
+        <div className="border-t border-neutral-200 px-3 py-2 dark:border-neutral-800">
+          <div className="flex items-start gap-2">
+            <MessageCircle className="mt-0.5 h-3 w-3 text-neutral-400" />
+            <p className="line-clamp-2 text-xs text-neutral-500">{firstComment.text}</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

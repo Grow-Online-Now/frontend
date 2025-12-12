@@ -3,7 +3,7 @@
  * Redesigned three-column layout for creating social media posts
  */
 
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
@@ -21,13 +21,22 @@ import {
   PostButton,
   PlatformConfigPanel,
   PostingProgressModal,
+  TwitterThreadBuilder,
+  TwitterFirstComment,
   type MediaFile,
 } from '@/components/dashboard/create-post'
 
 import { useConnections } from '@/hooks/useConnections'
 import { useCreatePost } from '@/hooks/useCreatePost'
 import { useMediaUpload } from '@/hooks/useMediaUpload'
-import type { CreatePostRequest, ScheduleType, PlatformConfigurations } from '@/types/posts'
+import { useThreadMediaUpload } from '@/hooks/useThreadMediaUpload'
+import type {
+  CreatePostRequest,
+  ScheduleType,
+  PlatformConfigurations,
+  TwitterThreadTweet,
+  TwitterFirstComment as TwitterFirstCommentType,
+} from '@/types/posts'
 import type { SocialPlatform } from '@/types/connections'
 
 // Platforms that require media
@@ -60,6 +69,10 @@ export default function CreatePostPage() {
     hasErrors,
   } = useMediaUpload()
 
+  // Thread media uploads (for Twitter threads and first comment)
+  const threadMediaUpload = useThreadMediaUpload()
+  const firstCommentMediaUpload = useThreadMediaUpload()
+
   // Form state
   const [selectedAccountIds, setSelectedAccountIds] = useState<string[]>([])
   const [caption, setCaption] = useState('')
@@ -68,6 +81,14 @@ export default function CreatePostPage() {
   const [scheduledTime, setScheduledTime] = useState('12:00')
   const [previewPlatform, setPreviewPlatform] = useState<SocialPlatform>('instagram')
   const [platformConfigs, setPlatformConfigs] = useState<PlatformConfigurations>({})
+
+  // Twitter thread state
+  const [twitterThread, setTwitterThread] = useState<TwitterThreadTweet[]>([])
+  const [firstCommentEnabled, setFirstCommentEnabled] = useState(false)
+  const [firstComment, setFirstComment] = useState<TwitterFirstCommentType | null>(null)
+
+  // First comment context ID (constant)
+  const FIRST_COMMENT_CONTEXT_ID = 'first-comment'
 
   // Map upload state to MediaFile format for components
   const media: MediaFile[] = useMemo(
@@ -112,6 +133,49 @@ export default function CreatePostPage() {
     [selectedPlatforms]
   )
 
+  // Check if Twitter is selected
+  const hasTwitter = useMemo(() => selectedPlatforms.includes('twitter'), [selectedPlatforms])
+
+  // Reset Twitter state when Twitter is deselected
+  useEffect(() => {
+    if (!hasTwitter) {
+      setTwitterThread([])
+      setFirstCommentEnabled(false)
+      setFirstComment(null)
+      threadMediaUpload.reset()
+      firstCommentMediaUpload.reset()
+    }
+  }, [hasTwitter, firstCommentMediaUpload, threadMediaUpload])
+
+  // Twitter thread validation
+  const twitterThreadValidation = useMemo(() => {
+    if (!hasTwitter) return { valid: true, errors: [] as string[] }
+
+    const errors: string[] = []
+
+    // Validate thread tweets
+    twitterThread.forEach((tweet) => {
+      if (tweet.text.length === 0) {
+        errors.push(t('dashboard.createPost.twitter.thread.validation.textRequired'))
+      }
+      if (tweet.text.length > 280) {
+        errors.push(t('dashboard.createPost.twitter.thread.validation.tooLong'))
+      }
+    })
+
+    // Validate first comment if enabled
+    if (firstCommentEnabled) {
+      if (!firstComment?.text || firstComment.text.length === 0) {
+        errors.push(t('dashboard.createPost.twitter.firstComment.validation.textRequired'))
+      }
+      if (firstComment && firstComment.text.length > 280) {
+        errors.push(t('dashboard.createPost.twitter.firstComment.validation.tooLong'))
+      }
+    }
+
+    return { valid: errors.length === 0, errors }
+  }, [hasTwitter, twitterThread, firstCommentEnabled, firstComment, t])
+
   // Platform validations
   const validations = useMemo(() => {
     return selectedPlatforms.map((platform) => {
@@ -125,9 +189,19 @@ export default function CreatePostPage() {
           }),
         }
       }
+
+      // Check Twitter thread validation
+      if (platform === 'twitter' && !twitterThreadValidation.valid) {
+        return {
+          platform,
+          status: 'error' as const,
+          message: twitterThreadValidation.errors[0],
+        }
+      }
+
       return { platform, status: 'ready' as const }
     })
-  }, [selectedPlatforms, media, t])
+  }, [selectedPlatforms, media, t, twitterThreadValidation])
 
   // Handle media upload
   const handleMediaUpload = useCallback(
@@ -198,6 +272,24 @@ export default function CreatePostPage() {
       return
     }
 
+    // Check if thread media uploads are in progress
+    if (threadMediaUpload.isAnyUploading || firstCommentMediaUpload.isAnyUploading) {
+      toast.error(t('dashboard.createPost.media.validation.uploadsInProgress'))
+      return
+    }
+
+    // Check if thread media has errors
+    if (threadMediaUpload.hasAnyErrors || firstCommentMediaUpload.hasAnyErrors) {
+      toast.error(t('dashboard.createPost.media.validation.uploadsFailed'))
+      return
+    }
+
+    // Validate Twitter thread
+    if (hasTwitter && !twitterThreadValidation.valid) {
+      toast.error(twitterThreadValidation.errors[0])
+      return
+    }
+
     if (scheduleType === 'scheduled' && !scheduledDate) {
       toast.error(t('dashboard.createPost.validation.dateRequired'))
       return
@@ -205,12 +297,37 @@ export default function CreatePostPage() {
 
     // Build request
     const mediaIds = getMediaIds()
+
+    // Build platform configurations including Twitter
+    const finalPlatformConfigs: PlatformConfigurations = { ...platformConfigs }
+
+    // Add Twitter config if applicable
+    if (hasTwitter && (twitterThread.length > 0 || firstCommentEnabled)) {
+      finalPlatformConfigs.twitter = {}
+
+      // Add thread tweets with their media IDs
+      if (twitterThread.length > 0) {
+        finalPlatformConfigs.twitter.thread = twitterThread.map((tweet) => ({
+          text: tweet.text,
+          mediaIds: threadMediaUpload.getMediaIds(tweet.id),
+        }))
+      }
+
+      // Add first comment with its media IDs
+      if (firstCommentEnabled && firstComment) {
+        finalPlatformConfigs.twitter.firstComment = {
+          text: firstComment.text,
+          mediaIds: firstCommentMediaUpload.getMediaIds(FIRST_COMMENT_CONTEXT_ID),
+        }
+      }
+    }
+
     const request: CreatePostRequest = {
       caption,
       social_accounts: selectedAccountIds,
       is_draft: scheduleType === 'draft',
       ...(mediaIds.length > 0 && { media_ids: mediaIds }),
-      platform_configurations: platformConfigs,
+      platform_configurations: finalPlatformConfigs,
     }
 
     if (scheduleType === 'scheduled' && scheduledDate) {
@@ -340,6 +457,36 @@ export default function CreatePostPage() {
             selectedPlatforms={selectedPlatforms}
           />
 
+          {/* Twitter Thread Builder - only show when Twitter is selected */}
+          {hasTwitter && (
+            <TwitterThreadBuilder
+              thread={twitterThread}
+              onThreadChange={setTwitterThread}
+              mediaUpload={threadMediaUpload}
+            />
+          )}
+
+          {/* Twitter First Comment - only show when Twitter is selected */}
+          {hasTwitter && (
+            <TwitterFirstComment
+              enabled={firstCommentEnabled}
+              onEnabledChange={setFirstCommentEnabled}
+              comment={firstComment}
+              onCommentChange={setFirstComment}
+              uploads={firstCommentMediaUpload.getUploadsArray(FIRST_COMMENT_CONTEXT_ID)}
+              onAddMedia={(files) =>
+                firstCommentMediaUpload.addFilesToContext(FIRST_COMMENT_CONTEXT_ID, files)
+              }
+              onRemoveMedia={(uploadId) =>
+                firstCommentMediaUpload.removeFileFromContext(FIRST_COMMENT_CONTEXT_ID, uploadId)
+              }
+              onRetryMedia={(uploadId) =>
+                firstCommentMediaUpload.retryUpload(FIRST_COMMENT_CONTEXT_ID, uploadId)
+              }
+              canAddMoreMedia={firstCommentMediaUpload.canAddMore(FIRST_COMMENT_CONTEXT_ID)}
+            />
+          )}
+
           <PlatformHints selectedPlatforms={selectedPlatforms} media={media} caption={caption} />
         </div>
 
@@ -352,6 +499,8 @@ export default function CreatePostPage() {
             accounts={selectedAccounts}
             media={media}
             caption={caption}
+            twitterThread={twitterThread}
+            twitterFirstComment={firstComment}
           />
         </aside>
       </div>
