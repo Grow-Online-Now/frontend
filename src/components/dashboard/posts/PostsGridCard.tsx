@@ -132,7 +132,7 @@ export function PostsGridCard({
         {(hasMedia || !post.caption) && (
           <div
             className={cn(
-              'h-24 w-24 shrink-0 overflow-hidden rounded-md bg-gradient-to-br',
+              'h-24 w-24 shrink-0 overflow-hidden rounded-md bg-linear-to-br',
               gradient
             )}
           >

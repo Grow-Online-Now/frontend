@@ -138,7 +138,7 @@ export function AccountAvatar({
         {src ? (
           <img src={src} alt={name || 'Account avatar'} className="size-full object-cover" />
         ) : (
-          <div className="from-muted to-muted-foreground/20 flex size-full items-center justify-center bg-gradient-to-br">
+          <div className="from-muted to-muted-foreground/20 flex size-full items-center justify-center bg-linear-to-br">
             <span className="text-muted-foreground text-[0.6em] font-semibold">{initials}</span>
           </div>
         )}
