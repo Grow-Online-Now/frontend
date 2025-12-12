@@ -167,7 +167,8 @@ export default function CreatePostPage() {
       threadMediaUpload.reset()
       firstCommentMediaUpload.reset()
     }
-  }, [hasTwitter, firstCommentMediaUpload, threadMediaUpload])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only trigger when hasTwitter changes, not on every hook reference change
+  }, [hasTwitter])
 
   // Twitter thread validation
   const twitterThreadValidation = useMemo(() => {
