@@ -27,8 +27,8 @@ jobs:
       - name: Build React app
         run: pnpm run build
         env:
-          VITE_API_URL: https://api.growonline.now/
-          VITE_APP_URL: https://growonline.now/
+          VITE_API_URL: https://api.growonline.now
+          VITE_APP_URL: https://growonline.now
           CI: false
 
       - name: Configure AWS credentials
