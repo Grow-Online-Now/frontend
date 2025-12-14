@@ -13,6 +13,7 @@ export { PostButton } from './PostButton'
 export { PlatformConfigPanel } from './PlatformConfigPanel'
 export { PostingProgressModal } from './PostingProgressModal'
 export { LinkedInConfigSection } from './LinkedInConfigSection'
+export { PinterestConfigSection } from './PinterestConfigSection'
 
 // Twitter thread components
 export { TwitterCharacterCounter } from './TwitterCharacterCounter'

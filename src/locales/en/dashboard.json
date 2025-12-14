@@ -201,6 +201,22 @@
         "error": "Failed to connect page. Please try again."
       }
     },
+    "pinterest": {
+      "boards": {
+        "title": "Pinterest Boards",
+        "loading": "Loading boards...",
+        "retry": "Retry",
+        "refresh": "Refresh",
+        "noBoards": "No boards found. Create a board on Pinterest first.",
+        "noDefault": "No default board set",
+        "currentDefault": "Default: {{name}}",
+        "privacy": {
+          "PUBLIC": "Public",
+          "PROTECTED": "Protected",
+          "SECRET": "Secret"
+        }
+      }
+    },
     "createPost": {
       "title": "Create Post",
       "description": "Share your content across all connected platforms",
@@ -432,6 +448,13 @@
             "CONNECTIONS": "Connections only",
             "CONNECTIONSDesc": "Only your connections can see this post"
           }
+        },
+        "pinterest": {
+          "title": "Pinterest",
+          "board": "Board",
+          "useDefault": "Use default ({{name}})",
+          "selectBoard": "Select a board",
+          "noDefaultWarning": "No default board set. Please select a board."
         }
       },
       "twitter": {

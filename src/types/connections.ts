@@ -83,3 +83,35 @@ export interface FacebookPagesResponse {
   pendingKey: string
   pages: FacebookPage[]
 }
+
+/**
+ * Pinterest Board privacy levels
+ */
+export type PinterestBoardPrivacy = 'PUBLIC' | 'PROTECTED' | 'SECRET'
+
+/**
+ * Pinterest Board from API
+ */
+export interface PinterestBoard {
+  id: string
+  name: string
+  privacy: PinterestBoardPrivacy
+}
+
+/**
+ * Response from GET /api/oauth/pinterest/boards/:connectionId
+ */
+export interface PinterestBoardsResponse {
+  boards: PinterestBoard[]
+  defaultBoardId: string | null
+  count: number
+}
+
+/**
+ * Response from POST /api/oauth/pinterest/boards/:connectionId/default
+ */
+export interface SetDefaultBoardResponse {
+  success: boolean
+  message: string
+  defaultBoardId: string
+}

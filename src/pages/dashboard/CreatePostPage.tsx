@@ -531,10 +531,12 @@ export default function CreatePostPage() {
           {(selectedPlatforms.includes('instagram') ||
             selectedPlatforms.includes('tiktok') ||
             selectedPlatforms.includes('youtube') ||
-            selectedPlatforms.includes('linkedin')) && (
+            selectedPlatforms.includes('linkedin') ||
+            selectedPlatforms.includes('pinterest')) && (
             <div className="bg-card border-border-subtle rounded-xl border p-4">
               <PlatformConfigPanel
                 selectedPlatforms={selectedPlatforms}
+                selectedAccounts={selectedAccounts}
                 media={media}
                 platformConfigs={platformConfigs}
                 onConfigChange={setPlatformConfigs}

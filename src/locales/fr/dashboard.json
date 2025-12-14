@@ -201,6 +201,22 @@
         "error": "Échec de la connexion de la page. Veuillez réessayer."
       }
     },
+    "pinterest": {
+      "boards": {
+        "title": "Tableaux Pinterest",
+        "loading": "Chargement des tableaux...",
+        "retry": "Réessayer",
+        "refresh": "Actualiser",
+        "noBoards": "Aucun tableau trouvé. Créez d'abord un tableau sur Pinterest.",
+        "noDefault": "Aucun tableau par défaut défini",
+        "currentDefault": "Par défaut : {{name}}",
+        "privacy": {
+          "PUBLIC": "Public",
+          "PROTECTED": "Protégé",
+          "SECRET": "Secret"
+        }
+      }
+    },
     "createPost": {
       "title": "Créer une publication",
       "description": "Partagez votre contenu sur toutes les plateformes connectées",
@@ -419,6 +435,13 @@
             "CONNECTIONS": "Connexions uniquement",
             "CONNECTIONSDesc": "Seules vos connexions peuvent voir cette publication"
           }
+        },
+        "pinterest": {
+          "title": "Pinterest",
+          "board": "Tableau",
+          "useDefault": "Utiliser par défaut ({{name}})",
+          "selectBoard": "Sélectionner un tableau",
+          "noDefaultWarning": "Aucun tableau par défaut défini. Veuillez sélectionner un tableau."
         }
       },
       "posting": {

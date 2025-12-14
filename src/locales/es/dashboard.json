@@ -202,6 +202,22 @@
         "error": "Error al conectar la página. Por favor, inténtalo de nuevo."
       }
     },
+    "pinterest": {
+      "boards": {
+        "title": "Tableros de Pinterest",
+        "loading": "Cargando tableros...",
+        "retry": "Reintentar",
+        "refresh": "Actualizar",
+        "noBoards": "No se encontraron tableros. Crea un tablero en Pinterest primero.",
+        "noDefault": "No hay tablero por defecto",
+        "currentDefault": "Por defecto: {{name}}",
+        "privacy": {
+          "PUBLIC": "Público",
+          "PROTECTED": "Protegido",
+          "SECRET": "Secreto"
+        }
+      }
+    },
     "createPost": {
       "title": "Crear publicación",
       "description": "Comparte tu contenido en todas las plataformas conectadas",
@@ -420,6 +436,13 @@
             "CONNECTIONS": "Solo conexiones",
             "CONNECTIONSDesc": "Solo tus conexiones pueden ver esta publicación"
           }
+        },
+        "pinterest": {
+          "title": "Pinterest",
+          "board": "Tablero",
+          "useDefault": "Usar por defecto ({{name}})",
+          "selectBoard": "Seleccionar un tablero",
+          "noDefaultWarning": "No hay tablero por defecto. Por favor, selecciona un tablero."
         }
       }
     },

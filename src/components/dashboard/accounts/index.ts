@@ -1,4 +1,5 @@
 export { AccountBadge } from './AccountBadge'
 export { ConnectPlatformModal } from './ConnectPlatformModal'
 export { FacebookPageSelector } from './FacebookPageSelector'
+export { PinterestBoardSettings } from './PinterestBoardSettings'
 export { PlatformRow } from './PlatformRow'

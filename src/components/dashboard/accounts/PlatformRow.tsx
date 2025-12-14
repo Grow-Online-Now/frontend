@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { AccountBadge } from './AccountBadge'
+import { PinterestBoardSettings } from './PinterestBoardSettings'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { Plus } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -85,6 +86,15 @@ export function PlatformRow({
           ))
         )}
       </div>
+
+      {/* Pinterest Board Settings */}
+      {platform.id === 'pinterest' && connections.length > 0 && (
+        <div className="border-border-subtle w-full border-t pt-3">
+          {connections.map((connection) => (
+            <PinterestBoardSettings key={connection.id} connectionId={connection.id} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

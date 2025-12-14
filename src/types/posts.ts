@@ -129,6 +129,13 @@ export interface LinkedInConfig {
 }
 
 /**
+ * Pinterest platform configuration
+ */
+export interface PinterestConfig {
+  boardId?: string // Override default board for this post
+}
+
+/**
  * Platform-specific configurations for post creation
  */
 export interface PlatformConfigurations {
@@ -137,6 +144,7 @@ export interface PlatformConfigurations {
   youtube?: YouTubeConfig
   twitter?: TwitterConfig
   linkedin?: LinkedInConfig
+  pinterest?: PinterestConfig
 }
 
 /**
