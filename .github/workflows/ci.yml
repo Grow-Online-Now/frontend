@@ -40,7 +40,7 @@ jobs:
 
       - name: Deploy static assets with long cache
         run: |
-          aws s3 sync ${BUILD_DIR}static s3://${{ vars.FRONTEND_BUCKET_NAME }}/static \
+          aws s3 sync ${BUILD_DIR}images s3://${{ vars.FRONTEND_BUCKET_NAME }}/images \
             --delete \
             --cache-control "public,max-age=31536000,immutable"
       
@@ -52,7 +52,7 @@ jobs:
       - name: Deploy other files
         run: |
           aws s3 sync ${BUILD_DIR} s3://${{ vars.FRONTEND_BUCKET_NAME }} \
-            --exclude "static/*" \
+            --exclude "images/*" \
             --exclude "index.html" \
             --delete \
             --cache-control "public,max-age=86400"
