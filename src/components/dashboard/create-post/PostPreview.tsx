@@ -93,7 +93,7 @@ export function PostPreview({
       {/* Preview Area */}
       <div className="flex items-center justify-center p-5">
         <div className="w-full max-w-[280px]">
-          <div className="rounded-2xl border border-[#dbdbdb] bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+          <div className="border-border bg-card rounded-2xl border shadow-sm">
             {selectedPlatform === 'instagram' && (
               <InstagramPreview
                 account={account}

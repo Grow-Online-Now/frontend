@@ -292,7 +292,7 @@ export function YouTubeConfigSection({
             type="checkbox"
             checked={config.notifySubscribers ?? true}
             onChange={(e) => onChange({ ...config, notifySubscribers: e.target.checked })}
-            className="text-primary focus:ring-primary h-4 w-4 rounded border-gray-300"
+            className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.youtube.notifySubscribers')}
@@ -304,7 +304,7 @@ export function YouTubeConfigSection({
             type="checkbox"
             checked={config.madeForKids ?? false}
             onChange={(e) => onChange({ ...config, madeForKids: e.target.checked })}
-            className="text-primary focus:ring-primary h-4 w-4 rounded border-gray-300"
+            className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.youtube.madeForKids')}

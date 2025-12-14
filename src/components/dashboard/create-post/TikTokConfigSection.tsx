@@ -164,7 +164,7 @@ export function TikTokConfigSection({
             type="checkbox"
             checked={config.disableComment ?? false}
             onChange={(e) => onChange({ ...config, disableComment: e.target.checked })}
-            className="text-primary focus:ring-primary h-4 w-4 rounded border-gray-300"
+            className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.tiktok.disableComment')}
@@ -177,7 +177,7 @@ export function TikTokConfigSection({
               type="checkbox"
               checked={config.autoAddMusic ?? false}
               onChange={(e) => onChange({ ...config, autoAddMusic: e.target.checked })}
-              className="text-primary focus:ring-primary h-4 w-4 rounded border-gray-300"
+              className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
             />
             <span className="text-foreground text-sm">
               {t('dashboard.createPost.platformConfig.tiktok.autoAddMusic')}

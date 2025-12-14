@@ -130,7 +130,7 @@ export function InstagramConfigSection({
             type="checkbox"
             checked={config.shareToFeed ?? true}
             onChange={(e) => handleShareToFeedChange(e.target.checked)}
-            className="text-primary focus:ring-primary h-4 w-4 rounded border-gray-300"
+            className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.instagram.shareToFeed')}
