@@ -508,6 +508,61 @@
           "highlight": "Your content deserves to be seen by everyone who would value it. Cross-platform strategy isn't about chasing vanity metrics—it's about removing the barriers between your ideas and the people who need them."
         }
       }
+    },
+    "youtubeShorts2025": {
+      "title": "YouTube Shorts Algorithm: The Complete Growth Guide for 2025",
+      "description": "Master the YouTube Shorts algorithm in 2025. Learn the exact strategies, hook techniques, and optimization tactics to grow your channel with short-form video content.",
+      "content": {
+        "intro": {
+          "p1": "YouTube Shorts has exploded into one of the most powerful discovery tools for creators. With Shorts now representing 30% of total YouTube traffic and audiences growing 25% faster than long-form viewers, there's never been a better time to master short-form video on the platform.",
+          "p2": "But success with Shorts isn't about luck—it's about understanding how the algorithm evaluates content and optimizing every aspect of your videos for maximum reach. This guide breaks down exactly how the YouTube Shorts algorithm works in 2025 and provides actionable strategies to grow your channel."
+        },
+        "section1": {
+          "title": "How the YouTube Shorts Algorithm Works in 2025",
+          "p1": "The YouTube Shorts algorithm operates on an explore/exploit model. When you publish a Short, YouTube tests it with small audiences first. If performance signals are strong, the algorithm expands distribution. If viewers swipe away, your content dies quickly.",
+          "p2": "The key signals that determine Shorts success:",
+          "list": {
+            "item1": "Watch time percentage: Not total seconds watched, but what percentage of your video viewers complete. A 15-second video watched fully outperforms a 60-second video watched halfway.",
+            "item2": "Swipe rate: The algorithm tracks 'views vs swiped away.' The more people watch instead of swipe, the more your content gets pushed.",
+            "item3": "Engagement velocity: Likes, comments, shares, and subscriptions in the first hours signal quality content worth distributing.",
+            "item4": "Rewatchability: Videos that viewers watch multiple times get massive algorithmic boosts—this is why loops matter."
+          }
+        },
+        "section2": {
+          "title": "The First 3 Seconds Rule",
+          "p1": "Shorts autoplay in the feed. You have roughly 2-3 seconds to convince someone to keep watching instead of swiping. This makes hooks more important on Shorts than almost any other content format.",
+          "p2": "The best hooks create an open loop—a question that demands an answer, a visual that demands explanation, or a promise that demands delivery. Avoid slow intros, text overlays that take time to read, or anything that doesn't immediately grab attention. Your first frame must earn the next second.",
+          "highlight": "Average Shorts length decreased significantly in 2025. The most successful Shorts now average just 12 seconds, with algorithms favoring 'layered content'—stories that reveal additional depth through repeat viewings."
+        },
+        "section3": {
+          "title": "Content Strategies That Drive Growth",
+          "p1": "While hooks get viewers to watch, content strategy determines whether they follow, engage, and return. The creators growing fastest on Shorts in 2025 share common approaches:",
+          "p2": "Strategies that consistently outperform:",
+          "list": {
+            "item1": "Optimal length sweet spot: Keep Shorts between 15-35 seconds. Long enough to deliver value, short enough to maximize completion rate.",
+            "item2": "Series content: Multi-part Shorts drive follows and create anticipation. 'Part 1,' 'Part 2' content builds loyal audiences who want to see what's next.",
+            "item3": "Platform-native content: Avoid uploading TikTok watermarked videos. YouTube's algorithm actively suppresses cross-platform reposts. Create original content for Shorts.",
+            "item4": "Niche expertise: Being 'the person who knows about X' builds loyal audiences faster than broad, generic content. Go deep, not wide."
+          }
+        },
+        "section4": {
+          "title": "Technical Optimization for Maximum Reach",
+          "p1": "Great content with poor optimization gets buried. The technical details matter more on Shorts than many creators realize because the algorithm relies heavily on metadata to categorize and distribute your content.",
+          "p2": "Optimization tactics that move the needle:",
+          "list": {
+            "item1": "Metadata mastery: Include your primary keyword in the title, description, and tags. The algorithm uses this to understand who should see your content.",
+            "item2": "Transcript keywords: Say your target keyword in the first 10 seconds of your video. YouTube's AI transcribes your audio and uses it for categorization.",
+            "item3": "Consistent posting: The real growth appears after weeks of consistent posting. YouTube's algorithm recognizes and rewards creators who post regularly.",
+            "item4": "Vertical livestreams: For creators already producing Shorts, vertical livestreams are emerging as a powerful growth engine—Shorts bring viewers in, livestreams deepen connection."
+          }
+        },
+        "conclusion": {
+          "title": "Building a Sustainable Shorts Strategy",
+          "p1": "YouTube Shorts isn't just another content format—it's a discovery engine that can feed your entire YouTube strategy. New channels are achieving their first 1,000 subscribers with just 2-3 successful Shorts publications. The barrier to entry has never been lower.",
+          "p2": "Start by committing to consistent posting. Don't chase viral moments—chase systematic improvement. Study your analytics after every post, double down on what works, and cut what doesn't. The algorithm will teach you what your audience wants if you're willing to listen and iterate.",
+          "highlight": "The creators winning with Shorts in 2025 aren't treating them as standalone content. They're using Shorts as the top of a funnel—a discovery mechanism that introduces new viewers to their channel, who then explore long-form content and become loyal subscribers."
+        }
+      }
     }
   }
 }

@@ -17,6 +17,25 @@ export type ArticleCategory = 'strategy' | 'tips' | 'case-study' | 'news' | 'tut
 
 export const articles: Article[] = [
   {
+    slug: 'youtube-shorts-algorithm-complete-growth-guide-2025',
+    titleKey: 'blog.articles.youtubeShorts2025.title',
+    descriptionKey: 'blog.articles.youtubeShorts2025.description',
+    contentKey: 'blog.articles.youtubeShorts2025.content',
+    category: 'growth',
+    publishedAt: '2025-12-14',
+    readingTime: 11,
+    authorName: 'Bastien Youssfi',
+    authorRole: 'Founder of Grow Online',
+    imageUrl: '/images/blog/og/youtube-shorts.webp',
+    keywords: [
+      'YouTube Shorts algorithm',
+      'YouTube Shorts growth',
+      'short-form video',
+      'YouTube Shorts 2025',
+      'YouTube Shorts strategy',
+    ],
+  },
+  {
     slug: 'content-repurposing-mastery-2025',
     titleKey: 'blog.articles.repurposing2025.title',
     descriptionKey: 'blog.articles.repurposing2025.description',
