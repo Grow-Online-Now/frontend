@@ -43,7 +43,7 @@ export default function SchedulerPage() {
   )
 
   const handleCreatePost = () => {
-    navigate(`/${i18n.language}/dashboard/posts/create`)
+    navigate(`/${i18n.language}/dashboard/create/text`)
   }
 
   // Format selected date for sidebar header

@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post — Revised Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-base: #000000;
+            --bg-subtle: #0a0a0a;
+            --bg-elevated: #141414;
+            --bg-hover: #1a1a1a;
+            --border-default: #222222;
+            --border-emphasis: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --accent: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar placeholder */
+        .sidebar {
+            width: 220px;
+            background: var(--bg-subtle);
+            border-right: 1px solid var(--border-default);
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 8px;
+        }
+
+        /* Main content */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top bar */
+        .topbar {
+            height: 57px;
+            border-bottom: 1px solid var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .back-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .topbar-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Step indicator */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-default);
+            transition: all 0.2s;
+        }
+
+        .step-dot.active {
+            background: var(--text-primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .step-dot.completed {
+            background: var(--success);
+        }
+
+        .continue-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: var(--text-primary);
+            color: var(--bg-base);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .continue-btn:hover {
+            opacity: 0.9;
+        }
+
+        .continue-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Content area */
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 48px 24px;
+            overflow-y: auto;
+        }
+
+        /* Step container - the key fix */
+        .step-container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* ============ STEP 1: WRITE ============ */
+        .composer-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .composer-body {
+            padding: 24px;
+        }
+
+        .composer-textarea {
+            width: 100%;
+            min-height: 160px;
+            background: transparent;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: inherit;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .composer-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Media preview area */
+        .media-preview {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .media-item {
+            aspect-ratio: 16/9;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-remove {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.7);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .composer-footer {
+            padding: 12px 24px;
+            border-top: 1px solid var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .composer-tools {
+            display: flex;
+            gap: 4px;
+        }
+
+        .tool-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+
+        .tool-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .char-counts {
+            display: flex;
+            gap: 16px;
+        }
+
+        .char-count {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-family: 'SF Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        .char-count.warning { color: var(--warning); }
+        .char-count.error { color: var(--error); }
+
+        .char-count svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ============ STEP 2: PLATFORMS ============ */
+        .step-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Content preview card */
+        .content-preview {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .content-preview-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .content-preview-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Platform grid */
+        .platform-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .platform-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .platform-card:hover {
+            border-color: var(--border-emphasis);
+            background: var(--bg-hover);
+        }
+
+        .platform-card.selected {
+            border-color: var(--text-primary);
+        }
+
+        .platform-card.selected .platform-check {
+            opacity: 1;
+        }
+
+        .platform-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: white;
+        }
+
+        .platform-icon.twitter { background: #1d9bf0; }
+        .platform-icon.linkedin { background: #0a66c2; }
+        .platform-icon.facebook { background: #1877f2; }
+        .platform-icon.threads { background: #000; border: 1px solid #333; }
+
+        .platform-info {
+            flex: 1;
+        }
+
+        .platform-name {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .platform-handle {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .platform-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .platform-chars {
+            font-size: 12px;
+            font-family: 'SF Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        .platform-chars.valid { color: var(--success); }
+        .platform-chars.warning { color: var(--warning); }
+        .platform-chars.error { color: var(--error); }
+
+        .platform-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .platform-check svg {
+            width: 14px;
+            height: 14px;
+            color: var(--bg-base);
+        }
+
+        /* Validation warning */
+        .validation-warning {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 10px;
+            margin-top: 16px;
+        }
+
+        .validation-warning-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--warning);
+        }
+
+        .shorten-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            background: var(--warning);
+            color: black;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Platform options (expandable) */
+        .platform-options {
+            margin-top: 12px;
+            padding: 16px;
+            background: var(--bg-elevated);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .platform-card.selected .platform-options {
+            display: block;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-default);
+        }
+
+        .option-row:last-child {
+            border-bottom: none;
+        }
+
+        .option-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .option-value {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Toggle switch */
+        .toggle {
+            width: 40px;
+            height: 22px;
+            background: var(--border-default);
+            border-radius: 11px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle.active {
+            background: var(--success);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+        }
+
+        .toggle.active::after {
+            transform: translateX(18px);
+        }
+
+        /* ============ STEP 3: SCHEDULE ============ */
+        .schedule-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .schedule-card {
+            padding: 24px 16px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .schedule-card:hover {
+            border-color: var(--border-emphasis);
+            background: var(--bg-hover);
+        }
+
+        .schedule-card.selected {
+            border-color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .schedule-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .schedule-card.selected .schedule-icon {
+            background: var(--text-primary);
+            color: var(--bg-base);
+        }
+
+        .schedule-title {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .schedule-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Date picker (shown when Schedule selected) */
+        .datetime-picker {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .datetime-picker.visible {
+            display: block;
+        }
+
+        .datetime-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .datetime-field {
+            flex: 1;
+        }
+
+        .datetime-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .datetime-input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        /* Publish summary */
+        .publish-summary {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .publish-summary-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .publish-platforms {
+            display: flex;
+            gap: 8px;
+        }
+
+        .publish-platform-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .publish-platform-chip .platform-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        /* Publish button */
+        .publish-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .publish-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* ============ PREVIEW PANEL ============ */
+        .with-preview {
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 32px;
+        }
+
+        .preview-panel {
+            position: sticky;
+            top: 48px;
+            height: fit-content;
+        }
+
+        .preview-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-title {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .preview-tabs {
+            display: flex;
+            gap: 4px;
+        }
+
+        .preview-tab {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-tab.active {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .preview-body {
+            padding: 20px;
+        }
+
+        /* Twitter preview mockup */
+        .twitter-preview {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tweet-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .tweet-author-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .tweet-author-handle {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .tweet-content {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .tweet-media {
+            aspect-ratio: 16/9;
+            background: var(--bg-hover);
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tweet-actions {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+        }
+
+        .tweet-action {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        /* Navigation between steps */
+        .step-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-default);
+        }
+
+        .step-nav-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.15s;
+        }
+
+        .step-nav-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border-default);
+            color: var(--text-secondary);
+        }
+
+        .step-nav-btn.secondary:hover {
+            border-color: var(--border-emphasis);
+            color: var(--text-primary);
+        }
+
+        .step-nav-btn.primary {
+            background: var(--text-primary);
+            border: none;
+            color: var(--bg-base);
+        }
+
+        .step-nav-btn.primary:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar (simplified) -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"></div>
+            Grow Online
+        </div>
+    </aside>
+
+    <main class="main">
+        <!-- Top bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="back-btn">
+                    <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i>
+                </button>
+                <span class="topbar-title">Create Post</span>
+            </div>
+
+            <!-- Step indicator -->
+            <div class="step-indicator">
+                <div class="step-dot active" data-step="1"></div>
+                <div class="step-dot" data-step="2"></div>
+                <div class="step-dot" data-step="3"></div>
+            </div>
+
+            <button class="continue-btn" id="continueBtn">
+                Continue
+                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </button>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- STEP 1: WRITE -->
+            <div class="step-container" id="step1">
+                <div class="composer-card">
+                    <div class="composer-body">
+                        <textarea 
+                            class="composer-textarea" 
+                            placeholder="What's on your mind?"
+                            id="postContent"
+                        >Building in public has completely changed how I approach product development. Here are 5 lessons from shipping a feature every week for 3 months...</textarea>
+                        
+                        <!-- Media preview (if attached) -->
+                        <div class="media-preview" style="display: none;">
+                            <div class="media-item">
+                                <button class="media-remove">
+                                    <i data-lucide="x" style="width: 12px; height: 12px;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="composer-footer">
+                        <div class="composer-tools">
+                            <button class="tool-btn" title="Add image">
+                                <i data-lucide="image" style="width: 20px; height: 20px;"></i>
+                            </button>
+                            <button class="tool-btn" title="Add emoji">
+                                <i data-lucide="smile" style="width: 20px; height: 20px;"></i>
+                            </button>
+                            <button class="tool-btn" title="AI enhance">
+                                <i data-lucide="sparkles" style="width: 20px; height: 20px;"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="char-counts">
+                            <div class="char-count">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                <span>142/280</span>
+                            </div>
+                            <div class="char-count">
+                                <i data-lucide="linkedin" style="width: 14px; height: 14px;"></i>
+                                <span>142/3k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: PLATFORMS (with preview) -->
+            <div class="step-container with-preview" id="step2" style="display: none;">
+                <div>
+                    <div class="step-header">
+                        <h2 class="step-title">Choose platforms</h2>
+                        <p class="step-subtitle">Select where you want to publish</p>
+                    </div>
+
+                    <!-- Content preview -->
+                    <div class="content-preview">
+                        <div class="content-preview-label">Your post</div>
+                        <div class="content-preview-text">
+                            Building in public has completely changed how I approach product development. Here are 5 lessons from shipping a feature every week...
+                        </div>
+                    </div>
+
+                    <!-- Platform cards -->
+                    <div class="platform-grid">
+                        <div class="platform-card selected">
+                            <div class="platform-icon twitter">𝕏</div>
+                            <div class="platform-info">
+                                <div class="platform-name">Bastien</div>
+                                <div class="platform-handle">@bysfdev</div>
+                            </div>
+                            <div class="platform-status">
+                                <span class="platform-chars valid">142/280</span>
+                                <div class="platform-check">
+                                    <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="platform-card selected">
+                            <div class="platform-icon linkedin">in</div>
+                            <div class="platform-info">
+                                <div class="platform-name">Bastien Youssfi</div>
+                                <div class="platform-handle">@Bastien Youssfi</div>
+                            </div>
+                            <div class="platform-status">
+                                <span class="platform-chars valid">142/3k</span>
+                                <div class="platform-check">
+                                    <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Platform-specific options -->
+                            <div class="platform-options">
+                                <div class="option-row">
+                                    <span class="option-label">Post as article</span>
+                                    <div class="toggle"></div>
+                                </div>
+                                <div class="option-row">
+                                    <span class="option-label">Enable comments</span>
+                                    <div class="toggle active"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="platform-card">
+                            <div class="platform-icon facebook">f</div>
+                            <div class="platform-info">
+                                <div class="platform-name">Test Bastien Yo...</div>
+                                <div class="platform-handle">@Test Bastien Yo...</div>
+                            </div>
+                            <div class="platform-status">
+                                <span class="platform-chars">142/63k</span>
+                                <div class="platform-check">
+                                    <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Validation warning (shown when over limit) -->
+                    <div class="validation-warning" style="display: none;">
+                        <div class="validation-warning-text">
+                            <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i>
+                            <span>Twitter: 32 characters over limit</span>
+                        </div>
+                        <button class="shorten-btn">
+                            <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+                            Shorten with AI
+                        </button>
+                    </div>
+
+                    <!-- Step navigation -->
+                    <div class="step-nav">
+                        <button class="step-nav-btn secondary" onclick="goToStep(1)">
+                            <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                            Back
+                        </button>
+                        <button class="step-nav-btn primary" onclick="goToStep(3)">
+                            Continue
+                            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview panel -->
+                <div class="preview-panel">
+                    <div class="preview-card">
+                        <div class="preview-header">
+                            <span class="preview-title">Preview</span>
+                            <div class="preview-tabs">
+                                <button class="preview-tab active" title="Twitter">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </button>
+                                <button class="preview-tab" title="LinkedIn">
+                                    <i data-lucide="linkedin" style="width: 14px; height: 14px;"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="preview-body">
+                            <div class="twitter-preview">
+                                <div class="tweet-header">
+                                    <div class="tweet-avatar"></div>
+                                    <div>
+                                        <div class="tweet-author-name">Bastien</div>
+                                        <div class="tweet-author-handle">@bysfdev</div>
+                                    </div>
+                                </div>
+                                <div class="tweet-content">
+                                    Building in public has completely changed how I approach product development. Here are 5 lessons from shipping a feature every week for 3 months...
+                                </div>
+                                <div class="tweet-actions">
+                                    <span class="tweet-action">
+                                        <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                                    </span>
+                                    <span class="tweet-action">
+                                        <i data-lucide="repeat-2" style="width: 16px; height: 16px;"></i>
+                                    </span>
+                                    <span class="tweet-action">
+                                        <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                                    </span>
+                                    <span class="tweet-action">
+                                        <i data-lucide="share" style="width: 16px; height: 16px;"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: SCHEDULE -->
+            <div class="step-container" id="step3" style="display: none;">
+                <div class="step-header">
+                    <h2 class="step-title">When to publish</h2>
+                    <p class="step-subtitle">Posting to 2 platforms</p>
+                </div>
+
+                <!-- Content preview -->
+                <div class="content-preview">
+                    <div class="content-preview-label">Your post</div>
+                    <div class="content-preview-text">
+                        Building in public has completely changed how I approach product development. Here are 5 lessons from shipping a feature every week...
+                    </div>
+                </div>
+
+                <!-- Schedule options -->
+                <div class="schedule-options">
+                    <div class="schedule-card selected">
+                        <div class="schedule-icon">
+                            <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="schedule-title">Now</div>
+                        <div class="schedule-desc">Publish immediately</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-icon">
+                            <i data-lucide="sparkles" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="schedule-title">Best Time</div>
+                        <div class="schedule-desc">Optimal engagement</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-icon">
+                            <i data-lucide="calendar" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="schedule-title">Schedule</div>
+                        <div class="schedule-desc">Pick date & time</div>
+                    </div>
+                </div>
+
+                <!-- Date picker (hidden by default) -->
+                <div class="datetime-picker">
+                    <div class="datetime-row">
+                        <div class="datetime-field">
+                            <div class="datetime-label">Date</div>
+                            <input type="date" class="datetime-input">
+                        </div>
+                        <div class="datetime-field">
+                            <div class="datetime-label">Time</div>
+                            <input type="time" class="datetime-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publish summary -->
+                <div class="publish-summary">
+                    <div class="publish-summary-title">Publishing to</div>
+                    <div class="publish-platforms">
+                        <div class="publish-platform-chip">
+                            <div class="platform-icon twitter">𝕏</div>
+                            <span>@bysfdev</span>
+                        </div>
+                        <div class="publish-platform-chip">
+                            <div class="platform-icon linkedin">in</div>
+                            <span>Bastien Youssfi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publish button -->
+                <button class="publish-btn">
+                    Publish to 2 platforms
+                </button>
+
+                <!-- Step navigation -->
+                <div class="step-nav">
+                    <button class="step-nav-btn secondary" onclick="goToStep(2)">
+                        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        let currentStep = 1;
+
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step-container').forEach(el => {
+                el.style.display = 'none';
+            });
+
+            // Show target step
+            document.getElementById(`step${step}`).style.display = step === 2 ? 'grid' : 'block';
+
+            // Update step indicator
+            document.querySelectorAll('.step-dot').forEach((dot, i) => {
+                dot.classList.remove('active', 'completed');
+                if (i + 1 < step) dot.classList.add('completed');
+                if (i + 1 === step) dot.classList.add('active');
+            });
+
+            // Update continue button
+            const continueBtn = document.getElementById('continueBtn');
+            if (step === 3) {
+                continueBtn.style.display = 'none';
+            } else {
+                continueBtn.style.display = 'flex';
+            }
+
+            currentStep = step;
+        }
+
+        document.getElementById('continueBtn').addEventListener('click', () => {
+            if (currentStep < 3) {
+                goToStep(currentStep + 1);
+            }
+        });
+
+        // Toggle platform selection
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.platform-options')) return;
+                card.classList.toggle('selected');
+            });
+        });
+
+        // Toggle schedule options
+        document.querySelectorAll('.schedule-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.schedule-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                
+                // Show date picker if Schedule is selected
+                const isSchedule = card.querySelector('.schedule-title').textContent === 'Schedule';
+                document.querySelector('.datetime-picker').classList.toggle('visible', isSchedule);
+            });
+        });
+
+        // Toggle switches
+        document.querySelectorAll('.toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

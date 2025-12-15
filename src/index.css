@@ -703,6 +703,14 @@ a:focus-visible,
   outline-offset: 2px;
 }
 
+/* Override focus styles for composer textarea (clean writing experience) */
+textarea.composer-textarea:focus,
+textarea.composer-textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,

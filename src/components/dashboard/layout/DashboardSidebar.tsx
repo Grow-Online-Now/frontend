@@ -60,7 +60,7 @@ const navCategories: NavCategory[] = [
       {
         labelKey: 'dashboard.nav.createPost',
         icon: PenSquare,
-        href: '/dashboard/posts/create',
+        href: '/dashboard/create/text',
       },
       {
         labelKey: 'dashboard.nav.media',
@@ -145,7 +145,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
           asChild
           className="w-full justify-center gap-2 font-medium transition-opacity hover:opacity-90"
         >
-          <NavLink to="/dashboard/posts/create">
+          <NavLink to="/dashboard/create/text">
             <Plus className="h-4 w-4" />
             <span>{t('dashboard.nav.createPost')}</span>
           </NavLink>

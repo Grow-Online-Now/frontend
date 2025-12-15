@@ -217,6 +217,89 @@
         }
       }
     },
+    "create": {
+      "text": {
+        "title": "Créer une publication",
+        "topBar": {
+          "back": "Retour",
+          "continue": "Continuer"
+        },
+        "step1": {
+          "placeholder": "Qu'avez-vous en tête ?"
+        },
+        "step2": {
+          "title": "Choisir les plateformes",
+          "description": "Sélectionnez où vous voulez publier",
+          "allGood": "Toutes les plateformes dans les limites",
+          "empty": {
+            "title": "Aucun compte texte-first",
+            "description": "Connectez un compte Twitter, LinkedIn ou Facebook pour utiliser ce flux."
+          }
+        },
+        "step3": {
+          "title": "Quand publier",
+          "description": "Choisissez quand votre publication sera mise en ligne",
+          "publishingTo": "Publication sur"
+        },
+        "contentPreview": {
+          "label": "Votre publication"
+        },
+        "preview": {
+          "title": "Apercu",
+          "selectPlatform": "Selectionnez une plateforme pour voir l'apercu",
+          "noContent": "Commencez a taper pour voir l'apercu de votre publication",
+          "characters": "caracteres",
+          "otherPlatforms": "+{{count}} autre plateforme",
+          "otherPlatforms_other": "+{{count}} autres plateformes"
+        },
+        "shortcuts": {
+          "continue": "pour continuer",
+          "dragFiles": "Glissez des fichiers pour joindre",
+          "saveDraft": "pour sauvegarder"
+        },
+        "toolbar": {
+          "media": "Ajouter un média",
+          "emoji": "Ajouter un emoji",
+          "aiEnhance": "Améliorer avec l'IA",
+          "emojiComingSoon": "Sélecteur d'emojis bientôt disponible",
+          "aiEnhanceComingSoon": "Fonctionnalités IA bientôt disponibles"
+        },
+        "validation": {
+          "overLimit": "{{excess}} au-dessus de la limite",
+          "shorten": "Raccourcir",
+          "shortenWithAI": "Raccourcir avec l'IA",
+          "shortenComingSoon": "Raccourcissement IA bientôt disponible"
+        },
+        "schedule": {
+          "now": {
+            "label": "Maintenant",
+            "description": "Publier immédiatement"
+          },
+          "best": {
+            "label": "Meilleur moment",
+            "description": "Engagement optimal",
+            "comingSoon": "Fonctionnalité meilleur moment bientôt disponible"
+          },
+          "scheduled": {
+            "label": "Planifier",
+            "description": "Choisir date et heure"
+          },
+          "pickDate": "Choisir une date et une heure"
+        },
+        "publish": {
+          "button": "Publier sur {{count}} plateforme",
+          "button_other": "Publier sur {{count}} plateformes",
+          "publishing": "Publication..."
+        },
+        "success": {
+          "posted": "Publication publiée avec succès !",
+          "scheduled": "Publication planifiée avec succès !"
+        },
+        "saveDraft": {
+          "comingSoon": "Enregistrer comme brouillon bientôt disponible"
+        }
+      }
+    },
     "createPost": {
       "title": "Créer une publication",
       "description": "Partagez votre contenu sur toutes les plateformes connectées",

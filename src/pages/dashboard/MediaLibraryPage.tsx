@@ -62,7 +62,7 @@ export default function MediaLibraryPage() {
   )
 
   const handleCreatePost = useCallback(() => {
-    navigate(localizedHref('/dashboard/posts/create'))
+    navigate(localizedHref('/dashboard/create/text'))
   }, [navigate, localizedHref])
 
   // Initial loading state

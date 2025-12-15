@@ -217,6 +217,89 @@
         }
       }
     },
+    "create": {
+      "text": {
+        "title": "Create Post",
+        "topBar": {
+          "back": "Back",
+          "continue": "Continue"
+        },
+        "step1": {
+          "placeholder": "What's on your mind?"
+        },
+        "step2": {
+          "title": "Choose platforms",
+          "description": "Select where you want to publish",
+          "allGood": "All platforms within limits",
+          "empty": {
+            "title": "No text-first accounts",
+            "description": "Connect a Twitter, LinkedIn, or Facebook account to use this flow."
+          }
+        },
+        "step3": {
+          "title": "When to publish",
+          "description": "Choose when your post goes live",
+          "publishingTo": "Publishing to"
+        },
+        "contentPreview": {
+          "label": "Your post"
+        },
+        "preview": {
+          "title": "Preview",
+          "selectPlatform": "Select a platform to see preview",
+          "noContent": "Start typing to see your post preview",
+          "characters": "characters",
+          "otherPlatforms": "+{{count}} other platform",
+          "otherPlatforms_other": "+{{count}} other platforms"
+        },
+        "shortcuts": {
+          "continue": "to continue",
+          "dragFiles": "Drag files to attach",
+          "saveDraft": "to save draft"
+        },
+        "toolbar": {
+          "media": "Add media",
+          "emoji": "Add emoji",
+          "aiEnhance": "Enhance with AI",
+          "emojiComingSoon": "Emoji picker coming soon",
+          "aiEnhanceComingSoon": "AI features coming soon"
+        },
+        "validation": {
+          "overLimit": "{{excess}} over limit",
+          "shorten": "Shorten",
+          "shortenWithAI": "Shorten with AI",
+          "shortenComingSoon": "AI shortening coming soon"
+        },
+        "schedule": {
+          "now": {
+            "label": "Now",
+            "description": "Publish immediately"
+          },
+          "best": {
+            "label": "Best Time",
+            "description": "Optimal engagement",
+            "comingSoon": "Best time feature coming soon"
+          },
+          "scheduled": {
+            "label": "Schedule",
+            "description": "Pick date & time"
+          },
+          "pickDate": "Pick a date and time"
+        },
+        "publish": {
+          "button": "Publish to {{count}} platform",
+          "button_other": "Publish to {{count}} platforms",
+          "publishing": "Publishing..."
+        },
+        "success": {
+          "posted": "Post published successfully!",
+          "scheduled": "Post scheduled successfully!"
+        },
+        "saveDraft": {
+          "comingSoon": "Save as draft coming soon"
+        }
+      }
+    },
     "createPost": {
       "title": "Create Post",
       "description": "Share your content across all connected platforms",
