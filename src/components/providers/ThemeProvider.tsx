@@ -23,11 +23,13 @@ function applyTheme(theme: Theme) {
   const root = document.documentElement
   const effectiveTheme = theme === 'system' ? getSystemTheme() : theme
 
-  if (effectiveTheme === 'dark') {
-    root.classList.add('dark')
-  } else {
-    root.classList.remove('dark')
-  }
+  // Set both class and data attribute for CSS specificity
+  root.classList.remove('dark', 'light')
+  root.classList.add(effectiveTheme)
+  root.dataset.theme = effectiveTheme
+
+  // Force browser to recalculate styles
+  document.body.style.colorScheme = effectiveTheme
 }
 
 interface ThemeProviderProps {
