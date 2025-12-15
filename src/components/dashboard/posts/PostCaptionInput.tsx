@@ -47,11 +47,10 @@ export function PostCaptionInput({
           placeholder={t('dashboard.createPost.caption.placeholder')}
           rows={8}
           className={cn(
-            'bg-background text-foreground placeholder:text-muted-foreground/50 w-full resize-none rounded-xl border p-5 pb-10 text-base leading-[1.7] transition-all duration-200',
-            'shadow-[inset_0_2px_4px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)]',
+            'bg-background text-foreground placeholder:text-muted-foreground/50 w-full resize-none rounded-xl border p-5 pb-10 text-base leading-[1.7] transition-all duration-150',
+            'light:shadow-sm dark:shadow-none',
             'hover:border-border',
-            'focus:border-primary focus:ring-primary/10 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.04),0_0_0_3px_rgba(59,130,246,0.1)] focus:ring-[3px] focus:outline-none',
-            'dark:focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.15),0_0_0_3px_rgba(59,130,246,0.15)]',
+            'focus:border-primary focus:ring-[3px] focus:ring-primary/10 focus:outline-none',
             error || isOverLimit
               ? 'border-destructive focus:ring-destructive/10'
               : 'border-border-subtle'

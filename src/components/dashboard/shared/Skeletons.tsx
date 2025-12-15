@@ -184,7 +184,7 @@ export function AccountSelectorSkeleton({ className }: SkeletonProps) {
         <div className="space-y-1">
           {[1, 2, 3].map((i) => (
             <div key={i} className="flex items-center gap-3 rounded-lg p-2.5">
-              <Skeleton className="h-[18px] w-[18px] rounded-[5px]" />
+              <Skeleton className="size-5 rounded-md" />
               <Skeleton className="h-8 w-8 rounded-xl" />
               <div className="flex-1 space-y-1.5">
                 <Skeleton className="h-4 w-24" />

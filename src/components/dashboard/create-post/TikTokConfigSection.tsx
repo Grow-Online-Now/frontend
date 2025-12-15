@@ -112,11 +112,11 @@ export function TikTokConfigSection({
             >
               <div
                 className={cn(
-                  'mt-0.5 flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 transition-colors duration-150',
+                  'mt-0.5 flex size-5 items-center justify-center rounded-full border-2 transition-colors duration-150',
                   isSelected ? 'border-primary' : 'border-border-muted'
                 )}
               >
-                {isSelected && <div className="bg-primary h-2 w-2 rounded-full" />}
+                {isSelected && <div className="size-2 rounded-full bg-primary" />}
               </div>
 
               <Icon
@@ -164,7 +164,7 @@ export function TikTokConfigSection({
             type="checkbox"
             checked={config.disableComment ?? false}
             onChange={(e) => onChange({ ...config, disableComment: e.target.checked })}
-            className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
+            className="h-4 w-4 rounded border-input text-primary accent-[var(--color-primary)] focus:ring-primary"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.tiktok.disableComment')}
@@ -177,7 +177,7 @@ export function TikTokConfigSection({
               type="checkbox"
               checked={config.autoAddMusic ?? false}
               onChange={(e) => onChange({ ...config, autoAddMusic: e.target.checked })}
-              className="text-primary focus:ring-primary border-input accent-primary h-4 w-4 rounded"
+              className="h-4 w-4 rounded border-input text-primary accent-[var(--color-primary)] focus:ring-primary"
             />
             <span className="text-foreground text-sm">
               {t('dashboard.createPost.platformConfig.tiktok.autoAddMusic')}

@@ -228,7 +228,7 @@ function LinkedInPreview({
     <div className="overflow-hidden rounded-2xl">
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0A66C2] text-sm font-semibold text-white">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--platform-linkedin)] text-sm font-semibold text-white">
           {account?.displayName?.[0]?.toUpperCase() ||
             account?.platformUsername?.[0]?.toUpperCase() ||
             'U'}
@@ -400,7 +400,7 @@ function FacebookPreview({
     <div className="overflow-hidden rounded-2xl">
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1877F2] text-sm font-semibold text-white">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--platform-facebook)] text-sm font-semibold text-white">
           {account?.displayName?.[0]?.toUpperCase() ||
             account?.platformUsername?.[0]?.toUpperCase() ||
             'U'}

@@ -14,15 +14,15 @@
 import { cn } from '@/lib/utils'
 import type { SocialPlatform } from '@/types/connections'
 
-// Platform brand colors
+// Platform brand colors using CSS variables from design system
 const PLATFORM_COLORS: Record<SocialPlatform, string> = {
-  youtube: '#FF0000',
-  instagram: '#E4405F',
-  tiktok: '#000000',
-  twitter: '#000000',
-  linkedin: '#0A66C2',
-  facebook: '#1877F2',
-  pinterest: '#E60023',
+  youtube: 'var(--platform-youtube)',
+  instagram: 'var(--platform-instagram)',
+  tiktok: 'var(--platform-tiktok)',
+  twitter: 'var(--platform-twitter)',
+  linkedin: 'var(--platform-linkedin)',
+  facebook: 'var(--platform-facebook)',
+  pinterest: 'var(--platform-pinterest)',
 }
 
 // Platform icons as inline SVGs for crisp rendering at small sizes

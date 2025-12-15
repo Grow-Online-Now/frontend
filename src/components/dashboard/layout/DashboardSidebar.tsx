@@ -169,7 +169,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
                         'text-muted-foreground/50 cursor-not-allowed'
                       )}
                     >
-                      <item.icon className="h-[18px] w-[18px] opacity-40" />
+                      <item.icon className="size-5 opacity-40" />
                       <span className="flex-1">{t(item.labelKey)}</span>
                       <span className="bg-muted text-muted-foreground/70 rounded px-1.5 py-0.5 text-xs font-medium tracking-wide uppercase">
                         {t('dashboard.nav.comingSoon')}
@@ -188,7 +188,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
                         )
                       }
                     >
-                      <item.icon className="h-[18px] w-[18px] opacity-70 transition-opacity group-hover:opacity-100" />
+                      <item.icon className="size-5 opacity-70 transition-opacity group-hover:opacity-100" />
                       <span>{t(item.labelKey)}</span>
                     </NavLink>
                   )}

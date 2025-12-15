@@ -17,14 +17,14 @@ const badgeVariants = cva(
         warning: 'bg-warning-muted text-warning',
         error: 'bg-error-muted text-destructive',
         info: 'bg-info-muted text-info',
-        // Platform colors (for platform badges only)
-        twitter: 'bg-[rgba(29,155,240,0.15)] text-[#1d9bf0]',
-        linkedin: 'bg-[rgba(10,102,194,0.15)] text-[#0a66c2]',
-        instagram: 'bg-[rgba(228,64,95,0.15)] text-[#e4405f]',
+        // Platform colors (for platform badges only) - using CSS variables
+        twitter: 'bg-[var(--platform-twitter)]/15 text-[var(--platform-twitter)]',
+        linkedin: 'bg-[var(--platform-linkedin)]/15 text-[var(--platform-linkedin)]',
+        instagram: 'bg-[var(--platform-instagram)]/15 text-[var(--platform-instagram)]',
         tiktok: 'bg-bg-active text-text-primary',
-        youtube: 'bg-[rgba(255,0,0,0.15)] text-[#ff0000]',
-        facebook: 'bg-[rgba(24,119,242,0.15)] text-[#1877f2]',
-        pinterest: 'bg-[rgba(189,8,28,0.15)] text-[#bd081c]',
+        youtube: 'bg-[var(--platform-youtube)]/15 text-[var(--platform-youtube)]',
+        facebook: 'bg-[var(--platform-facebook)]/15 text-[var(--platform-facebook)]',
+        pinterest: 'bg-[var(--platform-pinterest)]/15 text-[var(--platform-pinterest)]',
         // Additional utility variants
         outline: 'border border-border-default bg-transparent text-text-secondary',
         secondary: 'bg-bg-hover text-text-secondary',

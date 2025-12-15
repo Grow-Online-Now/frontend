@@ -35,35 +35,43 @@ const iconInContainerSizeClasses = {
   lg: 'size-6',
 }
 
-// Platform background and icon colors
-const platformStyles: Record<SocialPlatform, { bg: string; icon: string }> = {
+// Platform background and icon colors using CSS variables from design system
+// Platform colors defined in index.css: --platform-twitter, --platform-linkedin, etc.
+const platformStyles: Record<SocialPlatform, { bg: string; icon: string; className: string }> = {
   youtube: {
-    bg: 'bg-[#FF0000]/8 dark:bg-[#FF0000]/12',
-    icon: 'text-[#FF0000]',
+    bg: 'bg-[var(--platform-youtube)]/8 dark:bg-[var(--platform-youtube)]/12',
+    icon: 'text-[var(--platform-youtube)]',
+    className: 'platform-youtube',
   },
   instagram: {
-    bg: 'bg-gradient-to-br from-[#FA7E1E]/8 to-[#D62976]/8 dark:from-[#FA7E1E]/12 dark:to-[#D62976]/12',
-    icon: 'text-[#E4405F]',
+    bg: 'bg-[var(--platform-instagram)]/8 dark:bg-[var(--platform-instagram)]/12',
+    icon: 'text-[var(--platform-instagram)]',
+    className: 'platform-instagram',
   },
   facebook: {
-    bg: 'bg-[#1877F2]/8 dark:bg-[#1877F2]/12',
-    icon: 'text-[#1877F2]',
+    bg: 'bg-[var(--platform-facebook)]/8 dark:bg-[var(--platform-facebook)]/12',
+    icon: 'text-[var(--platform-facebook)]',
+    className: 'platform-facebook',
   },
   twitter: {
     bg: 'bg-foreground/5 dark:bg-foreground/8',
     icon: 'text-foreground',
+    className: 'platform-twitter',
   },
   linkedin: {
-    bg: 'bg-[#0A66C2]/8 dark:bg-[#0A66C2]/12',
-    icon: 'text-[#0A66C2]',
+    bg: 'bg-[var(--platform-linkedin)]/8 dark:bg-[var(--platform-linkedin)]/12',
+    icon: 'text-[var(--platform-linkedin)]',
+    className: 'platform-linkedin',
   },
   tiktok: {
     bg: 'bg-foreground/5 dark:bg-foreground/8',
     icon: 'text-foreground',
+    className: 'platform-tiktok',
   },
   pinterest: {
-    bg: 'bg-[#E60023]/8 dark:bg-[#E60023]/12',
-    icon: 'text-[#E60023]',
+    bg: 'bg-[var(--platform-pinterest)]/8 dark:bg-[var(--platform-pinterest)]/12',
+    icon: 'text-[var(--platform-pinterest)]',
+    className: 'platform-pinterest',
   },
 }
 

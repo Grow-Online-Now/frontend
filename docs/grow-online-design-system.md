@@ -72,6 +72,8 @@ Use `--gradient-feature` sparingly for the primary CTA only (e.g., "Publish" but
 
 | Size | Token | Use Case |
 |------|-------|----------|
+| 48px | `--text-5xl` | Large hero headlines |
+| 40px | `--text-4xl` | Marketing/hero sections |
 | 36px | `--text-3xl` | Page titles |
 | 28px | `--text-2xl` | Section headings |
 | 22px | `--text-xl` | Card headings |

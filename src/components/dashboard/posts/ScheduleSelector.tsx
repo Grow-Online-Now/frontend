@@ -76,11 +76,11 @@ export function ScheduleSelector({
           >
             <div
               className={cn(
-                'mt-0.5 flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 transition-colors duration-150',
+                'mt-0.5 flex size-5 items-center justify-center rounded-full border-2 transition-colors duration-150',
                 scheduleType === option.value ? 'border-primary' : 'border-border-muted'
               )}
             >
-              {scheduleType === option.value && <div className="bg-primary h-2 w-2 rounded-full" />}
+              {scheduleType === option.value && <div className="size-2 rounded-full bg-primary" />}
             </div>
             <div className="flex-1">
               <p className="text-foreground text-sm font-medium">{t(option.labelKey)}</p>
