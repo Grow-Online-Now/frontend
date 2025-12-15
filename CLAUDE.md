@@ -489,12 +489,280 @@ Handles OAuth redirects in popup window. URL params:
 
 ---
 
-## Theming System
+## Design System
 
-### Dark/Light Mode Support
-The app uses CSS custom properties with a `.dark` class-based theme system.
+> **Philosophy:** Linear meets Notion meets Vercel — dark, typographic, confident, quiet.
 
-#### Theme Provider
+All components MUST follow these specifications. See `docs/grow-online-design-system.md` for the complete reference.
+
+---
+
+### 1. Color Usage
+
+#### CRITICAL: Never Hardcode Colors
+```typescript
+// ✅ CORRECT: Use CSS variables via Tailwind
+className="bg-bg-base text-text-primary"
+className="bg-bg-elevated border-border-default"
+
+// ❌ WRONG: Hardcoded values
+className="bg-white text-gray-900"
+className="bg-[#FCFCFC] text-[#1a1a1a]"
+className="border-[#e0e0e0]"
+```
+
+#### Background Tokens
+Use backgrounds to create subtle depth, not contrast.
+
+| Token | Tailwind Class | Use Case |
+|-------|----------------|----------|
+| `--bg-base` | `bg-bg-base` | Page background |
+| `--bg-subtle` | `bg-bg-subtle` | Sections, cards on page |
+| `--bg-elevated` | `bg-bg-elevated` | Cards, modals, dropdowns |
+| `--bg-hover` | `bg-bg-hover` | Hover states |
+| `--bg-active` | `bg-bg-active` | Pressed/active states |
+
+#### Text Hierarchy
+Create hierarchy through opacity, not size.
+
+| Token | Tailwind Class | Use Case |
+|-------|----------------|----------|
+| `--text-primary` | `text-text-primary` | Headings, important content |
+| `--text-secondary` | `text-text-secondary` | Body text, descriptions |
+| `--text-tertiary` | `text-text-tertiary` | Secondary info, metadata |
+| `--text-muted` | `text-text-muted` | Placeholders, disabled, hints |
+
+#### Border Tokens
+Borders should be barely visible — create separation without demanding attention.
+
+| Token | Use Case |
+|-------|----------|
+| `--border-default` | Default borders |
+| `--border-emphasis` | Hover state borders |
+| `--border-focus` | Focus state borders |
+
+#### Semantic Colors
+Use ONLY for status and feedback, never for decoration.
+
+```typescript
+// ✅ CORRECT: Status feedback
+className="bg-success-muted text-success"    // Completed, published
+className="bg-warning-muted text-warning"    // Near limit, pending
+className="bg-error-muted text-error"        // Failed, over limit
+className="bg-info-muted text-info"          // Informational
+
+// ❌ WRONG: Decorative use
+className="bg-success/20"  // Don't use for non-status elements
+```
+
+#### Platform Colors
+Platform colors appear ONLY on platform icons/logos. Never use them for buttons, borders, or backgrounds.
+
+```typescript
+// ✅ CORRECT: Platform icon background
+<div className="bg-[var(--platform-twitter)]">
+  <TwitterIcon />
+</div>
+
+// ❌ WRONG: Platform color on button
+<Button className="bg-[var(--platform-twitter)]">Post to Twitter</Button>
+```
+
+#### Feature Gradient
+Use `--gradient-feature` sparingly for the primary CTA ONLY (e.g., "Publish" button). Never use gradients elsewhere.
+
+```typescript
+// ✅ CORRECT: Single primary CTA
+<Button className="bg-gradient-feature">Publish</Button>
+
+// ❌ WRONG: Gradients on cards, backgrounds, decorations
+<div className="bg-gradient-to-br from-primary/10 to-primary/5">...</div>
+```
+
+---
+
+### 2. Typography
+
+#### Font Stack
+- UI: `var(--font-sans)` — Inter
+- Code/counts: `var(--font-mono)` — JetBrains Mono
+
+#### Type Scale
+Use ONLY these sizes. Never use arbitrary values like `text-[34px]`.
+
+| Size | Token | Tailwind | Use Case |
+|------|-------|----------|----------|
+| 48px | `--text-5xl` | `text-5xl` | Large hero headlines |
+| 40px | `--text-4xl` | `text-4xl` | Marketing/hero sections |
+| 36px | `--text-3xl` | `text-3xl` | Page titles |
+| 28px | `--text-2xl` | `text-2xl` | Section headings |
+| 22px | `--text-xl` | `text-xl` | Card headings |
+| 18px | `--text-lg` | `text-lg` | Subheadings |
+| 15px | `--text-md` | `text-md` | Large body |
+| 14px | `--text-base` | `text-base` | Body text (default) |
+| 13px | `--text-sm` | `text-sm` | Secondary text |
+| 11px | `--text-xs` | `text-xs` | Captions, labels |
+
+#### Heading Style
+```typescript
+// All headings use:
+className="font-semibold tracking-tight text-text-primary"
+// font-weight: 600, letter-spacing: -0.5px
+```
+
+#### Body Style
+```typescript
+className="font-normal leading-relaxed text-text-secondary"
+// font-weight: 400, line-height: 1.65
+```
+
+#### Labels/Captions
+```typescript
+className="text-xs font-medium uppercase tracking-wider text-text-muted"
+// 11px, weight 500, uppercase, letter-spacing: 1px
+```
+
+---
+
+### 3. Spacing
+
+Use the spacing scale consistently. NEVER use arbitrary values like `p-[17px]`.
+
+| Token | Value | Tailwind | Use Case |
+|-------|-------|----------|----------|
+| `--space-1` | 4px | `p-1`, `gap-1` | Tight gaps (icon + text) |
+| `--space-2` | 8px | `p-2`, `gap-2` | Related elements |
+| `--space-3` | 12px | `p-3`, `gap-3` | Component internal padding |
+| `--space-4` | 16px | `p-4`, `gap-4` | Default padding |
+| `--space-5` | 20px | `p-5`, `gap-5` | Card padding |
+| `--space-6` | 24px | `p-6`, `gap-6` | Section padding |
+| `--space-8` | 32px | `p-8`, `gap-8` | Large gaps |
+| `--space-12` | 48px | `p-12`, `gap-12` | Section margins |
+| `--space-16` | 64px | `p-16`, `gap-16` | Page sections |
+
+---
+
+### 4. Border Radius
+
+Use ONLY these values. Never exceed 16px except for pills and avatars.
+
+| Token | Value | Tailwind | Use Case |
+|-------|-------|----------|----------|
+| `--radius-sm` | 4px | `rounded-sm` | Small elements, badges |
+| `--radius-md` | 6px | `rounded-md` | Inputs, small buttons |
+| `--radius-lg` | 8px | `rounded-lg` | Buttons, cards |
+| `--radius-xl` | 12px | `rounded-xl` | Large cards, dropdowns |
+| `--radius-2xl` | 16px | `rounded-2xl` | Modals, containers |
+| `--radius-full` | 9999px | `rounded-full` | Pills, avatars ONLY |
+
+```typescript
+// ✅ CORRECT
+className="rounded-lg"    // 8px for buttons
+className="rounded-xl"    // 12px for cards
+className="rounded-full"  // Pills and avatars only
+
+// ❌ WRONG
+className="rounded-[19px]"  // Arbitrary value
+className="rounded-[5px]"   // Use rounded-sm (4px) instead
+```
+
+---
+
+### 5. Motion & Animation
+
+#### Duration Tokens
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `--duration-fast` | 150ms | Hovers, toggles, micro-interactions |
+| `--duration-medium` | 250ms | Dropdowns, panels, reveals |
+| `--duration-slow` | 400ms | Page transitions, modals |
+
+#### Easing
+| Token | Use Case |
+|-------|----------|
+| `--ease-out` | Primary — most animations |
+| `--ease-in-out` | Symmetrical transitions |
+| `--ease-spring` | Subtle bounce (use sparingly) |
+
+#### What to Animate
+✓ Hover states (opacity, background, transform)
+✓ Focus states (border)
+✓ Dropdowns and popovers
+✓ Skeleton loaders
+✓ Toasts appearing/disappearing
+
+#### What NOT to Animate
+✗ Text color changes
+✗ Layout shifts
+✗ Data updates in tables
+✗ Form validation states
+✗ Anything that delays user action
+
+---
+
+### 6. Icons
+
+#### Source
+Use **Lucide** icons exclusively. https://lucide.dev
+
+#### Icon Colors
+Icons are **monochrome only**.
+- Active: `text-text-primary`
+- Inactive: `text-text-muted`
+- Hover: transition from muted to primary
+
+**Never use colored icons except for platform logos.**
+
+#### Icon Sizes
+| Token | Value | Tailwind | Use Case |
+|-------|-------|----------|----------|
+| `--icon-sm` | 16px | `h-4 w-4` | Inline with text, badges |
+| `--icon-md` | 20px | `h-5 w-5` | Buttons, navigation, toolbars |
+| `--icon-lg` | 24px | `h-6 w-6` | Standalone, headers, empty states |
+
+```typescript
+// ✅ CORRECT: Standard icon sizes
+<Search className="h-5 w-5" />  // 20px for buttons
+<User className="h-6 w-6" />    // 24px for headers
+
+// ❌ WRONG: Arbitrary sizes
+<Icon className="h-[18px] w-[18px]" />  // Use h-4 w-4 (16px) or h-5 w-5 (20px)
+```
+
+#### NO EMOJIS
+**Emojis are FORBIDDEN in the UI.** They look unprofessional and render inconsistently. Use Lucide icons for all interface elements.
+
+---
+
+### 7. Loading States (Skeletons)
+
+**MANDATORY:** Skeletons must match the exact layout dimensions of the content they replace. Zero layout shift when content loads.
+
+```typescript
+// If content has a 40px avatar → skeleton has 40px circle
+// If text is 14px → skeleton line matches that height
+// Skeleton IS the layout, just without content
+```
+
+---
+
+### 8. Responsive Breakpoints
+
+| Name | Min Width | Target |
+|------|-----------|--------|
+| Mobile | 0px | Phones |
+| Tablet | 480px | Large phones, small tablets |
+| Desktop | 768px | Tablets, small laptops |
+| Wide | 1024px | Laptops, desktops |
+| Ultra | 1280px | Large screens |
+
+#### Touch Targets
+Minimum 44x44px touch area on mobile, even if visual element is smaller.
+
+---
+
+### 9. Theme Provider
+
 ```typescript
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
@@ -510,48 +778,29 @@ function MyComponent() {
 }
 ```
 
-### Color Tokens
+---
 
-**CRITICAL: Never use hardcoded colors. Always use semantic tokens.**
+### 10. Design System Do/Don't Summary
 
-```typescript
-// ✅ DO: Use semantic color tokens
-className="bg-background text-foreground"
-className="bg-card text-card-foreground"
-className="bg-primary text-primary-foreground"
-className="text-muted-foreground"
+#### DO
+- Use CSS variables for all colors (`bg-bg-elevated`, `text-text-primary`)
+- Create hierarchy through text opacity, not size
+- Use standard spacing scale (4, 8, 12, 16, 20, 24, 32, 48, 64px)
+- Use standard border-radius (4, 6, 8, 12, 16px, or full for pills)
+- Keep animations fast and subtle (150ms default)
+- Use Lucide icons, monochrome only
+- Match skeleton to content dimensions exactly
 
-// ❌ AVOID: Hardcoded colors
-className="bg-white text-gray-900"
-className="bg-[#FCFCFC] text-[#1a1a1a]"
-```
-
-#### Available Color Tokens
-| Token | Usage |
-|-------|-------|
-| `background` | Page backgrounds |
-| `foreground` | Primary text |
-| `card` | Card backgrounds |
-| `primary` | Primary actions, links |
-| `secondary` | Secondary elements |
-| `muted` | Disabled states |
-| `muted-foreground` | Secondary text |
-| `accent` | Hover states |
-| `destructive` | Errors, delete actions |
-| `success` | Success states |
-| `warning` | Warnings |
-| `info` | Information |
-| `border` / `border-subtle` | Borders |
-| `surface` / `surface-elevated` | Surface layers |
-
-#### Status Colors Pattern
-```typescript
-className="bg-success/10 text-success"       // Success
-className="bg-destructive/10 text-destructive" // Error
-className="bg-warning/10 text-warning"       // Warning
-className="bg-info/10 text-info"             // Info
-className="bg-muted text-muted-foreground"   // Neutral/draft
-```
+#### DON'T
+- Hardcode color values (`#fff`, `rgb()`, `bg-white`, `text-gray-500`)
+- Use arbitrary spacing (`p-[17px]`, `gap-[22px]`)
+- Use arbitrary border-radius (`rounded-[19px]`, `rounded-[5px]`)
+- Use gradients (except single feature CTA)
+- Use emojis anywhere
+- Use border-radius > 16px (except pills/avatars)
+- Let platform colors bleed into UI elements
+- Create layout shift on load
+- Use shadows in dark theme
 
 ---
 
@@ -739,26 +988,46 @@ export function Card({ titleKey, descriptionKey }: CardProps) {
 ### Before Committing
 - [ ] Components are under 100 lines
 - [ ] All props have TypeScript interfaces
-- [ ] Colors use CSS variable tokens, not hardcoded values
-- [ ] Dark mode works correctly (test with theme toggle)
-- [ ] Mobile-first responsive design implemented
-- [ ] Accessibility attributes added (ARIA, semantic HTML)
-- [ ] Loading and error states handled
-- [ ] No console.logs or debugging code
 - [ ] **ALL TEXT USES TRANSLATION KEYS** (zero hardcoded text)
 - [ ] Props use `*Key` naming for translation keys
+
+### Design System Compliance
+- [ ] Colors use CSS variable tokens (`bg-bg-elevated`, `text-text-primary`)
+- [ ] No hardcoded colors (`#fff`, `rgb()`, `bg-white`, `text-gray-500`)
+- [ ] Spacing uses standard scale (no `p-[17px]` or `gap-[22px]`)
+- [ ] Border-radius uses standard tokens (no `rounded-[19px]`)
+- [ ] Icon sizes use standard tokens (`h-4 w-4`, `h-5 w-5`, `h-6 w-6`)
+- [ ] No emojis in UI
+- [ ] No gradients except single feature CTA
+- [ ] Platform colors only on platform icons
+- [ ] Dark mode works correctly (test with theme toggle)
 
 ### Component Quality
 - [ ] Single responsibility - does one thing well
 - [ ] Reusable - not overly coupled to specific use case
 - [ ] Theme-aware - works in light and dark mode
 - [ ] Accessible - keyboard navigation and screen reader support
+- [ ] Mobile-first responsive design implemented
+- [ ] 44px minimum touch targets on mobile
+- [ ] Loading and error states handled
+- [ ] Skeletons match content dimensions exactly
+- [ ] No console.logs or debugging code
 
 ---
 
 ## Anti-Patterns to Avoid
 
-❌ Hardcoded colors (`bg-white`, `text-gray-500`, `#F7F7F7`)
+### Colors & Styling
+❌ Hardcoded colors (`bg-white`, `text-gray-500`, `#F7F7F7`, `rgb()`, `hsl()`)
+❌ Arbitrary spacing (`p-[17px]`, `m-[22px]`, `gap-[13px]`)
+❌ Arbitrary border-radius (`rounded-[19px]`, `rounded-[5px]`)
+❌ Arbitrary icon sizes (`h-[18px] w-[18px]`)
+❌ Gradients for decoration (only allowed on single feature CTA)
+❌ Platform colors on buttons, borders, or backgrounds
+❌ Shadows in dark theme
+❌ Emojis anywhere in the UI
+
+### Code Quality
 ❌ Hardcoded text anywhere - use translation keys
 ❌ Props named `label`, `title`, `text` - use `labelKey`, `titleKey`, `textKey`
 ❌ Prop drilling more than 2 levels - use Context
@@ -767,6 +1036,7 @@ export function Card({ titleKey, descriptionKey }: CardProps) {
 ❌ Missing key props in lists
 ❌ Ignoring TypeScript errors with `@ts-ignore`
 ❌ Mixing components and non-components in same file (breaks fast refresh)
+❌ Layout shift on content load (skeletons must match dimensions)
 
 ---
 
@@ -779,4 +1049,9 @@ export function Card({ titleKey, descriptionKey }: CardProps) {
 
 ---
 
-**Remember**: Write code that works beautifully in both light and dark mode, is fully translated, and is easy to maintain!
+**Remember**:
+- Follow the design system strictly — no hardcoded colors, spacing, or border-radius
+- Use CSS variable tokens for all visual properties
+- No emojis, no gradients (except feature CTA), no shadows in dark mode
+- All text must use translation keys
+- Write code that works beautifully in both light and dark mode!
