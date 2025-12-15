@@ -33,7 +33,7 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center rounded-2xl border border-dashed border-border-default bg-bg-subtle text-center',
+        'border-border-default bg-bg-subtle flex flex-col items-center justify-center rounded-2xl border border-dashed text-center',
         compact ? 'px-5 py-8' : 'px-6 py-14',
         className
       )}
@@ -41,7 +41,7 @@ export function EmptyState({
       {/* Icon container */}
       <div
         className={cn(
-          'mb-5 flex items-center justify-center rounded-xl border border-border-default bg-bg-hover',
+          'border-border-default bg-bg-hover mb-5 flex items-center justify-center rounded-xl border',
           compact ? 'h-12 w-12' : 'h-14 w-14'
         )}
       >

@@ -11,15 +11,8 @@ export function PlatformCrossLink() {
   const config = usePlatformConfig()
   const { theme, crossLinks } = config
 
-  const isDarkTheme = config.slug === 'tiktok' || config.slug === 'x'
-
   return (
-    <section
-      className={cn(
-        'relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32',
-        isDarkTheme ? 'bg-zinc-950' : 'bg-muted/20'
-      )}
-    >
+    <section className="bg-muted/20 relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <motion.div
@@ -29,20 +22,10 @@ export function PlatformCrossLink() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2
-            className={cn(
-              'font-display mb-4 text-3xl font-semibold tracking-tight sm:text-4xl',
-              isDarkTheme ? 'text-white' : 'text-foreground'
-            )}
-          >
+          <h2 className="font-display text-foreground mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t('platforms.common.crossLinks.title')}
           </h2>
-          <p
-            className={cn(
-              'mx-auto max-w-2xl text-lg leading-relaxed',
-              isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-            )}
-          >
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed">
             {t('platforms.common.crossLinks.subtitle')}
           </p>
         </motion.div>
@@ -66,64 +49,35 @@ export function PlatformCrossLink() {
               >
                 <Link
                   to={`/platforms/${crossLink.targetPlatform}`}
-                  className={cn(
-                    'group block rounded-2xl border p-6 transition-all duration-300',
-                    isDarkTheme
-                      ? 'border-zinc-800 bg-zinc-900/50 hover:border-zinc-700 hover:bg-zinc-900'
-                      : 'border-border hover:border-border/80 bg-card hover:shadow-lg'
-                  )}
+                  className="border-border hover:border-border/80 bg-card group block rounded-2xl border p-6 transition-all duration-300 hover:shadow-lg"
                 >
                   <div className="flex items-start gap-4">
                     {/* Target platform icon */}
                     <div
                       className={cn(
                         'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110',
-                        crossLink.targetPlatform === 'tiktok'
-                          ? 'bg-black'
-                          : crossLink.targetPlatform === 'x'
-                            ? 'bg-black'
-                            : crossLink.targetPlatform === 'instagram'
-                              ? 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737]'
-                              : targetTheme.primary
+                        targetTheme.primary
                       )}
                     >
-                      <TargetIcon className="h-6 w-6 text-white" />
+                      <TargetIcon className="text-primary-foreground h-6 w-6" />
                     </div>
 
                     <div className="flex-1">
                       {/* Headline */}
-                      <h3
-                        className={cn(
-                          'mb-2 text-lg font-semibold',
-                          isDarkTheme ? 'text-white' : 'text-foreground'
-                        )}
-                      >
+                      <h3 className="text-foreground mb-2 text-lg font-semibold">
                         {t(crossLink.headlineKey)}
                       </h3>
 
                       {/* Body */}
-                      <p
-                        className={cn(
-                          'mb-4 text-sm leading-relaxed',
-                          isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-                        )}
-                      >
+                      <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
                         {t(crossLink.bodyKey)}
                       </p>
 
                       {/* Link indicator */}
                       <span
                         className={cn(
-                          'inline-flex items-center gap-1 text-sm font-medium transition-colors',
-                          crossLink.targetPlatform === 'tiktok'
-                            ? 'text-[#FF0050] group-hover:text-[#FF0050]/80'
-                            : crossLink.targetPlatform === 'x'
-                              ? isDarkTheme
-                                ? 'text-white group-hover:text-zinc-300'
-                                : 'text-black group-hover:text-zinc-700'
-                              : crossLink.targetPlatform === 'instagram'
-                                ? 'text-[#E1306C] group-hover:text-[#E1306C]/80'
-                                : `${targetTheme.accent} group-hover:opacity-80`
+                          'inline-flex items-center gap-1 text-sm font-medium transition-colors group-hover:opacity-80',
+                          targetTheme.accent
                         )}
                       >
                         {t('platforms.common.crossLinks.explore', {
@@ -150,14 +104,8 @@ export function PlatformCrossLink() {
           <Link
             to="/platforms"
             className={cn(
-              'inline-flex items-center gap-2 text-base font-medium transition-colors',
-              config.slug === 'tiktok'
-                ? 'text-[#FF0050] hover:text-[#FF0050]/80'
-                : config.slug === 'x'
-                  ? 'text-white hover:text-zinc-300'
-                  : config.slug === 'instagram'
-                    ? 'text-[#E1306C] hover:text-[#E1306C]/80'
-                    : `${theme.accent} hover:opacity-80`
+              'inline-flex items-center gap-2 text-base font-medium transition-colors hover:opacity-80',
+              theme.accent
             )}
           >
             {t('platforms.common.crossLinks.viewAll')}

@@ -16,15 +16,7 @@ export function PlatformHero() {
   return (
     <section className={cn('relative overflow-hidden px-4 pt-32 pb-20 sm:px-6 lg:px-8 lg:pt-40')}>
       {/* Background gradient based on platform */}
-      <div
-        className={cn(
-          'absolute inset-0 -z-10',
-          theme.gradient,
-          // Special handling for dark themes (TikTok, X)
-          config.slug === 'tiktok' && 'bg-black',
-          config.slug === 'x' && 'bg-zinc-950'
-        )}
-      />
+      <div className={cn('bg-background absolute inset-0 -z-10', theme.gradient)} />
 
       {/* Decorative glow */}
       <div
@@ -45,25 +37,13 @@ export function PlatformHero() {
           <div
             className={cn(
               'inline-flex items-center gap-2 rounded-full px-4 py-2',
-              'bg-white/10 backdrop-blur-sm',
+              'bg-foreground/10 backdrop-blur-sm',
               theme.borderColor,
               'border'
             )}
           >
-            <Icon
-              className={cn(
-                'h-5 w-5',
-                config.slug === 'tiktok' || config.slug === 'x' ? 'text-white' : theme.accent
-              )}
-            />
-            <span
-              className={cn(
-                'text-sm font-medium',
-                config.slug === 'tiktok' || config.slug === 'x' ? 'text-white' : 'text-foreground'
-              )}
-            >
-              {t(config.nameKey)}
-            </span>
+            <Icon className={cn('h-5 w-5', theme.accent)} />
+            <span className="text-foreground text-sm font-medium">{t(config.nameKey)}</span>
           </div>
         </motion.div>
 
@@ -72,26 +52,10 @@ export function PlatformHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className={cn(
-            'mb-6 text-center text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-6xl',
-            config.slug === 'tiktok' || config.slug === 'x' ? 'text-white' : 'text-foreground'
-          )}
+          className="text-foreground mb-6 text-center text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-6xl"
         >
           {t(hero.titleKey)}{' '}
-          <span
-            className={cn(
-              'relative',
-              config.slug === 'tiktok'
-                ? 'text-[#FF0050]'
-                : config.slug === 'x'
-                  ? 'text-white underline decoration-zinc-500'
-                  : config.slug === 'instagram'
-                    ? 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] bg-clip-text text-transparent'
-                    : theme.accent
-            )}
-          >
-            {t(hero.highlightKey)}
-          </span>
+          <span className={cn('relative', theme.accent)}>{t(hero.highlightKey)}</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -99,12 +63,7 @@ export function PlatformHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={cn(
-            'mx-auto mb-8 max-w-2xl text-center text-lg leading-relaxed',
-            config.slug === 'tiktok' || config.slug === 'x'
-              ? 'text-zinc-400'
-              : 'text-muted-foreground'
-          )}
+          className="text-muted-foreground mx-auto mb-8 max-w-2xl text-center text-lg leading-relaxed"
         >
           {t(hero.subtitleKey)}
         </motion.p>
@@ -114,12 +73,7 @@ export function PlatformHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className={cn(
-            'mx-auto mb-10 max-w-xl text-center text-base italic',
-            config.slug === 'tiktok' || config.slug === 'x'
-              ? 'text-zinc-500'
-              : 'text-muted-foreground/80'
-          )}
+          className="text-muted-foreground/80 mx-auto mb-10 max-w-xl text-center text-base italic"
         >
           "{t(hero.agitationKey)}"
         </motion.p>
@@ -135,11 +89,9 @@ export function PlatformHero() {
             size="lg"
             className={cn(
               'h-12 min-w-[180px] rounded-xl px-8 text-base font-semibold',
-              config.slug === 'instagram'
-                ? 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white hover:opacity-90'
-                : theme.primary,
+              theme.primary,
               theme.primaryForeground,
-              'shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl',
+              'shadow-lg transition-all duration-200 hover:opacity-90',
               theme.glowColor
             )}
             asChild
@@ -154,10 +106,8 @@ export function PlatformHero() {
             variant="outline"
             className={cn(
               'h-12 min-w-[180px] rounded-xl px-8 text-base font-semibold',
-              config.slug === 'tiktok' || config.slug === 'x'
-                ? 'border-zinc-700 bg-transparent text-white hover:bg-zinc-900'
-                : 'border-border hover:bg-muted/50 bg-background',
-              'transition-all duration-200 hover:-translate-y-0.5'
+              'bg-background border-border hover:bg-accent',
+              'transition-all duration-200'
             )}
             asChild
           >

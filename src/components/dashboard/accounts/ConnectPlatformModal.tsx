@@ -62,7 +62,7 @@ export function ConnectPlatformModal({
         <div className="space-y-3 py-2">
           {platform.requirements.map((req, index) => (
             <div key={index} className="flex items-start gap-3">
-              <div className="bg-primary/10 dark:bg-primary/20 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
+              <div className="bg-primary/10 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
                 <Check className="text-primary h-3 w-3" />
               </div>
               <p className="text-foreground text-sm">{t(req.textKey)}</p>
@@ -79,7 +79,7 @@ export function ConnectPlatformModal({
         </Button>
 
         {/* Privacy Notice */}
-        <div className="bg-muted/50 dark:bg-muted/30 flex items-start gap-2 rounded-lg p-3">
+        <div className="bg-muted/50 flex items-start gap-2 rounded-lg p-3">
           <Shield className="text-muted-foreground mt-0.5 h-4 w-4 shrink-0" />
           <p className="text-muted-foreground text-xs">
             {t('dashboard.accounts.connectModal.privacyNotice')}
@@ -87,7 +87,7 @@ export function ConnectPlatformModal({
         </div>
 
         {/* Help Section */}
-        <div className="dark:border-border flex items-center justify-center gap-4 border-t pt-4">
+        <div className="border-border flex items-center justify-center gap-4 border-t pt-4">
           <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
             <CircleHelp className="h-4 w-4" />
             <span>{t('dashboard.accounts.connectModal.havingIssues')}</span>

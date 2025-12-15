@@ -51,26 +51,26 @@ export function StreakWidget({ streak, isLoading, error, className }: StreakWidg
     <div
       className={cn(
         'bg-card relative overflow-hidden rounded-2xl border p-6',
-        'border-orange-500/20',
-        'bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/5',
+        'border-warning/20',
+        'from-warning/5 to-warning/5 bg-gradient-to-br via-transparent',
         className
       )}
     >
       {/* Background glow effect */}
-      <div className="pointer-events-none absolute -top-20 -left-20 h-40 w-40 rounded-full bg-orange-500/10 blur-3xl" />
+      <div className="bg-warning/10 pointer-events-none absolute -top-20 -left-20 h-40 w-40 rounded-full blur-3xl" />
 
       <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
         {/* Flame Icon Container */}
         <div
           className={cn(
             'flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl',
-            'bg-gradient-to-br from-orange-500/20 to-amber-500/20',
-            'ring-1 ring-orange-500/20',
+            'from-warning/20 to-warning/20 bg-gradient-to-br',
+            'ring-warning/20 ring-1',
             hasStreak && isActiveToday && 'animate-pulse'
           )}
         >
           <Flame
-            className={cn('h-10 w-10', hasStreak ? 'text-orange-500' : 'text-muted-foreground/50')}
+            className={cn('h-10 w-10', hasStreak ? 'text-warning' : 'text-muted-foreground/50')}
           />
         </div>
 
@@ -90,7 +90,7 @@ export function StreakWidget({ streak, isLoading, error, className }: StreakWidg
               {currentStreak === 1 ? t('dashboard.streak.day') : t('dashboard.streak.days')}
             </span>
             {isAtMilestone && (
-              <span className="ml-2 flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+              <span className="bg-warning/10 text-warning ml-2 flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium">
                 <Trophy className="h-3 w-3" />
                 {t('dashboard.streak.milestoneReached')}
               </span>
@@ -101,7 +101,7 @@ export function StreakWidget({ streak, isLoading, error, className }: StreakWidg
           <div className="flex flex-wrap items-center gap-4 text-sm">
             {/* Best Streak */}
             <div className="text-muted-foreground flex items-center gap-1.5">
-              <Zap className="h-4 w-4 text-amber-500" />
+              <Zap className="text-warning h-4 w-4" />
               <span>{t('dashboard.streak.bestStreak', { count: longestStreak })}</span>
             </div>
 
@@ -122,7 +122,7 @@ export function StreakWidget({ streak, isLoading, error, className }: StreakWidg
                     key={idx}
                     className={cn(
                       'h-1.5 flex-1 rounded-full transition-colors',
-                      filled ? 'bg-orange-500' : 'bg-muted'
+                      filled ? 'bg-warning' : 'bg-muted'
                     )}
                   />
                 ))}

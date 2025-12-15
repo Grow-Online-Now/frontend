@@ -80,7 +80,7 @@ export function ScheduleSelector({
                 scheduleType === option.value ? 'border-primary' : 'border-border-muted'
               )}
             >
-              {scheduleType === option.value && <div className="size-2 rounded-full bg-primary" />}
+              {scheduleType === option.value && <div className="bg-primary size-2 rounded-full" />}
             </div>
             <div className="flex-1">
               <p className="text-foreground text-sm font-medium">{t(option.labelKey)}</p>

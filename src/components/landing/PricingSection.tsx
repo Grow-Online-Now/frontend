@@ -86,7 +86,7 @@ export function Pricing() {
           <RadioGroup
             value={frequency}
             onValueChange={(value) => setFrequency(value as Frequency)}
-            className="bg-background ring-border flex w-fit rounded-full p-1.5 text-xs leading-5 font-semibold shadow-[0_0_7px_0_rgba(0,0,0,0.07)] ring-1 ring-inset dark:shadow-none"
+            className="bg-background ring-border flex w-fit rounded-full p-1.5 text-xs leading-5 font-semibold shadow-sm ring-1 ring-inset"
           >
             <Label className="sr-only">{t('landing.pricing.frequency.annually')}</Label>
             {frequencies.map((value) => (

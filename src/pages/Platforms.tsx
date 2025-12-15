@@ -62,8 +62,6 @@ export function Platforms() {
                   const Icon = config.icon
                   const { theme } = config
 
-                  const isDarkPlatform = slug === 'tiktok' || slug === 'x'
-
                   return (
                     <motion.div
                       key={slug}
@@ -74,21 +72,13 @@ export function Platforms() {
                     >
                       <Link
                         to={`/platforms/${slug}`}
-                        className={cn(
-                          'group relative flex flex-col rounded-2xl border p-6 transition-all duration-300',
-                          'bg-white hover:shadow-xl',
-                          'border-border/50 hover:border-border'
-                        )}
+                        className="border-border/50 hover:border-border bg-card group relative flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:shadow-xl"
                       >
                         {/* Platform gradient accent */}
                         <div
                           className={cn(
                             'absolute inset-x-0 top-0 h-1 rounded-t-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100',
-                            slug === 'instagram'
-                              ? 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737]'
-                              : isDarkPlatform
-                                ? 'bg-black'
-                                : theme.primary
+                            theme.primary
                           )}
                         />
 
@@ -96,14 +86,10 @@ export function Platforms() {
                         <div
                           className={cn(
                             'mb-4 flex h-14 w-14 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110',
-                            slug === 'instagram'
-                              ? 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737]'
-                              : isDarkPlatform
-                                ? 'bg-black'
-                                : theme.primary
+                            theme.primary
                           )}
                         >
-                          <Icon className="h-7 w-7 text-white" />
+                          <Icon className="text-primary-foreground h-7 w-7" />
                         </div>
 
                         {/* Content */}
@@ -118,14 +104,8 @@ export function Platforms() {
                         {/* Link indicator */}
                         <span
                           className={cn(
-                            'inline-flex items-center gap-1 text-sm font-medium transition-colors',
-                            slug === 'tiktok'
-                              ? 'text-[#FF0050] group-hover:text-[#FF0050]/80'
-                              : slug === 'x'
-                                ? 'text-black group-hover:text-zinc-700'
-                                : slug === 'instagram'
-                                  ? 'text-[#E1306C] group-hover:text-[#E1306C]/80'
-                                  : `${theme.accent} group-hover:opacity-80`
+                            'inline-flex items-center gap-1 text-sm font-medium transition-colors group-hover:opacity-80',
+                            theme.accent
                           )}
                         >
                           {t('platforms.hub.exploreButton')}
@@ -172,9 +152,9 @@ export function Platforms() {
                   to="/signup"
                   className={cn(
                     'inline-flex items-center gap-2 rounded-xl px-8 py-3',
-                    'bg-primary font-semibold text-white',
+                    'bg-primary text-primary-foreground font-semibold',
                     'shadow-primary/25 hover:shadow-primary/30 shadow-lg hover:shadow-xl',
-                    'transition-all duration-200 hover:-translate-y-0.5'
+                    'transition-all duration-200 hover:opacity-90'
                   )}
                 >
                   {t('platforms.hub.cta.button')}

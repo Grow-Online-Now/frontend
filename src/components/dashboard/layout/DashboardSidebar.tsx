@@ -140,7 +140,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       </div>
 
       {/* Create Post Quick Action */}
-      <div className="px-3 pb-2 pt-4">
+      <div className="px-3 pt-4 pb-2">
         <Button
           asChild
           className="w-full justify-center gap-2 font-medium transition-opacity hover:opacity-90"

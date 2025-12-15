@@ -146,8 +146,8 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
               'relative flex items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300',
               isScrolled
                 ? isDark
-                  ? 'border-zinc-800 bg-zinc-900/90 shadow-lg backdrop-blur-lg'
-                  : 'border-border bg-background/80 shadow-lg shadow-black/5 backdrop-blur-lg'
+                  ? 'border-border bg-card/90 shadow-lg backdrop-blur-lg'
+                  : 'border-border bg-background/80 shadow-foreground/5 shadow-lg backdrop-blur-lg'
                 : 'border-transparent bg-transparent'
             )}
           >
@@ -160,9 +160,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                 height={36}
                 className="h-9 w-9 rounded-lg"
               />
-              <span className={cn('text-xl font-bold', isDark ? 'text-white' : 'text-foreground')}>
-                Grow Online
-              </span>
+              <span className="text-foreground text-xl font-bold">Grow Online</span>
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -176,9 +174,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                       className={cn(
                         navigationMenuTriggerStyle(),
                         'bg-transparent transition-colors duration-200',
-                        isDark
-                          ? 'text-zinc-400 hover:bg-zinc-800 hover:text-white focus:bg-zinc-800'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-foreground/5 focus:bg-foreground/5'
+                        'text-muted-foreground hover:bg-accent hover:text-foreground focus:bg-accent'
                       )}
                     >
                       {t(link.labelKey)}
@@ -191,9 +187,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                   <NavigationMenuTrigger
                     className={cn(
                       'bg-transparent transition-colors duration-200',
-                      isDark
-                        ? 'text-zinc-400 hover:bg-zinc-800 hover:text-white focus:bg-zinc-800 data-[state=open]:bg-zinc-800'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-foreground/5 focus:bg-foreground/5 data-[state=open]:bg-foreground/5'
+                      'text-muted-foreground hover:bg-accent hover:text-foreground focus:bg-accent data-[state=open]:bg-accent'
                     )}
                   >
                     {t('landing.navbar.platforms')}
@@ -205,12 +199,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                           <NavigationMenuLink asChild>
                             <a
                               href={localizeHref(item.href)}
-                              className={cn(
-                                'flex items-start gap-3 rounded-lg p-3 leading-none no-underline transition-colors outline-none select-none',
-                                isDark
-                                  ? 'hover:bg-zinc-800 focus:bg-zinc-800'
-                                  : 'hover:bg-accent focus:bg-accent'
-                              )}
+                              className="hover:bg-accent focus:bg-accent flex items-start gap-3 rounded-lg p-3 leading-none no-underline transition-colors outline-none select-none"
                             >
                               {item.icon && <div className="mt-0.5 shrink-0">{item.icon}</div>}
                               <div>
@@ -236,9 +225,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                   <NavigationMenuTrigger
                     className={cn(
                       'bg-transparent transition-colors duration-200',
-                      isDark
-                        ? 'text-zinc-400 hover:bg-zinc-800 hover:text-white focus:bg-zinc-800 data-[state=open]:bg-zinc-800'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-foreground/5 focus:bg-foreground/5 data-[state=open]:bg-foreground/5'
+                      'text-muted-foreground hover:bg-accent hover:text-foreground focus:bg-accent data-[state=open]:bg-accent'
                     )}
                   >
                     {t('landing.navbar.blog')}
@@ -250,12 +237,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                         <NavigationMenuLink asChild>
                           <a
                             href={localizeHref('/blog')}
-                            className={cn(
-                              'flex h-full w-full flex-col justify-end rounded-md p-6 no-underline transition-colors outline-none select-none',
-                              isDark
-                                ? 'bg-gradient-to-b from-zinc-800/50 to-zinc-800 hover:from-zinc-700/50 hover:to-zinc-700'
-                                : 'from-muted/50 to-muted hover:from-muted hover:to-muted/80 bg-gradient-to-b'
-                            )}
+                            className="from-muted/50 to-muted hover:from-muted hover:to-muted/80 flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline transition-colors outline-none select-none"
                           >
                             <div className="mb-2 text-lg font-medium">
                               {t('landing.navbar.blogSubmenu.featured')}
@@ -272,12 +254,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
                           <NavigationMenuLink asChild>
                             <a
                               href={localizeHref(item.href)}
-                              className={cn(
-                                'block rounded-md p-3 leading-none no-underline transition-colors outline-none select-none',
-                                isDark
-                                  ? 'hover:bg-zinc-800 focus:bg-zinc-800'
-                                  : 'hover:bg-accent focus:bg-accent'
-                              )}
+                              className="hover:bg-accent focus:bg-accent block rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                             >
                               <div className="text-sm leading-none font-medium">
                                 {t(item.titleKey)}
@@ -296,32 +273,19 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
             <div className="hidden items-center gap-3 md:flex">
               <Button
                 variant="ghost"
-                className={cn(
-                  isDark
-                    ? 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-foreground/5'
-                )}
+                className="text-muted-foreground hover:bg-accent hover:text-foreground"
                 asChild
               >
                 <a href={localizeHref('/login')}>{t('landing.navbar.login')}</a>
               </Button>
-              <Button
-                className={cn(
-                  'px-5',
-                  isDark ? 'bg-white text-black hover:bg-zinc-200' : ''
-                )}
-                asChild
-              >
+              <Button className="px-5" asChild>
                 <a href={localizeHref('/signup')}>{t('landing.navbar.getStarted')}</a>
               </Button>
             </div>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className={cn(
-                'relative z-10 flex h-10 w-10 items-center justify-center rounded-lg md:hidden',
-                isDark ? 'text-white hover:bg-zinc-800' : 'text-foreground hover:bg-foreground/5'
-              )}
+              className="text-foreground hover:bg-accent relative z-10 flex h-10 w-10 items-center justify-center rounded-lg md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.95 }}
               aria-label={t('landing.navbar.mobileMenuAriaLabel')}

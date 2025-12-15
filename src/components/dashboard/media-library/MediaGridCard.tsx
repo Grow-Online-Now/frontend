@@ -73,14 +73,14 @@ export function MediaGridCard({
       )}
 
       {/* Hover Overlay with Actions */}
-      <div className="absolute inset-0 flex flex-col justify-between bg-black/0 p-2 opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100">
+      <div className="bg-foreground/0 group-hover:bg-foreground/40 absolute inset-0 flex flex-col justify-between p-2 opacity-0 transition-all group-hover:opacity-100">
         {/* Top Actions */}
         <div className="flex justify-end gap-1">
           {onView && (
             <Button
               variant="secondary"
               size="icon"
-              className="h-8 w-8 bg-white/90 hover:bg-white"
+              className="bg-background/90 hover:bg-background h-8 w-8"
               onClick={(e) => {
                 e.stopPropagation()
                 onView(media)
@@ -111,7 +111,7 @@ export function MediaGridCard({
           <Button
             variant="secondary"
             size="sm"
-            className="w-full bg-white/90 hover:bg-white"
+            className="bg-background/90 hover:bg-background w-full"
             onClick={(e) => {
               e.stopPropagation()
               onUseInPost(media)

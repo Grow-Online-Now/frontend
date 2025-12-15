@@ -8,15 +8,8 @@ export function PlatformPainPoints() {
   const config = usePlatformConfig()
   const { theme, painPoints } = config
 
-  const isDarkTheme = config.slug === 'tiktok' || config.slug === 'x'
-
   return (
-    <section
-      className={cn(
-        'relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32',
-        isDarkTheme ? 'bg-zinc-950' : 'bg-background'
-      )}
-    >
+    <section className="bg-background relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -26,20 +19,10 @@ export function PlatformPainPoints() {
           transition={{ duration: 0.5 }}
           className="mb-16 max-w-2xl"
         >
-          <h2
-            className={cn(
-              'font-display mb-4 text-3xl font-semibold tracking-tight sm:text-4xl',
-              isDarkTheme ? 'text-white' : 'text-foreground'
-            )}
-          >
+          <h2 className="font-display text-foreground mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t('platforms.common.painPoints.title')}
           </h2>
-          <p
-            className={cn(
-              'text-lg leading-relaxed',
-              isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-            )}
-          >
+          <p className="text-muted-foreground text-lg leading-relaxed">
             {t('platforms.common.painPoints.subtitle')}
           </p>
         </motion.div>
@@ -55,50 +38,16 @@ export function PlatformPainPoints() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={cn(
-                  'group relative rounded-2xl p-6 transition-all duration-300',
-                  isDarkTheme
-                    ? 'border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900'
-                    : 'bg-muted/30 hover:bg-muted/50 border-border/50 border'
-                )}
+                className="bg-muted/30 hover:bg-muted/50 border-border/50 group relative rounded-2xl border p-6 transition-all duration-300"
               >
                 {/* Icon */}
-                <div
-                  className={cn(
-                    'mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl',
-                    isDarkTheme ? 'bg-zinc-800' : 'bg-card',
-                    'transition-transform duration-300 group-hover:scale-110'
-                  )}
-                >
-                  <Icon
-                    className={cn(
-                      'h-6 w-6',
-                      config.slug === 'tiktok'
-                        ? 'text-[#FF0050]'
-                        : config.slug === 'x'
-                          ? 'text-white'
-                          : config.slug === 'instagram'
-                            ? 'text-[#E1306C]'
-                            : theme.accent
-                    )}
-                  />
+                <div className="bg-card mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110">
+                  <Icon className={cn('h-6 w-6', theme.accent)} />
                 </div>
 
                 {/* Content */}
-                <h3
-                  className={cn(
-                    'mb-2 text-lg font-semibold',
-                    isDarkTheme ? 'text-white' : 'text-foreground'
-                  )}
-                >
-                  {t(point.titleKey)}
-                </h3>
-                <p
-                  className={cn(
-                    'text-sm leading-relaxed',
-                    isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-                  )}
-                >
+                <h3 className="text-foreground mb-2 text-lg font-semibold">{t(point.titleKey)}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {t(point.descriptionKey)}
                 </p>
               </motion.div>

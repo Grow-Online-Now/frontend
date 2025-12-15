@@ -70,11 +70,7 @@ export default function SettingsPage() {
               <p className="text-muted-foreground text-sm">
                 {t('dashboard.settings.profile.avatar')}
               </p>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-fit rounded-lg text-sm font-medium"
-              >
+              <Button variant="outline" size="sm" className="w-fit rounded-lg text-sm font-medium">
                 {t('dashboard.settings.profile.changeAvatar')}
               </Button>
             </div>

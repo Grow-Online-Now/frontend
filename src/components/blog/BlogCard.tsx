@@ -10,12 +10,12 @@ interface BlogCardProps {
 }
 
 const categoryColors: Record<ArticleCategory, string> = {
-  strategy: 'bg-sky-100 text-sky-700',
-  tips: 'bg-amber-100 text-amber-700',
-  'case-study': 'bg-emerald-100 text-emerald-700',
-  news: 'bg-violet-100 text-violet-700',
-  tutorial: 'bg-rose-100 text-rose-700',
-  growth: 'bg-cyan-100 text-cyan-700',
+  strategy: 'bg-info/10 text-info',
+  tips: 'bg-warning/10 text-warning',
+  'case-study': 'bg-success/10 text-success',
+  news: 'bg-primary/10 text-primary',
+  tutorial: 'bg-destructive/10 text-destructive',
+  growth: 'bg-accent text-accent-foreground',
 }
 
 export function BlogCard({ article, className }: BlogCardProps) {
@@ -55,7 +55,7 @@ export function BlogCard({ article, className }: BlogCardProps) {
           />
 
           {/* Subtle overlay for text readability */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent" />
+          <div className="from-foreground/40 via-foreground/10 absolute inset-0 bg-linear-to-t to-transparent" />
 
           {/* Category Badge */}
           <div className="absolute top-4 left-4">
@@ -72,9 +72,9 @@ export function BlogCard({ article, className }: BlogCardProps) {
 
           {/* Bottom Content Overlay */}
           <div className="absolute inset-x-0 bottom-0 p-4">
-            <div className="flex items-center gap-3 text-xs text-white/90">
+            <div className="text-primary-foreground/90 flex items-center gap-3 text-xs">
               <time dateTime={article.publishedAt}>{formattedDate}</time>
-              <span className="h-1 w-1 rounded-full bg-white/50" />
+              <span className="bg-primary-foreground/50 h-1 w-1 rounded-full" />
               <span className="flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5" />
                 {t('blog.card.readTime', { minutes: article.readingTime })}

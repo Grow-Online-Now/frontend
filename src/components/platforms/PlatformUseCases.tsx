@@ -9,16 +9,8 @@ export function PlatformUseCases() {
   const config = usePlatformConfig()
   const { theme, useCases } = config
 
-  const isDarkTheme = config.slug === 'tiktok' || config.slug === 'x'
-
   return (
-    <section
-      id="use-cases"
-      className={cn(
-        'relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32',
-        isDarkTheme ? 'bg-zinc-950' : 'bg-background'
-      )}
-    >
+    <section id="use-cases" className="bg-background relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -28,20 +20,10 @@ export function PlatformUseCases() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <h2
-            className={cn(
-              'font-display mb-4 text-3xl font-semibold tracking-tight sm:text-4xl',
-              isDarkTheme ? 'text-white' : 'text-foreground'
-            )}
-          >
+          <h2 className="font-display text-foreground mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t('platforms.common.useCases.title')}
           </h2>
-          <p
-            className={cn(
-              'mx-auto max-w-2xl text-lg leading-relaxed',
-              isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-            )}
-          >
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed">
             {t('platforms.common.useCases.subtitle', { platform: t(config.nameKey) })}
           </p>
         </motion.div>
@@ -57,54 +39,18 @@ export function PlatformUseCases() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={cn(
-                  'group relative flex flex-col rounded-2xl p-6 transition-all duration-300',
-                  isDarkTheme
-                    ? 'border border-zinc-800 bg-zinc-900/50 hover:border-zinc-700 hover:bg-zinc-900'
-                    : 'hover:bg-muted/20 border-border/50 hover:border-border bg-card border hover:shadow-md'
-                )}
+                className="hover:bg-muted/20 border-border/50 hover:border-border bg-card group relative flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:shadow-md"
               >
                 {/* Icon */}
-                <div
-                  className={cn(
-                    'mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl',
-                    config.slug === 'instagram'
-                      ? 'bg-linear-to-br from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#F77737]/10'
-                      : isDarkTheme
-                        ? 'bg-zinc-800'
-                        : 'bg-muted/50',
-                    'transition-transform duration-300 group-hover:scale-110'
-                  )}
-                >
-                  <Icon
-                    className={cn(
-                      'h-7 w-7',
-                      config.slug === 'tiktok'
-                        ? 'text-[#FF0050]'
-                        : config.slug === 'x'
-                          ? 'text-white'
-                          : config.slug === 'instagram'
-                            ? 'text-[#E1306C]'
-                            : theme.accent
-                    )}
-                  />
+                <div className="bg-muted/50 mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110">
+                  <Icon className={cn('h-7 w-7', theme.accent)} />
                 </div>
 
                 {/* Content */}
-                <h3
-                  className={cn(
-                    'mb-2 text-lg font-semibold',
-                    isDarkTheme ? 'text-white' : 'text-foreground'
-                  )}
-                >
+                <h3 className="text-foreground mb-2 text-lg font-semibold">
                   {t(useCase.titleKey)}
                 </h3>
-                <p
-                  className={cn(
-                    'mb-4 flex-1 text-sm leading-relaxed',
-                    isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-                  )}
-                >
+                <p className="text-muted-foreground mb-4 flex-1 text-sm leading-relaxed">
                   {t(useCase.descriptionKey)}
                 </p>
 
@@ -112,14 +58,8 @@ export function PlatformUseCases() {
                 <a
                   href="#features"
                   className={cn(
-                    'inline-flex items-center gap-1 text-sm font-medium transition-colors',
-                    config.slug === 'tiktok'
-                      ? 'text-[#FF0050] hover:text-[#FF0050]/80'
-                      : config.slug === 'x'
-                        ? 'text-white hover:text-zinc-300'
-                        : config.slug === 'instagram'
-                          ? 'text-[#E1306C] hover:text-[#E1306C]/80'
-                          : `${theme.accent} hover:opacity-80`
+                    'inline-flex items-center gap-1 text-sm font-medium transition-colors hover:opacity-80',
+                    theme.accent
                   )}
                 >
                   {t('platforms.common.useCases.learnMore')}

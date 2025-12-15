@@ -70,7 +70,7 @@ export function PostButton({
         }
         disabled={isDisabled}
         className={cn(
-          'flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all',
+          'text-primary-foreground flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium shadow-md transition-all',
           !isDisabled &&
             !hasWarnings &&
             'from-primary to-primary/90 bg-gradient-to-r hover:-translate-y-px hover:shadow-lg',
@@ -126,7 +126,7 @@ export function PostButton({
                 className={cn(
                   'flex-1 rounded-lg py-2 text-sm font-medium transition-colors',
                   readyCount > 0
-                    ? 'bg-primary hover:bg-primary/90 text-white'
+                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
                     : 'bg-muted text-muted-foreground cursor-not-allowed'
                 )}
               >

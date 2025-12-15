@@ -19,12 +19,10 @@ function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimi
         // Focus
         'focus-visible:ring-primary/20 focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2',
         // Hover
-        'hover:data-[state=unchecked]:border-border-muted',
+        'hover:data-[state=unchecked]:border-border/80',
         'hover:data-[state=checked]:bg-primary/90',
         // Disabled
         'disabled:cursor-not-allowed disabled:opacity-50',
-        // Dark mode
-        'dark:data-[state=unchecked]:bg-input/50 dark:data-[state=unchecked]:border-border-subtle',
         className
       )}
       {...props}
@@ -33,13 +31,13 @@ function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimi
         data-slot="switch-thumb"
         className={cn(
           // Base
-          'pointer-events-none block h-5 w-5 rounded-full bg-white shadow-md ring-0',
+          'bg-background pointer-events-none block h-5 w-5 rounded-full shadow-md ring-0',
           // Animation
           'transition-transform duration-200 ease-out',
           // Position
           'data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
           // Shadow
-          'shadow-[0_1px_3px_rgba(0,0,0,0.2)]'
+          'shadow-sm'
         )}
       />
     </SwitchPrimitive.Root>

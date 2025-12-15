@@ -8,19 +8,19 @@ const features = [
     icon: Bot,
     titleKey: 'landing.features.ai.title',
     descriptionKey: 'landing.features.ai.description',
-    gradient: 'from-purple-500 to-pink-500',
+    bgClass: 'bg-primary',
   },
   {
     icon: Calendar,
     titleKey: 'landing.features.scheduling.title',
     descriptionKey: 'landing.features.scheduling.description',
-    gradient: 'from-blue-500 to-cyan-500',
+    bgClass: 'bg-info',
   },
   {
     icon: LineChart,
     titleKey: 'landing.features.analytics.title',
     descriptionKey: 'landing.features.analytics.description',
-    gradient: 'from-green-500 to-emerald-500',
+    bgClass: 'bg-success',
   },
 ]
 
@@ -56,14 +56,14 @@ export function FeaturesGrid() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               >
-                <Card className="group relative overflow-hidden p-6 transition-colors hover:bg-accent/5">
+                <Card className="group hover:bg-accent/5 relative overflow-hidden p-6 transition-colors">
                   {/* Content */}
                   <div className="relative">
                     {/* Icon */}
                     <div
-                      className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${feature.gradient} p-2.5`}
+                      className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${feature.bgClass} p-2.5`}
                     >
-                      <Icon className="h-full w-full text-white" />
+                      <Icon className="text-primary-foreground h-full w-full" />
                     </div>
 
                     {/* Title */}

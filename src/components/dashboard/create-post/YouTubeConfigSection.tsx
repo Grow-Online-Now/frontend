@@ -153,7 +153,7 @@ export function YouTubeConfigSection({
                   isSelected ? 'border-primary' : 'border-border-muted'
                 )}
               >
-                {isSelected && <div className="size-2 rounded-full bg-primary" />}
+                {isSelected && <div className="bg-primary size-2 rounded-full" />}
               </div>
 
               <Icon
@@ -229,7 +229,7 @@ export function YouTubeConfigSection({
               alt="Thumbnail"
               className="aspect-video w-full object-cover"
             />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity hover:opacity-100">
+            <div className="bg-foreground/40 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity hover:opacity-100">
               <Button
                 variant="destructive"
                 size="sm"
@@ -240,7 +240,7 @@ export function YouTubeConfigSection({
                 {t('dashboard.createPost.platformConfig.youtube.thumbnail.remove')}
               </Button>
             </div>
-            <div className="bg-success/90 absolute bottom-2 left-2 flex items-center gap-1 rounded px-2 py-0.5 text-xs text-white">
+            <div className="bg-success/90 text-success-foreground absolute bottom-2 left-2 flex items-center gap-1 rounded px-2 py-0.5 text-xs">
               <ImageIcon className="h-3 w-3" />
               {t('dashboard.createPost.platformConfig.youtube.thumbnail.selected')}
             </div>
@@ -292,7 +292,7 @@ export function YouTubeConfigSection({
             type="checkbox"
             checked={config.notifySubscribers ?? true}
             onChange={(e) => onChange({ ...config, notifySubscribers: e.target.checked })}
-            className="h-4 w-4 rounded border-input text-primary accent-[var(--color-primary)] focus:ring-primary"
+            className="border-input text-primary focus:ring-primary h-4 w-4 rounded accent-[var(--color-primary)]"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.youtube.notifySubscribers')}
@@ -304,7 +304,7 @@ export function YouTubeConfigSection({
             type="checkbox"
             checked={config.madeForKids ?? false}
             onChange={(e) => onChange({ ...config, madeForKids: e.target.checked })}
-            className="h-4 w-4 rounded border-input text-primary accent-[var(--color-primary)] focus:ring-primary"
+            className="border-input text-primary focus:ring-primary h-4 w-4 rounded accent-[var(--color-primary)]"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.youtube.madeForKids')}

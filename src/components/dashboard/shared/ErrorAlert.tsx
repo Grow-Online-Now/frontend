@@ -24,7 +24,7 @@ export function ErrorAlert({ messageKey, message, className }: ErrorAlertProps) 
   return (
     <div
       className={cn(
-        'flex items-center gap-3 rounded-lg border border-destructive/30 bg-error-muted p-4 text-sm text-destructive',
+        'border-destructive/30 bg-error-muted text-destructive flex items-center gap-3 rounded-lg border p-4 text-sm',
         className
       )}
       role="alert"

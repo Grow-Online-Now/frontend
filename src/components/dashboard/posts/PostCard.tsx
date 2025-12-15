@@ -72,8 +72,7 @@ export function PostCard({ post, onView, onEdit, onDelete, className }: PostCard
     <div
       className={cn(
         'group border-border-subtle bg-card relative rounded-2xl border p-4 transition-all duration-200',
-        'hover:border-border hover:shadow-sm hover:shadow-black/5',
-        'dark:hover:shadow-black/20',
+        'hover:border-border hover:shadow-sm',
         className
       )}
     >

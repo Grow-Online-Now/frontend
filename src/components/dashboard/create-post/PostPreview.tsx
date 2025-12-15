@@ -167,19 +167,19 @@ function InstagramPreview({
     <div className="overflow-hidden rounded-2xl">
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
-        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#FA7E1E] to-[#D62976] p-[2px]">
-          <div className="flex h-full w-full items-center justify-center rounded-full bg-white text-[10px] font-semibold text-black">
+        <div className="h-8 w-8 rounded-full bg-[var(--platform-instagram)] p-[1px]">
+          <div className="bg-background text-foreground flex h-full w-full items-center justify-center rounded-full text-xs font-semibold">
             {account?.platformUsername?.[0]?.toUpperCase() || 'U'}
           </div>
         </div>
-        <span className="text-[13px] font-semibold text-black">
+        <span className="text-foreground text-sm font-semibold">
           {account?.platformUsername || 'username'}
         </span>
-        <MoreHorizontal className="ml-auto h-4 w-4 text-black" />
+        <MoreHorizontal className="text-foreground ml-auto h-4 w-4" />
       </div>
 
       {/* Media */}
-      <div className="aspect-square bg-neutral-100">
+      <div className="bg-muted aspect-square">
         {media ? (
           media.type === 'video' ? (
             <video src={media.url} className="h-full w-full object-cover" />
@@ -187,14 +187,14 @@ function InstagramPreview({
             <img src={media.url} alt="" className="h-full w-full object-cover" />
           )
         ) : (
-          <div className="flex h-full items-center justify-center text-xs text-neutral-400">
+          <div className="text-muted-foreground flex h-full items-center justify-center text-xs">
             No media
           </div>
         )}
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-4 p-3 text-black">
+      <div className="text-foreground flex items-center gap-4 p-3">
         <Heart className="h-6 w-6" />
         <MessageCircle className="h-6 w-6" />
         <Send className="h-6 w-6" />
@@ -204,7 +204,7 @@ function InstagramPreview({
       {/* Caption */}
       {caption && (
         <div className="px-3 pb-3">
-          <p className="text-[13px] leading-[1.4] text-black">
+          <p className="text-foreground text-sm leading-[1.4]">
             <span className="font-semibold">{account?.platformUsername || 'username'}</span>{' '}
             {caption}
           </p>
@@ -228,29 +228,29 @@ function LinkedInPreview({
     <div className="overflow-hidden rounded-2xl">
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--platform-linkedin)] text-sm font-semibold text-white">
+        <div className="text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full bg-[var(--platform-linkedin)] text-sm font-semibold">
           {account?.displayName?.[0]?.toUpperCase() ||
             account?.platformUsername?.[0]?.toUpperCase() ||
             'U'}
         </div>
         <div className="flex flex-col">
-          <span className="text-[13px] font-semibold text-black">
+          <span className="text-foreground text-sm font-semibold">
             {account?.displayName || account?.platformUsername || 'User Name'}
           </span>
-          <span className="text-[11px] text-neutral-500">Just now</span>
+          <span className="text-muted-foreground text-xs">Just now</span>
         </div>
       </div>
 
       {/* Caption */}
       {caption && (
         <div className="px-3 pb-2">
-          <p className="text-[13px] leading-[1.4] text-black">{caption}</p>
+          <p className="text-foreground text-sm leading-[1.4]">{caption}</p>
         </div>
       )}
 
       {/* Media */}
       {media && (
-        <div className="bg-neutral-100">
+        <div className="bg-muted">
           {media.type === 'video' ? (
             <video src={media.url} className="w-full" />
           ) : (
@@ -260,7 +260,7 @@ function LinkedInPreview({
       )}
 
       {/* Actions */}
-      <div className="flex items-center justify-around border-t border-neutral-200 px-3 py-2 text-neutral-600">
+      <div className="text-muted-foreground border-border flex items-center justify-around border-t px-3 py-2">
         <div className="flex items-center gap-1 text-xs">
           <ThumbsUp className="h-4 w-4" /> Like
         </div>
@@ -297,8 +297,8 @@ function TwitterPreview({
     <div className="overflow-hidden rounded-2xl">
       {/* Thread indicator */}
       {(hasThread || hasFirstComment) && (
-        <div className="border-b border-neutral-200 bg-neutral-50 px-3 py-2 dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="flex items-center gap-2 text-xs text-neutral-500">
+        <div className="bg-muted border-border border-b px-3 py-2">
+          <div className="text-muted-foreground flex items-center gap-2 text-xs">
             <MessageCircle className="h-3 w-3" />
             {hasThread && (
               <span>
@@ -314,25 +314,23 @@ function TwitterPreview({
       {/* Main tweet */}
       <div className="p-3">
         <div className="flex gap-2.5">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
+          <div className="bg-foreground text-background flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
             {account?.platformUsername?.[0]?.toUpperCase() || 'U'}
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1.5">
-              <span className="text-[14px] font-bold text-black dark:text-white">
+              <span className="text-foreground text-sm font-bold">
                 {account?.displayName || account?.platformUsername || 'Display Name'}
               </span>
-              <span className="text-[13px] text-neutral-500">
+              <span className="text-muted-foreground text-sm">
                 @{account?.platformUsername || 'username'}
               </span>
             </div>
 
-            {caption && (
-              <p className="mt-1 text-[14px] leading-[1.4] text-black dark:text-white">{caption}</p>
-            )}
+            {caption && <p className="text-foreground mt-1 text-sm leading-[1.4]">{caption}</p>}
 
             {media && (
-              <div className="mt-2 overflow-hidden rounded-xl bg-neutral-100">
+              <div className="bg-muted mt-2 overflow-hidden rounded-xl">
                 {media.type === 'video' ? (
                   <video src={media.url} className="w-full" />
                 ) : (
@@ -343,7 +341,7 @@ function TwitterPreview({
 
             {/* Thread number indicator */}
             {hasThread && (
-              <div className="mt-2 text-xs text-neutral-400">
+              <div className="text-muted-foreground mt-2 text-xs">
                 {t('dashboard.createPost.twitter.thread.tweetNumber', {
                   current: 1,
                   total: thread.length + 1,
@@ -356,18 +354,18 @@ function TwitterPreview({
 
       {/* Thread preview snippets */}
       {hasThread && thread.length > 0 && (
-        <div className="border-t border-neutral-200 px-3 py-2 dark:border-neutral-800">
+        <div className="border-border border-t px-3 py-2">
           <div className="space-y-1.5">
             {thread.slice(0, 2).map((tweet) => (
               <div key={tweet.id} className="flex items-start gap-2">
-                <div className="mt-0.5 h-1.5 w-1.5 rounded-full bg-neutral-300" />
-                <p className="line-clamp-1 text-xs text-neutral-500">
+                <div className="bg-muted-foreground/50 mt-0.5 h-1.5 w-1.5 rounded-full" />
+                <p className="text-muted-foreground line-clamp-1 text-xs">
                   {tweet.text || t('dashboard.createPost.twitter.thread.placeholder')}
                 </p>
               </div>
             ))}
             {thread.length > 2 && (
-              <div className="text-xs text-neutral-400">+{thread.length - 2} more...</div>
+              <div className="text-muted-foreground text-xs">+{thread.length - 2} more...</div>
             )}
           </div>
         </div>
@@ -375,10 +373,10 @@ function TwitterPreview({
 
       {/* First comment preview */}
       {hasFirstComment && (
-        <div className="border-t border-neutral-200 px-3 py-2 dark:border-neutral-800">
+        <div className="border-border border-t px-3 py-2">
           <div className="flex items-start gap-2">
-            <MessageCircle className="mt-0.5 h-3 w-3 text-neutral-400" />
-            <p className="line-clamp-2 text-xs text-neutral-500">{firstComment.text}</p>
+            <MessageCircle className="text-muted-foreground mt-0.5 h-3 w-3" />
+            <p className="text-muted-foreground line-clamp-2 text-xs">{firstComment.text}</p>
           </div>
         </div>
       )}
@@ -400,29 +398,29 @@ function FacebookPreview({
     <div className="overflow-hidden rounded-2xl">
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--platform-facebook)] text-sm font-semibold text-white">
+        <div className="text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full bg-[var(--platform-facebook)] text-sm font-semibold">
           {account?.displayName?.[0]?.toUpperCase() ||
             account?.platformUsername?.[0]?.toUpperCase() ||
             'U'}
         </div>
         <div className="flex flex-col">
-          <span className="text-[14px] font-semibold text-black">
+          <span className="text-foreground text-sm font-semibold">
             {account?.displayName || account?.platformUsername || 'Page Name'}
           </span>
-          <span className="text-[12px] text-neutral-500">Just now</span>
+          <span className="text-muted-foreground text-xs">Just now</span>
         </div>
       </div>
 
       {/* Caption */}
       {caption && (
         <div className="px-3 pb-2">
-          <p className="text-[14px] leading-[1.4] text-black">{caption}</p>
+          <p className="text-foreground text-sm leading-[1.4]">{caption}</p>
         </div>
       )}
 
       {/* Media */}
       {media && (
-        <div className="bg-neutral-100">
+        <div className="bg-muted">
           {media.type === 'video' ? (
             <video src={media.url} className="w-full" />
           ) : (
@@ -432,14 +430,14 @@ function FacebookPreview({
       )}
 
       {/* Actions */}
-      <div className="flex items-center justify-around border-t border-neutral-200 px-3 py-2.5 text-neutral-600">
-        <div className="flex items-center gap-1.5 text-[13px]">
+      <div className="text-muted-foreground border-border flex items-center justify-around border-t px-3 py-2.5">
+        <div className="flex items-center gap-1.5 text-sm">
           <ThumbsUp className="h-4 w-4" /> Like
         </div>
-        <div className="flex items-center gap-1.5 text-[13px]">
+        <div className="flex items-center gap-1.5 text-sm">
           <MessageCircle className="h-4 w-4" /> Comment
         </div>
-        <div className="flex items-center gap-1.5 text-[13px]">
+        <div className="flex items-center gap-1.5 text-sm">
           <Share2 className="h-4 w-4" /> Share
         </div>
       </div>
@@ -463,13 +461,13 @@ function GenericPreview({
     <div className="overflow-hidden rounded-2xl p-4">
       <div className="mb-3 flex items-center gap-2">
         <PlatformIcon platform={platform} size="sm" showBackground />
-        <span className="text-sm font-medium text-black">
+        <span className="text-foreground text-sm font-medium">
           {account?.displayName || account?.platformUsername || 'Account'}
         </span>
       </div>
 
       {media && (
-        <div className="mb-3 overflow-hidden rounded-lg bg-neutral-100">
+        <div className="bg-muted mb-3 overflow-hidden rounded-lg">
           {media.type === 'video' ? (
             <video src={media.url} className="w-full" />
           ) : (
@@ -478,7 +476,7 @@ function GenericPreview({
         </div>
       )}
 
-      {caption && <p className="text-[13px] leading-[1.4] text-black">{caption}</p>}
+      {caption && <p className="text-foreground text-sm leading-[1.4]">{caption}</p>}
     </div>
   )
 }

@@ -53,11 +53,7 @@ interface BadgeProps extends VariantProps<typeof badgeVariants> {
 export function Badge({ children, variant, size, icon, className }: BadgeProps) {
   return (
     <span className={cn(badgeVariants({ variant, size }), className)}>
-      {icon && (
-        <span className="shrink-0 [&>svg]:size-3.5 [&>img]:size-3.5">
-          {icon}
-        </span>
-      )}
+      {icon && <span className="shrink-0 [&>img]:size-3.5 [&>svg]:size-3.5">{icon}</span>}
       {children}
     </span>
   )

@@ -64,7 +64,7 @@ export function FacebookPageSelector({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="items-center text-center">
-          <div className="mb-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--platform-facebook)] text-white">
+          <div className="text-primary-foreground mb-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--platform-facebook)]">
             <Facebook className="h-8 w-8" />
           </div>
           <DialogTitle className="text-xl">{t('dashboard.facebook.selectPage.title')}</DialogTitle>
@@ -116,7 +116,7 @@ export function FacebookPageSelector({
                 >
                   {selectedPageId === page.id && (
                     <div className="flex h-full w-full items-center justify-center">
-                      <div className="h-2 w-2 rounded-full bg-white" />
+                      <div className="bg-primary-foreground h-2 w-2 rounded-full" />
                     </div>
                   )}
                 </div>

@@ -124,9 +124,9 @@ export function MediaUploader({
     // Error state
     if (uploadStatus === 'error') {
       return (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/90">
-          <AlertCircle className="h-6 w-6 text-destructive" />
-          <span className="px-2 text-center text-xs text-foreground">
+        <div className="bg-background/90 absolute inset-0 flex flex-col items-center justify-center gap-2">
+          <AlertCircle className="text-destructive h-6 w-6" />
+          <span className="text-foreground px-2 text-center text-xs">
             {t('dashboard.createPost.media.upload.failed')}
           </span>
           {onRetry && (
@@ -136,7 +136,7 @@ export function MediaUploader({
                 e.stopPropagation()
                 onRetry(item.id)
               }}
-              className="flex items-center gap-1 rounded-md bg-muted px-2 py-1 text-xs text-foreground transition-colors hover:bg-accent"
+              className="bg-muted text-foreground hover:bg-accent flex items-center gap-1 rounded-md px-2 py-1 text-xs transition-colors"
             >
               <RefreshCw className="h-3 w-3" />
               {t('dashboard.createPost.media.upload.retry')}
@@ -149,12 +149,12 @@ export function MediaUploader({
     // Uploading state
     if (isUploadInProgress(uploadStatus)) {
       return (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/80">
-          <Loader2 className="h-6 w-6 animate-spin text-foreground" />
+        <div className="bg-background/80 absolute inset-0 flex flex-col items-center justify-center gap-2">
+          <Loader2 className="text-foreground h-6 w-6 animate-spin" />
           <div className="w-3/4">
-            <Progress value={uploadProgress} className="h-1.5 bg-muted" />
+            <Progress value={uploadProgress} className="bg-muted h-1.5" />
           </div>
-          <span className="text-xs font-medium text-foreground">
+          <span className="text-foreground text-xs font-medium">
             {t('dashboard.createPost.media.upload.progress', { percentage: uploadProgress })}
           </span>
           {onCancelUpload && (
@@ -164,7 +164,7 @@ export function MediaUploader({
                 e.stopPropagation()
                 onCancelUpload(item.id)
               }}
-              className="text-xs text-muted-foreground underline hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground text-xs underline"
             >
               {t('dashboard.createPost.media.upload.cancel')}
             </button>
@@ -176,9 +176,9 @@ export function MediaUploader({
     // Ready state - show subtle checkmark
     if (uploadStatus === 'ready') {
       return (
-        <div className="absolute right-2 top-2">
-          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-success">
-            <Check className="h-3 w-3 text-success-foreground" />
+        <div className="absolute top-2 right-2">
+          <div className="bg-success flex h-5 w-5 items-center justify-center rounded-full">
+            <Check className="text-success-foreground h-3 w-3" />
           </div>
         </div>
       )
@@ -190,13 +190,13 @@ export function MediaUploader({
   // Empty state
   if (media.length === 0) {
     return (
-      <div className={cn('rounded-xl border border-border-subtle bg-card', className)}>
+      <div className={cn('border-border-subtle bg-card rounded-xl border', className)}>
         <div
           className={cn(
             'm-3 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-all duration-200',
             isDragging && 'border-primary bg-primary/5',
             isMediaRequired && !isDragging && 'border-warning/30 bg-warning/5',
-            !isDragging && !isMediaRequired && 'border-transparent hover:bg-surface-elevated'
+            !isDragging && !isMediaRequired && 'hover:bg-surface-elevated border-transparent'
           )}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -214,7 +214,7 @@ export function MediaUploader({
 
           <div
             className={cn(
-              'mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-elevated transition-colors',
+              'bg-surface-elevated mb-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-colors',
               isDragging && 'bg-primary/10 text-primary'
             )}
           >
@@ -224,12 +224,12 @@ export function MediaUploader({
           </div>
 
           <div className="mb-5 text-center">
-            <p className="mb-1 text-base font-medium text-foreground">
+            <p className="text-foreground mb-1 text-base font-medium">
               {isMediaRequired
                 ? t('dashboard.createPost.media.addRequired')
                 : t('dashboard.createPost.media.addOptional')}
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {t('dashboard.createPost.media.dragHint')}
             </p>
           </div>
@@ -237,7 +237,7 @@ export function MediaUploader({
           <div className="flex gap-2">
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-lg border border-border-subtle bg-surface-elevated px-4 py-2 text-sm font-medium transition-colors hover:bg-surface"
+              className="border-border-subtle bg-surface-elevated hover:bg-surface flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
               onClick={(e) => {
                 e.stopPropagation()
                 fileInputRef.current?.click()
@@ -248,7 +248,7 @@ export function MediaUploader({
             </button>
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-lg border border-border-subtle bg-surface-elevated px-4 py-2 text-sm font-medium transition-colors hover:bg-surface"
+              className="border-border-subtle bg-surface-elevated hover:bg-surface flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
               onClick={(e) => {
                 e.stopPropagation()
                 fileInputRef.current?.click()
@@ -261,9 +261,9 @@ export function MediaUploader({
         </div>
 
         {aspectRatioHint && (
-          <div className="flex items-center gap-2 border-t border-border-subtle bg-surface-elevated px-4 py-2.5">
-            <AlertTriangle className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">{aspectRatioHint}</span>
+          <div className="border-border-subtle bg-surface-elevated flex items-center gap-2 border-t px-4 py-2.5">
+            <AlertTriangle className="text-muted-foreground h-3.5 w-3.5 shrink-0" />
+            <span className="text-muted-foreground text-xs">{aspectRatioHint}</span>
           </div>
         )}
       </div>
@@ -272,14 +272,14 @@ export function MediaUploader({
 
   // With media
   return (
-    <div className={cn('rounded-xl border border-border-subtle bg-card', className)}>
+    <div className={cn('border-border-subtle bg-card rounded-xl border', className)}>
       <div className="grid grid-cols-3 gap-3 p-4 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
         {media.map((item) => (
           <div
             key={item.id}
             className={cn(
-              'group relative aspect-square overflow-hidden rounded-lg bg-muted',
-              item.uploadStatus === 'error' && 'ring-2 ring-destructive ring-offset-2'
+              'group bg-muted relative aspect-square overflow-hidden rounded-lg',
+              item.uploadStatus === 'error' && 'ring-destructive ring-2 ring-offset-2'
             )}
           >
             {item.type === 'video' ? (
@@ -293,9 +293,9 @@ export function MediaUploader({
 
             {/* Hover overlay (only show when not uploading) */}
             {!isUploadInProgress(item.uploadStatus) && item.uploadStatus !== 'error' && (
-              <div className="absolute inset-0 flex items-end justify-between bg-gradient-to-t from-background/80 via-transparent p-2.5 opacity-0 transition-opacity group-hover:opacity-100">
+              <div className="from-background/80 absolute inset-0 flex items-end justify-between bg-gradient-to-t via-transparent p-2.5 opacity-0 transition-opacity group-hover:opacity-100">
                 {item.type === 'video' && item.duration && (
-                  <span className="flex items-center gap-1 text-xs font-medium text-foreground">
+                  <span className="text-foreground flex items-center gap-1 text-xs font-medium">
                     <Play className="h-3 w-3" />
                     {formatDuration(item.duration)}
                   </span>
@@ -303,7 +303,7 @@ export function MediaUploader({
                 <button
                   type="button"
                   onClick={() => onRemove(item.id)}
-                  className="ml-auto flex h-7 w-7 items-center justify-center rounded-md bg-muted text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                  className="bg-muted text-foreground hover:bg-destructive hover:text-destructive-foreground ml-auto flex h-7 w-7 items-center justify-center rounded-md transition-colors"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -315,7 +315,7 @@ export function MediaUploader({
               <button
                 type="button"
                 onClick={() => onRemove(item.id)}
-                className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-destructive text-destructive-foreground transition-colors hover:bg-destructive/80"
+                className="bg-destructive text-destructive-foreground hover:bg-destructive/80 absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full transition-colors"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -328,7 +328,7 @@ export function MediaUploader({
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="flex aspect-square flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border-muted text-muted-foreground transition-all hover:border-border hover:text-foreground"
+            className="border-border-muted text-muted-foreground hover:border-border hover:text-foreground flex aspect-square flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed transition-all"
           >
             <Plus className="h-5 w-5" />
             <span className="text-xs font-medium">{t('dashboard.createPost.media.addMore')}</span>

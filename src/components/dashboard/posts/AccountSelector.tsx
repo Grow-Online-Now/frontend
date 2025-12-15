@@ -53,9 +53,7 @@ export function AccountSelector({
   if (isLoading) {
     return (
       <div className={cn('space-y-3', className)}>
-        <Label className="text-sm font-medium">
-          {t('dashboard.createPost.accounts.label')}
-        </Label>
+        <Label className="text-sm font-medium">{t('dashboard.createPost.accounts.label')}</Label>
         <div className="space-y-2">
           {[1, 2, 3].map((i) => (
             <div
@@ -77,9 +75,7 @@ export function AccountSelector({
   if (accounts.length === 0) {
     return (
       <div className={cn('space-y-3', className)}>
-        <Label className="text-sm font-medium">
-          {t('dashboard.createPost.accounts.label')}
-        </Label>
+        <Label className="text-sm font-medium">{t('dashboard.createPost.accounts.label')}</Label>
         <p className="text-muted-foreground text-sm">
           {t('dashboard.createPost.accounts.noAccounts')}
         </p>
@@ -90,9 +86,7 @@ export function AccountSelector({
   return (
     <div className={cn('space-y-3', className)}>
       <div className="flex items-center justify-between">
-        <Label className="text-sm font-medium">
-          {t('dashboard.createPost.accounts.label')}
-        </Label>
+        <Label className="text-sm font-medium">{t('dashboard.createPost.accounts.label')}</Label>
         {activeAccountsCount > 1 && (
           <button
             type="button"

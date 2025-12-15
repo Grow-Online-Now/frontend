@@ -12,8 +12,6 @@ export function PlatformCompetitor() {
   const config = usePlatformConfig()
   const { theme, competitor } = config
 
-  const isDarkTheme = config.slug === 'tiktok' || config.slug === 'x'
-
   // Comparison points - what Grow Online has vs competitors
   const comparisonPoints = [
     {
@@ -44,13 +42,7 @@ export function PlatformCompetitor() {
   ]
 
   return (
-    <section
-      id="compare"
-      className={cn(
-        'relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32',
-        isDarkTheme ? 'bg-zinc-950' : 'bg-background'
-      )}
-    >
+    <section id="compare" className="bg-background relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-4xl">
         {/* Section Header */}
         <motion.div
@@ -60,20 +52,10 @@ export function PlatformCompetitor() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2
-            className={cn(
-              'font-display mb-4 text-3xl font-semibold tracking-tight sm:text-4xl',
-              isDarkTheme ? 'text-white' : 'text-foreground'
-            )}
-          >
+          <h2 className="font-display text-foreground mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t('platforms.common.competitor.title', { competitor: competitor.name })}
           </h2>
-          <p
-            className={cn(
-              'mx-auto max-w-2xl text-lg leading-relaxed',
-              isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-            )}
-          >
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed">
             {t(competitor.attackKey)}
           </p>
         </motion.div>
@@ -84,46 +66,15 @@ export function PlatformCompetitor() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className={cn(
-            'overflow-hidden rounded-2xl border',
-            isDarkTheme ? 'border-zinc-800 bg-zinc-900/50' : 'border-border bg-card'
-          )}
+          className="border-border bg-card overflow-hidden rounded-2xl border"
         >
           {/* Header */}
-          <div
-            className={cn(
-              'grid grid-cols-3 gap-4 border-b px-6 py-4',
-              isDarkTheme ? 'border-zinc-800 bg-zinc-900' : 'border-border bg-muted/30'
-            )}
-          >
-            <div
-              className={cn(
-                'text-sm font-medium',
-                isDarkTheme ? 'text-zinc-400' : 'text-muted-foreground'
-              )}
-            >
+          <div className="border-border bg-muted/30 grid grid-cols-3 gap-4 border-b px-6 py-4">
+            <div className="text-muted-foreground text-sm font-medium">
               {t('platforms.common.competitor.feature')}
             </div>
-            <div
-              className={cn(
-                'text-center text-sm font-semibold',
-                config.slug === 'tiktok'
-                  ? 'text-[#FF0050]'
-                  : config.slug === 'x'
-                    ? 'text-white'
-                    : config.slug === 'instagram'
-                      ? 'text-[#E1306C]'
-                      : theme.accent
-              )}
-            >
-              Grow Online
-            </div>
-            <div
-              className={cn(
-                'text-center text-sm font-medium',
-                isDarkTheme ? 'text-zinc-500' : 'text-muted-foreground'
-              )}
-            >
+            <div className={cn('text-center text-sm font-semibold', theme.accent)}>Grow Online</div>
+            <div className="text-muted-foreground text-center text-sm font-medium">
               {competitor.name}
             </div>
           </div>
@@ -134,84 +85,29 @@ export function PlatformCompetitor() {
               key={index}
               className={cn(
                 'grid grid-cols-3 gap-4 px-6 py-4',
-                index < comparisonPoints.length - 1 &&
-                  (isDarkTheme ? 'border-b border-zinc-800' : 'border-border border-b')
+                index < comparisonPoints.length - 1 && 'border-border border-b'
               )}
             >
-              <div className={cn('text-sm', isDarkTheme ? 'text-zinc-300' : 'text-foreground')}>
-                {point.feature}
-              </div>
+              <div className="text-foreground text-sm">{point.feature}</div>
               <div className="flex justify-center">
                 {point.growOnline ? (
-                  <div
-                    className={cn(
-                      'flex h-6 w-6 items-center justify-center rounded-full',
-                      config.slug === 'tiktok'
-                        ? 'bg-[#00F2EA]/20'
-                        : config.slug === 'x'
-                          ? 'bg-white/10'
-                          : config.slug === 'instagram'
-                            ? 'bg-[#E1306C]/20'
-                            : 'bg-primary/20'
-                    )}
-                  >
-                    <Check
-                      className={cn(
-                        'h-4 w-4',
-                        config.slug === 'tiktok'
-                          ? 'text-[#00F2EA]'
-                          : config.slug === 'x'
-                            ? 'text-white'
-                            : config.slug === 'instagram'
-                              ? 'text-[#E1306C]'
-                              : 'text-primary'
-                      )}
-                    />
+                  <div className="bg-primary/20 flex h-6 w-6 items-center justify-center rounded-full">
+                    <Check className="text-primary h-4 w-4" />
                   </div>
                 ) : (
-                  <div
-                    className={cn(
-                      'flex h-6 w-6 items-center justify-center rounded-full',
-                      isDarkTheme ? 'bg-zinc-800' : 'bg-muted'
-                    )}
-                  >
-                    <X
-                      className={cn(
-                        'h-4 w-4',
-                        isDarkTheme ? 'text-zinc-600' : 'text-muted-foreground'
-                      )}
-                    />
+                  <div className="bg-muted flex h-6 w-6 items-center justify-center rounded-full">
+                    <X className="text-muted-foreground h-4 w-4" />
                   </div>
                 )}
               </div>
               <div className="flex justify-center">
                 {point.competitor ? (
-                  <div
-                    className={cn(
-                      'flex h-6 w-6 items-center justify-center rounded-full',
-                      isDarkTheme ? 'bg-zinc-800' : 'bg-muted'
-                    )}
-                  >
-                    <Check
-                      className={cn(
-                        'h-4 w-4',
-                        isDarkTheme ? 'text-zinc-500' : 'text-muted-foreground'
-                      )}
-                    />
+                  <div className="bg-muted flex h-6 w-6 items-center justify-center rounded-full">
+                    <Check className="text-muted-foreground h-4 w-4" />
                   </div>
                 ) : (
-                  <div
-                    className={cn(
-                      'flex h-6 w-6 items-center justify-center rounded-full',
-                      isDarkTheme ? 'bg-zinc-800' : 'bg-muted'
-                    )}
-                  >
-                    <X
-                      className={cn(
-                        'h-4 w-4',
-                        isDarkTheme ? 'text-zinc-600' : 'text-muted-foreground'
-                      )}
-                    />
+                  <div className="bg-muted flex h-6 w-6 items-center justify-center rounded-full">
+                    <X className="text-muted-foreground h-4 w-4" />
                   </div>
                 )}
               </div>
@@ -231,11 +127,9 @@ export function PlatformCompetitor() {
             size="lg"
             className={cn(
               'h-12 rounded-xl px-8 text-base font-semibold',
-              config.slug === 'instagram'
-                ? 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white hover:opacity-90'
-                : theme.primary,
+              theme.primary,
               theme.primaryForeground,
-              'shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl',
+              'shadow-lg transition-all duration-200 hover:opacity-90',
               theme.glowColor
             )}
             asChild

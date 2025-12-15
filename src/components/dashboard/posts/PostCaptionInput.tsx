@@ -48,9 +48,9 @@ export function PostCaptionInput({
           rows={8}
           className={cn(
             'bg-background text-foreground placeholder:text-muted-foreground/50 w-full resize-none rounded-xl border p-5 pb-10 text-base leading-[1.7] transition-all duration-150',
-            'light:shadow-sm dark:shadow-none',
+            'shadow-sm',
             'hover:border-border',
-            'focus:border-primary focus:ring-[3px] focus:ring-primary/10 focus:outline-none',
+            'focus:border-primary focus:ring-primary/10 focus:ring-[3px] focus:outline-none',
             error || isOverLimit
               ? 'border-destructive focus:ring-destructive/10'
               : 'border-border-subtle'

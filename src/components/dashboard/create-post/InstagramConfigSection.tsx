@@ -104,7 +104,7 @@ export function InstagramConfigSection({
                   isSelected ? 'border-primary' : 'border-border-muted'
                 )}
               >
-                {isSelected && <div className="size-2 rounded-full bg-primary" />}
+                {isSelected && <div className="bg-primary size-2 rounded-full" />}
               </div>
 
               <Icon
@@ -130,7 +130,7 @@ export function InstagramConfigSection({
             type="checkbox"
             checked={config.shareToFeed ?? true}
             onChange={(e) => handleShareToFeedChange(e.target.checked)}
-            className="h-4 w-4 rounded border-input text-primary accent-[var(--color-primary)] focus:ring-primary"
+            className="border-input text-primary focus:ring-primary h-4 w-4 rounded accent-[var(--color-primary)]"
           />
           <span className="text-foreground text-sm">
             {t('dashboard.createPost.platformConfig.instagram.shareToFeed')}

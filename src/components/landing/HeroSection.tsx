@@ -135,7 +135,7 @@ export function HeroSection() {
             size="lg"
             className={cn(
               'h-12 min-w-[160px] rounded-xl px-8 text-base font-semibold',
-              'from-primary to-primary/70 bg-linear-to-r text-primary-foreground',
+              'from-primary to-primary/70 text-primary-foreground bg-linear-to-r',
               'shadow-primary/25 hover:shadow-primary/30 shadow-lg hover:shadow-xl',
               'transition-all duration-200 hover:-translate-y-0.5'
             )}
@@ -205,7 +205,7 @@ export function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-background dark:bg-card mb-4 flex h-20 w-20 items-center justify-center rounded-full shadow-lg shadow-black/10 transition-shadow hover:shadow-xl"
+                className="bg-card mb-4 flex h-20 w-20 items-center justify-center rounded-full shadow-lg transition-shadow hover:shadow-xl"
               >
                 <Play className="fill-primary text-primary ml-1 h-8 w-8" />
               </motion.button>
@@ -215,7 +215,7 @@ export function HeroSection() {
             </div>
 
             {/* Decorative gradient overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/5 to-transparent" />
+            <div className="from-foreground/5 absolute inset-0 bg-linear-to-t to-transparent" />
           </div>
         </motion.div>
       </div>

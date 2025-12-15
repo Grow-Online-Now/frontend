@@ -39,37 +39,37 @@ const iconInContainerSizeClasses = {
 // Platform colors defined in index.css: --platform-twitter, --platform-linkedin, etc.
 const platformStyles: Record<SocialPlatform, { bg: string; icon: string; className: string }> = {
   youtube: {
-    bg: 'bg-[var(--platform-youtube)]/8 dark:bg-[var(--platform-youtube)]/12',
+    bg: 'bg-[var(--platform-youtube)]/10',
     icon: 'text-[var(--platform-youtube)]',
     className: 'platform-youtube',
   },
   instagram: {
-    bg: 'bg-[var(--platform-instagram)]/8 dark:bg-[var(--platform-instagram)]/12',
+    bg: 'bg-[var(--platform-instagram)]/10',
     icon: 'text-[var(--platform-instagram)]',
     className: 'platform-instagram',
   },
   facebook: {
-    bg: 'bg-[var(--platform-facebook)]/8 dark:bg-[var(--platform-facebook)]/12',
+    bg: 'bg-[var(--platform-facebook)]/10',
     icon: 'text-[var(--platform-facebook)]',
     className: 'platform-facebook',
   },
   twitter: {
-    bg: 'bg-foreground/5 dark:bg-foreground/8',
+    bg: 'bg-foreground/5',
     icon: 'text-foreground',
     className: 'platform-twitter',
   },
   linkedin: {
-    bg: 'bg-[var(--platform-linkedin)]/8 dark:bg-[var(--platform-linkedin)]/12',
+    bg: 'bg-[var(--platform-linkedin)]/10',
     icon: 'text-[var(--platform-linkedin)]',
     className: 'platform-linkedin',
   },
   tiktok: {
-    bg: 'bg-foreground/5 dark:bg-foreground/8',
+    bg: 'bg-foreground/5',
     icon: 'text-foreground',
     className: 'platform-tiktok',
   },
   pinterest: {
-    bg: 'bg-[var(--platform-pinterest)]/8 dark:bg-[var(--platform-pinterest)]/12',
+    bg: 'bg-[var(--platform-pinterest)]/10',
     icon: 'text-[var(--platform-pinterest)]',
     className: 'platform-pinterest',
   },

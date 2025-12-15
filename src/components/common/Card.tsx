@@ -64,20 +64,15 @@ export function Card({
   className,
   cardHeaderClassName,
 }: CardProps) {
-  const cardVariants = cva(
-    [
-      'text-left flex flex-col border border-border-subtle bg-card',
-    ],
-    {
-      variants: {
-        variant: {
-          circle: 'rounded-full',
-          'extra-rounding': 'rounded-2xl', // Same as default - 16px max per design system
-          default: 'rounded-2xl',
-        },
+  const cardVariants = cva(['text-left flex flex-col border border-border-subtle bg-card'], {
+    variants: {
+      variant: {
+        circle: 'rounded-full',
+        'extra-rounding': 'rounded-2xl', // Same as default - 16px max per design system
+        default: 'rounded-2xl',
       },
-    }
-  )
+    },
+  })
   return (
     <div className={cardVariants({ variant, className })}>
       {title || icon || addon ? (

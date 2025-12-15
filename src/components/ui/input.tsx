@@ -27,8 +27,6 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
         'aria-invalid:border-destructive aria-invalid:ring-destructive/10',
         // File input
         'file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium',
-        // Dark mode
-        'dark:bg-input/30 dark:hover:bg-input/40 dark:border-border-subtle dark:hover:border-border',
         className
       )}
       {...props}

@@ -27,14 +27,14 @@ interface PostsGridCardProps {
   className?: string
 }
 
-// Subtle gradient backgrounds for posts without media
+// Subtle gradient backgrounds for posts without media using semantic tokens
 const GRADIENT_BACKGROUNDS = [
-  'from-violet-500/15 to-purple-500/10',
-  'from-blue-500/15 to-cyan-500/10',
-  'from-emerald-500/15 to-teal-500/10',
-  'from-orange-500/15 to-amber-500/10',
-  'from-pink-500/15 to-rose-500/10',
-  'from-indigo-500/15 to-sky-500/10',
+  'from-primary/15 to-primary/10',
+  'from-info/15 to-info/10',
+  'from-success/15 to-success/10',
+  'from-warning/15 to-warning/10',
+  'from-destructive/15 to-destructive/10',
+  'from-accent to-accent/80',
 ]
 
 function getGradientForPost(postId: string): string {

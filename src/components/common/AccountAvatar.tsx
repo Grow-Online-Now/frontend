@@ -154,7 +154,9 @@ export function AccountAvatar({
           )}
           style={{ backgroundColor: platformColor }}
         >
-          <div className={cn('text-white', config.badgeIcon)}>{PLATFORM_ICONS[platform]}</div>
+          <div className={cn('text-primary-foreground', config.badgeIcon)}>
+            {PLATFORM_ICONS[platform]}
+          </div>
         </div>
       )}
     </div>
