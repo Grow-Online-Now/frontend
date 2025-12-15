@@ -58,7 +58,15 @@ const POWER_WORDS = [
   'essential',
 ]
 
-// LinkedIn preview component - intentionally styled to match LinkedIn's light UI
+/**
+ * LinkedIn Preview Component
+ *
+ * NOTE: This component intentionally uses hardcoded colors (#e0e0e0, #0077b5,
+ * #191919, #666666, #f3f3f3, bg-white) to accurately simulate LinkedIn's actual UI.
+ * These colors match LinkedIn's light theme and should NOT be replaced with
+ * design system tokens, as the goal is to show users exactly how their post
+ * will appear on the LinkedIn platform.
+ */
 interface LinkedInPreviewProps {
   content: string
   authorName: string
@@ -282,7 +290,7 @@ export function LinkedInPreviewTool() {
   const getScoreColor = (score: number) => {
     if (score >= 80) return 'text-success'
     if (score >= 60) return 'text-warning'
-    if (score >= 40) return 'text-orange-500'
+    if (score >= 40) return 'text-warning/70' // Moderate warning for average scores
     return 'text-destructive'
   }
 
@@ -449,7 +457,7 @@ export function LinkedInPreviewTool() {
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {analysisResult.powerWordsFound.map((word) => (
-                              <Badge key={word} variant="dark-gray">
+                              <Badge key={word} variant="default">
                                 {word}
                               </Badge>
                             ))}

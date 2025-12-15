@@ -56,7 +56,7 @@ export function PlatformSelector({
   return (
     <div className={cn('space-y-3', className)}>
       <div className="flex items-center justify-between">
-        <h3 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+        <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
           {t('dashboard.createPost.platforms.title')}
         </h3>
         <span className="text-muted-foreground/60 text-xs">
@@ -116,7 +116,7 @@ export function PlatformSelector({
                     e.stopPropagation()
                     // TODO: Handle reconnect
                   }}
-                  className="bg-destructive/10 text-destructive hover:bg-destructive/20 rounded-md px-2 py-1 text-[11px] font-medium transition-colors"
+                  className="bg-destructive/10 text-destructive hover:bg-destructive/20 rounded-md px-2 py-1 text-xs font-medium transition-colors"
                 >
                   {t('dashboard.createPost.platforms.reconnect')}
                 </button>

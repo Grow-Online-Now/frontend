@@ -138,7 +138,7 @@ export function PlatformHints({
           <div
             key={index}
             className={cn(
-              'flex items-start gap-2.5 rounded-xl px-3.5 py-3 text-[13px] leading-relaxed',
+              'flex items-start gap-2.5 rounded-xl px-3.5 py-3 text-sm leading-relaxed',
               HINT_STYLES[hint.type]
             )}
           >

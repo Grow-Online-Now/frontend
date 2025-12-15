@@ -45,9 +45,9 @@ export function AccountBadge({
         />
       )}
       <Avatar className={cn('size-5 shrink-0', avatarClassName)}>
-        <AvatarFallback className="text-[10px] font-medium">{initials}</AvatarFallback>
+        <AvatarFallback className="text-xs font-medium">{initials}</AvatarFallback>
       </Avatar>
-      <span className="min-w-0 truncate text-[13px]">@{connection.platformUsername}</span>
+      <span className="min-w-0 truncate text-sm">@{connection.platformUsername}</span>
       {/* Reconnect button for error state */}
       {hasError && onReconnect && (
         <button
@@ -56,7 +56,7 @@ export function AccountBadge({
             e.stopPropagation()
             onReconnect(connection)
           }}
-          className="text-destructive hover:bg-destructive/20 shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors"
+          className="text-destructive hover:bg-destructive/20 shrink-0 rounded px-1.5 py-0.5 text-xs font-medium transition-colors"
         >
           {t('dashboard.accounts.actions.reconnect')}
         </button>

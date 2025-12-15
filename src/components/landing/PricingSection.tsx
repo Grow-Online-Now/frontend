@@ -42,7 +42,7 @@ const pricingTiersConfig: PricingTierConfig[] = [
     tier: tiers[0],
     badges: [
       { savePercent: tiers[0].discount.annually, annualOnly: true },
-      { messageKey: 'landing.pricing.badges.popular', variant: 'green' },
+      { messageKey: 'landing.pricing.badges.popular', variant: 'success' },
     ],
     button: {
       to: '/login',
@@ -81,26 +81,28 @@ export function Pricing() {
     <Section id="pricing">
       <SectionHeading>{t('landing.pricing.title')}</SectionHeading>
       <SectionSubtitle>{t('landing.pricing.subtitle')}</SectionSubtitle>
-      <SectionContent noMarginTop className="mt-6 flex flex-col items-center justify-center">
-        <RadioGroup
-          value={frequency}
-          onValueChange={(value) => setFrequency(value as Frequency)}
-          className="bg-background ring-border mb-6 flex w-fit rounded-full p-1.5 text-xs leading-5 font-semibold shadow-[0_0_7px_0_rgba(0,0,0,0.07)] ring-1 ring-inset dark:shadow-none"
-        >
-          <Label className="sr-only">{t('landing.pricing.frequency.annually')}</Label>
-          {frequencies.map((value) => (
-            <label
-              key={value}
-              className={cn(
-                frequency === value ? 'bg-foreground text-background' : 'text-muted-foreground',
-                'cursor-pointer rounded-full px-6 py-1 transition-colors'
-              )}
-            >
-              <RadioGroupItem value={value} className="sr-only" />
-              <span>{t(`landing.pricing.frequency.${value}`)}</span>
-            </label>
-          ))}
-        </RadioGroup>
+      <SectionContent noMarginTop className="mt-6">
+        <div className="mb-6 flex justify-center">
+          <RadioGroup
+            value={frequency}
+            onValueChange={(value) => setFrequency(value as Frequency)}
+            className="bg-background ring-border flex w-fit rounded-full p-1.5 text-xs leading-5 font-semibold shadow-[0_0_7px_0_rgba(0,0,0,0.07)] ring-1 ring-inset dark:shadow-none"
+          >
+            <Label className="sr-only">{t('landing.pricing.frequency.annually')}</Label>
+            {frequencies.map((value) => (
+              <label
+                key={value}
+                className={cn(
+                  frequency === value ? 'bg-foreground text-background' : 'text-muted-foreground',
+                  'cursor-pointer rounded-full px-6 py-1 transition-colors'
+                )}
+              >
+                <RadioGroupItem value={value} className="sr-only" />
+                <span>{t(`landing.pricing.frequency.${value}`)}</span>
+              </label>
+            ))}
+          </RadioGroup>
+        </div>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {pricingTiersConfig.map((config, index) => (
             <CardWrapper key={config.tier.id}>

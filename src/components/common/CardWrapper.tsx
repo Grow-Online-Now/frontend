@@ -26,9 +26,9 @@ export function CardWrapper({
       },
       rounded: {
         none: '',
-        xs: 'rounded-[19px]',
-        sm: 'rounded-[38px]',
-        md: 'rounded-[52px]',
+        xs: 'rounded-lg',      // 8px
+        sm: 'rounded-xl',      // 12px
+        md: 'rounded-2xl',     // 16px - max per design system
         full: 'rounded-full',
       },
       variant: {

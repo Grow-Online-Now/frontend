@@ -67,13 +67,13 @@ export default function SettingsPage() {
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-2">
-              <p className="text-muted-foreground text-[13px]">
+              <p className="text-muted-foreground text-sm">
                 {t('dashboard.settings.profile.avatar')}
               </p>
               <Button
                 variant="outline"
                 size="sm"
-                className="w-fit rounded-lg text-[13px] font-medium"
+                className="w-fit rounded-lg text-sm font-medium"
               >
                 {t('dashboard.settings.profile.changeAvatar')}
               </Button>
@@ -82,7 +82,7 @@ export default function SettingsPage() {
 
           {/* Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-muted-foreground text-[13px] font-medium">
+            <Label htmlFor="name" className="text-muted-foreground text-sm font-medium">
               {t('dashboard.settings.profile.name')}
             </Label>
             <Input
@@ -96,7 +96,7 @@ export default function SettingsPage() {
 
           {/* Email (read-only) */}
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-muted-foreground text-[13px] font-medium">
+            <Label htmlFor="email" className="text-muted-foreground text-sm font-medium">
               {t('dashboard.settings.profile.email')}
             </Label>
             <Input id="email" value={user?.email || ''} disabled className="rounded-lg" />
@@ -120,12 +120,12 @@ export default function SettingsPage() {
           <div className="flex items-start justify-between gap-4 py-4 first:pt-0">
             <div className="flex-1 pr-4">
               <div className="flex items-center gap-2">
-                <p className="text-foreground text-[14px] font-medium">
+                <p className="text-foreground text-sm font-medium">
                   {t('dashboard.settings.notifications.email')}
                 </p>
                 <TooltipIcon tooltipKey="dashboard.hints.settings.emailNotifications" />
               </div>
-              <p className="text-muted-foreground mt-0.5 text-[13px]">
+              <p className="text-muted-foreground mt-0.5 text-sm">
                 {t('dashboard.settings.notifications.emailDescription')}
               </p>
             </div>
@@ -135,12 +135,12 @@ export default function SettingsPage() {
           <div className="flex items-start justify-between gap-4 py-4 last:pb-0">
             <div className="flex-1 pr-4">
               <div className="flex items-center gap-2">
-                <p className="text-foreground text-[14px] font-medium">
+                <p className="text-foreground text-sm font-medium">
                   {t('dashboard.settings.notifications.push')}
                 </p>
                 <TooltipIcon tooltipKey="dashboard.hints.settings.pushNotifications" />
               </div>
-              <p className="text-muted-foreground mt-0.5 text-[13px]">
+              <p className="text-muted-foreground mt-0.5 text-sm">
                 {t('dashboard.settings.notifications.pushDescription')}
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function SettingsPage() {
 
       {/* Language Section */}
       <DashboardCard titleKey="dashboard.settings.language.title" className="mb-6">
-        <p className="text-muted-foreground mb-4 text-[13px]">
+        <p className="text-muted-foreground mb-4 text-sm">
           {t('dashboard.settings.language.description')}
         </p>
         <div className="bg-muted/50 inline-flex gap-1 rounded-lg p-1">
@@ -160,7 +160,7 @@ export default function SettingsPage() {
               key={langOption}
               onClick={() => handleLanguageChange(langOption)}
               className={cn(
-                'rounded-md px-4 py-2 text-[13px] font-medium transition-all duration-150',
+                'rounded-md px-4 py-2 text-sm font-medium transition-all duration-150',
                 lang === langOption
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -174,10 +174,10 @@ export default function SettingsPage() {
 
       {/* Danger Zone */}
       <DashboardCard className="border-destructive/20 bg-destructive/[0.03]">
-        <h3 className="text-destructive mb-2 text-[15px] font-semibold tracking-tight">
+        <h3 className="text-destructive mb-2 text-base font-semibold tracking-tight">
           {t('dashboard.settings.danger.title')}
         </h3>
-        <p className="text-destructive/70 mb-4 text-[13px] leading-relaxed">
+        <p className="text-destructive/70 mb-4 text-sm leading-relaxed">
           {t('dashboard.settings.danger.deleteDescription')}
         </p>
         <Button variant="destructive" size="sm" className="rounded-lg">

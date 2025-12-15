@@ -140,15 +140,13 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       </div>
 
       {/* Create Post Quick Action */}
-      <div className="px-3 pt-4 pb-2">
+      <div className="px-3 pb-2 pt-4">
         <Button
           asChild
-          className="group from-primary to-primary/90 shadow-primary/25 hover:shadow-primary/30 dark:shadow-primary/15 dark:hover:shadow-primary/20 relative w-full justify-center gap-2 overflow-hidden bg-gradient-to-r font-medium shadow-md transition-all duration-200 hover:-translate-y-px hover:shadow-lg active:translate-y-0 active:shadow-md"
+          className="w-full justify-center gap-2 font-medium transition-opacity hover:opacity-90"
         >
           <NavLink to="/dashboard/posts/create">
-            {/* Shimmer effect overlay */}
-            <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            <Plus className="h-4 w-4 transition-transform duration-200 group-hover:rotate-90" />
+            <Plus className="h-4 w-4" />
             <span>{t('dashboard.nav.createPost')}</span>
           </NavLink>
         </Button>
@@ -158,7 +156,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       <nav className="flex-1 overflow-y-auto px-3 pb-4">
         {navCategories.map((category, categoryIndex) => (
           <div key={category.labelKey} className={cn(categoryIndex > 0 && 'mt-6')}>
-            <h3 className="text-muted-foreground/60 mb-2 px-3 text-[11px] font-medium tracking-[0.05em] uppercase">
+            <h3 className="text-muted-foreground/60 mb-2 px-3 text-xs font-medium tracking-[0.05em] uppercase">
               {t(category.labelKey)}
             </h3>
             <ul className="space-y-0.5">
@@ -173,7 +171,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
                     >
                       <item.icon className="h-[18px] w-[18px] opacity-40" />
                       <span className="flex-1">{t(item.labelKey)}</span>
-                      <span className="bg-muted text-muted-foreground/70 rounded px-1.5 py-0.5 text-[10px] font-medium tracking-wide uppercase">
+                      <span className="bg-muted text-muted-foreground/70 rounded px-1.5 py-0.5 text-xs font-medium tracking-wide uppercase">
                         {t('dashboard.nav.comingSoon')}
                       </span>
                     </span>

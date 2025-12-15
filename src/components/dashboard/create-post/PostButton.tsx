@@ -95,7 +95,7 @@ export function PostButton({
           <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
 
           <div className="bg-card border-border-subtle absolute top-full right-0 z-50 mt-2 w-72 rounded-xl border p-3 shadow-xl">
-            <p className="text-muted-foreground mb-3 text-[11px] font-medium tracking-wide uppercase">
+            <p className="text-muted-foreground mb-3 text-xs font-medium tracking-wide uppercase">
               {t('dashboard.createPost.postButton.readyToPost')}
             </p>
 

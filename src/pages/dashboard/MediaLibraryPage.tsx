@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { ImageIcon, RefreshCw } from 'lucide-react'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
+import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
 import {
   MediaTypeTabs,
   MediaGrid,
@@ -94,9 +95,7 @@ export default function MediaLibraryPage() {
     return (
       <div>
         <PageHeader titleKey="dashboard.media.title" descriptionKey="dashboard.media.description" />
-        <div className="border-destructive/50 bg-destructive/10 text-destructive dark:border-destructive/30 dark:bg-destructive/20 mt-6 rounded-2xl border p-4 text-sm">
-          {error}
-        </div>
+        <ErrorAlert message={error} className="mt-6" />
       </div>
     )
   }

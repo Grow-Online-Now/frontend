@@ -30,14 +30,14 @@ export function GetStartedSection({ titleKey, subtitleKey }: GetStartedSectionPr
     <Section>
       <SectionHeading>{t(titleKey)}</SectionHeading>
       <SectionSubtitle>{t(subtitleKey)}</SectionSubtitle>
-      <SectionContent className="sm:mx-10 md:mx-40 lg:mx-0">
-        <CardWrapper className="grid w-full grid-cols-1 gap-5 lg:grid-cols-3">
+      <SectionContent>
+        <CardWrapper className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <BlurFade inView>
             <DisplayCard
               titleKey="landing.getStarted.step1.title"
               descriptionKey="landing.getStarted.step1.description"
               icon={
-                <Badge variant="dark-gray" size="sm" icon={<Mail />}>
+                <Badge variant="default" size="sm" icon={<Mail />}>
                   {t('landing.getStarted.step1.badge')}
                 </Badge>
               }
@@ -67,7 +67,7 @@ export function GetStartedSection({ titleKey, subtitleKey }: GetStartedSectionPr
               titleKey="landing.getStarted.step2.title"
               descriptionKey="landing.getStarted.step2.description"
               icon={
-                <Badge variant="dark-gray" size="sm" icon={<Mail />}>
+                <Badge variant="default" size="sm" icon={<Mail />}>
                   {t('landing.getStarted.step2.badge')}
                 </Badge>
               }
@@ -76,30 +76,30 @@ export function GetStartedSection({ titleKey, subtitleKey }: GetStartedSectionPr
             >
               <div className="flex scale-[110%] flex-col gap-2">
                 <div className="flex gap-2">
-                  <Badge variant="pink" icon={<img src={InstagramIcon} alt="" />}>
+                  <Badge variant="instagram" icon={<img src={InstagramIcon} alt="" />}>
                     Instagram
                   </Badge>
-                  <Badge variant="red" icon={<img src={TiktokIcon} alt="" />}>
+                  <Badge variant="tiktok" icon={<img src={TiktokIcon} alt="" />}>
                     TikTok
                   </Badge>
-                  <Badge variant="gray" icon={<img src={XIcon} alt="" />}>
+                  <Badge variant="twitter" icon={<img src={XIcon} alt="" />}>
                     X/Twitter
                   </Badge>
-                  <Badge variant="blue" icon={<img src={LinkedinIcon} alt="" />}>
+                  <Badge variant="linkedin" icon={<img src={LinkedinIcon} alt="" />}>
                     LinkedIn
                   </Badge>
                 </div>
                 <div className="flex gap-2">
-                  <Badge variant="dark-blue" icon={<img src={FacebookIcon} alt="" />}>
+                  <Badge variant="facebook" icon={<img src={FacebookIcon} alt="" />}>
                     Facebook
                   </Badge>
-                  <Badge variant="red" icon={<img src={PinterestIcon} alt="" />}>
+                  <Badge variant="pinterest" icon={<img src={PinterestIcon} alt="" />}>
                     Pinterest
                   </Badge>
-                  <Badge variant="gray" icon={<img src={ThreadsIcon} alt="" />}>
+                  <Badge variant="default" icon={<img src={ThreadsIcon} alt="" />}>
                     Threads
                   </Badge>
-                  <Badge variant="light-blue" icon={<img src={BlueskyIcon} alt="" />}>
+                  <Badge variant="twitter" icon={<img src={BlueskyIcon} alt="" />}>
                     Bluesky
                   </Badge>
                 </div>
@@ -111,7 +111,7 @@ export function GetStartedSection({ titleKey, subtitleKey }: GetStartedSectionPr
               titleKey="landing.getStarted.step3.title"
               descriptionKey="landing.getStarted.step3.description"
               icon={
-                <Badge variant="dark-gray" size="sm" icon={<Sparkles />}>
+                <Badge variant="default" size="sm" icon={<Sparkles />}>
                   {t('landing.getStarted.step3.badge')}
                 </Badge>
               }

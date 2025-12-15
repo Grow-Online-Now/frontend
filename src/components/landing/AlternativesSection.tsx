@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { X, Check } from 'lucide-react'
-import { GlassCard } from '@/components/glass/GlassCard'
+import { Card } from '@/components/ui/card'
 
 interface ComparisonFeature {
   featureKey: string
@@ -69,7 +69,7 @@ export function AlternativesComparison() {
           className="mb-12 grid gap-6 md:grid-cols-3"
         >
           {/* Problem Cards */}
-          <GlassCard className="border-destructive/20 p-6 md:col-span-1">
+          <Card className="border-destructive/20 p-6 md:col-span-1">
             <div className="mb-6 text-center">
               <h3 className="text-destructive mb-2 text-2xl font-bold">
                 {t('landing.alternatives.legacy.title')}
@@ -90,7 +90,7 @@ export function AlternativesComparison() {
                 </li>
               ))}
             </ul>
-          </GlassCard>
+          </Card>
 
           {/* Arrow/Divider */}
           <div className="hidden items-center justify-center md:flex">
@@ -98,7 +98,7 @@ export function AlternativesComparison() {
           </div>
 
           {/* GrowOnline Card */}
-          <GlassCard className="border-primary/30 bg-primary/5 p-6 md:col-span-1">
+          <Card className="border-primary/30 bg-primary/5 p-6 md:col-span-1">
             <div className="mb-6 text-center">
               <h3 className="text-primary mb-2 text-2xl font-bold">
                 {t('landing.alternatives.growonline.title')}
@@ -119,7 +119,7 @@ export function AlternativesComparison() {
                 </li>
               ))}
             </ul>
-          </GlassCard>
+          </Card>
         </motion.div>
 
         {/* Feature Comparison Table */}
@@ -129,7 +129,7 @@ export function AlternativesComparison() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <GlassCard className="overflow-hidden">
+          <Card className="overflow-hidden">
             {/* Table Header */}
             <div className="border-border/50 bg-muted/5 grid grid-cols-3 gap-4 border-b p-6">
               <div className="text-foreground font-semibold">
@@ -174,7 +174,7 @@ export function AlternativesComparison() {
                 </motion.div>
               ))}
             </div>
-          </GlassCard>
+          </Card>
         </motion.div>
 
         {/* Bottom CTA */}

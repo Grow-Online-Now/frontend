@@ -93,7 +93,7 @@ export function PinterestConfigSection({
       <div className={cn('space-y-3', className)}>
         <div className="flex items-center gap-2">
           <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
             {t('dashboard.createPost.platformConfig.pinterest.title')}
           </h4>
         </div>
@@ -110,7 +110,7 @@ export function PinterestConfigSection({
       <div className={cn('space-y-3', className)}>
         <div className="flex items-center gap-2">
           <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
             {t('dashboard.createPost.platformConfig.pinterest.title')}
           </h4>
         </div>
@@ -127,7 +127,7 @@ export function PinterestConfigSection({
       <div className={cn('space-y-3', className)}>
         <div className="flex items-center gap-2">
           <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
             {t('dashboard.createPost.platformConfig.pinterest.title')}
           </h4>
         </div>
@@ -142,7 +142,7 @@ export function PinterestConfigSection({
       <div className={cn('space-y-3', className)}>
         <div className="flex items-center gap-2">
           <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
             {t('dashboard.createPost.platformConfig.pinterest.title')}
           </h4>
         </div>
@@ -179,7 +179,7 @@ export function PinterestConfigSection({
     <div className={cn('space-y-3', className)}>
       <div className="flex items-center gap-2">
         <PlatformIcon platform="pinterest" size="xs" />
-        <h4 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+        <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
           {t('dashboard.createPost.platformConfig.pinterest.title')}
         </h4>
       </div>

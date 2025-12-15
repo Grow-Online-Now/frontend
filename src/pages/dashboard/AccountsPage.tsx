@@ -5,6 +5,7 @@ import {
   ConnectPlatformModal,
   FacebookPageSelector,
 } from '@/components/dashboard/accounts'
+import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
 import { ProgressIndicator } from '@/components/dashboard/shared/ProgressIndicator'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -140,11 +141,7 @@ export default function AccountsPage() {
         className="mb-6"
       />
 
-      {error && (
-        <div className="border-destructive/50 bg-destructive/10 text-destructive dark:border-destructive/30 dark:bg-destructive/20 mb-6 rounded-xl border p-4 text-sm">
-          {error}
-        </div>
-      )}
+      {error && <ErrorAlert message={error} className="mb-6" />}
 
       <div className="space-y-4">
         {platforms.map((platform) => (

@@ -45,7 +45,7 @@ export function DashboardCard({
         <div className="mb-4">
           <div className="flex items-center gap-2">
             {titleKey && (
-              <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
+              <h3 className="text-foreground text-base font-semibold tracking-tight">
                 {t(titleKey)}
               </h3>
             )}

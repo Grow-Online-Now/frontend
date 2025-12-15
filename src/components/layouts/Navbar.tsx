@@ -147,7 +147,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
               isScrolled
                 ? isDark
                   ? 'border-zinc-800 bg-zinc-900/90 shadow-lg backdrop-blur-lg'
-                  : 'glass shadow-lg shadow-black/10'
+                  : 'border-border bg-background/80 shadow-lg shadow-black/5 backdrop-blur-lg'
                 : 'border-transparent bg-transparent'
             )}
           >
@@ -307,8 +307,8 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
               </Button>
               <Button
                 className={cn(
-                  'border-0 px-5',
-                  isDark ? 'bg-white text-black hover:bg-zinc-200' : 'glass-button'
+                  'px-5',
+                  isDark ? 'bg-white text-black hover:bg-zinc-200' : ''
                 )}
                 asChild
               >
@@ -433,7 +433,7 @@ function MobileMenu({ navLinks, onClose }: MobileMenuProps) {
               {t('landing.navbar.login')}
             </a>
           </Button>
-          <Button size="lg" className="glass-button border-0 px-8 text-lg" asChild>
+          <Button size="lg" className="px-8 text-lg" asChild>
             <a href={localizeHref('/signup')} onClick={onClose}>
               {t('landing.navbar.getStarted')}
             </a>

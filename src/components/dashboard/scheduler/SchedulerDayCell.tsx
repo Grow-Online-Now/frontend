@@ -50,7 +50,7 @@ export function SchedulerDayCell({
       <div className="mb-1.5 flex items-start justify-between">
         <span
           className={cn(
-            'flex h-7 min-w-7 items-center justify-center rounded-full text-[13px] font-medium transition-colors',
+            'flex h-7 min-w-7 items-center justify-center rounded-full text-sm font-medium transition-colors',
             isToday &&
               'bg-primary text-primary-foreground shadow-primary/25 px-2 font-semibold shadow-sm',
             isOutside && !isToday && 'text-muted-foreground/40',
@@ -76,7 +76,7 @@ export function SchedulerDayCell({
 
         {/* More indicator */}
         {remainingCount > 0 && (
-          <div className="text-muted-foreground/60 mt-0.5 flex items-center gap-1 text-[10px] font-medium">
+          <div className="text-muted-foreground/60 mt-0.5 flex items-center gap-1 text-xs font-medium">
             <MoreHorizontal className="h-3 w-3" />
             <span>{t('dashboard.scheduler.calendar.moreCount', { count: remainingCount })}</span>
           </div>

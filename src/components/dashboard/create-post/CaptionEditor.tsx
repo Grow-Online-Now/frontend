@@ -44,7 +44,7 @@ export function CaptionEditor({
     >
       {/* Header */}
       <div className="border-border-subtle flex items-center justify-between border-b px-4 py-3">
-        <label className="text-muted-foreground text-[13px] font-medium">
+        <label className="text-muted-foreground text-sm font-medium">
           {t('dashboard.createPost.caption.label')}
         </label>
         <span
@@ -68,7 +68,7 @@ export function CaptionEditor({
           placeholder={placeholder || t('dashboard.createPost.caption.placeholder')}
           rows={6}
           className={cn(
-            'w-full resize-none bg-transparent px-4 py-4 text-[15px] leading-relaxed outline-none',
+            'w-full resize-none bg-transparent px-4 py-4 text-base leading-relaxed outline-none',
             'placeholder:text-muted-foreground/40',
             error && 'ring-destructive/20 ring-2'
           )}
@@ -103,7 +103,7 @@ export function CaptionEditor({
 
         <button
           type="button"
-          className="text-muted-foreground hover:bg-surface hover:text-foreground flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[13px] font-medium transition-colors"
+          className="text-muted-foreground hover:bg-surface hover:text-foreground flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-medium transition-colors"
         >
           <Sparkles className="h-4 w-4" />
           {t('dashboard.createPost.caption.aiAssist')}

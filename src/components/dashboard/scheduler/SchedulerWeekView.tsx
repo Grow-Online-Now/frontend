@@ -134,7 +134,7 @@ export function SchedulerWeekView({
               <div className="mb-3 flex flex-col items-center">
                 <span
                   className={cn(
-                    'text-[11px] font-medium tracking-wide uppercase',
+                    'text-xs font-medium tracking-wide uppercase',
                     today ? 'text-primary' : 'text-muted-foreground/60'
                   )}
                 >
@@ -161,7 +161,7 @@ export function SchedulerWeekView({
 
                 {/* More indicator */}
                 {remainingCount > 0 && (
-                  <div className="text-muted-foreground/60 mt-0.5 flex items-center justify-center gap-1 text-[10px] font-medium">
+                  <div className="text-muted-foreground/60 mt-0.5 flex items-center justify-center gap-1 text-xs font-medium">
                     <MoreHorizontal className="h-3 w-3" />
                     <span>
                       {t('dashboard.scheduler.calendar.moreCount', { count: remainingCount })}

@@ -1,103 +1,64 @@
-import { cva } from 'class-variance-authority'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
 
-export type BadgeVariant =
-  | 'blue'
-  | 'purple'
-  | 'dark-blue'
-  | 'green'
-  | 'yellow'
-  | 'brown'
-  | 'red'
-  | 'light-blue'
-  | 'orange'
-  | 'pink'
-  | 'gray'
-  | 'dark-gray'
+/**
+ * Badge variants following the design system
+ * Uses flat colors with semantic variants for status/feedback
+ */
+const badgeVariants = cva(
+  'inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+  {
+    variants: {
+      variant: {
+        // Default - neutral
+        default: 'bg-bg-active text-text-secondary',
+        // Semantic variants
+        success: 'bg-success-muted text-success',
+        warning: 'bg-warning-muted text-warning',
+        error: 'bg-error-muted text-destructive',
+        info: 'bg-info-muted text-info',
+        // Platform colors (for platform badges only)
+        twitter: 'bg-[rgba(29,155,240,0.15)] text-[#1d9bf0]',
+        linkedin: 'bg-[rgba(10,102,194,0.15)] text-[#0a66c2]',
+        instagram: 'bg-[rgba(228,64,95,0.15)] text-[#e4405f]',
+        tiktok: 'bg-bg-active text-text-primary',
+        youtube: 'bg-[rgba(255,0,0,0.15)] text-[#ff0000]',
+        facebook: 'bg-[rgba(24,119,242,0.15)] text-[#1877f2]',
+        pinterest: 'bg-[rgba(189,8,28,0.15)] text-[#bd081c]',
+        // Additional utility variants
+        outline: 'border border-border-default bg-transparent text-text-secondary',
+        secondary: 'bg-bg-hover text-text-secondary',
+      },
+      size: {
+        sm: 'px-2 py-0.5 text-xs',
+        md: 'px-2.5 py-1 text-xs',
+        lg: 'px-3 py-1.5 text-sm',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+    },
+  }
+)
 
-interface BadgeProps {
+export type BadgeVariant = NonNullable<VariantProps<typeof badgeVariants>['variant']>
+
+interface BadgeProps extends VariantProps<typeof badgeVariants> {
   children: React.ReactNode
-  variant?: BadgeVariant
   icon?: React.ReactNode
-  size?: 'sm' | 'md'
+  className?: string
 }
 
-export function Badge({ children, variant = 'blue', icon, size = 'md' }: BadgeProps) {
-  const badgeOuterStyle = cva(
-    'rounded-[8px] w-fit h-fit font-medium p-[1px] bg-gradient-to-b shrink-0',
-    {
-      variants: {
-        variant: {
-          blue: 'text-new-blue-600 from-new-blue-150 to-new-blue-200 shadow-[0px_2px_3.4px_0px_#CFD9F938,0px_1px_1px_0px_#CFD9F994]',
-          purple:
-            'text-new-purple-600 from-new-purple-200 to-new-purple-300 shadow-[0px_2px_3.4px_0px_#CFD9F938,0px_1px_1px_0px_#CFD9F994]',
-          'dark-blue':
-            'text-new-indigo-600 from-new-indigo-150 to-new-indigo-200 shadow-[0px_2px_3.4px_0px_#CFD9F938,0px_1px_1px_0px_#CFD9F994]',
-          green:
-            'text-new-green-600 from-new-green-150 to-new-green-200 shadow-[0px_2px_3.4px_0px_#CFF9DE38,0px_1px_1px_0px_#76D98F1C]',
-          yellow:
-            'text-new-yellow-500 from-new-yellow-150 to-new-yellow-200 shadow-[0px_2px_3.4px_0px_#F9EDCF38,0px_1px_1px_0px_#F9ECCF94]',
-          brown:
-            'text-new-brown-500 from-new-brown-150 to-new-brown-200 shadow-[0px_2px_3.4px_0px_#F0D4BA38,0px_1px_1px_0px_#F9E0CF94]',
-          red: 'text-new-red-500 from-new-red-150 to-new-red-200 shadow-[0px_2px_3.4px_0px_#F9CFD326,0px_1px_1px_0px_#F9CFD08A]',
-          'light-blue':
-            'text-new-cyan-500 from-new-cyan-100 to-new-cyan-200 shadow-[0px_2px_3.4px_0px_#E6E6E638,0px_1px_1px_0px_#B1B1B11C]',
-          orange:
-            'text-new-orange-600 from-new-orange-150 to-new-orange-200 shadow-[0px_2px_3.4px_0px_#F9D3CF38,0px_1px_1px_0px_#F9E5CF94]',
-          pink: 'text-new-pink-500 from-new-pink-150 to-new-pink-200 shadow-[0px_2px_3.4px_0px_#F9CFD326,0px_1px_1px_0px_#F9CFD08A]',
-          gray: 'text-new-gray-500 from-new-gray-150 to-new-gray-200 shadow-[0px_2px_3.4px_0px_#E6E6E638,0px_1px_1px_0px_#B1B1B11C]',
-          'dark-gray':
-            'text-new-gray-600 from-new-gray-150 to-new-gray-200 shadow-[0px_2px_3.4px_0px_#E6E6E638,0px_1px_1px_0px_#B1B1B11C]',
-        },
-      },
-    }
-  )
-
-  const badgeInnerStyle = cva(
-    'flex items-center gap-1 rounded-[7px] py-0.5 px-2 w-fit h-fit font-medium bg-gradient-to-b',
-    {
-      variants: {
-        variant: {
-          blue: 'from-new-blue-50 to-new-blue-100',
-          purple: 'from-new-purple-50 to-new-purple-100',
-          'dark-blue': 'from-new-indigo-50 to-new-indigo-100',
-          green: 'from-new-green-50 to-new-green-100',
-          yellow: 'from-new-yellow-50 to-new-yellow-100',
-          brown: 'from-new-brown-50 to-new-brown-100',
-          red: 'from-new-red-50 to-new-red-100',
-          'light-blue': 'from-new-cyan-50 to-new-cyan-100',
-          orange: 'from-new-orange-50 to-new-orange-100',
-          pink: 'from-new-pink-50 to-new-pink-100',
-          gray: 'from-new-gray-50 to-new-gray-100',
-          'dark-gray': 'from-new-gray-50 to-new-gray-100',
-        },
-      },
-    }
-  )
-
-  const badgeTextStyle = cva('text-xs', {
-    variants: {
-      size: {
-        sm: 'text-[9px] font-bold',
-        md: 'text-xs',
-      },
-    },
-  })
-
-  const badgeIconStyle = cva('[&>svg]:shrink-0 [&>img]:shrink-0', {
-    variants: {
-      size: {
-        sm: '[&>svg]:size-3 [&>img]:size-3',
-        md: '[&>svg]:size-3.5 [&>img]:size-3.5',
-      },
-    },
-  })
-
+export function Badge({ children, variant, size, icon, className }: BadgeProps) {
   return (
-    <div className={badgeOuterStyle({ variant })}>
-      <div className={badgeInnerStyle({ variant })}>
-        {icon && <span className={badgeIconStyle({ size })}>{icon}</span>}
-        <p className={badgeTextStyle({ size })}>{children}</p>
-      </div>
-    </div>
+    <span className={cn(badgeVariants({ variant, size }), className)}>
+      {icon && (
+        <span className="shrink-0 [&>svg]:size-3.5 [&>img]:size-3.5">
+          {icon}
+        </span>
+      )}
+      {children}
+    </span>
   )
 }

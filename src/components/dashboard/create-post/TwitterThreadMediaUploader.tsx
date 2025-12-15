@@ -145,7 +145,7 @@ export function TwitterThreadMediaUploader({
 
       {/* File count indicator */}
       {uploads.length > 0 && (
-        <span className="text-muted-foreground text-[11px]">
+        <span className="text-muted-foreground text-xs">
           {uploads.length}/{MAX_IMAGES}
         </span>
       )}

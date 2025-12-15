@@ -21,11 +21,11 @@ export function ProgressIndicator({
 
   return (
     <div className={cn('flex flex-col gap-2', className)}>
-      <p className="text-muted-foreground text-[13px]">{t(labelKey, { current, total })}</p>
+      <p className="text-muted-foreground text-sm">{t(labelKey, { current, total })}</p>
       {showBar && (
         <div className="bg-surface-muted h-1 w-full overflow-hidden rounded-full">
           <div
-            className="from-primary to-primary/80 h-full rounded-full bg-gradient-to-r transition-all duration-500 ease-out"
+            className="bg-primary h-full rounded-full transition-all duration-500 ease-out"
             style={{ width: `${percentage}%` }}
           />
         </div>

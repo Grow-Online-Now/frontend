@@ -64,7 +64,7 @@ export function PostPreview({
     <div className={cn('bg-card border-border-subtle rounded-xl border', className)}>
       {/* Header */}
       <div className="border-border-subtle flex items-center justify-between border-b px-4 py-3">
-        <h3 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+        <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
           {t('dashboard.createPost.preview.title')}
         </h3>
         {availablePlatforms.length > 1 && (

@@ -63,7 +63,7 @@ export function ScheduleOptions({
 
   return (
     <div className={cn('space-y-3', className)}>
-      <h3 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+      <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
         {t('dashboard.createPost.schedule.label')}
       </h3>
 

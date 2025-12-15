@@ -18,7 +18,7 @@ interface PostStatusBadgeProps {
 }
 
 const sizeClasses: Record<BadgeSize, { badge: string; icon: string }> = {
-  sm: { badge: 'px-2 py-0.5 text-[10px]', icon: 'size-3' },
+  sm: { badge: 'px-2 py-0.5 text-xs', icon: 'size-3' },
   md: { badge: 'px-2.5 py-1 text-xs', icon: 'size-3.5' },
 }
 

@@ -137,6 +137,7 @@ export function SignIn() {
               {socialLoading === 'google' ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
+                /* Google brand colors are required by brand guidelines - intentional exception */
                 <svg className="h-4 w-4" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"

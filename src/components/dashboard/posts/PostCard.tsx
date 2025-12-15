@@ -93,7 +93,7 @@ export function PostCard({ post, onView, onEdit, onDelete, className }: PostCard
             ))}
           </div>
           {post.social_accounts.length > 3 && (
-            <span className="text-muted-foreground text-[10px] font-medium">
+            <span className="text-muted-foreground text-xs font-medium">
               +{post.social_accounts.length - 3}
             </span>
           )}

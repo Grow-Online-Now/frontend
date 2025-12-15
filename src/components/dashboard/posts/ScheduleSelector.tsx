@@ -60,7 +60,7 @@ export function ScheduleSelector({
 
   return (
     <div className={cn('space-y-4', className)}>
-      <Label className="text-[13px] font-medium">{t('dashboard.createPost.schedule.label')}</Label>
+      <Label className="text-sm font-medium">{t('dashboard.createPost.schedule.label')}</Label>
 
       <div className="space-y-2">
         {SCHEDULE_OPTIONS.map((option) => (

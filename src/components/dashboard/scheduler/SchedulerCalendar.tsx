@@ -113,7 +113,7 @@ export function SchedulerCalendar({
         {WEEKDAY_KEYS.map((key) => (
           <div
             key={key}
-            className="border-border-subtle text-muted-foreground/60 border-r py-2.5 text-center text-[11px] font-medium tracking-[0.05em] uppercase"
+            className="border-border-subtle text-muted-foreground/60 border-r py-2.5 text-center text-xs font-medium tracking-[0.05em] uppercase"
           >
             {t(key)}
           </div>

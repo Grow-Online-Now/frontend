@@ -18,7 +18,7 @@ const variantStyles = {
   info: 'bg-info/5 border-info/15 text-info',
   warning: 'bg-warning/5 border-warning/15 text-warning',
   success: 'bg-success/5 border-success/15 text-success',
-  tip: 'bg-gradient-to-r from-primary/[0.06] to-purple-500/[0.06] border-primary/15 text-muted-foreground dark:from-primary/[0.08] dark:to-purple-500/[0.08]',
+  tip: 'bg-primary/5 border-primary/15 text-muted-foreground',
 }
 
 const variantIconStyles = {
@@ -61,7 +61,7 @@ export function InfoHint({
       <span className={cn('mt-0.5 shrink-0', variantIconStyles[variant])}>
         {icon || <IconComponent className="h-4 w-4" strokeWidth={1.75} />}
       </span>
-      <p className="flex-1 text-[13px] leading-relaxed">
+      <p className="flex-1 text-sm leading-relaxed">
         {t(textKey)}
         {learnMoreUrl && (
           <>

@@ -44,6 +44,7 @@ export function CardHeader({ title, icon, addon, description, className }: CardH
 
 interface CardProps {
   children: React.ReactNode
+  /** @deprecated Use 'default' instead - extra-rounding now uses same radius as default (16px max per design system) */
   variant?: 'default' | 'extra-rounding' | 'circle'
   icon?: React.ReactNode
   addon?: React.ReactNode
@@ -65,14 +66,14 @@ export function Card({
 }: CardProps) {
   const cardVariants = cva(
     [
-      'text-left flex flex-col border border-border-subtle bg-card shadow-[0px_3px_12.9px_0px_#97979714] dark:shadow-none',
+      'text-left flex flex-col border border-border-subtle bg-card',
     ],
     {
       variants: {
         variant: {
           circle: 'rounded-full',
-          'extra-rounding': 'rounded-[32px]',
-          default: 'rounded-[20px]',
+          'extra-rounding': 'rounded-2xl', // Same as default - 16px max per design system
+          default: 'rounded-2xl',
         },
       },
     }

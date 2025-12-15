@@ -135,7 +135,7 @@ export function HeroSection() {
             size="lg"
             className={cn(
               'h-12 min-w-[160px] rounded-xl px-8 text-base font-semibold',
-              'from-primary to-primary/70 bg-linear-to-r text-white',
+              'from-primary to-primary/70 bg-linear-to-r text-primary-foreground',
               'shadow-primary/25 hover:shadow-primary/30 shadow-lg hover:shadow-xl',
               'transition-all duration-200 hover:-translate-y-0.5'
             )}

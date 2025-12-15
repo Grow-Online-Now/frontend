@@ -53,7 +53,7 @@ export function AccountSelector({
   if (isLoading) {
     return (
       <div className={cn('space-y-3', className)}>
-        <Label className="text-[13px] font-medium">
+        <Label className="text-sm font-medium">
           {t('dashboard.createPost.accounts.label')}
         </Label>
         <div className="space-y-2">
@@ -77,7 +77,7 @@ export function AccountSelector({
   if (accounts.length === 0) {
     return (
       <div className={cn('space-y-3', className)}>
-        <Label className="text-[13px] font-medium">
+        <Label className="text-sm font-medium">
           {t('dashboard.createPost.accounts.label')}
         </Label>
         <p className="text-muted-foreground text-sm">
@@ -90,7 +90,7 @@ export function AccountSelector({
   return (
     <div className={cn('space-y-3', className)}>
       <div className="flex items-center justify-between">
-        <Label className="text-[13px] font-medium">
+        <Label className="text-sm font-medium">
           {t('dashboard.createPost.accounts.label')}
         </Label>
         {activeAccountsCount > 1 && (
@@ -153,7 +153,7 @@ export function AccountSelector({
 
                 {/* Disabled state message */}
                 {isDisabled && (
-                  <span className="text-destructive/80 text-[11px] font-medium">
+                  <span className="text-destructive/80 text-xs font-medium">
                     {t('dashboard.createPost.accounts.reconnectRequired')}
                   </span>
                 )}

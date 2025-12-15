@@ -13,11 +13,8 @@ export function FeaturesSection() {
     <Section>
       <SectionHeading>{t('landing.features.title')}</SectionHeading>
       <SectionSubtitle>{t('landing.features.subtitle')}</SectionSubtitle>
-      <SectionContent
-        noMarginTop
-        className="mt-5 flex flex-col items-center gap-5 sm:mx-10 md:mx-40 lg:mx-0"
-      >
-        <CardWrapper className="grid w-full grid-cols-1 gap-5 lg:grid-cols-3">
+      <SectionContent noMarginTop className="mt-5">
+        <CardWrapper className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <BlurFade inView>
             <DisplayCard
               titleKey="landing.features.ai.title"

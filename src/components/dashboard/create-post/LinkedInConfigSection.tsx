@@ -52,7 +52,7 @@ export function LinkedInConfigSection({ config, onChange, className }: LinkedInC
     <div className={cn('space-y-3', className)}>
       <div className="flex items-center gap-2">
         <PlatformIcon platform="linkedin" size="xs" />
-        <h4 className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">
+        <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
           {t('dashboard.createPost.platformConfig.linkedin.title')}
         </h4>
       </div>

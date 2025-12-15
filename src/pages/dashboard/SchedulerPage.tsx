@@ -80,7 +80,7 @@ export default function SchedulerPage() {
           <button
             onClick={() => setCalendarView('month')}
             className={cn(
-              'rounded-md px-4 py-2 text-[13px] font-medium transition-all duration-150',
+              'rounded-md px-4 py-2 text-sm font-medium transition-all duration-150',
               calendarView === 'month'
                 ? 'bg-background text-foreground shadow-sm'
                 : 'text-muted-foreground hover:text-foreground'
@@ -91,7 +91,7 @@ export default function SchedulerPage() {
           <button
             onClick={() => setCalendarView('week')}
             className={cn(
-              'rounded-md px-4 py-2 text-[13px] font-medium transition-all duration-150',
+              'rounded-md px-4 py-2 text-sm font-medium transition-all duration-150',
               calendarView === 'week'
                 ? 'bg-background text-foreground shadow-sm'
                 : 'text-muted-foreground hover:text-foreground'

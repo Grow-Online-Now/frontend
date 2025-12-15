@@ -37,7 +37,7 @@ export function PostCaptionInput({
 
   return (
     <div className={cn('space-y-2', className)}>
-      <label className="text-foreground text-[13px] font-medium">
+      <label className="text-foreground text-sm font-medium">
         {t('dashboard.createPost.caption.label')}
       </label>
       <div className="relative">
@@ -47,7 +47,7 @@ export function PostCaptionInput({
           placeholder={t('dashboard.createPost.caption.placeholder')}
           rows={8}
           className={cn(
-            'bg-background text-foreground placeholder:text-muted-foreground/50 w-full resize-none rounded-xl border p-5 pb-10 text-[15px] leading-[1.7] transition-all duration-200',
+            'bg-background text-foreground placeholder:text-muted-foreground/50 w-full resize-none rounded-xl border p-5 pb-10 text-base leading-[1.7] transition-all duration-200',
             'shadow-[inset_0_2px_4px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)]',
             'hover:border-border',
             'focus:border-primary focus:ring-primary/10 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.04),0_0_0_3px_rgba(59,130,246,0.1)] focus:ring-[3px] focus:outline-none',

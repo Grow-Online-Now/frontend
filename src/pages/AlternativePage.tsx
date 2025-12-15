@@ -118,10 +118,8 @@ export function AlternativePage() {
         <Toaster
           position="top-center"
           toastOptions={{
-            className: 'glass',
             style: {
               background: 'var(--color-card)',
-              backdropFilter: 'blur(20px)',
               border: '1px solid var(--color-border)',
               color: 'var(--color-foreground)',
             },

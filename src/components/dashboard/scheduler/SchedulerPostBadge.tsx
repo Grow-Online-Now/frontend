@@ -78,11 +78,11 @@ export function SchedulerPostBadge({ post, className }: SchedulerPostBadgeProps)
 
       {/* Additional platforms indicator */}
       {additionalCount > 0 && (
-        <span className="text-muted-foreground/60 text-[9px] font-medium">+{additionalCount}</span>
+        <span className="text-muted-foreground/60 text-xs font-medium">+{additionalCount}</span>
       )}
 
       {/* Time */}
-      <span className={cn('flex-1 text-[10px] leading-none font-medium', config.text)}>
+      <span className={cn('flex-1 text-xs leading-none font-medium', config.text)}>
         {formatPostTime(getPostDisplayDate(post).toISOString())}
       </span>
 

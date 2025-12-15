@@ -65,14 +65,14 @@ export function Card({
 }: CardProps) {
   const cardVariants = cva(
     [
-      'text-left flex flex-col border border-border-subtle bg-card shadow-[0px_3px_12.9px_0px_#97979714] dark:shadow-none',
+      'text-left flex flex-col border border-border-subtle bg-card shadow-sm dark:shadow-none',
     ],
     {
       variants: {
         variant: {
           circle: 'rounded-full',
-          'extra-rounding': 'rounded-[32px]',
-          default: 'rounded-[20px]',
+          'extra-rounding': 'rounded-2xl',
+          default: 'rounded-xl',
         },
       },
     }

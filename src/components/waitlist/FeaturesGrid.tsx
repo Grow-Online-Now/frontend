@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Bot, Calendar, LineChart } from 'lucide-react'
-import { GlassCard } from '@/components/glass/GlassCard'
+import { Card } from '@/components/ui/card'
 
 const features = [
   {
@@ -49,32 +49,35 @@ export function FeaturesGrid() {
           {features.map((feature) => {
             const Icon = feature.icon
             return (
-              <GlassCard key={feature.titleKey} hover className="group relative overflow-hidden">
-                {/* Gradient Background on Hover */}
-                <div
-                  className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-10`}
-                />
+              <motion.div
+                key={feature.titleKey}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+              >
+                <Card className="group relative overflow-hidden p-6 transition-colors hover:bg-accent/5">
+                  {/* Content */}
+                  <div className="relative">
+                    {/* Icon */}
+                    <div
+                      className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${feature.gradient} p-2.5`}
+                    >
+                      <Icon className="h-full w-full text-white" />
+                    </div>
 
-                {/* Content */}
-                <div className="relative">
-                  {/* Icon */}
-                  <div
-                    className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${feature.gradient} p-2.5`}
-                  >
-                    <Icon className="h-full w-full text-white" />
+                    {/* Title */}
+                    <h3 className="text-foreground mb-3 text-xl font-semibold">
+                      {t(feature.titleKey)}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed">
+                      {t(feature.descriptionKey)}
+                    </p>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-foreground mb-3 text-xl font-semibold">
-                    {t(feature.titleKey)}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed">
-                    {t(feature.descriptionKey)}
-                  </p>
-                </div>
-              </GlassCard>
+                </Card>
+              </motion.div>
             )
           })}
         </div>

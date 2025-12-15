@@ -132,7 +132,7 @@ export function MediaGridCard({
           <span className="text-muted-foreground text-xs">{formatFileSize(media.fileSize)}</span>
           <span
             className={cn(
-              'rounded px-1.5 py-0.5 text-[10px] font-medium uppercase',
+              'rounded px-1.5 py-0.5 text-xs font-medium uppercase',
               isVideo ? 'bg-info/10 text-info' : 'bg-success/10 text-success'
             )}
           >

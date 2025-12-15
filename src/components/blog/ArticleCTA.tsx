@@ -25,9 +25,10 @@ export function ArticleCTA() {
           <a
             href={localizeHref('/#waitlist')}
             className={cn(
-              'glass-button inline-flex items-center gap-2',
+              'bg-primary text-primary-foreground hover:bg-primary/90',
+              'inline-flex items-center gap-2',
               'rounded-full px-8 py-3',
-              'text-base font-semibold'
+              'text-base font-semibold transition-colors'
             )}
           >
             {t('blog.article.cta.button')}

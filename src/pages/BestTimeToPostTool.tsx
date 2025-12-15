@@ -524,7 +524,7 @@ export function BestTimeToPostTool() {
                             <div className="absolute top-0 right-0 p-2">
                               <Icon className={cn('h-6 w-6', colors[index])} />
                             </div>
-                            <Badge variant="dark-gray">
+                            <Badge variant="default">
                               {t(`tools.bestTime.heatmap.bestTimes.${ranks[index]}`)}
                             </Badge>
                             <p className="mt-2 text-2xl font-bold">
