@@ -171,10 +171,42 @@
             --radius-2xl: 16px;
             --radius-full: 9999px;
             
-            /* Transitions */
-            --transition-fast: 0.1s ease;
-            --transition-base: 0.15s ease;
-            --transition-slow: 0.25s ease;
+            /* Transitions - Linear/Vercel style */
+            --duration-fast: 150ms;
+            --duration-medium: 250ms;
+            --duration-slow: 400ms;
+            
+            --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-in: cubic-bezier(0.4, 0, 1, 1);
+            --ease-out: cubic-bezier(0, 0, 0.2, 1);
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            --transition-fast: var(--duration-fast) var(--ease-default);
+            --transition-medium: var(--duration-medium) var(--ease-default);
+            --transition-slow: var(--duration-slow) var(--ease-default);
+            
+            /* Responsive Breakpoints */
+            --breakpoint-sm: 640px;
+            --breakpoint-md: 768px;
+            --breakpoint-lg: 1024px;
+            --breakpoint-xl: 1280px;
+            
+            /* Icon Sizes */
+            --icon-xs: 14px;
+            --icon-sm: 16px;
+            --icon-md: 20px;
+            --icon-lg: 24px;
+            --icon-xl: 32px;
+            
+            /* Chart Colors */
+            --chart-1: #8b5cf6;
+            --chart-2: #6366f1;
+            --chart-3: #3b82f6;
+            --chart-4: #0ea5e9;
+            --chart-5: #14b8a6;
+            --chart-6: #22c55e;
+            --chart-grid: var(--border-subtle);
+            --chart-axis: var(--text-muted);
         }
 
         body {
@@ -1112,6 +1144,536 @@
         .mt-4 { margin-top: var(--space-4); }
         .mt-6 { margin-top: var(--space-6); }
         .mb-4 { margin-bottom: var(--space-4); }
+
+        /* =========================================
+           MOTION SECTION
+        ========================================= */
+        .motion-scale {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .motion-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+            padding: var(--space-4);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+        }
+
+        .motion-preview {
+            width: 120px;
+            height: 48px;
+            background: var(--bg-hover);
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motion-box {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-feature);
+            border-radius: var(--radius-md);
+        }
+
+        .motion-preview:hover .motion-box {
+            left: calc(100% - 40px);
+        }
+
+        .motion-fast .motion-box { transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+        .motion-medium .motion-box { transition: left 250ms cubic-bezier(0.4, 0, 0.2, 1); }
+        .motion-slow .motion-box { transition: left 400ms cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .motion-meta {
+            flex: 1;
+        }
+
+        .motion-label {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-medium);
+            margin-bottom: 4px;
+        }
+
+        .motion-use {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .motion-code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            background: var(--bg-hover);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .easing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .easing-item {
+            padding: var(--space-3);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+        }
+
+        .easing-name {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-medium);
+            margin-bottom: 4px;
+        }
+
+        .easing-value {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+        }
+
+        .easing-use {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .motion-rules code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            background: var(--bg-hover);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* =========================================
+           ICONOGRAPHY SECTION
+        ========================================= */
+        .icon-sizes {
+            display: flex;
+            align-items: flex-end;
+            gap: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .icon-size-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .icon-size-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+        }
+
+        .icon-size-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+
+        .icon-size-use {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .icon-grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+        }
+
+        .icon-grid-item span {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .icon-rules code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            background: var(--bg-hover);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* =========================================
+           SKELETON SECTION
+        ========================================= */
+        .skeleton-comparison {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+        }
+
+        .skeleton-arrow {
+            font-size: 24px;
+            color: var(--text-muted);
+        }
+
+        .skeleton-card {
+            flex: 1;
+            max-width: 320px;
+            padding: var(--space-4);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-xl);
+        }
+
+        .skeleton-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .skeleton-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-hover);
+        }
+
+        .loaded-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-active);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            font-weight: var(--weight-semibold);
+            color: var(--text-secondary);
+        }
+
+        .skeleton-header-text {
+            flex: 1;
+        }
+
+        .skeleton-line {
+            height: 12px;
+            background: var(--bg-hover);
+            border-radius: var(--radius-sm);
+        }
+
+        .skeleton-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: var(--space-3);
+        }
+
+        .skeleton-media {
+            width: 100%;
+            height: 160px;
+            background: var(--bg-hover);
+            border-radius: var(--radius-lg);
+        }
+
+        .loaded-media {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: var(--radius-lg);
+        }
+
+        .skeleton-pulse {
+            animation: skeleton-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes skeleton-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .skeleton-pills {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .skeleton-pill {
+            width: 100px;
+            height: 36px;
+            background: var(--bg-hover);
+            border-radius: var(--radius-full);
+        }
+
+        .skeleton-textarea {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .skeleton-textarea-inner {
+            height: 120px;
+            background: var(--bg-hover);
+            margin: var(--space-4);
+            border-radius: var(--radius-lg);
+        }
+
+        .skeleton-textarea-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-3) var(--space-4);
+            border-top: 1px solid var(--border-default);
+        }
+
+        .skeleton-toolbar-btns {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .skeleton-toolbar-btn {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-hover);
+            border-radius: var(--radius-md);
+        }
+
+        .skeleton-rules strong {
+            color: var(--text-primary);
+        }
+
+        .skeleton-rules code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            background: var(--bg-hover);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* =========================================
+           RESPONSIVE SECTION
+        ========================================= */
+        .breakpoint-scale {
+            display: flex;
+            gap: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .breakpoint-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .breakpoint-visual {
+            height: 80px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breakpoint-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-hover);
+            border-radius: var(--radius-sm);
+        }
+
+        .breakpoint-label {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-medium);
+        }
+
+        .breakpoint-value {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+
+        .breakpoint-notes {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            max-width: 150px;
+        }
+
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .responsive-rule {
+            padding: var(--space-4);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-lg);
+        }
+
+        .responsive-rule-title {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-medium);
+            margin-bottom: var(--space-2);
+        }
+
+        .responsive-rule-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           DATA VISUALIZATION SECTION
+        ========================================= */
+        .chart-color-scale {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+        }
+
+        .chart-color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .chart-color-swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+        }
+
+        .chart-color-name {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+
+        .chart-color-value {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .chart-preview {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+        }
+
+        .chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-4);
+        }
+
+        .chart-title {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-medium);
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+
+        .chart-legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .chart-body {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            grid-template-rows: 1fr auto;
+            gap: var(--space-2);
+        }
+
+        .chart-y-axis {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-align: right;
+            padding-right: var(--space-2);
+        }
+
+        .chart-area {
+            position: relative;
+            height: 150px;
+            background: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .chart-grid-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+
+        .chart-grid-line:nth-child(1) { top: 0; }
+        .chart-grid-line:nth-child(2) { top: 50%; }
+        .chart-grid-line:nth-child(3) { bottom: 0; }
+
+        .chart-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-x-axis {
+            grid-column: 2;
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            padding-top: var(--space-2);
+        }
+
+        .chart-rules code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            background: var(--bg-hover);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -1571,9 +2133,496 @@ Here's what I learned shipping features every week...</textarea>
             </div>
         </div>
 
+        <!-- Motion & Transitions -->
+        <div class="section">
+            <div class="section-title">9. Motion & Transitions</div>
+            <div class="section-content">
+                <p class="type-body mb-4">Motion should be fast, subtle, and purposeful. Following Linear/Vercel patterns: instant feedback, smooth reveals, cinematic page transitions.</p>
+                
+                <div class="motion-scale">
+                    <div class="motion-item">
+                        <div class="motion-preview motion-fast">
+                            <div class="motion-box"></div>
+                        </div>
+                        <div class="motion-meta">
+                            <div class="motion-label">Fast — 150ms</div>
+                            <div class="motion-use">Hovers, toggles, button states</div>
+                            <code class="motion-code">var(--transition-fast)</code>
+                        </div>
+                    </div>
+                    <div class="motion-item">
+                        <div class="motion-preview motion-medium">
+                            <div class="motion-box"></div>
+                        </div>
+                        <div class="motion-meta">
+                            <div class="motion-label">Medium — 250ms</div>
+                            <div class="motion-use">Dropdowns, reveals, expansions</div>
+                            <code class="motion-code">var(--transition-medium)</code>
+                        </div>
+                    </div>
+                    <div class="motion-item">
+                        <div class="motion-preview motion-slow">
+                            <div class="motion-box"></div>
+                        </div>
+                        <div class="motion-meta">
+                            <div class="motion-label">Slow — 400ms</div>
+                            <div class="motion-use">Page transitions, modals, theme switch</div>
+                            <code class="motion-code">var(--transition-slow)</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="motion-easing mt-6">
+                    <div class="component-label">Easing Functions</div>
+                    <div class="easing-grid">
+                        <div class="easing-item">
+                            <div class="easing-name">Default</div>
+                            <div class="easing-value">cubic-bezier(0.4, 0, 0.2, 1)</div>
+                            <div class="easing-use">Most interactions</div>
+                        </div>
+                        <div class="easing-item">
+                            <div class="easing-name">Ease Out</div>
+                            <div class="easing-value">cubic-bezier(0, 0, 0.2, 1)</div>
+                            <div class="easing-use">Elements entering</div>
+                        </div>
+                        <div class="easing-item">
+                            <div class="easing-name">Ease In</div>
+                            <div class="easing-value">cubic-bezier(0.4, 0, 1, 1)</div>
+                            <div class="easing-use">Elements exiting</div>
+                        </div>
+                        <div class="easing-item">
+                            <div class="easing-name">Spring</div>
+                            <div class="easing-value">cubic-bezier(0.175, 0.885, 0.32, 1.275)</div>
+                            <div class="easing-use">Playful bounces (use sparingly)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="motion-rules mt-6">
+                    <div class="component-label">Motion Rules</div>
+                    <ul class="guideline-list">
+                        <li><span>→</span> Never animate layout properties (width, height) — use transform and opacity only</li>
+                        <li><span>→</span> Stagger animations by 50ms for lists (max 5 items, then fade all)</li>
+                        <li><span>→</span> Reduce motion for users who prefer it: <code>prefers-reduced-motion: reduce</code></li>
+                        <li><span>→</span> Loading states should animate, but subtly — no spinning logos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Iconography -->
+        <div class="section">
+            <div class="section-title">10. Iconography</div>
+            <div class="section-content">
+                <p class="type-body mb-4">Use Lucide icons exclusively. Monochrome only — white in dark theme, black in light theme. Icons inherit <code>currentColor</code> and adapt automatically.</p>
+                
+                <div class="icon-showcase">
+                    <div class="icon-size-group">
+                        <div class="component-label">Icon Sizes</div>
+                        <div class="icon-sizes">
+                            <div class="icon-size-item">
+                                <div class="icon-size-preview" style="width: 14px; height: 14px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                </div>
+                                <div class="icon-size-label">14px</div>
+                                <div class="icon-size-use">Inline text</div>
+                            </div>
+                            <div class="icon-size-item">
+                                <div class="icon-size-preview" style="width: 16px; height: 16px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                </div>
+                                <div class="icon-size-label">16px</div>
+                                <div class="icon-size-use">Small buttons, inputs</div>
+                            </div>
+                            <div class="icon-size-item">
+                                <div class="icon-size-preview" style="width: 20px; height: 20px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                </div>
+                                <div class="icon-size-label">20px</div>
+                                <div class="icon-size-use">Default buttons, nav</div>
+                            </div>
+                            <div class="icon-size-item">
+                                <div class="icon-size-preview" style="width: 24px; height: 24px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                </div>
+                                <div class="icon-size-label">24px</div>
+                                <div class="icon-size-use">Standalone, empty states</div>
+                            </div>
+                            <div class="icon-size-item">
+                                <div class="icon-size-preview" style="width: 32px; height: 32px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                </div>
+                                <div class="icon-size-label">32px</div>
+                                <div class="icon-size-use">Hero icons, features</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="icon-examples mt-6">
+                        <div class="component-label">Common Icons</div>
+                        <div class="icon-grid">
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                <span>Upload</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                                <span>Image</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                                <span>Video</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>Schedule</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <span>Settings</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Check</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                <span>Close</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                <span>Add</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                <span>Chevron</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                <span>Search</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+                                <span>Share</span>
+                            </div>
+                            <div class="icon-grid-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                                <span>Delete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="icon-rules mt-6">
+                        <div class="component-label">Icon Rules</div>
+                        <ul class="guideline-list">
+                            <li><span>→</span> Always use <code>stroke="currentColor"</code> — never hardcode colors</li>
+                            <li><span>→</span> Stroke width: 2px for sizes ≤24px, 1.5px for larger</li>
+                            <li><span>→</span> Never use emojis — they look childish and inconsistent across platforms</li>
+                            <li><span>→</span> Platform icons (Twitter, LinkedIn) are the only exception to monochrome rule</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skeleton Loading -->
+        <div class="section">
+            <div class="section-title">11. Skeleton Loading</div>
+            <div class="section-content">
+                <p class="type-body mb-4">Skeletons must match the exact layout they replace. No layout shift on load. The skeleton is a promise of what's coming.</p>
+                
+                <div class="skeleton-examples">
+                    <div class="skeleton-example">
+                        <div class="component-label">Post Card Skeleton</div>
+                        <div class="skeleton-comparison">
+                            <div class="skeleton-card">
+                                <div class="skeleton-header">
+                                    <div class="skeleton-avatar skeleton-pulse"></div>
+                                    <div class="skeleton-header-text">
+                                        <div class="skeleton-line skeleton-pulse" style="width: 120px; height: 14px;"></div>
+                                        <div class="skeleton-line skeleton-pulse" style="width: 80px; height: 12px; margin-top: 6px;"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-body">
+                                    <div class="skeleton-line skeleton-pulse" style="width: 100%; height: 14px;"></div>
+                                    <div class="skeleton-line skeleton-pulse" style="width: 100%; height: 14px;"></div>
+                                    <div class="skeleton-line skeleton-pulse" style="width: 60%; height: 14px;"></div>
+                                </div>
+                                <div class="skeleton-media skeleton-pulse"></div>
+                            </div>
+                            <div class="skeleton-arrow">→</div>
+                            <div class="skeleton-card loaded">
+                                <div class="skeleton-header">
+                                    <div class="loaded-avatar">BY</div>
+                                    <div class="skeleton-header-text">
+                                        <div style="font-size: 14px; font-weight: 500;">Bastien Youssfi</div>
+                                        <div style="font-size: 12px; color: var(--text-muted);">@bysfdev · 2h</div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-body">
+                                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">Building in public has been a wild ride. Here's what I learned shipping features every week...</p>
+                                </div>
+                                <div class="loaded-media"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skeleton-example mt-6">
+                        <div class="component-label">Platform Pills Skeleton</div>
+                        <div class="skeleton-pills">
+                            <div class="skeleton-pill skeleton-pulse"></div>
+                            <div class="skeleton-pill skeleton-pulse"></div>
+                            <div class="skeleton-pill skeleton-pulse"></div>
+                        </div>
+                    </div>
+
+                    <div class="skeleton-example mt-6">
+                        <div class="component-label">Text Area Skeleton</div>
+                        <div class="skeleton-textarea">
+                            <div class="skeleton-textarea-inner skeleton-pulse"></div>
+                            <div class="skeleton-textarea-toolbar">
+                                <div class="skeleton-toolbar-btns">
+                                    <div class="skeleton-toolbar-btn skeleton-pulse"></div>
+                                    <div class="skeleton-toolbar-btn skeleton-pulse"></div>
+                                    <div class="skeleton-toolbar-btn skeleton-pulse"></div>
+                                </div>
+                                <div class="skeleton-line skeleton-pulse" style="width: 60px; height: 12px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skeleton-rules mt-6">
+                    <div class="component-label">Skeleton Rules</div>
+                    <ul class="guideline-list">
+                        <li><span>→</span> <strong>Exact dimensions:</strong> Skeleton must match loaded content size — no layout shift</li>
+                        <li><span>→</span> <strong>Subtle pulse:</strong> Opacity animation 0.4 → 0.7, duration 1.5s, ease-in-out</li>
+                        <li><span>→</span> <strong>No spinners:</strong> Use skeletons for content, subtle loader only for actions</li>
+                        <li><span>→</span> <strong>Stagger appearance:</strong> If multiple skeletons, stagger by 100ms</li>
+                        <li><span>→</span> <strong>Fast transition out:</strong> Fade skeleton → content in 150ms</li>
+                    </ul>
+                </div>
+
+                <div class="code-block mt-6">
+<pre><span class="code-comment">/* Skeleton base */</span>
+.skeleton {
+  <span class="code-property">background</span>: <span class="code-value">var(--bg-hover)</span>;
+  <span class="code-property">border-radius</span>: <span class="code-value">var(--radius-md)</span>;
+}
+
+<span class="code-comment">/* Pulse animation */</span>
+.skeleton-pulse {
+  <span class="code-property">animation</span>: <span class="code-value">skeleton-pulse 1.5s ease-in-out infinite</span>;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { <span class="code-property">opacity</span>: <span class="code-value">0.4</span>; }
+  50% { <span class="code-property">opacity</span>: <span class="code-value">0.7</span>; }
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Design -->
+        <div class="section">
+            <div class="section-title">12. Responsive Design</div>
+            <div class="section-content">
+                <p class="type-body mb-4">Mobile-first approach. Touch targets minimum 44px. Spacing scales down proportionally, but never below readable thresholds.</p>
+                
+                <div class="breakpoint-scale">
+                    <div class="breakpoint-item">
+                        <div class="breakpoint-visual" style="width: 80px;">
+                            <div class="breakpoint-screen"></div>
+                        </div>
+                        <div class="breakpoint-meta">
+                            <div class="breakpoint-label">Mobile</div>
+                            <div class="breakpoint-value">&lt; 640px</div>
+                            <div class="breakpoint-notes">Single column, full-width inputs, bottom nav</div>
+                        </div>
+                    </div>
+                    <div class="breakpoint-item">
+                        <div class="breakpoint-visual" style="width: 120px;">
+                            <div class="breakpoint-screen"></div>
+                        </div>
+                        <div class="breakpoint-meta">
+                            <div class="breakpoint-label">Tablet</div>
+                            <div class="breakpoint-value">640px – 1024px</div>
+                            <div class="breakpoint-notes">Two columns possible, side nav appears</div>
+                        </div>
+                    </div>
+                    <div class="breakpoint-item">
+                        <div class="breakpoint-visual" style="width: 180px;">
+                            <div class="breakpoint-screen"></div>
+                        </div>
+                        <div class="breakpoint-meta">
+                            <div class="breakpoint-label">Desktop</div>
+                            <div class="breakpoint-value">1024px – 1280px</div>
+                            <div class="breakpoint-notes">Full layout, sidebar + content + preview</div>
+                        </div>
+                    </div>
+                    <div class="breakpoint-item">
+                        <div class="breakpoint-visual" style="width: 220px;">
+                            <div class="breakpoint-screen"></div>
+                        </div>
+                        <div class="breakpoint-meta">
+                            <div class="breakpoint-label">Wide</div>
+                            <div class="breakpoint-value">&gt; 1280px</div>
+                            <div class="breakpoint-notes">Max-width container, generous margins</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="responsive-rules mt-6">
+                    <div class="component-label">Responsive Rules</div>
+                    <div class="responsive-grid">
+                        <div class="responsive-rule">
+                            <div class="responsive-rule-title">Touch Targets</div>
+                            <div class="responsive-rule-desc">Minimum 44×44px for all interactive elements on touch devices</div>
+                        </div>
+                        <div class="responsive-rule">
+                            <div class="responsive-rule-title">Spacing</div>
+                            <div class="responsive-rule-desc">Use --space-4 (16px) minimum padding on mobile, scale up on larger screens</div>
+                        </div>
+                        <div class="responsive-rule">
+                            <div class="responsive-rule-title">Typography</div>
+                            <div class="responsive-rule-desc">Body text stays 14px. Headings can scale: 28px mobile → 36px desktop</div>
+                        </div>
+                        <div class="responsive-rule">
+                            <div class="responsive-rule-title">Layout Shifts</div>
+                            <div class="responsive-rule-desc">Stack columns on mobile, never horizontal scroll for content</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block mt-6">
+<pre><span class="code-comment">/* Breakpoint mixins (Tailwind-style) */</span>
+<span class="code-property">--breakpoint-sm</span>: <span class="code-value">640px</span>;   <span class="code-comment">/* @media (min-width: 640px) */</span>
+<span class="code-property">--breakpoint-md</span>: <span class="code-value">768px</span>;   <span class="code-comment">/* @media (min-width: 768px) */</span>
+<span class="code-property">--breakpoint-lg</span>: <span class="code-value">1024px</span>;  <span class="code-comment">/* @media (min-width: 1024px) */</span>
+<span class="code-property">--breakpoint-xl</span>: <span class="code-value">1280px</span>;  <span class="code-comment">/* @media (min-width: 1280px) */</span>
+
+<span class="code-comment">/* Container max-widths */</span>
+.container {
+  <span class="code-property">width</span>: <span class="code-value">100%</span>;
+  <span class="code-property">max-width</span>: <span class="code-value">1200px</span>;
+  <span class="code-property">margin</span>: <span class="code-value">0 auto</span>;
+  <span class="code-property">padding</span>: <span class="code-value">0 var(--space-4)</span>;
+}
+
+@media (min-width: 640px) {
+  .container { <span class="code-property">padding</span>: <span class="code-value">0 var(--space-6)</span>; }
+}
+
+@media (min-width: 1024px) {
+  .container { <span class="code-property">padding</span>: <span class="code-value">0 var(--space-8)</span>; }
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Visualization -->
+        <div class="section">
+            <div class="section-title">13. Data Visualization</div>
+            <div class="section-content">
+                <p class="type-body mb-4">Charts should feel native to the dark aesthetic. Muted grid lines, monochrome base with accent colors for data series. No 3D effects, no gradients in charts.</p>
+                
+                <div class="chart-colors">
+                    <div class="component-label">Chart Color Palette</div>
+                    <div class="chart-color-scale">
+                        <div class="chart-color-item">
+                            <div class="chart-color-swatch" style="background: #8b5cf6;"></div>
+                            <div class="chart-color-name">Primary</div>
+                            <div class="chart-color-value">#8b5cf6</div>
+                        </div>
+                        <div class="chart-color-item">
+                            <div class="chart-color-swatch" style="background: #6366f1;"></div>
+                            <div class="chart-color-name">Series 2</div>
+                            <div class="chart-color-value">#6366f1</div>
+                        </div>
+                        <div class="chart-color-item">
+                            <div class="chart-color-swatch" style="background: #3b82f6;"></div>
+                            <div class="chart-color-name">Series 3</div>
+                            <div class="chart-color-value">#3b82f6</div>
+                        </div>
+                        <div class="chart-color-item">
+                            <div class="chart-color-swatch" style="background: #0ea5e9;"></div>
+                            <div class="chart-color-name">Series 4</div>
+                            <div class="chart-color-value">#0ea5e9</div>
+                        </div>
+                        <div class="chart-color-item">
+                            <div class="chart-color-swatch" style="background: #14b8a6;"></div>
+                            <div class="chart-color-name">Series 5</div>
+                            <div class="chart-color-value">#14b8a6</div>
+                        </div>
+                        <div class="chart-color-item">
+                            <div class="chart-color-swatch" style="background: #22c55e;"></div>
+                            <div class="chart-color-name">Series 6</div>
+                            <div class="chart-color-value">#22c55e</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-example mt-6">
+                    <div class="component-label">Example: Analytics Chart</div>
+                    <div class="chart-preview">
+                        <div class="chart-header">
+                            <div class="chart-title">Engagement Over Time</div>
+                            <div class="chart-legend">
+                                <div class="chart-legend-item">
+                                    <div class="chart-legend-dot" style="background: #8b5cf6;"></div>
+                                    <span>Impressions</span>
+                                </div>
+                                <div class="chart-legend-item">
+                                    <div class="chart-legend-dot" style="background: #3b82f6;"></div>
+                                    <span>Engagement</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <div class="chart-y-axis">
+                                <span>10k</span>
+                                <span>5k</span>
+                                <span>0</span>
+                            </div>
+                            <div class="chart-area">
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <svg class="chart-svg" viewBox="0 0 400 150" preserveAspectRatio="none">
+                                    <path d="M0,120 C50,100 100,80 150,90 C200,100 250,40 300,50 C350,60 400,30 400,30" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+                                    <path d="M0,140 C50,130 100,120 150,125 C200,130 250,100 300,110 C350,120 400,90 400,90" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="chart-x-axis">
+                                <span>Mon</span>
+                                <span>Tue</span>
+                                <span>Wed</span>
+                                <span>Thu</span>
+                                <span>Fri</span>
+                                <span>Sat</span>
+                                <span>Sun</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-rules mt-6">
+                    <div class="component-label">Chart Rules</div>
+                    <ul class="guideline-list">
+                        <li><span>→</span> Grid lines use <code>var(--border-subtle)</code> — almost invisible</li>
+                        <li><span>→</span> Axis labels use <code>var(--text-muted)</code>, 11px, uppercase</li>
+                        <li><span>→</span> Data labels use <code>var(--text-secondary)</code></li>
+                        <li><span>→</span> Hover states: show tooltip with value, highlight data point</li>
+                        <li><span>→</span> No gradients or fills — line charts preferred, area charts with 10% opacity fill max</li>
+                        <li><span>→</span> Animate data on load: draw lines left-to-right, 400ms duration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- CSS Variables -->
         <div class="section">
-            <div class="section-title">8. CSS Variables Reference</div>
+            <div class="section-title">14. CSS Variables Reference</div>
             <div class="section-content">
                 <div class="code-block">
 <pre><span class="code-comment">/* Dark Theme (default) */</span>
@@ -1622,18 +2671,55 @@ Here's what I learned shipping features every week...</textarea>
 
 <span class="code-comment">/* Shared (both themes) */</span>
 :root {
+  <span class="code-comment">/* Semantic Colors */</span>
   <span class="code-property">--success</span>: <span class="code-value">#22c55e</span>;
   <span class="code-property">--warning</span>: <span class="code-value">#f59e0b</span>;
   <span class="code-property">--error</span>: <span class="code-value">#ef4444</span>;
   
+  <span class="code-comment">/* Typography */</span>
   <span class="code-property">--font-sans</span>: <span class="code-value">'Inter', sans-serif</span>;
   <span class="code-property">--font-mono</span>: <span class="code-value">'JetBrains Mono', monospace</span>;
   
+  <span class="code-comment">/* Radius */</span>
+  <span class="code-property">--radius-sm</span>: <span class="code-value">4px</span>;
+  <span class="code-property">--radius-md</span>: <span class="code-value">6px</span>;
   <span class="code-property">--radius-lg</span>: <span class="code-value">8px</span>;
   <span class="code-property">--radius-xl</span>: <span class="code-value">12px</span>;
   <span class="code-property">--radius-2xl</span>: <span class="code-value">16px</span>;
   
-  <span class="code-property">--transition-base</span>: <span class="code-value">0.15s ease</span>;
+  <span class="code-comment">/* Motion - Linear/Vercel style */</span>
+  <span class="code-property">--duration-fast</span>: <span class="code-value">150ms</span>;
+  <span class="code-property">--duration-medium</span>: <span class="code-value">250ms</span>;
+  <span class="code-property">--duration-slow</span>: <span class="code-value">400ms</span>;
+  
+  <span class="code-property">--ease-default</span>: <span class="code-value">cubic-bezier(0.4, 0, 0.2, 1)</span>;
+  <span class="code-property">--ease-out</span>: <span class="code-value">cubic-bezier(0, 0, 0.2, 1)</span>;
+  <span class="code-property">--ease-in</span>: <span class="code-value">cubic-bezier(0.4, 0, 1, 1)</span>;
+  
+  <span class="code-property">--transition-fast</span>: <span class="code-value">var(--duration-fast) var(--ease-default)</span>;
+  <span class="code-property">--transition-medium</span>: <span class="code-value">var(--duration-medium) var(--ease-default)</span>;
+  <span class="code-property">--transition-slow</span>: <span class="code-value">var(--duration-slow) var(--ease-default)</span>;
+  
+  <span class="code-comment">/* Breakpoints */</span>
+  <span class="code-property">--breakpoint-sm</span>: <span class="code-value">640px</span>;
+  <span class="code-property">--breakpoint-md</span>: <span class="code-value">768px</span>;
+  <span class="code-property">--breakpoint-lg</span>: <span class="code-value">1024px</span>;
+  <span class="code-property">--breakpoint-xl</span>: <span class="code-value">1280px</span>;
+  
+  <span class="code-comment">/* Icon Sizes */</span>
+  <span class="code-property">--icon-xs</span>: <span class="code-value">14px</span>;
+  <span class="code-property">--icon-sm</span>: <span class="code-value">16px</span>;
+  <span class="code-property">--icon-md</span>: <span class="code-value">20px</span>;
+  <span class="code-property">--icon-lg</span>: <span class="code-value">24px</span>;
+  <span class="code-property">--icon-xl</span>: <span class="code-value">32px</span>;
+  
+  <span class="code-comment">/* Chart Colors */</span>
+  <span class="code-property">--chart-1</span>: <span class="code-value">#8b5cf6</span>;
+  <span class="code-property">--chart-2</span>: <span class="code-value">#6366f1</span>;
+  <span class="code-property">--chart-3</span>: <span class="code-value">#3b82f6</span>;
+  <span class="code-property">--chart-4</span>: <span class="code-value">#0ea5e9</span>;
+  <span class="code-property">--chart-5</span>: <span class="code-value">#14b8a6</span>;
+  <span class="code-property">--chart-6</span>: <span class="code-value">#22c55e</span>;
 }</pre>
                 </div>
             </div>
