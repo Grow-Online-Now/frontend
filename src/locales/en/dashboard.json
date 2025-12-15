@@ -295,8 +295,9 @@
           "posted": "Post published successfully!",
           "scheduled": "Post scheduled successfully!"
         },
-        "saveDraft": {
-          "comingSoon": "Save as draft coming soon"
+        "draft": {
+          "saved": "Draft saved successfully",
+          "emptyContent": "Add some content before saving as draft"
         }
       }
     },

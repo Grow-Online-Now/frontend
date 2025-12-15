@@ -6,7 +6,6 @@
 import { useEffect, useCallback, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { CreateFlowTopBar } from '@/components/create/shared'
 import { Step1Write, Step2Platforms, Step3Schedule, PreviewPanel } from '@/components/create/text'
@@ -36,6 +35,8 @@ export default function CreateTextPostPage() {
     setScheduledDate,
     isSubmitting,
     submitPost,
+    saveDraft,
+    isSavingDraft,
     isLoadingConnections,
     hasTextFirstAccounts,
   } = useTextFlow()
@@ -54,7 +55,10 @@ export default function CreateTextPostPage() {
       // Cmd/Ctrl + S: Save draft
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {
         e.preventDefault()
-        toast.info(t('dashboard.create.text.saveDraft.comingSoon'))
+        e.stopPropagation()
+        if (!isSavingDraft) {
+          saveDraft()
+        }
       }
 
       // Escape: Go back
@@ -66,7 +70,7 @@ export default function CreateTextPostPage() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentStep, canContinue, isSubmitting, submitPost, goBack, t])
+  }, [currentStep, canContinue, isSubmitting, submitPost, saveDraft, isSavingDraft, goBack])
 
   // Handle back navigation
   const handleBack = useCallback(() => {

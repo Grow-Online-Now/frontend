@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import { Toaster } from '@/components/ui/sonner'
 import { DashboardSidebar } from './DashboardSidebar'
 import { MobileBottomNav } from './MobileBottomNav'
 import { GettingStartedModal } from '../shared/GettingStartedModal'
@@ -33,6 +34,9 @@ export default function DashboardLayout() {
         hasCreatedPost={hasCreatedPost}
         hasScheduledPost={hasScheduledPost}
       />
+
+      {/* Toast notifications */}
+      <Toaster position="bottom-right" />
     </div>
   )
 }

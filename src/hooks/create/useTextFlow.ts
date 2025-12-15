@@ -62,6 +62,8 @@ export interface UseTextFlowReturn {
   // Submission
   isSubmitting: boolean
   submitPost: () => Promise<boolean>
+  saveDraft: () => Promise<boolean>
+  isSavingDraft: boolean
 
   // Connections state
   isLoadingConnections: boolean
@@ -89,6 +91,7 @@ export function useTextFlow(): UseTextFlowReturn {
   const [selectedPlatformIds, setSelectedPlatformIds] = useState<string[]>([])
   const [scheduleType, setScheduleType] = useState<TextFlowScheduleType>('now')
   const [scheduledDate, setScheduledDate] = useState<Date | null>(null)
+  const [isSavingDraft, setIsSavingDraft] = useState(false)
 
   // Filter to text-first capable platforms
   const textFirstConnections = useMemo(
@@ -300,6 +303,48 @@ export function useTextFlow(): UseTextFlowReturn {
     t,
   ])
 
+  // Save as draft
+  const handleSaveDraft = useCallback(async (): Promise<boolean> => {
+    // Need at least some content to save as draft
+    if (!content.trim()) {
+      toast.error(t('dashboard.create.text.draft.emptyContent'))
+      return false
+    }
+
+    // Check for pending uploads
+    if (mediaUpload.isUploading) {
+      toast.error(t('dashboard.createPost.media.validation.uploadsInProgress'))
+      return false
+    }
+
+    setIsSavingDraft(true)
+
+    try {
+      const request: CreatePostRequest = {
+        caption: content,
+        social_accounts: selectedPlatformIds.length > 0 ? selectedPlatformIds : [],
+        is_draft: true,
+      }
+
+      // Add media if any
+      if (mediaUpload.completedUploads.length > 0) {
+        request.media_ids = mediaUpload.getMediaIds()
+      }
+
+      const result = await createPost(request)
+
+      if (result) {
+        toast.success(t('dashboard.create.text.draft.saved'))
+        navigate(`/${lang}/dashboard/posts`)
+        return true
+      }
+
+      return false
+    } finally {
+      setIsSavingDraft(false)
+    }
+  }, [content, mediaUpload, selectedPlatformIds, createPost, navigate, lang, t])
+
   // Build state object
   const state: TextFlowState = {
     step,
@@ -333,6 +378,8 @@ export function useTextFlow(): UseTextFlowReturn {
     setScheduledDate,
     isSubmitting,
     submitPost: handleSubmit,
+    saveDraft: handleSaveDraft,
+    isSavingDraft,
     isLoadingConnections,
     hasTextFirstAccounts,
   }

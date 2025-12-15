@@ -295,8 +295,9 @@
           "posted": "Publication publiée avec succès !",
           "scheduled": "Publication planifiée avec succès !"
         },
-        "saveDraft": {
-          "comingSoon": "Enregistrer comme brouillon bientôt disponible"
+        "draft": {
+          "saved": "Brouillon enregistré avec succès",
+          "emptyContent": "Ajoutez du contenu avant d'enregistrer comme brouillon"
         }
       }
     },
