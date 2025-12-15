@@ -127,7 +127,8 @@
    DARK THEME (Default)
    Color tokens for runtime switching
 ============================================ */
-:root {
+:root,
+.dark {
   /* Core backgrounds */
   --color-background: #000000;
   --color-foreground: #ffffff;
@@ -222,10 +223,7 @@
 /* ============================================
    LIGHT THEME OVERRIDES
 ============================================ */
-:root.light,
-:root[data-theme="light"],
-html.light,
-html[data-theme="light"] {
+.light {
   /* Core backgrounds */
   --color-background: #ffffff;
   --color-foreground: #0a0a0a;
@@ -336,8 +334,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.light,
-html[data-theme="light"] {
+.light {
   color-scheme: light;
 }
 
@@ -395,8 +392,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-.light ::selection,
-[data-theme="light"] ::selection {
+.light ::selection {
   background: rgba(0, 0, 0, 0.1);
   color: var(--text-primary);
 }
@@ -685,8 +681,7 @@ a:focus-visible,
     --text-secondary: #cccccc;
   }
 
-  .light,
-  [data-theme="light"] {
+  .light {
     --border-default: #999999;
     --border-subtle: #aaaaaa;
     --text-secondary: #333333;
