@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow Online — Media-First Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #000;
+            --bg-subtle: #0a0a0a;
+            --bg-elevated: #141414;
+            --bg-hover: #1a1a1a;
+            --border: #222;
+            --border-focus: #333;
+            --text: #fff;
+            --text-secondary: #888;
+            --text-muted: #555;
+            --accent: #fff;
+            --green: #22c55e;
+            --orange: #f59e0b;
+            --pink: #ec4899;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .canvas {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* Frame */
+        .frame {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .frame-header {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .frame-badge {
+            padding: 4px 10px;
+            background: var(--bg-elevated);
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* App */
+        .app {
+            background: var(--bg);
+            min-height: 600px;
+        }
+
+        /* Top Bar - Minimal */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .topbar-title {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Entry Points */
+        .entry-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .entry-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 40px 32px;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .entry-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-2px);
+        }
+
+        .entry-card.featured {
+            border-color: var(--purple);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+        }
+
+        .entry-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--bg-hover);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .entry-card.featured .entry-icon {
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+        }
+
+        .entry-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .entry-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .entry-platforms {
+            display: flex;
+            gap: 6px;
+        }
+
+        .entry-platform {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .entry-platform.ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .entry-platform.tt { background: #000; border: 1px solid var(--border); }
+        .entry-platform.tw { background: #1d9bf0; }
+        .entry-platform.li { background: #0a66c2; }
+
+        /* Media First Layout */
+        .media-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* Left: Media Preview */
+        .media-preview-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            background: var(--bg-subtle);
+        }
+
+        .media-preview-container {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        /* Phone Frame */
+        .phone-frame {
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+        }
+
+        .phone-screen {
+            background: var(--bg);
+            border-radius: 32px;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 24px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        /* Drop Zone */
+        .drop-zone {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            border: 2px dashed var(--border);
+            border-radius: 32px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--border-focus);
+            background: var(--bg-elevated);
+        }
+
+        .drop-zone-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-elevated);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .drop-zone-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .drop-zone-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Media Preview Content */
+        .media-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .media-content img,
+        .media-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-placeholder-icon {
+            font-size: 48px;
+            opacity: 0.8;
+        }
+
+        /* Media Controls Overlay */
+        .media-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+
+        .media-overlay-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .media-overlay-btn {
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Video Duration Badge */
+        .video-badge {
+            position: absolute;
+            top: 48px;
+            right: 12px;
+            padding: 4px 10px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Aspect Ratio Selector */
+        .aspect-selector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .aspect-btn {
+            padding: 8px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .aspect-btn:hover {
+            border-color: var(--border-focus);
+        }
+
+        .aspect-btn.active {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        /* Right Panel */
+        .details-panel {
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-section:last-child {
+            border-bottom: none;
+        }
+
+        .panel-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* Platform Toggles */
+        .platform-toggles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .platform-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .platform-toggle:hover {
+            border-color: var(--border-focus);
+        }
+
+        .platform-toggle.selected {
+            border-color: var(--text);
+            background: var(--bg-hover);
+        }
+
+        .platform-toggle-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .platform-toggle-icon.ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .platform-toggle-icon.tt { background: #010101; border: 1px solid var(--border); }
+        .platform-toggle-icon.yt { background: #ff0000; }
+        .platform-toggle-icon.fb { background: #1877f2; }
+
+        .platform-toggle-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Caption Input */
+        .caption-input {
+            width: 100%;
+            min-height: 100px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 14px;
+            color: var(--text);
+            resize: none;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        .caption-input:focus {
+            outline: none;
+            border-color: var(--border-focus);
+        }
+
+        .caption-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .caption-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .caption-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .caption-action {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .caption-action:hover {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+        }
+
+        .caption-counter {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Platform Options */
+        .platform-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .platform-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: var(--bg-elevated);
+            border-radius: 10px;
+        }
+
+        .platform-option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .platform-option-icon {
+            font-size: 16px;
+        }
+
+        .platform-option-text {
+            font-size: 13px;
+        }
+
+        .platform-option-value {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chevron {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Toggle Switch */
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: var(--bg-hover);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle.active {
+            background: var(--green);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: all 0.2s;
+        }
+
+        .toggle.active::after {
+            left: 23px;
+        }
+
+        /* Schedule Bar */
+        .schedule-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: var(--bg-elevated);
+            border-radius: 10px;
+        }
+
+        .schedule-icon {
+            font-size: 18px;
+        }
+
+        .schedule-text {
+            flex: 1;
+        }
+
+        .schedule-title {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .schedule-value {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Publish Button */
+        .publish-section {
+            margin-top: auto;
+            padding: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .publish-btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .publish-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Recent Media */
+        .recent-media {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .recent-thumb {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .recent-thumb:hover {
+            transform: scale(1.05);
+        }
+
+        .recent-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-thumb-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        .recent-thumb-video {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            font-size: 10px;
+            background: rgba(0,0,0,0.7);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Rows */
+        .frames-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 1000px) {
+            .frames-row {
+                grid-template-columns: 1fr;
+            }
+            .media-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notes */
+        .notes {
+            margin-top: 48px;
+            padding: 32px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .notes h3 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .note {
+            padding: 16px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+        }
+
+        .note-title {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .note-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .comparison-col h4 {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comparison-item {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .comparison-icon {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <!-- Header -->
+        <div class="header">
+            <h1>Grow Online — Media-First Flow</h1>
+            <p>For Instagram & TikTok creators. Media is the content.</p>
+        </div>
+
+        <!-- Entry Points -->
+        <div class="section">
+            <div class="section-label">Two Entry Points</div>
+            <div class="frame">
+                <div class="frame-header">
+                    <span>Dashboard — Choose Your Flow</span>
+                </div>
+                <div class="app" style="min-height: 400px;">
+                    <div class="entry-points">
+                        <div class="entry-card featured">
+                            <div class="entry-icon">📸</div>
+                            <div class="entry-title">Share Media</div>
+                            <div class="entry-desc">Post a video or photo to Instagram, TikTok, and more</div>
+                            <div class="entry-platforms">
+                                <div class="entry-platform ig">IG</div>
+                                <div class="entry-platform tt">TT</div>
+                            </div>
+                        </div>
+                        <div class="entry-card">
+                            <div class="entry-icon">📝</div>
+                            <div class="entry-title">Write a Post</div>
+                            <div class="entry-desc">Text-first content for Twitter, LinkedIn, and more</div>
+                            <div class="entry-platforms">
+                                <div class="entry-platform tw">𝕏</div>
+                                <div class="entry-platform li">in</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media First: Empty State -->
+        <div class="section">
+            <div class="section-label">Step 1 — Drop Your Media</div>
+            <div class="frame">
+                <div class="frame-header">
+                    <span>Media Upload — Empty State</span>
+                    <span class="frame-badge">Drag & Drop or Click</span>
+                </div>
+                <div class="app">
+                    <div class="topbar">
+                        <div class="topbar-left">
+                            <button class="back-btn">←</button>
+                            <span class="topbar-title">New Post</span>
+                        </div>
+                        <div class="topbar-right">
+                            <button class="btn btn-ghost">Drafts</button>
+                        </div>
+                    </div>
+
+                    <div class="media-layout">
+                        <!-- Left: Drop Zone -->
+                        <div class="media-preview-area">
+                            <div class="media-preview-container">
+                                <div class="phone-frame">
+                                    <div class="phone-screen">
+                                        <div class="phone-notch"></div>
+                                        <div class="drop-zone">
+                                            <div class="drop-zone-icon">📁</div>
+                                            <div class="drop-zone-text">Drop video or photo</div>
+                                            <div class="drop-zone-hint">or click to browse</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Quick Select -->
+                        <div class="details-panel">
+                            <div class="panel-section">
+                                <div class="panel-label">Recent Media</div>
+                                <div class="recent-media">
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                                        <span class="recent-thumb-video">0:45</span>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+                                        <span class="recent-thumb-video">1:22</span>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);"></div>
+                                        <span class="recent-thumb-video">0:30</span>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>
+                                    </div>
+                                    <div class="recent-thumb">
+                                        <div class="recent-thumb-placeholder" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-section">
+                                <div class="panel-label">Or import from</div>
+                                <div class="platform-options">
+                                    <div class="platform-option" style="cursor: pointer;">
+                                        <div class="platform-option-left">
+                                            <span class="platform-option-icon">📱</span>
+                                            <span class="platform-option-text">Camera Roll</span>
+                                        </div>
+                                        <span class="chevron">›</span>
+                                    </div>
+                                    <div class="platform-option" style="cursor: pointer;">
+                                        <div class="platform-option-left">
+                                            <span class="platform-option-icon">☁️</span>
+                                            <span class="platform-option-text">Google Drive</span>
+                                        </div>
+                                        <span class="chevron">›</span>
+                                    </div>
+                                    <div class="platform-option" style="cursor: pointer;">
+                                        <div class="platform-option-left">
+                                            <span class="platform-option-icon">📦</span>
+                                            <span class="platform-option-text">Dropbox</span>
+                                        </div>
+                                        <span class="chevron">›</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media First: With Content -->
+        <div class="section">
+            <div class="section-label">Step 2 — Add Details & Publish</div>
+            <div class="frame">
+                <div class="frame-header">
+                    <span>Ready to Publish — Video Loaded</span>
+                    <span class="frame-badge">All in one screen</span>
+                </div>
+                <div class="app">
+                    <div class="topbar">
+                        <div class="topbar-left">
+                            <button class="back-btn">←</button>
+                            <span class="topbar-title">New Post</span>
+                        </div>
+                        <div class="topbar-right">
+                            <button class="btn btn-ghost">Save Draft</button>
+                        </div>
+                    </div>
+
+                    <div class="media-layout">
+                        <!-- Left: Media Preview -->
+                        <div class="media-preview-area">
+                            <div class="media-preview-container">
+                                <div class="phone-frame">
+                                    <div class="phone-screen">
+                                        <div class="phone-notch"></div>
+                                        <div class="media-content">
+                                            <div class="media-placeholder">
+                                                <span class="media-placeholder-icon">▶</span>
+                                            </div>
+                                            <span class="video-badge">0:45</span>
+                                            <div class="media-overlay">
+                                                <div class="media-overlay-actions">
+                                                    <button class="media-overlay-btn">🔄 Replace</button>
+                                                    <button class="media-overlay-btn">✂️ Trim</button>
+                                                    <button class="media-overlay-btn">🖼️ Cover</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="aspect-selector">
+                                    <button class="aspect-btn active">9:16</button>
+                                    <button class="aspect-btn">1:1</button>
+                                    <button class="aspect-btn">4:5</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Details Panel -->
+                        <div class="details-panel">
+                            <div class="panel-section">
+                                <div class="panel-label">Post to</div>
+                                <div class="platform-toggles">
+                                    <div class="platform-toggle selected">
+                                        <div class="platform-toggle-icon ig">IG</div>
+                                        <span class="platform-toggle-name">Reels</span>
+                                    </div>
+                                    <div class="platform-toggle selected">
+                                        <div class="platform-toggle-icon tt">TT</div>
+                                        <span class="platform-toggle-name">TikTok</span>
+                                    </div>
+                                    <div class="platform-toggle">
+                                        <div class="platform-toggle-icon yt">YT</div>
+                                        <span class="platform-toggle-name">Shorts</span>
+                                    </div>
+                                    <div class="platform-toggle">
+                                        <div class="platform-toggle-icon fb">FB</div>
+                                        <span class="platform-toggle-name">Reels</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-section">
+                                <div class="panel-label">Caption</div>
+                                <textarea class="caption-input" placeholder="Write a caption...">Building in public hits different 🚀
+
+3 lessons from shipping every week:
+1. Start ugly
+2. Listen to users  
+3. Stay consistent
+
+What's your #1 lesson?
+
+#buildinpublic #saas #indiehacker</textarea>
+                                <div class="caption-footer">
+                                    <div class="caption-actions">
+                                        <button class="caption-action">😊</button>
+                                        <button class="caption-action">#</button>
+                                        <button class="caption-action">@</button>
+                                        <button class="caption-action">✨</button>
+                                    </div>
+                                    <span class="caption-counter">186/2,200</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-section">
+                                <div class="panel-label">Options</div>
+                                <div class="platform-options">
+                                    <div class="platform-option">
+                                        <div class="platform-option-left">
+                                            <span class="platform-option-icon">🎵</span>
+                                            <span class="platform-option-text">Sound</span>
+                                        </div>
+                                        <span class="platform-option-value">Original audio <span class="chevron">›</span></span>
+                                    </div>
+                                    <div class="platform-option">
+                                        <div class="platform-option-left">
+                                            <span class="platform-option-icon">📍</span>
+                                            <span class="platform-option-text">Location</span>
+                                        </div>
+                                        <span class="platform-option-value">Add <span class="chevron">›</span></span>
+                                    </div>
+                                    <div class="platform-option">
+                                        <div class="platform-option-left">
+                                            <span class="platform-option-icon">🎭</span>
+                                            <span class="platform-option-text">Allow Duets</span>
+                                        </div>
+                                        <div class="toggle active"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-section">
+                                <div class="schedule-bar">
+                                    <span class="schedule-icon">⚡</span>
+                                    <div class="schedule-text">
+                                        <div class="schedule-title">Post Now</div>
+                                        <div class="schedule-value">Tap to schedule instead</div>
+                                    </div>
+                                    <span class="chevron">›</span>
+                                </div>
+                            </div>
+
+                            <div class="publish-section">
+                                <button class="publish-btn">Publish to 2 Platforms</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison -->
+        <div class="section">
+            <div class="section-label">Text-First vs Media-First</div>
+            <div class="comparison">
+                <div class="comparison-col">
+                    <h4>📝 Text-First (Twitter/LinkedIn)</h4>
+                    <div class="comparison-list">
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Big textarea as hero</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Media is optional attachment</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Character counts prominent</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Thread support for Twitter</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Platform selection after writing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-col">
+                    <h4>📸 Media-First (Instagram/TikTok)</h4>
+                    <div class="comparison-list">
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Phone preview as hero</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Caption is secondary</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Aspect ratio selector prominent</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Sound, duets, cover frame options</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-icon">→</span>
+                            <span>Platform selection alongside preview</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="notes">
+            <h3>Why Two Flows?</h3>
+            <div class="notes-grid">
+                <div class="note">
+                    <div class="note-title">Different mental models</div>
+                    <div class="note-desc">Twitter users think "what do I want to say?" Instagram users think "what do I want to show?" Forcing one flow on both creates friction.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Media preview is everything</div>
+                    <div class="note-desc">For visual platforms, showing the phone frame preview lets creators see exactly how their content will appear. This builds confidence.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Caption is secondary</div>
+                    <div class="note-desc">The caption input is smaller, on the side. It's important but not the star. Many TikToks have minimal captions anyway.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Platform-specific options surface naturally</div>
+                    <div class="note-desc">Sound selection, duet toggles, cover frame — these matter for TikTok/Reels. They're visible without being overwhelming.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Recent media = speed</div>
+                    <div class="note-desc">Showing recent uploads/camera roll lets creators pick content instantly. No file browser needed for quick posts.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">One screen, everything visible</div>
+                    <div class="note-desc">Unlike the text flow's progressive steps, media flow shows everything at once. Creators can preview, caption, and publish without navigating.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow Online — Velocity-First Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-subtle: #111;
+            --bg-elevated: #161616;
+            --bg-hover: #1c1c1c;
+            --border: #222;
+            --border-focus: #333;
+            --text: #fafafa;
+            --text-secondary: #888;
+            --text-muted: #555;
+            --accent: #fff;
+            --blue: #3b82f6;
+            --green: #22c55e;
+            --orange: #f59e0b;
+            --red: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* Canvas */
+        .canvas {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* Flow Steps */
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .flow-step-num {
+            width: 22px;
+            height: 22px;
+            background: var(--text-muted);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .flow-step.active .flow-step-num {
+            background: var(--text);
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        /* Frame */
+        .frame {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .frame-header {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* App Frame */
+        .app {
+            background: var(--bg);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Minimal Top Bar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 6px;
+        }
+
+        .topbar-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Composer - The Hero */
+        .composer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+        }
+
+        .composer-inner {
+            width: 100%;
+            max-width: 560px;
+        }
+
+        /* Textarea */
+        .textarea-wrap {
+            position: relative;
+        }
+
+        .textarea {
+            width: 100%;
+            min-height: 200px;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text);
+            resize: none;
+            font-family: inherit;
+        }
+
+        .textarea:focus {
+            outline: none;
+        }
+
+        .textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Character Awareness Bar */
+        .char-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .char-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .char-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .char-icon.twitter { background: #1d9bf0; }
+        .char-icon.linkedin { background: #0a66c2; }
+        .char-icon.instagram { background: #e4405f; }
+
+        .char-item.ok { color: var(--text-secondary); }
+        .char-item.warn { color: var(--orange); }
+        .char-item.over { color: var(--red); }
+
+        /* Bottom Actions */
+        .composer-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 32px;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .action-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.15s;
+        }
+
+        .action-icon:hover {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+        }
+
+        .continue-btn {
+            padding: 12px 28px;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.15s;
+        }
+
+        .continue-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Step 2: Platform Selection */
+        .platforms-sheet {
+            padding: 32px;
+        }
+
+        .sheet-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .sheet-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto 32px;
+        }
+
+        .platform-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 16px;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .platform-card:hover {
+            border-color: var(--border-focus);
+            background: var(--bg-hover);
+        }
+
+        .platform-card.selected {
+            border-color: var(--text);
+            background: var(--bg-hover);
+        }
+
+        .platform-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .platform-card-icon.twitter { background: #1d9bf0; }
+        .platform-card-icon.linkedin { background: #0a66c2; }
+        .platform-card-icon.instagram { background: #e4405f; }
+        .platform-card-icon.pinterest { background: #bd081c; }
+        .platform-card-icon.tiktok { background: #000; border: 1px solid var(--border); }
+        .platform-card-icon.facebook { background: #1877f2; }
+
+        .platform-card-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .platform-card-handle {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .platform-card-check {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: var(--text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--bg);
+            opacity: 0;
+        }
+
+        .platform-card.selected .platform-card-check {
+            opacity: 1;
+        }
+
+        .platform-card {
+            position: relative;
+        }
+
+        /* Inline Warnings */
+        .inline-warnings {
+            max-width: 480px;
+            margin: 0 auto 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .inline-warning {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .warning-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--orange);
+        }
+
+        .warning-fix {
+            padding: 6px 12px;
+            background: rgba(245, 158, 11, 0.15);
+            border: none;
+            border-radius: 6px;
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .warning-fix:hover {
+            background: rgba(245, 158, 11, 0.25);
+        }
+
+        /* All Good State */
+        .all-good {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--green);
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+
+        /* Sheet Actions */
+        .sheet-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .sheet-btn {
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .sheet-btn-secondary {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .sheet-btn-primary {
+            background: var(--text);
+            border: 1px solid var(--text);
+            color: var(--bg);
+        }
+
+        /* Step 3: Quick Schedule */
+        .schedule-sheet {
+            padding: 32px;
+            text-align: center;
+        }
+
+        .schedule-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 360px;
+            margin: 0 auto 32px;
+        }
+
+        .schedule-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s;
+        }
+
+        .schedule-option:hover {
+            border-color: var(--border-focus);
+        }
+
+        .schedule-option.selected {
+            border-color: var(--text);
+        }
+
+        .schedule-option-icon {
+            font-size: 20px;
+        }
+
+        .schedule-option-text {
+            flex: 1;
+        }
+
+        .schedule-option-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .schedule-option-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Success State */
+        .success-sheet {
+            padding: 64px 32px;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 28px;
+        }
+
+        .success-title {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .success-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .success-platforms {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .success-platform {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Side by Side Frames */
+        .frames-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .frames-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notes */
+        .notes {
+            margin-top: 48px;
+            padding: 32px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .notes h3 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .note {
+            padding: 16px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+        }
+
+        .note-title {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .note-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Keyboard Shortcut Hint */
+        .kbd {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 6px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: 'SF Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        /* Customize Link */
+        .customize-link {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 16px;
+            display: inline-block;
+        }
+
+        .customize-link:hover {
+            color: var(--text-secondary);
+        }
+
+        /* Media Attachment Preview */
+        .media-preview {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .media-thumb {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-thumb-img {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+
+        .media-thumb-remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            background: rgba(0,0,0,0.7);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-thumb.add {
+            border: 2px dashed var(--border);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <!-- Header -->
+        <div class="header">
+            <h1>Grow Online — Velocity-First Flow</h1>
+            <p>Three steps. No friction. Ship fast.</p>
+        </div>
+
+        <!-- Flow Overview -->
+        <div class="section">
+            <div class="section-label">The Flow</div>
+            <div class="flow">
+                <div class="flow-step active">
+                    <div class="flow-step-num">1</div>
+                    <span>Write</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-step-num">2</div>
+                    <span>Choose platforms</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-step-num">3</div>
+                    <span>Publish</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Write -->
+        <div class="section">
+            <div class="section-label">Step 1 — Just Write</div>
+            <div class="frame">
+                <div class="frame-header">
+                    <span>Default State — Content First</span>
+                    <span>1280 × 800</span>
+                </div>
+                <div class="app">
+                    <div class="topbar">
+                        <div class="topbar-left">
+                            <div class="logo"></div>
+                            <span class="topbar-title">New Post</span>
+                        </div>
+                        <div class="topbar-right">
+                            <button class="btn btn-ghost">Drafts</button>
+                        </div>
+                    </div>
+
+                    <div class="composer">
+                        <div class="composer-inner">
+                            <div class="textarea-wrap">
+                                <textarea class="textarea" placeholder="What's on your mind?">Building Grow Online in public has been a wild ride 🎢
+
+Here's what I learned shipping features every week:
+
+1. Start ugly, ship fast
+2. Users will tell you what matters
+3. Consistency beats perfection
+
+What's your #1 lesson from building in public?</textarea>
+                            </div>
+
+                            <!-- Media attached -->
+                            <div class="media-preview">
+                                <div class="media-thumb">
+                                    <div class="media-thumb-img"></div>
+                                    <button class="media-thumb-remove">×</button>
+                                </div>
+                                <div class="media-thumb add">+</div>
+                            </div>
+
+                            <!-- Character awareness - subtle -->
+                            <div class="char-bar">
+                                <div class="char-item ok">
+                                    <div class="char-icon twitter">𝕏</div>
+                                    <span>247/280</span>
+                                </div>
+                                <div class="char-item ok">
+                                    <div class="char-icon linkedin">in</div>
+                                    <span>247/3k</span>
+                                </div>
+                                <div class="char-item ok">
+                                    <div class="char-icon instagram">IG</div>
+                                    <span>247/2.2k</span>
+                                </div>
+                            </div>
+
+                            <div class="composer-actions">
+                                <div class="action-icons">
+                                    <button class="action-icon">📷</button>
+                                    <button class="action-icon">😊</button>
+                                    <button class="action-icon">✨</button>
+                                </div>
+                                <button class="continue-btn">
+                                    Continue
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Choose Platforms -->
+        <div class="section">
+            <div class="section-label">Step 2 — Choose Where</div>
+            
+            <div class="frames-row">
+                <!-- All Good -->
+                <div class="frame">
+                    <div class="frame-header">
+                        <span>All platforms fit ✓</span>
+                    </div>
+                    <div class="app" style="min-height: 450px;">
+                        <div class="platforms-sheet">
+                            <div class="sheet-title">Where to post?</div>
+                            <div class="sheet-subtitle">Select one or more platforms</div>
+
+                            <div class="platform-grid">
+                                <div class="platform-card selected">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon twitter">𝕏</div>
+                                    <div class="platform-card-name">Twitter</div>
+                                    <div class="platform-card-handle">@bysfdev</div>
+                                </div>
+                                <div class="platform-card selected">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon linkedin">in</div>
+                                    <div class="platform-card-name">LinkedIn</div>
+                                    <div class="platform-card-handle">Bastien Y.</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon instagram">IG</div>
+                                    <div class="platform-card-name">Instagram</div>
+                                    <div class="platform-card-handle">growonline</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon pinterest">P</div>
+                                    <div class="platform-card-name">Pinterest</div>
+                                    <div class="platform-card-handle">bastien</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon tiktok">TT</div>
+                                    <div class="platform-card-name">TikTok</div>
+                                    <div class="platform-card-handle">@bysfdev</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon facebook">f</div>
+                                    <div class="platform-card-name">Facebook</div>
+                                    <div class="platform-card-handle">Bastien</div>
+                                </div>
+                            </div>
+
+                            <div class="all-good">
+                                <span>✓</span>
+                                <span>Content fits all selected platforms</span>
+                            </div>
+
+                            <div class="sheet-actions">
+                                <button class="sheet-btn sheet-btn-secondary">← Back</button>
+                                <button class="sheet-btn sheet-btn-primary">Publish to 2 →</button>
+                            </div>
+
+                            <a class="customize-link">Customize per platform</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- With Warning -->
+                <div class="frame">
+                    <div class="frame-header">
+                        <span>Needs adjustment</span>
+                    </div>
+                    <div class="app" style="min-height: 450px;">
+                        <div class="platforms-sheet">
+                            <div class="sheet-title">Where to post?</div>
+                            <div class="sheet-subtitle">Select one or more platforms</div>
+
+                            <div class="platform-grid">
+                                <div class="platform-card selected" style="border-color: var(--orange);">
+                                    <div class="platform-card-check" style="background: var(--orange);">!</div>
+                                    <div class="platform-card-icon twitter">𝕏</div>
+                                    <div class="platform-card-name">Twitter</div>
+                                    <div class="platform-card-handle">@bysfdev</div>
+                                </div>
+                                <div class="platform-card selected">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon linkedin">in</div>
+                                    <div class="platform-card-name">LinkedIn</div>
+                                    <div class="platform-card-handle">Bastien Y.</div>
+                                </div>
+                                <div class="platform-card selected">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon instagram">IG</div>
+                                    <div class="platform-card-name">Instagram</div>
+                                    <div class="platform-card-handle">growonline</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon pinterest">P</div>
+                                    <div class="platform-card-name">Pinterest</div>
+                                    <div class="platform-card-handle">bastien</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon tiktok">TT</div>
+                                    <div class="platform-card-name">TikTok</div>
+                                    <div class="platform-card-handle">@bysfdev</div>
+                                </div>
+                                <div class="platform-card">
+                                    <div class="platform-card-check">✓</div>
+                                    <div class="platform-card-icon facebook">f</div>
+                                    <div class="platform-card-name">Facebook</div>
+                                    <div class="platform-card-handle">Bastien</div>
+                                </div>
+                            </div>
+
+                            <div class="inline-warnings">
+                                <div class="inline-warning">
+                                    <div class="warning-text">
+                                        <div class="char-icon twitter">𝕏</div>
+                                        <span>312/280 — 32 chars over</span>
+                                    </div>
+                                    <button class="warning-fix">✨ Shorten</button>
+                                </div>
+                            </div>
+
+                            <div class="sheet-actions">
+                                <button class="sheet-btn sheet-btn-secondary">← Back</button>
+                                <button class="sheet-btn sheet-btn-primary">Publish to 3 →</button>
+                            </div>
+
+                            <a class="customize-link">Customize per platform</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Schedule & Publish -->
+        <div class="section">
+            <div class="section-label">Step 3 — When?</div>
+            
+            <div class="frames-row">
+                <!-- Quick Schedule -->
+                <div class="frame">
+                    <div class="frame-header">
+                        <span>Quick schedule picker</span>
+                    </div>
+                    <div class="app" style="min-height: 400px;">
+                        <div class="schedule-sheet">
+                            <div class="sheet-title">When to publish?</div>
+                            <div class="sheet-subtitle" style="margin-bottom: 24px;">Posting to Twitter, LinkedIn</div>
+
+                            <div class="schedule-options">
+                                <div class="schedule-option selected">
+                                    <div class="schedule-option-icon">⚡</div>
+                                    <div class="schedule-option-text">
+                                        <div class="schedule-option-title">Post Now</div>
+                                        <div class="schedule-option-desc">Publish immediately</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-option">
+                                    <div class="schedule-option-icon">🎯</div>
+                                    <div class="schedule-option-text">
+                                        <div class="schedule-option-title">Best Time</div>
+                                        <div class="schedule-option-desc">Today at 2:00 PM (recommended)</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-option">
+                                    <div class="schedule-option-icon">📅</div>
+                                    <div class="schedule-option-text">
+                                        <div class="schedule-option-title">Schedule</div>
+                                        <div class="schedule-option-desc">Pick a date and time</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sheet-actions">
+                                <button class="sheet-btn sheet-btn-secondary">← Back</button>
+                                <button class="sheet-btn sheet-btn-primary">Publish →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success -->
+                <div class="frame">
+                    <div class="frame-header">
+                        <span>Done! 🎉</span>
+                    </div>
+                    <div class="app" style="min-height: 400px;">
+                        <div class="success-sheet">
+                            <div class="success-icon">✓</div>
+                            <div class="success-title">Published!</div>
+                            <div class="success-subtitle">Your post is now live on 2 platforms</div>
+
+                            <div class="success-platforms">
+                                <div class="success-platform" style="background: #1d9bf0;">𝕏</div>
+                                <div class="success-platform" style="background: #0a66c2;">in</div>
+                            </div>
+
+                            <div class="sheet-actions" style="flex-direction: column; gap: 8px;">
+                                <button class="sheet-btn sheet-btn-primary" style="width: 200px;">Create Another</button>
+                                <button class="sheet-btn sheet-btn-secondary" style="width: 200px;">View Posts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Notes -->
+        <div class="notes">
+            <h3>Why This Works</h3>
+            <div class="notes-grid">
+                <div class="note">
+                    <div class="note-title">Content first, always</div>
+                    <div class="note-desc">No platform selection before writing. You think about what to say, not where to say it.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Progressive disclosure</div>
+                    <div class="note-desc">Character counts are subtle while writing. Warnings only appear when you select a platform that doesn't fit.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">One-click fixes</div>
+                    <div class="note-desc">Content too long? "✨ Shorten" fixes it instantly with AI. No manual editing required.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Power users have an escape hatch</div>
+                    <div class="note-desc">"Customize per platform" link is there for the 10% who need different content per platform. Hidden until needed.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Three steps max</div>
+                    <div class="note-desc">Write → Choose → Publish. No settings pages, no configuration, no friction.</div>
+                </div>
+                <div class="note">
+                    <div class="note-title">Keyboard friendly</div>
+                    <div class="note-desc">Tab to continue, Space to select platforms, Enter to publish. Fast for power users.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts -->
+        <div class="section" style="margin-top: 48px;">
+            <div class="section-label">Keyboard Shortcuts (Power Users)</div>
+            <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <span class="kbd">⌘</span><span class="kbd">Enter</span>
+                    <span>Publish immediately</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <span class="kbd">⌘</span><span class="kbd">K</span>
+                    <span>Quick actions</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <span class="kbd">⌘</span><span class="kbd">S</span>
+                    <span>Save draft</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <span class="kbd">⌘</span><span class="kbd">⇧</span><span class="kbd">A</span>
+                    <span>AI assist</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
