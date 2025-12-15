@@ -563,6 +563,60 @@
           "highlight": "Los creadores ganando con Shorts en 2025 no los tratan como contenido independiente. Usan los Shorts como la parte superior del embudo — un mecanismo de descubrimiento que presenta nuevos espectadores a su canal, quienes luego exploran contenido largo y se convierten en suscriptores leales."
         }
       }
+    },
+    "analyticsGuide2025": {
+      "title": "Analytics de Redes Sociales: La Guía Completa para Medir tu Crecimiento en 2025",
+      "description": "Domina los analytics de redes sociales para rastrear lo que importa. Aprende las métricas clave, herramientas y estrategias para medir el ROI, optimizar el rendimiento y demostrar el valor de tus esfuerzos en redes sociales.",
+      "content": {
+        "intro": {
+          "p1": "Publicar consistentemente es solo la mitad del trabajo. Los creadores y marcas que están ganando en redes sociales en 2025 comparten algo en común: están obsesionados con sus analytics. Saben exactamente qué funciona, qué no funciona, y por qué — luego usan ese conocimiento para optimizar cada pieza de contenido.",
+          "p2": "Esta guía desglosa las métricas de redes sociales que realmente importan, cómo interpretarlas correctamente, y cómo construir un sistema de analytics que convierta datos en insights accionables. Ya seas un creador individual o gestiones múltiples cuentas de marca, dominar los analytics es la diferencia entre adivinar y crecer."
+        },
+        "section1": {
+          "title": "Las Métricas Que Realmente Importan",
+          "p1": "Las plataformas de redes sociales te bombardean con números: impresiones, alcance, likes, comentarios, compartidos, guardados, visitas al perfil, crecimiento de seguidores, y docenas más. No todas las métricas son iguales. Enfocarse en los números equivocados lleva a métricas de vanidad que se ven impresionantes pero no generan resultados de negocio reales.",
+          "p2": "Estas son las métricas que los creadores exitosos priorizan:",
+          "list": {
+            "item1": "Tasa de engagement: El porcentaje de tu audiencia que interactúa con tu contenido. Esto revela la calidad del contenido mejor que los números brutos de engagement. Un post con 100 likes de 1,000 seguidores (tasa del 10%) supera 500 likes de 50,000 seguidores (tasa del 1%).",
+            "item2": "Alcance vs impresiones: El alcance cuenta espectadores únicos; las impresiones cuentan vistas totales. Un ratio alto de impresiones a alcance significa que las personas están viendo tu contenido múltiples veces — una señal de calidad fuerte.",
+            "item3": "Tasas de guardado y compartir: Estas indican el valor del contenido. Las personas guardan contenido que quieren referenciar después; comparten contenido que quieren que otros vean. Ambos señalan mayor calidad que solo los likes.",
+            "item4": "Tasa de clics (CTR): Si estás dirigiendo tráfico a un sitio web, newsletter o producto, el CTR mide qué tan efectivamente tu contenido convierte atención en acción."
+          }
+        },
+        "section2": {
+          "title": "Entendiendo los Analytics Específicos de Cada Plataforma",
+          "p1": "Cada plataforma social mide el éxito de manera diferente porque cada plataforma sirve propósitos diferentes. Instagram prioriza el engagement visual y las completaciones de stories. LinkedIn valora las interacciones profesionales y el tiempo de permanencia. TikTok está obsesionado con el porcentaje de tiempo de visualización y las tasas de completación.",
+          "p2": "El insight clave: compara tu rendimiento con los benchmarks de la plataforma y tus propios datos históricos — no con creadores en nichos diferentes o en plataformas diferentes. Una tasa de engagement del 3% en Instagram es excelente; en TikTok, podría estar por debajo del promedio. El contexto importa más que los números brutos.",
+          "highlight": "El error de analytics más peligroso es comparar métricas de vanidad entre plataformas. 10,000 vistas en YouTube (donde las personas miran por minutos) no equivale a 10,000 vistas en TikTok (donde el tiempo de visualización promedio es segundos). Siempre compara la calidad del engagement, no solo la cantidad."
+        },
+        "section3": {
+          "title": "Construyendo Tu Dashboard de Analytics",
+          "p1": "Datos dispersos en múltiples dashboards de plataformas hacen imposible el reconocimiento de patrones. Los creadores inteligentes construyen dashboards de analytics unificados que muestran todas sus métricas en un solo lugar, permitiendo comparaciones cross-plataforma e identificación de tendencias.",
+          "p2": "Tu dashboard de analytics debería rastrear:",
+          "list": {
+            "item1": "Tendencias semanales de tasa de engagement en todas las plataformas — ¿estás mejorando o declinando?",
+            "item2": "Contenido con mejor y peor rendimiento por tasa de engagement — ¿qué patrones emergen?",
+            "item3": "Horarios óptimos de publicación basados en el comportamiento específico de tu audiencia, no recomendaciones genéricas.",
+            "item4": "Velocidad de crecimiento de seguidores — no solo el total de seguidores, sino la tasa de crecimiento y cualquier pico o caída."
+          }
+        },
+        "section4": {
+          "title": "Convirtiendo Analytics en Acción",
+          "p1": "Datos sin acción son solo ruido. El objetivo de los analytics no es producir gráficos bonitos — es informar decisiones que mejoren tu estrategia de contenido. Cada métrica debería llevar a un '¿y qué?' que impulse cambios específicos.",
+          "p2": "Así es como hacer los analytics accionables:",
+          "list": {
+            "item1": "Auditorías de contenido semanales: Revisa tus 3 mejores y 3 peores posts. ¿Qué tienen en común los ganadores? ¿Qué comparten los perdedores? Ajusta tu mix de contenido acordemente.",
+            "item2": "Frameworks de pruebas A/B: Prueba una variable a la vez — hora de publicación, estilo de gancho, longitud del contenido, formato — y deja que los datos guíen tus decisiones en lugar de la intuición.",
+            "item3": "Seguimiento del ROI: Conecta las métricas sociales con resultados de negocio. Si las redes sociales generan suscripciones a newsletter, rastrea el costo por suscriptor. Si generan ventas, calcula el costo de adquisición de cliente desde social."
+          }
+        },
+        "conclusion": {
+          "title": "La Ventaja del Creador Data-Driven",
+          "p1": "En 2025, la brecha entre creadores que usan analytics y los que no se está ampliando. Los creadores data-driven iteran más rápido, pierden menos tiempo en contenido que no funciona, y componen su crecimiento duplicando lo que tiene buen rendimiento.",
+          "p2": "Empieza simple: elige tres métricas que más importan para tus objetivos. Rastréalas semanalmente. Busca patrones. Haz un cambio informado por datos por semana. Este enfoque sistemático de analytics transformará tus resultados en redes sociales en meses.",
+          "highlight": "Los mejores creadores de contenido no son solo creativos — son analíticos. Tratan cada post como un experimento, cada métrica como feedback, y cada semana como una oportunidad para optimizar. Los datos no reemplazan la creatividad; la amplifican."
+        }
+      }
     }
   }
 }
