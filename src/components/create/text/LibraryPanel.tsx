@@ -48,7 +48,7 @@ function MediaThumbnail({ media, onClick }: MediaThumbnailProps) {
       draggable
       onDragStart={handleDragStart}
       className={cn(
-        'group border-border bg-surface-subtle relative aspect-square overflow-hidden rounded-lg border',
+        'group border-border bg-surface-muted relative aspect-square overflow-hidden rounded-lg border',
         'hover:border-border-emphasis hover:bg-surface-hover transition-all',
         'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         'cursor-grab active:cursor-grabbing'
@@ -115,7 +115,7 @@ export function LibraryPanel({
   return (
     <div
       className={cn(
-        'border-border bg-surface-subtle flex h-full flex-col rounded-2xl border p-4',
+        'border-border/50 flex h-full flex-col rounded-2xl border p-4',
         className
       )}
     >

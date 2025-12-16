@@ -46,7 +46,7 @@ export function Step1PreviewPanel({
   return (
     <div
       className={cn(
-        'border-border bg-surface-subtle sticky top-8 flex h-fit w-full flex-col rounded-2xl border',
+        'border-border bg-surface-muted sticky top-8 flex h-fit w-full flex-col rounded-2xl border',
         className
       )}
     >
