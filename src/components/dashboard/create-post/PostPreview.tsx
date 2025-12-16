@@ -25,6 +25,7 @@ import { cn } from '@/lib/utils'
 import type { SocialPlatform, Connection } from '@/types/connections'
 import type { MediaFile } from './MediaUploader'
 import type { TwitterThreadTweet, TwitterFirstComment } from '@/types/posts'
+import { TwitterPreview } from './TwitterPreview'
 
 interface PostPreviewProps {
   selectedPlatform: SocialPlatform
@@ -92,49 +93,54 @@ export function PostPreview({
 
       {/* Preview Area */}
       <div className="flex items-center justify-center p-5">
-        <div className="w-full max-w-[280px]">
-          <div className="border-border bg-card rounded-2xl border shadow-sm">
-            {selectedPlatform === 'instagram' && (
-              <InstagramPreview
-                account={account}
-                media={firstMedia}
-                caption={truncateCaption(caption, 150)}
-              />
-            )}
-            {selectedPlatform === 'linkedin' && (
-              <LinkedInPreview
-                account={account}
-                media={firstMedia}
-                caption={truncateCaption(caption, 200)}
-              />
-            )}
-            {selectedPlatform === 'twitter' && (
-              <TwitterPreview
-                account={account}
-                media={firstMedia}
-                caption={truncateCaption(caption, 280)}
-                thread={twitterThread}
-                firstComment={twitterFirstComment}
-              />
-            )}
-            {selectedPlatform === 'facebook' && (
-              <FacebookPreview
-                account={account}
-                media={firstMedia}
-                caption={truncateCaption(caption, 200)}
-              />
-            )}
-            {(selectedPlatform === 'tiktok' ||
-              selectedPlatform === 'youtube' ||
-              selectedPlatform === 'pinterest') && (
-              <GenericPreview
-                platform={selectedPlatform}
-                account={account}
-                media={firstMedia}
-                caption={truncateCaption(caption, 150)}
-              />
-            )}
-          </div>
+        <div className="w-full max-w-[320px]">
+          {/* Twitter uses its own themed container */}
+          {selectedPlatform === 'twitter' && (
+            <TwitterPreview
+              account={account}
+              media={media}
+              caption={caption}
+              thread={twitterThread}
+              firstComment={twitterFirstComment}
+            />
+          )}
+
+          {/* Other platforms use shared container */}
+          {selectedPlatform !== 'twitter' && (
+            <div className="border-border bg-card rounded-2xl border shadow-sm">
+              {selectedPlatform === 'instagram' && (
+                <InstagramPreview
+                  account={account}
+                  media={firstMedia}
+                  caption={truncateCaption(caption, 150)}
+                />
+              )}
+              {selectedPlatform === 'linkedin' && (
+                <LinkedInPreview
+                  account={account}
+                  media={firstMedia}
+                  caption={truncateCaption(caption, 200)}
+                />
+              )}
+              {selectedPlatform === 'facebook' && (
+                <FacebookPreview
+                  account={account}
+                  media={firstMedia}
+                  caption={truncateCaption(caption, 200)}
+                />
+              )}
+              {(selectedPlatform === 'tiktok' ||
+                selectedPlatform === 'youtube' ||
+                selectedPlatform === 'pinterest') && (
+                <GenericPreview
+                  platform={selectedPlatform}
+                  account={account}
+                  media={firstMedia}
+                  caption={truncateCaption(caption, 150)}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -271,115 +277,6 @@ function LinkedInPreview({
           <Share2 className="h-4 w-4" /> Share
         </div>
       </div>
-    </div>
-  )
-}
-
-// Twitter Preview
-function TwitterPreview({
-  account,
-  media,
-  caption,
-  thread = [],
-  firstComment,
-}: {
-  account?: Connection
-  media?: MediaFile
-  caption: string
-  thread?: TwitterThreadTweet[]
-  firstComment?: TwitterFirstComment | null
-}) {
-  const { t } = useTranslation()
-  const hasThread = thread.length > 0
-  const hasFirstComment = firstComment && firstComment.text.length > 0
-
-  return (
-    <div className="overflow-hidden rounded-2xl">
-      {/* Thread indicator */}
-      {(hasThread || hasFirstComment) && (
-        <div className="bg-muted border-border border-b px-3 py-2">
-          <div className="text-muted-foreground flex items-center gap-2 text-xs">
-            <MessageCircle className="h-3 w-3" />
-            {hasThread && (
-              <span>
-                {t('dashboard.createPost.twitter.thread.summary', { count: thread.length + 1 })}
-              </span>
-            )}
-            {hasThread && hasFirstComment && <span>•</span>}
-            {hasFirstComment && <span>{t('dashboard.createPost.twitter.firstComment.title')}</span>}
-          </div>
-        </div>
-      )}
-
-      {/* Main tweet */}
-      <div className="p-3">
-        <div className="flex gap-2.5">
-          <div className="bg-foreground text-background flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
-            {account?.platformUsername?.[0]?.toUpperCase() || 'U'}
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center gap-1.5">
-              <span className="text-foreground text-sm font-bold">
-                {account?.displayName || account?.platformUsername || 'Display Name'}
-              </span>
-              <span className="text-muted-foreground text-sm">
-                @{account?.platformUsername || 'username'}
-              </span>
-            </div>
-
-            {caption && <p className="text-foreground mt-1 text-sm leading-[1.4]">{caption}</p>}
-
-            {media && (
-              <div className="bg-muted mt-2 overflow-hidden rounded-xl">
-                {media.type === 'video' ? (
-                  <video src={media.url} className="w-full" />
-                ) : (
-                  <img src={media.url} alt="" className="w-full" />
-                )}
-              </div>
-            )}
-
-            {/* Thread number indicator */}
-            {hasThread && (
-              <div className="text-muted-foreground mt-2 text-xs">
-                {t('dashboard.createPost.twitter.thread.tweetNumber', {
-                  current: 1,
-                  total: thread.length + 1,
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Thread preview snippets */}
-      {hasThread && thread.length > 0 && (
-        <div className="border-border border-t px-3 py-2">
-          <div className="space-y-1.5">
-            {thread.slice(0, 2).map((tweet) => (
-              <div key={tweet.id} className="flex items-start gap-2">
-                <div className="bg-muted-foreground/50 mt-0.5 h-1.5 w-1.5 rounded-full" />
-                <p className="text-muted-foreground line-clamp-1 text-xs">
-                  {tweet.text || t('dashboard.createPost.twitter.thread.placeholder')}
-                </p>
-              </div>
-            ))}
-            {thread.length > 2 && (
-              <div className="text-muted-foreground text-xs">+{thread.length - 2} more...</div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* First comment preview */}
-      {hasFirstComment && (
-        <div className="border-border border-t px-3 py-2">
-          <div className="flex items-start gap-2">
-            <MessageCircle className="text-muted-foreground mt-0.5 h-3 w-3" />
-            <p className="text-muted-foreground line-clamp-2 text-xs">{firstComment.text}</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

@@ -391,7 +391,23 @@
       "preview": {
         "title": "Preview",
         "bestTime": "Best time to post",
-        "bestTimeValue": "Today, 2:00 PM"
+        "bestTimeValue": "Today, 2:00 PM",
+        "twitter": {
+          "timestamp": {
+            "now": "now"
+          },
+          "engagement": {
+            "reply": "Reply",
+            "repost": "Repost",
+            "like": "Like",
+            "views": "View",
+            "bookmark": "Bookmark",
+            "share": "Share"
+          },
+          "thread": {
+            "replyingTo": "Replying to @{{username}}"
+          }
+        }
       },
       "hints": {
         "mediaRequired": "{{platforms}} require media to post",

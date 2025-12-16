@@ -4,13 +4,15 @@
  * Shows live preview with platform tabs for switching between selected platforms
  */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
+import { TwitterPreview } from '@/components/dashboard/create-post/TwitterPreview'
 import type { PlatformWithValidation } from '@/types/create'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
+import type { MediaFile } from '@/components/dashboard/create-post/MediaUploader'
 
 interface Step1PreviewPanelProps {
   content: string
@@ -42,6 +44,21 @@ export function Step1PreviewPanel({
 
   // Get active platform
   const activePlatform = selectedPlatforms.find((p) => p.id === activePlatformId)
+
+  // Convert FileUploadState to MediaFile for TwitterPreview
+  const mediaFiles: MediaFile[] = useMemo(
+    () =>
+      media.map((m) => ({
+        id: m.id,
+        file: m.file,
+        url: m.localUrl,
+        type: m.type,
+      })),
+    [media]
+  )
+
+  // Check if active platform is Twitter
+  const isTwitter = activePlatform?.platform === 'twitter'
 
   return (
     <div
@@ -91,58 +108,80 @@ export function Step1PreviewPanel({
             </p>
           </div>
         ) : activePlatform ? (
-          // Platform preview card
-          <div className="border-border bg-surface-elevated overflow-hidden rounded-xl border">
-            {/* Platform header */}
-            <div className="border-border flex items-center gap-3 border-b p-3">
-              <PlatformIcon platform={activePlatform.platform} size="sm" showBackground />
-              <div className="min-w-0 flex-1">
-                <div className="text-foreground truncate text-sm font-medium">
-                  {activePlatform.displayName || activePlatform.platformUsername}
+          <>
+            {/* Twitter uses its own themed preview */}
+            {isTwitter ? (
+              <TwitterPreview
+                account={{
+                  id: activePlatform.id,
+                  platform: 'twitter',
+                  displayName: activePlatform.displayName,
+                  platformUserId: activePlatform.id,
+                  platformUsername: activePlatform.platformUsername,
+                  isActive: true,
+                  expiresAt: null,
+                  isExpired: false,
+                  needsRefresh: false,
+                  createdAt: new Date().toISOString(),
+                }}
+                media={mediaFiles}
+                caption={content}
+              />
+            ) : (
+              // Generic platform preview card
+              <div className="border-border bg-surface-elevated overflow-hidden rounded-xl border">
+                {/* Platform header */}
+                <div className="border-border flex items-center gap-3 border-b p-3">
+                  <PlatformIcon platform={activePlatform.platform} size="sm" showBackground />
+                  <div className="min-w-0 flex-1">
+                    <div className="text-foreground truncate text-sm font-medium">
+                      {activePlatform.displayName || activePlatform.platformUsername}
+                    </div>
+                    <div className="text-muted-foreground truncate text-[11px]">
+                      @{activePlatform.platformUsername}
+                    </div>
+                  </div>
                 </div>
-                <div className="text-muted-foreground truncate text-[11px]">
-                  @{activePlatform.platformUsername}
-                </div>
-              </div>
-            </div>
 
-            {/* Media preview */}
-            {media.length > 0 && (
-              <div className="border-border border-b">
-                <MediaPreviewThumbnails media={media} />
+                {/* Media preview */}
+                {media.length > 0 && (
+                  <div className="border-border border-b">
+                    <MediaPreviewThumbnails media={media} />
+                  </div>
+                )}
+
+                {/* Content preview */}
+                <div className="p-3">
+                  {content.trim() ? (
+                    <p className="text-foreground line-clamp-6 text-sm leading-relaxed whitespace-pre-wrap">
+                      {content}
+                    </p>
+                  ) : (
+                    <p className="text-muted-foreground text-sm italic">
+                      {t('dashboard.create.text.preview.noContent')}
+                    </p>
+                  )}
+                </div>
+
+                {/* Character count footer */}
+                <div className="border-border border-t px-3 py-2">
+                  <div
+                    className={cn(
+                      'font-mono text-[11px]',
+                      activePlatform.isOverLimit && 'text-error',
+                      activePlatform.isNearLimit && !activePlatform.isOverLimit && 'text-warning',
+                      !activePlatform.isOverLimit &&
+                        !activePlatform.isNearLimit &&
+                        'text-muted-foreground'
+                    )}
+                  >
+                    {activePlatform.characterCount}/{activePlatform.characterLimit}{' '}
+                    {t('dashboard.create.text.preview.characters')}
+                  </div>
+                </div>
               </div>
             )}
-
-            {/* Content preview */}
-            <div className="p-3">
-              {content.trim() ? (
-                <p className="text-foreground line-clamp-6 text-sm leading-relaxed whitespace-pre-wrap">
-                  {content}
-                </p>
-              ) : (
-                <p className="text-muted-foreground text-sm italic">
-                  {t('dashboard.create.text.preview.noContent')}
-                </p>
-              )}
-            </div>
-
-            {/* Character count footer */}
-            <div className="border-border border-t px-3 py-2">
-              <div
-                className={cn(
-                  'font-mono text-[11px]',
-                  activePlatform.isOverLimit && 'text-error',
-                  activePlatform.isNearLimit && !activePlatform.isOverLimit && 'text-warning',
-                  !activePlatform.isOverLimit &&
-                    !activePlatform.isNearLimit &&
-                    'text-muted-foreground'
-                )}
-              >
-                {activePlatform.characterCount}/{activePlatform.characterLimit}{' '}
-                {t('dashboard.create.text.preview.characters')}
-              </div>
-            </div>
-          </div>
+          </>
         ) : null}
       </div>
     </div>

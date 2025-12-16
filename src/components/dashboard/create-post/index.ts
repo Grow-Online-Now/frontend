@@ -15,7 +15,9 @@ export { PostingProgressModal } from './PostingProgressModal'
 export { LinkedInConfigSection } from './LinkedInConfigSection'
 export { PinterestConfigSection } from './PinterestConfigSection'
 
-// Twitter thread components
+// Twitter components
+export { TwitterPreview } from './TwitterPreview'
+export { TwitterMediaGrid } from './TwitterMediaGrid'
 export { TwitterCharacterCounter } from './TwitterCharacterCounter'
 export { TwitterThreadMediaUploader } from './TwitterThreadMediaUploader'
 export { TwitterThreadItem } from './TwitterThreadItem'

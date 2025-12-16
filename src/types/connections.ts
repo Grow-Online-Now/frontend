@@ -20,6 +20,7 @@ export interface Connection {
   displayName: string | null
   platformUserId: string
   platformUsername: string
+  avatarUrl?: string | null
   isActive: boolean
   expiresAt: string | null
   isExpired: boolean
