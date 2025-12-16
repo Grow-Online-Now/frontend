@@ -23,6 +23,7 @@ export interface FileUploadState {
   error: string | null
   mediaId: string | null // Backend media ID after request-upload
   mediaItem: MediaItem | null // Full media item after confirmation
+  isFromLibrary: boolean // True if added from media library (don't delete on remove)
 }
 
 /**
@@ -226,6 +227,7 @@ export function useMediaUpload(): UseMediaUploadReturn {
           error: validation.valid ? null : validation.errorKey,
           mediaId: null,
           mediaItem: null,
+          isFromLibrary: false,
         }
 
         newUploadStates.push(uploadState)
@@ -267,6 +269,7 @@ export function useMediaUpload(): UseMediaUploadReturn {
         error: null,
         mediaId: mediaItem.id,
         mediaItem,
+        isFromLibrary: true,
       }
 
       setState((prev) => {
@@ -295,11 +298,13 @@ export function useMediaUpload(): UseMediaUploadReturn {
       abortControllersRef.current.get(id)?.abort()
       abortControllersRef.current.delete(id)
 
-      // Revoke object URL
-      URL.revokeObjectURL(upload.localUrl)
+      // Revoke object URL (only for locally created URLs, not library URLs)
+      if (!upload.isFromLibrary) {
+        URL.revokeObjectURL(upload.localUrl)
+      }
 
-      // Delete from backend if it was uploaded
-      if (upload.mediaId && upload.status === 'ready') {
+      // Delete from backend only if it was freshly uploaded (not from library)
+      if (upload.mediaId && upload.status === 'ready' && !upload.isFromLibrary) {
         try {
           await deleteMedia(upload.mediaId)
         } catch (err) {

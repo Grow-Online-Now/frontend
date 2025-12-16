@@ -298,6 +298,26 @@
         "draft": {
           "saved": "Draft saved successfully",
           "emptyContent": "Add some content before saving as draft"
+        },
+        "mediaPanel": {
+          "title": "Recent Media",
+          "browse": "Browse",
+          "empty": "No media uploaded yet",
+          "browseLibrary": "Browse Library",
+          "addFromLibrary": "Browse All Media",
+          "hint": "Click or drag to add"
+        },
+        "mediaLibrary": {
+          "title": "Media Library",
+          "empty": "No media available",
+          "selectHint": "Click to select media",
+          "selectedCount": "{{count}} selected",
+          "selectedCount_one": "1 selected",
+          "selectedCount_other": "{{count}} selected",
+          "clearSelection": "Clear",
+          "addSelected": "Add {{count}} item",
+          "addSelected_one": "Add 1 item",
+          "addSelected_other": "Add {{count}} items"
         }
       }
     },

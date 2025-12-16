@@ -7,6 +7,8 @@ export { TextComposer } from './TextComposer'
 export { CharacterCounts } from './CharacterCounts'
 export { ComposerToolbar } from './ComposerToolbar'
 export { Step1Write } from './Step1Write'
+export { RecentMediaPanel } from './RecentMediaPanel'
+export { MediaLibraryModal } from './MediaLibraryModal'
 
 // Step 2 - Platforms
 export { PlatformCard } from './PlatformCard'

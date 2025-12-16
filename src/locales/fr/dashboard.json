@@ -298,6 +298,26 @@
         "draft": {
           "saved": "Brouillon enregistré avec succès",
           "emptyContent": "Ajoutez du contenu avant d'enregistrer comme brouillon"
+        },
+        "mediaPanel": {
+          "title": "Médias récents",
+          "browse": "Parcourir",
+          "empty": "Aucun média téléchargé",
+          "browseLibrary": "Parcourir la bibliothèque",
+          "addFromLibrary": "Parcourir tous les médias",
+          "hint": "Cliquez ou glissez pour ajouter"
+        },
+        "mediaLibrary": {
+          "title": "Bibliothèque de médias",
+          "empty": "Aucun média disponible",
+          "selectHint": "Cliquez pour sélectionner",
+          "selectedCount": "{{count}} sélectionné(s)",
+          "selectedCount_one": "1 sélectionné",
+          "selectedCount_other": "{{count}} sélectionnés",
+          "clearSelection": "Effacer",
+          "addSelected": "Ajouter {{count}} élément",
+          "addSelected_one": "Ajouter 1 élément",
+          "addSelected_other": "Ajouter {{count}} éléments"
         }
       }
     },

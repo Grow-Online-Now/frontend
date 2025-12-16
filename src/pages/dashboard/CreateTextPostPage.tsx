@@ -3,19 +3,29 @@
  * Text-first post creation flow with 3 progressive steps
  */
 
-import { useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { CreateFlowTopBar } from '@/components/create/shared'
-import { Step1Write, Step2Platforms, Step3Schedule, PreviewPanel } from '@/components/create/text'
+import {
+  Step1Write,
+  Step2Platforms,
+  Step3Schedule,
+  PreviewPanel,
+  RecentMediaPanel,
+  MediaLibraryModal,
+} from '@/components/create/text'
 import { useTextFlow } from '@/hooks/create/useTextFlow'
+import { useMediaLibrary } from '@/hooks/useMediaLibrary'
 import { Skeleton } from '@/components/ui/skeleton'
+import type { MediaItem } from '@/types/media'
 
 export default function CreateTextPostPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { lang } = useParams<{ lang: string }>()
+  const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false)
 
   const {
     currentStep,
@@ -40,6 +50,15 @@ export default function CreateTextPostPage() {
     isLoadingConnections,
     hasTextFirstAccounts,
   } = useTextFlow()
+
+  // Fetch recent media for the sidebar
+  const { media: recentMedia, isLoading: isLoadingMedia } = useMediaLibrary({ limit: 10 })
+
+  // Get IDs of media already added to the post
+  const addedMediaIds = useMemo(
+    () => media.uploadsArray.map((u) => u.mediaId).filter(Boolean) as string[],
+    [media.uploadsArray]
+  )
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -85,6 +104,22 @@ export default function CreateTextPostPage() {
   const handleMediaUpload = useCallback(
     (files: FileList) => {
       media.addFiles(Array.from(files))
+    },
+    [media]
+  )
+
+  // Handle adding media from library (single item)
+  const handleAddLibraryMedia = useCallback(
+    (item: MediaItem) => {
+      media.addPreloadedMedia(item)
+    },
+    [media]
+  )
+
+  // Handle adding multiple media from library modal
+  const handleSelectLibraryMedia = useCallback(
+    (items: MediaItem[]) => {
+      items.forEach((item) => media.addPreloadedMedia(item))
     },
     [media]
   )
@@ -147,17 +182,41 @@ export default function CreateTextPostPage() {
       <main className="flex-1 px-4 py-8">
         <AnimatePresence mode="wait">
           {currentStep === 1 && (
-            <Step1Write
+            <motion.div
               key="step1"
-              content={content}
-              onContentChange={setContent}
-              media={media.uploadsArray}
-              onMediaUpload={handleMediaUpload}
-              onMediaRemove={media.removeFile}
-              onMediaRetry={media.retryUpload}
-              onContinue={goNext}
-              canContinue={canContinue}
-            />
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="flex items-start justify-center gap-8"
+            >
+              {/* Left spacer for centering on desktop */}
+              <div className="hidden w-[260px] shrink-0 lg:block" />
+
+              {/* Composer */}
+              <Step1Write
+                content={content}
+                onContentChange={setContent}
+                media={media.uploadsArray}
+                onMediaUpload={handleMediaUpload}
+                onMediaRemove={media.removeFile}
+                onMediaRetry={media.retryUpload}
+                onAddLibraryMedia={handleAddLibraryMedia}
+                onContinue={goNext}
+                canContinue={canContinue}
+                className="mx-auto lg:mx-0"
+              />
+
+              {/* Recent media sidebar - desktop only */}
+              <div className="sticky top-8 hidden w-[260px] shrink-0 lg:block">
+                <RecentMediaPanel
+                  media={recentMedia.filter((m) => !addedMediaIds.includes(m.id))}
+                  isLoading={isLoadingMedia}
+                  onAddMedia={handleAddLibraryMedia}
+                  onOpenLibrary={() => setIsMediaLibraryOpen(true)}
+                />
+              </div>
+            </motion.div>
           )}
 
           {currentStep === 2 && (
@@ -190,6 +249,14 @@ export default function CreateTextPostPage() {
             />
           )}
         </AnimatePresence>
+
+        {/* Media library modal */}
+        <MediaLibraryModal
+          open={isMediaLibraryOpen}
+          onOpenChange={setIsMediaLibraryOpen}
+          onSelect={handleSelectLibraryMedia}
+          excludeIds={addedMediaIds}
+        />
       </main>
     </div>
   )

@@ -218,6 +218,110 @@
         }
       }
     },
+    "create": {
+      "text": {
+        "title": "Crear publicación",
+        "topBar": {
+          "back": "Atrás",
+          "continue": "Continuar"
+        },
+        "step1": {
+          "placeholder": "¿Qué tienes en mente?"
+        },
+        "step2": {
+          "title": "Elige plataformas",
+          "description": "Selecciona dónde quieres publicar",
+          "allGood": "Todas las plataformas dentro de los límites",
+          "empty": {
+            "title": "No hay cuentas de texto primero",
+            "description": "Conecta una cuenta de Twitter, LinkedIn o Facebook para usar este flujo."
+          }
+        },
+        "step3": {
+          "title": "Cuándo publicar",
+          "description": "Elige cuándo se publica tu post",
+          "publishingTo": "Publicando en"
+        },
+        "contentPreview": {
+          "label": "Tu publicación"
+        },
+        "preview": {
+          "title": "Vista previa",
+          "selectPlatform": "Selecciona una plataforma para ver la vista previa",
+          "noContent": "Empieza a escribir para ver la vista previa",
+          "characters": "caracteres",
+          "otherPlatforms": "+{{count}} otra plataforma",
+          "otherPlatforms_other": "+{{count}} otras plataformas"
+        },
+        "shortcuts": {
+          "continue": "para continuar",
+          "dragFiles": "Arrastra archivos para adjuntar",
+          "saveDraft": "para guardar borrador"
+        },
+        "toolbar": {
+          "media": "Añadir media",
+          "emoji": "Añadir emoji",
+          "aiEnhance": "Mejorar con IA",
+          "emojiComingSoon": "Selector de emoji próximamente",
+          "aiEnhanceComingSoon": "Funciones de IA próximamente"
+        },
+        "validation": {
+          "overLimit": "{{excess}} sobre el límite",
+          "shorten": "Acortar",
+          "shortenWithAI": "Acortar con IA",
+          "shortenComingSoon": "Acortar con IA próximamente"
+        },
+        "schedule": {
+          "now": {
+            "label": "Ahora",
+            "description": "Publicar inmediatamente"
+          },
+          "best": {
+            "label": "Mejor momento",
+            "description": "Engagement óptimo",
+            "comingSoon": "Función de mejor momento próximamente"
+          },
+          "scheduled": {
+            "label": "Programar",
+            "description": "Elegir fecha y hora"
+          },
+          "pickDate": "Elige fecha y hora"
+        },
+        "publish": {
+          "button": "Publicar en {{count}} plataforma",
+          "button_other": "Publicar en {{count}} plataformas",
+          "publishing": "Publicando..."
+        },
+        "success": {
+          "posted": "¡Publicación publicada con éxito!",
+          "scheduled": "¡Publicación programada con éxito!"
+        },
+        "draft": {
+          "saved": "Borrador guardado con éxito",
+          "emptyContent": "Añade contenido antes de guardar como borrador"
+        },
+        "mediaPanel": {
+          "title": "Medios recientes",
+          "browse": "Explorar",
+          "empty": "Aún no hay medios subidos",
+          "browseLibrary": "Explorar biblioteca",
+          "addFromLibrary": "Explorar todos los medios",
+          "hint": "Haz clic o arrastra para añadir"
+        },
+        "mediaLibrary": {
+          "title": "Biblioteca de medios",
+          "empty": "No hay medios disponibles",
+          "selectHint": "Haz clic para seleccionar",
+          "selectedCount": "{{count}} seleccionado(s)",
+          "selectedCount_one": "1 seleccionado",
+          "selectedCount_other": "{{count}} seleccionados",
+          "clearSelection": "Limpiar",
+          "addSelected": "Añadir {{count}} elemento",
+          "addSelected_one": "Añadir 1 elemento",
+          "addSelected_other": "Añadir {{count}} elementos"
+        }
+      }
+    },
     "createPost": {
       "title": "Crear publicación",
       "description": "Comparte tu contenido en todas las plataformas conectadas",

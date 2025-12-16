@@ -13,6 +13,7 @@ import { CharacterCounts } from './CharacterCounts'
 import { ComposerToolbar } from './ComposerToolbar'
 import { MediaPreviewGrid } from '@/components/create/shared/MediaPreviewGrid'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
+import type { MediaItem } from '@/types/media'
 
 interface Step1WriteProps {
   content: string
@@ -21,6 +22,7 @@ interface Step1WriteProps {
   onMediaUpload: (files: FileList) => void
   onMediaRemove: (id: string) => void
   onMediaRetry?: (id: string) => void
+  onAddLibraryMedia?: (media: MediaItem) => void
   onContinue?: () => void
   canContinue?: boolean
   className?: string
@@ -40,6 +42,7 @@ export function Step1Write({
   onMediaUpload,
   onMediaRemove,
   onMediaRetry,
+  onAddLibraryMedia,
   onContinue,
   canContinue = false,
   className,
@@ -81,12 +84,28 @@ export function Step1Write({
     (e: React.DragEvent) => {
       e.preventDefault()
       e.stopPropagation()
+
+      // Check for MediaItem JSON (from sidebar)
+      const jsonData = e.dataTransfer.getData('application/json')
+      if (jsonData && onAddLibraryMedia) {
+        try {
+          const mediaItem = JSON.parse(jsonData) as MediaItem
+          if (mediaItem.id && mediaItem.url) {
+            onAddLibraryMedia(mediaItem)
+            return
+          }
+        } catch {
+          // Not valid JSON, fall through to file handling
+        }
+      }
+
+      // Handle file drops
       const files = e.dataTransfer.files
       if (files.length > 0) {
         onMediaUpload(files)
       }
     },
-    [onMediaUpload]
+    [onMediaUpload, onAddLibraryMedia]
   )
 
   // Handle paste from clipboard
