@@ -12,7 +12,8 @@ import { StepIndicator } from './StepIndicator'
 interface CreateFlowTopBarProps {
   onBack: () => void
   titleKey: string
-  currentStep?: 1 | 2 | 3
+  currentStep?: number
+  totalSteps?: number
   showContinue?: boolean
   canContinue?: boolean
   onContinue?: () => void
@@ -24,6 +25,7 @@ export function CreateFlowTopBar({
   onBack,
   titleKey,
   currentStep = 1,
+  totalSteps = 3,
   showContinue = false,
   canContinue = false,
   onContinue,
@@ -60,7 +62,7 @@ export function CreateFlowTopBar({
 
       {/* Center: Step Indicator */}
       <div className="flex justify-center">
-        <StepIndicator currentStep={currentStep} />
+        <StepIndicator currentStep={currentStep as 1 | 2 | 3} totalSteps={totalSteps} />
       </div>
 
       {/* Right: Continue button */}

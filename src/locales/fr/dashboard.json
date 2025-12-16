@@ -244,11 +244,18 @@
         "contentPreview": {
           "label": "Votre publication"
         },
+        "accountSelector": {
+          "title": "Publier sur",
+          "noAccounts": "Aucun compte connecté",
+          "connectAccounts": "Connecter des comptes"
+        },
         "preview": {
-          "title": "Apercu",
-          "selectPlatform": "Selectionnez une plateforme pour voir l'apercu",
-          "noContent": "Commencez a taper pour voir l'apercu de votre publication",
-          "characters": "caracteres",
+          "title": "Aperçu",
+          "openPreview": "Aperçu",
+          "selectPlatform": "Sélectionnez une plateforme pour voir l'aperçu",
+          "noPlatforms": "Sélectionnez des plateformes pour voir l'aperçu",
+          "noContent": "Commencez à taper pour voir l'aperçu de votre publication",
+          "characters": "caractères",
           "otherPlatforms": "+{{count}} autre plateforme",
           "otherPlatforms_other": "+{{count}} autres plateformes"
         },
@@ -297,7 +304,12 @@
         },
         "draft": {
           "saved": "Brouillon enregistré avec succès",
-          "emptyContent": "Ajoutez du contenu avant d'enregistrer comme brouillon"
+          "emptyContent": "Ajoutez du contenu avant d'enregistrer comme brouillon",
+          "loaded": "Brouillon chargé"
+        },
+        "draftsPanel": {
+          "title": "Brouillons récents",
+          "empty": "Aucun brouillon enregistré"
         },
         "mediaPanel": {
           "title": "Médias récents",

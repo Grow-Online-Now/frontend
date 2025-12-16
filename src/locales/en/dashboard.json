@@ -244,9 +244,16 @@
         "contentPreview": {
           "label": "Your post"
         },
+        "accountSelector": {
+          "title": "Post to",
+          "noAccounts": "No accounts connected",
+          "connectAccounts": "Connect accounts"
+        },
         "preview": {
           "title": "Preview",
+          "openPreview": "Preview",
           "selectPlatform": "Select a platform to see preview",
+          "noPlatforms": "Select platforms to preview",
           "noContent": "Start typing to see your post preview",
           "characters": "characters",
           "otherPlatforms": "+{{count}} other platform",
@@ -297,7 +304,12 @@
         },
         "draft": {
           "saved": "Draft saved successfully",
-          "emptyContent": "Add some content before saving as draft"
+          "emptyContent": "Add some content before saving as draft",
+          "loaded": "Draft loaded"
+        },
+        "draftsPanel": {
+          "title": "Recent Drafts",
+          "empty": "No drafts saved yet"
         },
         "mediaPanel": {
           "title": "Recent Media",

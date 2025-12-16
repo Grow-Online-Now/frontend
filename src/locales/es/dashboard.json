@@ -298,7 +298,12 @@
         },
         "draft": {
           "saved": "Borrador guardado con éxito",
-          "emptyContent": "Añade contenido antes de guardar como borrador"
+          "emptyContent": "Añade contenido antes de guardar como borrador",
+          "loaded": "Borrador cargado"
+        },
+        "draftsPanel": {
+          "title": "Borradores recientes",
+          "empty": "Aún no hay borradores guardados"
         },
         "mediaPanel": {
           "title": "Medios recientes",

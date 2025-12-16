@@ -1,6 +1,8 @@
 /**
  * useTextFlow Hook
- * Manages the complete state for the text-first post creation flow
+ * Manages the complete state for the text-first post creation flow (2 steps)
+ * Step 1: Write content + Select accounts
+ * Step 2: Schedule & Publish
  * Orchestrates existing hooks (useConnections, useMediaUpload, useCreatePost)
  */
 
@@ -19,7 +21,7 @@ import type {
   PlatformWithValidation,
   ValidationWarning,
 } from '@/types/create'
-import type { CreatePostRequest } from '@/types/posts'
+import type { CreatePostRequest, PostResponse } from '@/types/posts'
 
 /**
  * Hook return type
@@ -64,6 +66,9 @@ export interface UseTextFlowReturn {
   submitPost: () => Promise<boolean>
   saveDraft: () => Promise<boolean>
   isSavingDraft: boolean
+
+  // Draft loading
+  loadDraft: (draft: PostResponse) => void
 
   // Connections state
   isLoadingConnections: boolean
@@ -158,13 +163,15 @@ export function useTextFlow(): UseTextFlowReturn {
   const canContinue = useMemo(() => {
     switch (step) {
       case 1:
-        // Step 1: Need content and no uploads in progress
-        return content.trim().length > 0 && !mediaUpload.isUploading
+        // Step 1: Need content, at least one platform, no validation errors, and no uploads in progress
+        return (
+          content.trim().length > 0 &&
+          selectedPlatformIds.length > 0 &&
+          !hasValidationErrors &&
+          !mediaUpload.isUploading
+        )
       case 2:
-        // Step 2: Need at least one platform selected and no validation errors
-        return selectedPlatformIds.length > 0 && !hasValidationErrors
-      case 3:
-        // Step 3: If scheduled, need a date
+        // Step 2: If scheduled, need a date
         return scheduleType !== 'scheduled' || scheduledDate !== null
       default:
         return false
@@ -185,7 +192,7 @@ export function useTextFlow(): UseTextFlowReturn {
   }, [])
 
   const goNext = useCallback(() => {
-    if (step < 3 && canContinue) {
+    if (step < 2 && canContinue) {
       setStep((s) => (s + 1) as TextFlowStep)
     }
   }, [step, canContinue])
@@ -345,6 +352,30 @@ export function useTextFlow(): UseTextFlowReturn {
     }
   }, [content, mediaUpload, selectedPlatformIds, createPost, navigate, lang, t])
 
+  // Load draft into composer
+  const loadDraft = useCallback(
+    (draft: PostResponse) => {
+      // Set the content from the draft
+      setContent(draft.caption)
+
+      // Set selected platforms from the draft's social accounts
+      // Only select accounts that are still connected (exist in availablePlatforms)
+      const draftAccountIds = draft.social_accounts.map((a) => a.id)
+      const validAccountIds = draftAccountIds.filter((id) =>
+        availablePlatforms.some((p) => p.id === id)
+      )
+      setSelectedPlatformIds(validAccountIds)
+
+      // Reset to step 1 if not already there
+      if (step !== 1) {
+        setStep(1)
+      }
+
+      toast.success(t('dashboard.create.text.draft.loaded'))
+    },
+    [availablePlatforms, step, t]
+  )
+
   // Build state object
   const state: TextFlowState = {
     step,
@@ -380,6 +411,7 @@ export function useTextFlow(): UseTextFlowReturn {
     submitPost: handleSubmit,
     saveDraft: handleSaveDraft,
     isSavingDraft,
+    loadDraft,
     isLoadingConnections,
     hasTextFirstAccounts,
   }

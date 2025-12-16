@@ -1,10 +1,10 @@
 /**
  * TextComposer Component
- * Auto-resizing textarea for post content
- * Min-height 120px, max-height 400px, scrolls internally when exceeds max
+ * Textarea for post content that fills available space
+ * Min-height ensures usability, container handles overflow
  */
 
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 
@@ -16,8 +16,7 @@ interface TextComposerProps {
   className?: string
 }
 
-const MIN_HEIGHT = 120
-const MAX_HEIGHT = 400
+const MIN_HEIGHT = 150
 
 export function TextComposer({
   value,
@@ -29,24 +28,6 @@ export function TextComposer({
   const { t } = useTranslation()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  // Auto-resize textarea to fit content, capped at MAX_HEIGHT
-  const adjustHeight = useCallback(() => {
-    const textarea = textareaRef.current
-    if (textarea) {
-      textarea.style.height = 'auto'
-      const scrollHeight = textarea.scrollHeight
-      const newHeight = Math.min(MAX_HEIGHT, Math.max(MIN_HEIGHT, scrollHeight))
-      textarea.style.height = `${newHeight}px`
-      // Enable scrolling only when content exceeds max height
-      textarea.style.overflowY = scrollHeight > MAX_HEIGHT ? 'auto' : 'hidden'
-    }
-  }, [])
-
-  // Adjust height when value changes
-  useEffect(() => {
-    adjustHeight()
-  }, [value, adjustHeight])
-
   // Focus on mount if autoFocus
   useEffect(() => {
     if (autoFocus && textareaRef.current) {
@@ -55,7 +36,7 @@ export function TextComposer({
   }, [autoFocus])
 
   return (
-    <div className={cn('w-full', className)}>
+    <div className={cn('h-full w-full', className)}>
       <textarea
         ref={textareaRef}
         value={value}
@@ -63,15 +44,14 @@ export function TextComposer({
         placeholder={t(placeholderKey)}
         className={cn(
           'composer-textarea', // Used in global CSS to override focus styles
-          'w-full resize-none bg-transparent',
+          'h-full w-full resize-none bg-transparent',
           'p-5', // 20px padding
           'text-base leading-[1.6]', // 16px, line-height 1.6
           'text-foreground placeholder:text-muted-foreground',
-          // Custom scrollbar styling
-          'scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent'
+          // Only show scrollbar when content overflows
+          'overflow-y-auto'
         )}
         style={{ minHeight: MIN_HEIGHT }}
-        rows={1}
       />
     </div>
   )

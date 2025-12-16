@@ -7,9 +7,9 @@ import type { SocialPlatform } from './connections'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
 
 /**
- * Text flow step states (1 = Write, 2 = Platforms, 3 = Schedule)
+ * Text flow step states (1 = Write + Select Accounts, 2 = Schedule)
  */
-export type TextFlowStep = 1 | 2 | 3
+export type TextFlowStep = 1 | 2
 
 /**
  * Schedule type options for the text flow

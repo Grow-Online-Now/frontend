@@ -1,6 +1,8 @@
 /**
  * CreateTextPostPage
- * Text-first post creation flow with 3 progressive steps
+ * Text-first post creation flow with 2 progressive steps
+ * Step 1: Write content + Select accounts
+ * Step 2: Schedule & Publish
  */
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
@@ -8,16 +10,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { CreateFlowTopBar } from '@/components/create/shared'
-import {
-  Step1Write,
-  Step2Platforms,
-  Step3Schedule,
-  PreviewPanel,
-  RecentMediaPanel,
-  MediaLibraryModal,
-} from '@/components/create/text'
+import { Step1Write, Step3Schedule, MediaLibraryModal } from '@/components/create/text'
 import { useTextFlow } from '@/hooks/create/useTextFlow'
 import { useMediaLibrary } from '@/hooks/useMediaLibrary'
+import { usePosts } from '@/hooks/usePosts'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { MediaItem } from '@/types/media'
 
@@ -47,12 +43,21 @@ export default function CreateTextPostPage() {
     submitPost,
     saveDraft,
     isSavingDraft,
+    loadDraft,
     isLoadingConnections,
     hasTextFirstAccounts,
   } = useTextFlow()
 
   // Fetch recent media for the sidebar
   const { media: recentMedia, isLoading: isLoadingMedia } = useMediaLibrary({ limit: 10 })
+
+  // Fetch recent drafts for the library panel
+  const { posts: recentDrafts, isLoading: isLoadingDrafts } = usePosts({
+    is_draft: true,
+    limit: 3,
+    sort: 'created_at',
+    order: 'desc',
+  })
 
   // Get IDs of media already added to the post
   const addedMediaIds = useMemo(
@@ -63,9 +68,9 @@ export default function CreateTextPostPage() {
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Cmd/Ctrl + Enter: Publish (only on Step 3)
+      // Cmd/Ctrl + Enter: Publish (only on Step 2)
       if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-        if (currentStep === 3 && canContinue && !isSubmitting) {
+        if (currentStep === 2 && canContinue && !isSubmitting) {
           e.preventDefault()
           submitPost()
         }
@@ -124,10 +129,16 @@ export default function CreateTextPostPage() {
     [media]
   )
 
-  // Compute selected platforms for Step 3 summary
+  // Compute selected platforms for Step 2 summary
   const selectedPlatforms = useMemo(
     () => availablePlatforms.filter((p) => selectedPlatformIds.includes(p.id)),
     [availablePlatforms, selectedPlatformIds]
+  )
+
+  // Filter recent media to exclude already added
+  const filteredRecentMedia = useMemo(
+    () => recentMedia.filter((m) => !addedMediaIds.includes(m.id)),
+    [recentMedia, addedMediaIds]
   )
 
   // Loading state
@@ -167,19 +178,20 @@ export default function CreateTextPostPage() {
   }
 
   return (
-    <div className="flex min-h-full flex-col">
-      {/* Top bar */}
+    <div className="flex h-full flex-col overflow-hidden">
+      {/* Top bar - now with 2 steps */}
       <CreateFlowTopBar
         onBack={handleBack}
         titleKey="dashboard.create.text.title"
         currentStep={currentStep}
-        showContinue={currentStep < 3}
+        totalSteps={2}
+        showContinue={currentStep < 2}
         canContinue={canContinue}
         onContinue={goNext}
       />
 
-      {/* Main content */}
-      <main className="flex-1 px-4 py-8">
+      {/* Main content - fills available space, no page scroll */}
+      <main className="flex min-h-0 flex-1 px-5 py-4">
         <AnimatePresence mode="wait">
           {currentStep === 1 && (
             <motion.div
@@ -188,12 +200,8 @@ export default function CreateTextPostPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="flex items-start justify-center gap-8"
+              className="flex h-full w-full"
             >
-              {/* Left spacer for centering on desktop */}
-              <div className="hidden w-[260px] shrink-0 lg:block" />
-
-              {/* Composer */}
               <Step1Write
                 content={content}
                 onContentChange={setContent}
@@ -202,42 +210,25 @@ export default function CreateTextPostPage() {
                 onMediaRemove={media.removeFile}
                 onMediaRetry={media.retryUpload}
                 onAddLibraryMedia={handleAddLibraryMedia}
+                availableAccounts={availablePlatforms}
+                selectedAccountIds={selectedPlatformIds}
+                onToggleAccount={togglePlatform}
+                validations={validations}
+                recentMedia={filteredRecentMedia}
+                isLoadingRecentMedia={isLoadingMedia}
+                recentDrafts={recentDrafts}
+                isLoadingDrafts={isLoadingDrafts}
+                onSelectDraft={loadDraft}
+                onOpenMediaLibrary={() => setIsMediaLibraryOpen(true)}
                 onContinue={goNext}
                 canContinue={canContinue}
-                className="mx-auto lg:mx-0"
               />
-
-              {/* Recent media sidebar - desktop only */}
-              <div className="sticky top-8 hidden w-[260px] shrink-0 lg:block">
-                <RecentMediaPanel
-                  media={recentMedia.filter((m) => !addedMediaIds.includes(m.id))}
-                  isLoading={isLoadingMedia}
-                  onAddMedia={handleAddLibraryMedia}
-                  onOpenLibrary={() => setIsMediaLibraryOpen(true)}
-                />
-              </div>
             </motion.div>
           )}
 
           {currentStep === 2 && (
-            <div key="step2" className="flex items-start justify-center gap-8">
-              <Step2Platforms
-                content={content}
-                platforms={availablePlatforms}
-                selectedIds={selectedPlatformIds}
-                onToggle={togglePlatform}
-                validations={validations}
-              />
-              {/* Preview panel - desktop only */}
-              <div className="sticky top-8 hidden lg:block">
-                <PreviewPanel content={content} selectedPlatforms={selectedPlatforms} />
-              </div>
-            </div>
-          )}
-
-          {currentStep === 3 && (
             <Step3Schedule
-              key="step3"
+              key="step2"
               content={content}
               selectedPlatforms={selectedPlatforms}
               scheduleType={scheduleType}
