@@ -113,12 +113,7 @@ export function LibraryPanel({
   const visibleMedia = recentMedia.slice(0, 6)
 
   return (
-    <div
-      className={cn(
-        'border-border/50 flex h-full flex-col rounded-2xl border p-4',
-        className
-      )}
-    >
+    <div className={cn('border-border/50 flex h-full flex-col rounded-2xl border p-4', className)}>
       {/* Recent Media Section */}
       <div className="shrink-0">
         {/* Media Header */}
