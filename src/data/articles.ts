@@ -17,6 +17,29 @@ export type ArticleCategory = 'strategy' | 'tips' | 'case-study' | 'news' | 'tut
 
 export const articles: Article[] = [
   {
+    slug: 'ai-social-media-content-generator-guide-2025',
+    titleKey: 'blog.articles.aiGeneratorGuide2025.title',
+    descriptionKey: 'blog.articles.aiGeneratorGuide2025.description',
+    contentKey: 'blog.articles.aiGeneratorGuide2025.content',
+    category: 'tutorial',
+    publishedAt: '2025-12-16',
+    readingTime: 10,
+    authorName: 'Bastien Youssfi',
+    authorRole: 'Founder of Grow Online',
+    imageUrl: '/images/blog/og/ai-generator.webp',
+    featured: false,
+    keywords: [
+      'AI content generator',
+      'AI caption generator',
+      'AI social media posts',
+      'generate posts with AI',
+      'AI writing assistant',
+      'automated content creation',
+      'AI copywriting',
+      'social media automation',
+    ],
+  },
+  {
     slug: 'social-media-analytics-guide-measure-growth-2025',
     titleKey: 'blog.articles.analyticsGuide2025.title',
     descriptionKey: 'blog.articles.analyticsGuide2025.description',
