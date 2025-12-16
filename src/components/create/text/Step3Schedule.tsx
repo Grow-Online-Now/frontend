@@ -15,12 +15,15 @@ import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { ScheduleOptionCard } from './ScheduleOptionCard'
 import { ContentPreview } from '@/components/create/shared'
+import { MediaPreviewGrid } from '@/components/create/shared/MediaPreviewGrid'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { SCHEDULE_OPTIONS } from '@/config/text-flow'
 import type { TextFlowScheduleType, PlatformWithValidation } from '@/types/create'
+import type { FileUploadState } from '@/hooks/useMediaUpload'
 
 interface Step3ScheduleProps {
   content: string
+  media?: FileUploadState[]
   selectedPlatforms: PlatformWithValidation[]
   scheduleType: TextFlowScheduleType
   onScheduleTypeChange: (type: TextFlowScheduleType) => void
@@ -40,6 +43,7 @@ const stepAnimation = {
 
 export function Step3Schedule({
   content,
+  media = [],
   selectedPlatforms,
   scheduleType,
   onScheduleTypeChange,
@@ -86,6 +90,16 @@ export function Step3Schedule({
 
       {/* Content preview */}
       <ContentPreview content={content} className="mb-6" />
+
+      {/* Media preview */}
+      {media.length > 0 && (
+        <div className="bg-surface-elevated border-border mb-6 rounded-xl border p-4">
+          <div className="text-muted-foreground mb-3 text-xs font-medium tracking-wider uppercase">
+            {t('dashboard.create.text.step3.media')}
+          </div>
+          <MediaPreviewGrid media={media} variant="compact" onRemove={() => {}} />
+        </div>
+      )}
 
       {/* Publish summary - platform chips */}
       <div className="bg-surface-subtle border-border mb-6 rounded-xl border p-4">

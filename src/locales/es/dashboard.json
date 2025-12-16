@@ -240,7 +240,8 @@
         "step3": {
           "title": "Cuándo publicar",
           "description": "Elige cuándo se publica tu post",
-          "publishingTo": "Publicando en"
+          "publishingTo": "Publicando en",
+          "media": "Medios"
         },
         "contentPreview": {
           "label": "Tu publicación"

@@ -239,7 +239,8 @@
         "step3": {
           "title": "Quand publier",
           "description": "Choisissez quand votre publication sera mise en ligne",
-          "publishingTo": "Publication sur"
+          "publishingTo": "Publication sur",
+          "media": "Médias"
         },
         "contentPreview": {
           "label": "Votre publication"

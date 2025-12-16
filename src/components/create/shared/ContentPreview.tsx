@@ -24,7 +24,7 @@ export function ContentPreview({ content, maxLines = 2, className }: ContentPrev
       </div>
       <p
         className={cn(
-          'text-secondary text-sm leading-relaxed',
+          'text-text-secondary text-sm leading-relaxed whitespace-pre-wrap',
           maxLines === 2 && 'line-clamp-2',
           maxLines === 3 && 'line-clamp-3'
         )}

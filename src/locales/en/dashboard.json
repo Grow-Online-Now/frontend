@@ -239,7 +239,8 @@
         "step3": {
           "title": "When to publish",
           "description": "Choose when your post goes live",
-          "publishingTo": "Publishing to"
+          "publishingTo": "Publishing to",
+          "media": "Media"
         },
         "contentPreview": {
           "label": "Your post"

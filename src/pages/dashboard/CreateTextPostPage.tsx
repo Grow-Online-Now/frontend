@@ -230,6 +230,7 @@ export default function CreateTextPostPage() {
             <Step3Schedule
               key="step2"
               content={content}
+              media={media.uploadsArray}
               selectedPlatforms={selectedPlatforms}
               scheduleType={scheduleType}
               onScheduleTypeChange={setScheduleType}
