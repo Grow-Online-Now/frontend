@@ -133,6 +133,22 @@
   --color-twitter-blue: var(--twitter-blue);
   --color-twitter-pink: var(--twitter-pink);
   --color-twitter-green: var(--twitter-green);
+
+  /* LinkedIn Preview Theme Colors */
+  --color-linkedin-bg: var(--linkedin-bg);
+  --color-linkedin-bg-hover: var(--linkedin-bg-hover);
+  --color-linkedin-text-primary: var(--linkedin-text-primary);
+  --color-linkedin-text-secondary: var(--linkedin-text-secondary);
+  --color-linkedin-border: var(--linkedin-border);
+  --color-linkedin-blue: var(--linkedin-blue);
+
+  /* Facebook Preview Theme Colors */
+  --color-facebook-bg: var(--facebook-bg);
+  --color-facebook-bg-hover: var(--facebook-bg-hover);
+  --color-facebook-text-primary: var(--facebook-text-primary);
+  --color-facebook-text-secondary: var(--facebook-text-secondary);
+  --color-facebook-border: var(--facebook-border);
+  --color-facebook-blue: var(--facebook-blue);
 }
 
 /* ============================================
@@ -240,6 +256,22 @@
   --twitter-blue: #1d9bf0;
   --twitter-pink: #f91880;
   --twitter-green: #00ba7c;
+
+  /* LinkedIn Preview Theme (Dark) */
+  --linkedin-bg: #1b1f23;
+  --linkedin-bg-hover: #282d33;
+  --linkedin-text-primary: #ffffff;
+  --linkedin-text-secondary: rgba(255, 255, 255, 0.6);
+  --linkedin-border: #38434f;
+  --linkedin-blue: #0a66c2;
+
+  /* Facebook Preview Theme (Dark) */
+  --facebook-bg: #242526;
+  --facebook-bg-hover: #3a3b3c;
+  --facebook-text-primary: #e4e6eb;
+  --facebook-text-secondary: #b0b3b8;
+  --facebook-border: #3e4042;
+  --facebook-blue: #1877f2;
 }
 
 /* ============================================
@@ -344,6 +376,22 @@
   --twitter-blue: #1d9bf0;
   --twitter-pink: #f91880;
   --twitter-green: #00ba7c;
+
+  /* LinkedIn Preview Theme (Light) */
+  --linkedin-bg: #ffffff;
+  --linkedin-bg-hover: #f3f2ef;
+  --linkedin-text-primary: rgba(0, 0, 0, 0.9);
+  --linkedin-text-secondary: rgba(0, 0, 0, 0.6);
+  --linkedin-border: #e0dfdc;
+  --linkedin-blue: #0a66c2;
+
+  /* Facebook Preview Theme (Light) */
+  --facebook-bg: #ffffff;
+  --facebook-bg-hover: #f0f2f5;
+  --facebook-text-primary: #050505;
+  --facebook-text-secondary: #65676b;
+  --facebook-border: #dddfe2;
+  --facebook-blue: #1877f2;
 }
 
 /* ============================================

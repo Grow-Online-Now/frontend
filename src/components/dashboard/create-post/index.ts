@@ -23,3 +23,11 @@ export { TwitterThreadMediaUploader } from './TwitterThreadMediaUploader'
 export { TwitterThreadItem } from './TwitterThreadItem'
 export { TwitterThreadBuilder } from './TwitterThreadBuilder'
 export { TwitterFirstComment } from './TwitterFirstComment'
+
+// LinkedIn components
+export { LinkedInPreview } from './LinkedInPreview'
+export { LinkedInMediaGrid } from './LinkedInMediaGrid'
+
+// Facebook components
+export { FacebookPreview } from './FacebookPreview'
+export { FacebookMediaGrid } from './FacebookMediaGrid'

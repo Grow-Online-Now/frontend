@@ -10,6 +10,8 @@ import { Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { TwitterPreview } from '@/components/dashboard/create-post/TwitterPreview'
+import { LinkedInPreview } from '@/components/dashboard/create-post/LinkedInPreview'
+import { FacebookPreview } from '@/components/dashboard/create-post/FacebookPreview'
 import type { PlatformWithValidation } from '@/types/create'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
 import type { MediaFile } from '@/components/dashboard/create-post/MediaUploader'
@@ -57,8 +59,10 @@ export function Step1PreviewPanel({
     [media]
   )
 
-  // Check if active platform is Twitter
+  // Check if active platform is Twitter, LinkedIn, or Facebook
   const isTwitter = activePlatform?.platform === 'twitter'
+  const isLinkedIn = activePlatform?.platform === 'linkedin'
+  const isFacebook = activePlatform?.platform === 'facebook'
 
   return (
     <div
@@ -115,6 +119,40 @@ export function Step1PreviewPanel({
                 account={{
                   id: activePlatform.id,
                   platform: 'twitter',
+                  displayName: activePlatform.displayName,
+                  platformUserId: activePlatform.id,
+                  platformUsername: activePlatform.platformUsername,
+                  isActive: true,
+                  expiresAt: null,
+                  isExpired: false,
+                  needsRefresh: false,
+                  createdAt: new Date().toISOString(),
+                }}
+                media={mediaFiles}
+                caption={content}
+              />
+            ) : isLinkedIn ? (
+              <LinkedInPreview
+                account={{
+                  id: activePlatform.id,
+                  platform: 'linkedin',
+                  displayName: activePlatform.displayName,
+                  platformUserId: activePlatform.id,
+                  platformUsername: activePlatform.platformUsername,
+                  isActive: true,
+                  expiresAt: null,
+                  isExpired: false,
+                  needsRefresh: false,
+                  createdAt: new Date().toISOString(),
+                }}
+                media={mediaFiles}
+                caption={content}
+              />
+            ) : isFacebook ? (
+              <FacebookPreview
+                account={{
+                  id: activePlatform.id,
+                  platform: 'facebook',
                   displayName: activePlatform.displayName,
                   platformUserId: activePlatform.id,
                   platformUsername: activePlatform.platformUsername,

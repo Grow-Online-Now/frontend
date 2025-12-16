@@ -407,6 +407,27 @@
           "thread": {
             "replyingTo": "Replying to @{{username}}"
           }
+        },
+        "linkedin": {
+          "timestamp": {
+            "now": "now"
+          },
+          "engagement": {
+            "like": "Like",
+            "comment": "Comment",
+            "repost": "Repost",
+            "send": "Send"
+          }
+        },
+        "facebook": {
+          "timestamp": {
+            "now": "Just now"
+          },
+          "engagement": {
+            "like": "Like",
+            "comment": "Comment",
+            "share": "Share"
+          }
         }
       },
       "hints": {
