@@ -28,8 +28,10 @@ export function PlatformRow({
 }: PlatformRowProps) {
   const { t } = useTranslation()
 
-  // Check if any connection has an error
-  const hasErrorConnection = connections.some((c) => c.isExpired || c.needsRefresh || !c.isActive)
+  // Error = truly broken (expired or inactive), requires user action
+  // Warning = needs refresh but will auto-refresh on next use
+  const hasErrorConnection = connections.some((c) => c.isExpired || !c.isActive)
+  const hasWarningConnection = !hasErrorConnection && connections.some((c) => c.needsRefresh)
 
   return (
     <div
@@ -37,7 +39,9 @@ export function PlatformRow({
         'group bg-card flex items-center gap-4 rounded-xl border px-4 py-3 transition-all duration-150',
         hasErrorConnection
           ? 'border-destructive/20 bg-destructive/[0.02] hover:border-destructive/30 hover:bg-destructive/[0.04]'
-          : 'border-border-subtle hover:border-border hover:bg-surface-elevated'
+          : hasWarningConnection
+            ? 'border-warning/20 bg-warning/[0.02] hover:border-warning/30 hover:bg-warning/[0.04]'
+            : 'border-border-subtle hover:border-border hover:bg-surface-elevated'
       )}
     >
       {/* Platform Logo */}

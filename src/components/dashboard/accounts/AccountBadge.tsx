@@ -23,11 +23,18 @@ export function AccountBadge({
 
   const displayName = connection.displayName || connection.platformUsername
   const initials = displayName.slice(0, 2).toUpperCase()
-  const hasError = connection.isExpired || connection.needsRefresh || !connection.isActive
+
+  // Error = truly broken (expired or inactive), requires user action
+  // Warning = needs refresh but will auto-refresh on next use
+  const hasError = connection.isExpired || !connection.isActive
+  const hasWarning = !hasError && connection.needsRefresh
+
+  // Determine chip variant
+  const chipVariant = hasError ? 'error' : hasWarning ? 'warning' : 'default'
 
   return (
     <Chip
-      variant={hasError ? 'error' : 'default'}
+      variant={chipVariant}
       onRemove={onRemove ? () => onRemove(connection) : undefined}
       removeAriaLabel={t('dashboard.accounts.actions.disconnect')}
       className={cn(
@@ -40,7 +47,7 @@ export function AccountBadge({
         <span
           className={cn(
             'h-[6px] w-[6px] shrink-0 rounded-full',
-            hasError ? 'bg-destructive animate-pulse' : 'bg-success'
+            hasError ? 'bg-destructive animate-pulse' : hasWarning ? 'bg-warning' : 'bg-success'
           )}
         />
       )}
@@ -49,7 +56,7 @@ export function AccountBadge({
         <AvatarFallback className="text-xs font-medium">{initials}</AvatarFallback>
       </Avatar>
       <span className="min-w-0 truncate text-sm">@{connection.platformUsername}</span>
-      {/* Reconnect button for error state */}
+      {/* Reconnect button for error state only (not warning - those auto-refresh) */}
       {hasError && onReconnect && (
         <button
           type="button"
