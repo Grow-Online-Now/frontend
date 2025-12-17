@@ -6,7 +6,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
-import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
+import { AccountAvatar } from '@/components/common/AccountAvatar'
 import type { PlatformWithValidation } from '@/types/create'
 
 interface PreviewPanelProps {
@@ -55,7 +55,12 @@ export function PreviewPanel({ content, selectedPlatforms, className }: PreviewP
       <div className="bg-surface-elevated border-border overflow-hidden rounded-xl border">
         {/* Platform header */}
         <div className="border-border flex items-center gap-3 border-b p-4">
-          <PlatformIcon platform={previewPlatform.platform} size="md" showBackground />
+          <AccountAvatar
+            src={previewPlatform.avatarUrl}
+            platform={previewPlatform.platform}
+            name={previewPlatform.displayName || previewPlatform.platformUsername}
+            size="md"
+          />
           <div className="min-w-0 flex-1">
             <div className="text-foreground truncate text-sm font-medium">
               {previewPlatform.displayName || previewPlatform.platformUsername}

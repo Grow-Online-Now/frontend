@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils'
 import { Play } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
+import { AccountAvatar } from '@/components/common/AccountAvatar'
 import type { PlatformWithValidation } from '@/types/create'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
 
@@ -82,7 +83,12 @@ export function PreviewModal({
               <div className="border-border bg-surface-elevated overflow-hidden rounded-xl border">
                 {/* Platform header */}
                 <div className="border-border flex items-center gap-3 border-b p-4">
-                  <PlatformIcon platform={activePlatform.platform} size="md" showBackground />
+                  <AccountAvatar
+                    src={activePlatform.avatarUrl}
+                    platform={activePlatform.platform}
+                    name={activePlatform.displayName || activePlatform.platformUsername}
+                    size="md"
+                  />
                   <div className="min-w-0 flex-1">
                     <div className="text-foreground truncate text-sm font-medium">
                       {activePlatform.displayName || activePlatform.platformUsername}

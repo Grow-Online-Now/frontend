@@ -5,8 +5,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
-import { Eye, FolderOpen } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Check, Eye, FolderOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -85,7 +84,7 @@ export function AccountSelector({
 
       {/* Horizontal scrollable account avatars */}
       <TooltipProvider delayDuration={300}>
-        <div className="scrollbar-none flex gap-4 overflow-x-auto pb-1">
+        <div className="scrollbar-none flex gap-4 overflow-x-auto py-1">
           {accounts.map((account) => {
             const isSelected = selectedIds.includes(account.id)
             const displayName = account.displayName || account.platformUsername
@@ -96,39 +95,31 @@ export function AccountSelector({
                   <button
                     type="button"
                     onClick={() => onToggle(account.id)}
-                    className={cn(
-                      'group relative shrink-0 rounded-full p-1',
-                      'transition-transform duration-150',
-                      'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none'
-                    )}
+                    className="group relative shrink-0 focus-visible:outline-none"
                   >
-                    {/* Selection ring - animated */}
-                    <motion.div
-                      className="border-foreground pointer-events-none absolute inset-0 rounded-full border-2"
-                      initial={false}
-                      animate={{
-                        scale: isSelected ? 1 : 0.85,
-                        opacity: isSelected ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.15, ease: 'easeOut' }}
-                    />
-
                     {/* Avatar */}
                     <div
                       className={cn(
                         'transition-opacity duration-150',
-                        !isSelected && 'opacity-60 group-hover:opacity-100'
+                        isSelected ? 'opacity-100' : 'opacity-40 group-hover:opacity-100'
                       )}
                     >
                       <AccountAvatar
-                        src={null}
+                        src={account.avatarUrl}
                         platform={account.platform}
                         name={account.platformUsername}
                         size="lg"
                       />
                     </div>
 
-                    {/* Character count indicator - only when over limit */}
+                    {/* Selection checkmark */}
+                    {isSelected && (
+                      <div className="bg-foreground absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full">
+                        <Check className="text-background size-2.5" strokeWidth={3} />
+                      </div>
+                    )}
+
+                    {/* Character count indicator */}
                     {isSelected && account.isOverLimit && (
                       <div className="bg-error/10 text-error absolute -top-1 -left-1 rounded-full px-1.5 py-0.5 text-[10px] font-medium">
                         +{account.characterCount - account.characterLimit}

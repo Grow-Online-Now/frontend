@@ -24,6 +24,7 @@ export interface PlatformWithValidation {
   platform: SocialPlatform
   displayName: string | null
   platformUsername: string
+  avatarUrl?: string | null
   characterCount: number
   characterLimit: number
   isOverLimit: boolean

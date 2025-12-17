@@ -121,6 +121,7 @@ export function useTextFlow(): UseTextFlowReturn {
           platform: conn.platform,
           displayName: conn.displayName,
           platformUsername: conn.platformUsername,
+          avatarUrl: conn.avatarUrl,
           characterCount: charCount,
           characterLimit: limit,
           isOverLimit,

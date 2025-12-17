@@ -96,6 +96,7 @@ export function PostsGridCard({
   const stackAccounts = post.social_accounts.map((account) => ({
     id: account.id,
     platform: account.platform,
+    avatarUrl: account.avatar_url,
     name: account.display_name,
     username: account.username,
   }))

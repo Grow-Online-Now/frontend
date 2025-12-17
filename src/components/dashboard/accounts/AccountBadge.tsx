@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Chip } from '@/components/ui/chip'
 import { cn } from '@/lib/utils'
 import type { Connection } from '@/types/connections'
@@ -45,6 +45,7 @@ export function AccountBadge({
         />
       )}
       <Avatar className={cn('size-5 shrink-0', avatarClassName)}>
+        {connection.avatarUrl && <AvatarImage src={connection.avatarUrl} alt={displayName} />}
         <AvatarFallback className="text-xs font-medium">{initials}</AvatarFallback>
       </Avatar>
       <span className="min-w-0 truncate text-sm">@{connection.platformUsername}</span>

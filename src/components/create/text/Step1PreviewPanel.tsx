@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
+import { AccountAvatar } from '@/components/common/AccountAvatar'
 import { TwitterPreview } from '@/components/dashboard/create-post/TwitterPreview'
 import { LinkedInPreview } from '@/components/dashboard/create-post/LinkedInPreview'
 import { FacebookPreview } from '@/components/dashboard/create-post/FacebookPreview'
@@ -122,6 +123,7 @@ export function Step1PreviewPanel({
                   displayName: activePlatform.displayName,
                   platformUserId: activePlatform.id,
                   platformUsername: activePlatform.platformUsername,
+                  avatarUrl: activePlatform.avatarUrl,
                   isActive: true,
                   expiresAt: null,
                   isExpired: false,
@@ -139,6 +141,7 @@ export function Step1PreviewPanel({
                   displayName: activePlatform.displayName,
                   platformUserId: activePlatform.id,
                   platformUsername: activePlatform.platformUsername,
+                  avatarUrl: activePlatform.avatarUrl,
                   isActive: true,
                   expiresAt: null,
                   isExpired: false,
@@ -156,6 +159,7 @@ export function Step1PreviewPanel({
                   displayName: activePlatform.displayName,
                   platformUserId: activePlatform.id,
                   platformUsername: activePlatform.platformUsername,
+                  avatarUrl: activePlatform.avatarUrl,
                   isActive: true,
                   expiresAt: null,
                   isExpired: false,
@@ -170,7 +174,12 @@ export function Step1PreviewPanel({
               <div className="border-border bg-surface-elevated overflow-hidden rounded-xl border">
                 {/* Platform header */}
                 <div className="border-border flex items-center gap-3 border-b p-3">
-                  <PlatformIcon platform={activePlatform.platform} size="sm" showBackground />
+                  <AccountAvatar
+                    src={activePlatform.avatarUrl}
+                    platform={activePlatform.platform}
+                    name={activePlatform.displayName || activePlatform.platformUsername}
+                    size="sm"
+                  />
                   <div className="min-w-0 flex-1">
                     <div className="text-foreground truncate text-sm font-medium">
                       {activePlatform.displayName || activePlatform.platformUsername}

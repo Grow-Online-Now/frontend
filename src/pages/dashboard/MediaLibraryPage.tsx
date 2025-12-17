@@ -54,7 +54,7 @@ export default function MediaLibraryPage() {
   const handleUseInPost = useCallback(
     (item: MediaItem) => {
       // Navigate to create post page with media pre-selected
-      navigate(localizedHref('/dashboard/posts/create'), {
+      navigate(localizedHref('/dashboard/create/text'), {
         state: { preselectedMedia: item },
       })
     },
