@@ -16,6 +16,7 @@ const ENDPOINTS = {
   posts: '/api/posts',
   postById: (id: string) => `/api/posts/${id}`,
   postsCounts: '/api/posts/counts',
+  publish: (id: string) => `/api/posts/${id}/publish`,
 } as const
 
 /**
@@ -74,6 +75,15 @@ export async function getPostsCounts(): Promise<PostsCountsResponse> {
 }
 
 /**
+ * Publish a draft or scheduled post immediately
+ */
+export async function publishPost(
+  id: string
+): Promise<{ id: string; status: string; message: string }> {
+  return apiClient.post<{ id: string; status: string; message: string }>(ENDPOINTS.publish(id))
+}
+
+/**
  * Posts service object (alternative API)
  */
 export const postsService = {
@@ -82,4 +92,5 @@ export const postsService = {
   getById: getPost,
   delete: deletePost,
   getCounts: getPostsCounts,
+  publish: publishPost,
 }

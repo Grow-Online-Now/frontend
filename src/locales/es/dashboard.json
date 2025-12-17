@@ -710,7 +710,9 @@
         "previous": "Anterior",
         "next": "Siguiente",
         "page": "Página {{page}} de {{totalPages}}"
-      }
+      },
+      "publishSuccess": "Publicación exitosa",
+      "publishError": "Error al publicar"
     },
     "media": {
       "title": "Biblioteca de medios",

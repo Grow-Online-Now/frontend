@@ -4,7 +4,10 @@
  */
 
 import { useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { FileText, RefreshCw } from 'lucide-react'
+import { toast } from 'sonner'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
@@ -18,10 +21,15 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { usePosts, getFiltersForTab } from '@/hooks/usePosts'
 import { usePostsCounts } from '@/hooks/usePostsCounts'
+import { useLocalizedHref } from '@/hooks/useLocalizedHref'
+import { publishPost } from '@/services/posts.service'
 import type { PostResponse, PostStatusTab } from '@/types/posts'
 import type { SocialPlatform } from '@/types/connections'
 
 export default function PostsPage() {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const localizedHref = useLocalizedHref()
   const [activeTab, setActiveTab] = useState<PostStatusTab>('all')
   const [platformFilter, setPlatformFilter] = useState<SocialPlatform | undefined>(undefined)
 
@@ -66,13 +74,15 @@ export default function PostsPage() {
     await Promise.all([refetchPosts(), refetchCounts()])
   }, [refetchPosts, refetchCounts])
 
-  const handleViewPost = (post: PostResponse) => {
-    console.log('View post:', post.id)
-  }
-
-  const handleEditPost = (post: PostResponse) => {
-    console.log('Edit post:', post.id)
-  }
+  const handleEditPost = useCallback(
+    (post: PostResponse) => {
+      // Navigate to create page with post data pre-filled
+      navigate(localizedHref('/dashboard/create/text'), {
+        state: { editPost: post },
+      })
+    },
+    [navigate, localizedHref]
+  )
 
   const handleDeletePost = async (post: PostResponse): Promise<boolean> => {
     const success = await deletePostById(post.id)
@@ -83,10 +93,18 @@ export default function PostsPage() {
     return success
   }
 
-  const handlePublishNow = (post: PostResponse) => {
-    // TODO: Implement publish now functionality
-    console.log('Publish now:', post.id)
-  }
+  const handlePublishNow = useCallback(
+    async (post: PostResponse) => {
+      try {
+        await publishPost(post.id)
+        toast.success(t('dashboard.posts.publishSuccess'))
+        await Promise.all([refetchPosts(), refetchCounts()])
+      } catch {
+        toast.error(t('dashboard.posts.publishError'))
+      }
+    },
+    [t, refetchPosts, refetchCounts]
+  )
 
   // Loading skeleton
   if (isLoading && posts.length === 0) {
@@ -185,7 +203,6 @@ export default function PostsPage() {
         <>
           <PostsGrid
             posts={posts}
-            onView={handleViewPost}
             onEdit={handleEditPost}
             onDelete={handleDeletePost}
             onPublishNow={handlePublishNow}

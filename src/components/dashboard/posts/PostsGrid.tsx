@@ -21,21 +21,13 @@ import type { PostResponse } from '@/types/posts'
 
 interface PostsGridProps {
   posts: PostResponse[]
-  onView?: (post: PostResponse) => void
   onEdit?: (post: PostResponse) => void
   onDelete?: (post: PostResponse) => Promise<boolean>
   onPublishNow?: (post: PostResponse) => void
   className?: string
 }
 
-export function PostsGrid({
-  posts,
-  onView,
-  onEdit,
-  onDelete,
-  onPublishNow,
-  className,
-}: PostsGridProps) {
+export function PostsGrid({ posts, onEdit, onDelete, onPublishNow, className }: PostsGridProps) {
   const { t } = useTranslation()
   const [postToDelete, setPostToDelete] = useState<PostResponse | null>(null)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -72,7 +64,6 @@ export function PostsGrid({
           <PostsGridCard
             key={post.id}
             post={post}
-            onView={onView}
             onEdit={onEdit}
             onDelete={onDelete ? handleDeleteClick : undefined}
             onPublishNow={onPublishNow}

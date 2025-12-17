@@ -731,7 +731,9 @@
         "previous": "Précédent",
         "next": "Suivant",
         "page": "Page {{page}} sur {{totalPages}}"
-      }
+      },
+      "publishSuccess": "Publication réussie",
+      "publishError": "Échec de la publication"
     },
     "media": {
       "title": "Médiathèque",

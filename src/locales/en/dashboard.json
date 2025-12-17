@@ -823,7 +823,9 @@
         "previous": "Previous",
         "next": "Next",
         "page": "Page {{page}} of {{totalPages}}"
-      }
+      },
+      "publishSuccess": "Post published successfully",
+      "publishError": "Failed to publish post"
     },
     "media": {
       "title": "Media Library",

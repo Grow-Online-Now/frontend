@@ -16,9 +16,11 @@ import { useMediaLibrary } from '@/hooks/useMediaLibrary'
 import { usePosts } from '@/hooks/usePosts'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { MediaItem } from '@/types/media'
+import type { PostResponse } from '@/types/posts'
 
 interface LocationState {
   preselectedMedia?: MediaItem
+  editPost?: PostResponse
 }
 
 export default function CreateTextPostPage() {
@@ -70,14 +72,21 @@ export default function CreateTextPostPage() {
     [media.uploadsArray]
   )
 
-  // Handle preselected media from navigation state (e.g., from Media Library "Use in Post")
-  const hasProcessedPreselectedMedia = useRef(false)
+  // Handle navigation state (preselected media or editing a post)
+  const hasProcessedLocationState = useRef(false)
   useEffect(() => {
     const state = location.state as LocationState | null
-    if (state?.preselectedMedia && !hasProcessedPreselectedMedia.current) {
-      hasProcessedPreselectedMedia.current = true
+    if (hasProcessedLocationState.current) return
+
+    if (state?.preselectedMedia) {
+      hasProcessedLocationState.current = true
       media.addPreloadedMedia(state.preselectedMedia)
       // Clear the state to prevent re-adding on navigation
+      navigate(location.pathname, { replace: true, state: {} })
+    } else if (state?.editPost) {
+      hasProcessedLocationState.current = true
+      loadDraft(state.editPost)
+      // Clear the state to prevent re-loading on navigation
       navigate(location.pathname, { replace: true, state: {} })
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps

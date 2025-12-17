@@ -4,7 +4,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
-import { MoreHorizontal, Eye, Pencil, Trash2, Send } from 'lucide-react'
+import { MoreHorizontal, Pencil, Trash2, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -20,7 +20,6 @@ import type { PostResponse } from '@/types/posts'
 
 interface PostsGridCardProps {
   post: PostResponse
-  onView?: (post: PostResponse) => void
   onEdit?: (post: PostResponse) => void
   onDelete?: (post: PostResponse) => void
   onPublishNow?: (post: PostResponse) => void
@@ -44,7 +43,6 @@ function getGradientForPost(postId: string): string {
 
 export function PostsGridCard({
   post,
-  onView,
   onEdit,
   onDelete,
   onPublishNow,
@@ -171,12 +169,6 @@ export function PostsGridCard({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
-              {onView && (
-                <DropdownMenuItem onClick={() => onView(post)}>
-                  <Eye className="mr-2 size-4" />
-                  {t('dashboard.posts.table.view')}
-                </DropdownMenuItem>
-              )}
               {onEdit && (
                 <DropdownMenuItem onClick={() => onEdit(post)}>
                   <Pencil className="mr-2 size-4" />
@@ -185,7 +177,7 @@ export function PostsGridCard({
               )}
               {onDelete && (
                 <>
-                  <DropdownMenuSeparator />
+                  {onEdit && <DropdownMenuSeparator />}
                   <DropdownMenuItem
                     onClick={() => onDelete(post)}
                     className="text-destructive focus:text-destructive"
