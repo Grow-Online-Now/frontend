@@ -1,10 +1,10 @@
 /**
  * Step1Write Component
- * First step of the text flow: Write content + Select accounts
- * Three-column layout: Left (library), Center (composer), Right (preview)
+ * Single-page text post creation with compose and publish
+ * Two-column layout: Left (composer), Right (preview + compact library)
  */
 
-import { useState, useCallback, useEffect, useMemo } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -14,12 +14,16 @@ import { ComposerToolbar } from './ComposerToolbar'
 import { AccountSelector } from './AccountSelector'
 import { Step1PreviewPanel } from './Step1PreviewPanel'
 import { PreviewModal } from './PreviewModal'
-import { LibraryPanel } from './LibraryPanel'
+import { PublishActions } from './PublishActions'
 import { MediaPreviewGrid } from '@/components/create/shared/MediaPreviewGrid'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
 import type { MediaItem } from '@/types/media'
 import type { PostResponse } from '@/types/posts'
-import type { PlatformWithValidation, ValidationWarning } from '@/types/create'
+import type {
+  PlatformWithValidation,
+  ValidationWarning,
+  TextFlowScheduleType,
+} from '@/types/create'
 
 interface Step1WriteProps {
   // Content
@@ -48,9 +52,16 @@ interface Step1WriteProps {
   onSelectDraft: (draft: PostResponse) => void
   onOpenMediaLibrary: () => void
 
-  // Flow controls
-  onContinue?: () => void
-  canContinue?: boolean
+  // Scheduling
+  scheduleType: TextFlowScheduleType
+  onScheduleTypeChange: (type: TextFlowScheduleType) => void
+  scheduledDate: Date | null
+  onScheduledDateChange: (date: Date | null) => void
+
+  // Submission
+  onSubmit: () => void
+  isSubmitting: boolean
+  canSubmit?: boolean
   className?: string
 }
 
@@ -80,8 +91,13 @@ export function Step1Write({
   isLoadingDrafts,
   onSelectDraft,
   onOpenMediaLibrary,
-  onContinue,
-  canContinue = false,
+  scheduleType,
+  onScheduleTypeChange,
+  scheduledDate,
+  onScheduledDateChange,
+  onSubmit,
+  isSubmitting,
+  canSubmit = false,
   className,
 }: Step1WriteProps) {
   const { t } = useTranslation()
@@ -105,24 +121,6 @@ export function Step1Write({
     () => new Map(availableAccounts.map((a) => [a.id, a.platform])),
     [availableAccounts]
   )
-
-  // Handle Cmd/Ctrl + Enter to continue
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const isModKey = isMac ? e.metaKey : e.ctrlKey
-
-      // Mod + Enter: Continue to next step
-      if (isModKey && e.key === 'Enter') {
-        e.preventDefault()
-        if (canContinue && onContinue) {
-          onContinue()
-        }
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isMac, canContinue, onContinue])
 
   // Handle drag and drop
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -180,20 +178,7 @@ export function Step1Write({
 
   return (
     <motion.div {...stepAnimation} className={cn('flex h-full w-full gap-5', className)}>
-      {/* LEFT: Library Panel (desktop only) */}
-      <div className="hidden w-[260px] shrink-0 lg:block">
-        <LibraryPanel
-          recentMedia={recentMedia}
-          recentDrafts={recentDrafts}
-          isLoadingMedia={isLoadingRecentMedia}
-          isLoadingDrafts={isLoadingDrafts}
-          onAddMedia={onAddLibraryMedia!}
-          onSelectDraft={onSelectDraft}
-          onOpenMediaLibrary={onOpenMediaLibrary}
-        />
-      </div>
-
-      {/* CENTER: Composer */}
+      {/* LEFT: Composer */}
       <div className="flex min-w-0 flex-1 flex-col gap-4">
         {/* Account Selector - fixed height */}
         <AccountSelector
@@ -230,7 +215,7 @@ export function Step1Write({
             </div>
           )}
 
-          {/* Toolbar footer - fixed at bottom */}
+          {/* Toolbar row */}
           <div className="border-border flex shrink-0 items-center justify-between border-t px-5 py-3">
             <ComposerToolbar onMediaUpload={onMediaUpload} />
             <CharacterCounts
@@ -239,20 +224,23 @@ export function Step1Write({
               platformsMap={platformsMap}
             />
           </div>
+
+          {/* Publish actions - fixed at bottom */}
+          <div className="border-border flex shrink-0 items-center justify-end gap-3 border-t px-5 py-3">
+            <PublishActions
+              scheduleType={scheduleType}
+              onScheduleTypeChange={onScheduleTypeChange}
+              scheduledDate={scheduledDate}
+              onScheduledDateChange={onScheduledDateChange}
+              onSubmit={onSubmit}
+              isSubmitting={isSubmitting}
+              disabled={!canSubmit}
+            />
+          </div>
         </div>
 
         {/* Keyboard shortcuts hint - fixed height */}
         <div className="text-muted-foreground flex shrink-0 flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs">
-          <span>
-            <kbd className="bg-surface-elevated rounded px-1.5 py-0.5 font-mono text-[11px]">
-              {modKey}
-            </kbd>
-            <span className="mx-0.5">+</span>
-            <kbd className="bg-surface-elevated rounded px-1.5 py-0.5 font-mono text-[11px]">
-              Enter
-            </kbd>
-            <span className="ml-1">{t('dashboard.create.text.shortcuts.continue')}</span>
-          </span>
           <span className="hidden sm:inline">{t('dashboard.create.text.shortcuts.dragFiles')}</span>
           <span className="hidden sm:inline">
             <kbd className="bg-surface-elevated rounded px-1.5 py-0.5 font-mono text-[11px]">
@@ -265,9 +253,20 @@ export function Step1Write({
         </div>
       </div>
 
-      {/* RIGHT: Preview Panel (desktop only) */}
-      <div className="hidden w-[320px] shrink-0 lg:block">
-        <Step1PreviewPanel content={content} media={media} selectedPlatforms={selectedPlatforms} />
+      {/* RIGHT: Preview Panel with Library (desktop only) */}
+      <div className="hidden w-[380px] shrink-0 lg:block">
+        <Step1PreviewPanel
+          content={content}
+          media={media}
+          selectedPlatforms={selectedPlatforms}
+          recentMedia={recentMedia}
+          recentDrafts={recentDrafts}
+          isLoadingMedia={isLoadingRecentMedia}
+          isLoadingDrafts={isLoadingDrafts}
+          onAddMedia={onAddLibraryMedia}
+          onSelectDraft={onSelectDraft}
+          onOpenMediaLibrary={onOpenMediaLibrary}
+        />
       </div>
 
       {/* Mobile Preview Modal */}

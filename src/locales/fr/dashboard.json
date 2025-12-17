@@ -297,7 +297,12 @@
         "publish": {
           "button": "Publier sur {{count}} plateforme",
           "button_other": "Publier sur {{count}} plateformes",
-          "publishing": "Publication..."
+          "publishing": "Publication...",
+          "postNow": "Publier maintenant",
+          "schedule": "Planifier",
+          "time": "Heure",
+          "scheduling": "Planification...",
+          "scheduleFor": "Planifier pour le {{date}} à {{time}}"
         },
         "success": {
           "posted": "Publication publiée avec succès !",

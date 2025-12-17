@@ -13,8 +13,7 @@ const chipVariants = cva(
         secondary:
           'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
         outline: 'border-border bg-transparent hover:bg-accent/50',
-        warning:
-          'border-warning/20 bg-warning/10 font-medium text-warning hover:bg-warning/15',
+        warning: 'border-warning/20 bg-warning/10 font-medium text-warning hover:bg-warning/15',
         error:
           'border-destructive/20 bg-destructive/10 font-medium text-destructive hover:bg-destructive/15',
       },
@@ -85,7 +84,8 @@ function Chip({
           aria-label={removeAriaLabel}
           className={cn(
             chipRemoveButtonVariants({
-              variant: variant === 'error' ? 'error' : variant === 'warning' ? 'warning' : 'default',
+              variant:
+                variant === 'error' ? 'error' : variant === 'warning' ? 'warning' : 'default',
               size,
             })
           )}

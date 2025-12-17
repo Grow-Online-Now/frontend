@@ -1,6 +1,6 @@
 /**
  * CreateFlowTopBar Component
- * Sticky header for the create post flow with back button, step indicator, and continue button
+ * Sticky header for the create post flow with back button, optional step indicator, and continue button
  */
 
 import { useTranslation } from 'react-i18next'
@@ -14,6 +14,7 @@ interface CreateFlowTopBarProps {
   titleKey: string
   currentStep?: number
   totalSteps?: number
+  showStepIndicator?: boolean
   showContinue?: boolean
   canContinue?: boolean
   onContinue?: () => void
@@ -26,6 +27,7 @@ export function CreateFlowTopBar({
   titleKey,
   currentStep = 1,
   totalSteps = 3,
+  showStepIndicator = false,
   showContinue = false,
   canContinue = false,
   onContinue,
@@ -34,11 +36,14 @@ export function CreateFlowTopBar({
 }: CreateFlowTopBarProps) {
   const { t } = useTranslation()
 
+  // Use simpler layout when no step indicator or continue button
+  const useSimpleLayout = !showStepIndicator && !showContinue
+
   return (
     <header
       className={cn(
         'sticky top-0 z-10',
-        'grid grid-cols-3 items-center',
+        useSimpleLayout ? 'flex items-center' : 'grid grid-cols-3 items-center',
         'h-14 px-6',
         'bg-background/80 backdrop-blur-lg',
         'border-border border',
@@ -60,20 +65,24 @@ export function CreateFlowTopBar({
         <span className="text-foreground text-sm font-medium">{t(titleKey)}</span>
       </div>
 
-      {/* Center: Step Indicator */}
-      <div className="flex justify-center">
-        <StepIndicator currentStep={currentStep as 1 | 2 | 3} totalSteps={totalSteps} />
-      </div>
+      {/* Center: Step Indicator (optional) */}
+      {showStepIndicator && (
+        <div className="flex justify-center">
+          <StepIndicator currentStep={currentStep as 1 | 2 | 3} totalSteps={totalSteps} />
+        </div>
+      )}
 
-      {/* Right: Continue button */}
-      <div className="flex justify-end">
-        {showContinue && onContinue && (
-          <Button onClick={onContinue} disabled={!canContinue} size="sm" className="gap-1.5">
-            {t(continueKey)}
-            <ArrowRight className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
+      {/* Right: Continue button (optional) */}
+      {showContinue && (
+        <div className="flex justify-end">
+          {onContinue && (
+            <Button onClick={onContinue} disabled={!canContinue} size="sm" className="gap-1.5">
+              {t(continueKey)}
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      )}
     </header>
   )
 }

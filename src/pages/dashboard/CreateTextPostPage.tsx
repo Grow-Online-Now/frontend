@@ -1,16 +1,13 @@
 /**
  * CreateTextPostPage
- * Text-first post creation flow with 2 progressive steps
- * Step 1: Write content + Select accounts
- * Step 2: Schedule & Publish
+ * Single-page text post creation with compose, preview, and publish
  */
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { CreateFlowTopBar } from '@/components/create/shared'
-import { Step1Write, Step3Schedule, MediaLibraryModal } from '@/components/create/text'
+import { Step1Write, MediaLibraryModal } from '@/components/create/text'
 import { useTextFlow } from '@/hooks/create/useTextFlow'
 import { useMediaLibrary } from '@/hooks/useMediaLibrary'
 import { usePosts } from '@/hooks/usePosts'
@@ -31,10 +28,7 @@ export default function CreateTextPostPage() {
   const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false)
 
   const {
-    currentStep,
     canContinue,
-    goNext,
-    goBack,
     content,
     setContent,
     media,
@@ -94,9 +88,9 @@ export default function CreateTextPostPage() {
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Cmd/Ctrl + Enter: Publish (only on Step 2)
+      // Cmd/Ctrl + Enter: Submit post
       if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-        if (currentStep === 2 && canContinue && !isSubmitting) {
+        if (canContinue && !isSubmitting) {
           e.preventDefault()
           submitPost()
         }
@@ -111,25 +105,21 @@ export default function CreateTextPostPage() {
         }
       }
 
-      // Escape: Go back
+      // Escape: Go back to posts
       if (e.key === 'Escape') {
         e.preventDefault()
-        goBack()
+        navigate(`/${lang}/dashboard/posts`)
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentStep, canContinue, isSubmitting, submitPost, saveDraft, isSavingDraft, goBack])
+  }, [canContinue, isSubmitting, submitPost, saveDraft, isSavingDraft, navigate, lang])
 
   // Handle back navigation
   const handleBack = useCallback(() => {
-    if (currentStep === 1) {
-      navigate(`/${lang}/dashboard/posts`)
-    } else {
-      goBack()
-    }
-  }, [currentStep, navigate, lang, goBack])
+    navigate(`/${lang}/dashboard/posts`)
+  }, [navigate, lang])
 
   // Handle media upload from hook
   const handleMediaUpload = useCallback(
@@ -153,12 +143,6 @@ export default function CreateTextPostPage() {
       items.forEach((item) => media.addPreloadedMedia(item))
     },
     [media]
-  )
-
-  // Compute selected platforms for Step 2 summary
-  const selectedPlatforms = useMemo(
-    () => availablePlatforms.filter((p) => selectedPlatformIds.includes(p.id)),
-    [availablePlatforms, selectedPlatformIds]
   )
 
   // Filter recent media to exclude already added
@@ -205,68 +189,41 @@ export default function CreateTextPostPage() {
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      {/* Top bar - now with 2 steps */}
+      {/* Top bar - simplified without step indicator */}
       <CreateFlowTopBar
         onBack={handleBack}
         titleKey="dashboard.create.text.title"
-        currentStep={currentStep}
-        totalSteps={2}
-        showContinue={currentStep < 2}
-        canContinue={canContinue}
-        onContinue={goNext}
+        showContinue={false}
       />
 
       {/* Main content - fills available space, no page scroll */}
       <main className="flex min-h-0 flex-1 px-5 py-4">
-        <AnimatePresence mode="wait">
-          {currentStep === 1 && (
-            <motion.div
-              key="step1"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="flex h-full w-full"
-            >
-              <Step1Write
-                content={content}
-                onContentChange={setContent}
-                media={media.uploadsArray}
-                onMediaUpload={handleMediaUpload}
-                onMediaRemove={media.removeFile}
-                onMediaRetry={media.retryUpload}
-                onAddLibraryMedia={handleAddLibraryMedia}
-                availableAccounts={availablePlatforms}
-                selectedAccountIds={selectedPlatformIds}
-                onToggleAccount={togglePlatform}
-                validations={validations}
-                recentMedia={filteredRecentMedia}
-                isLoadingRecentMedia={isLoadingMedia}
-                recentDrafts={recentDrafts}
-                isLoadingDrafts={isLoadingDrafts}
-                onSelectDraft={loadDraft}
-                onOpenMediaLibrary={() => setIsMediaLibraryOpen(true)}
-                onContinue={goNext}
-                canContinue={canContinue}
-              />
-            </motion.div>
-          )}
-
-          {currentStep === 2 && (
-            <Step3Schedule
-              key="step2"
-              content={content}
-              media={media.uploadsArray}
-              selectedPlatforms={selectedPlatforms}
-              scheduleType={scheduleType}
-              onScheduleTypeChange={setScheduleType}
-              scheduledDate={scheduledDate}
-              onScheduledDateChange={setScheduledDate}
-              isSubmitting={isSubmitting}
-              onSubmit={submitPost}
-            />
-          )}
-        </AnimatePresence>
+        <Step1Write
+          content={content}
+          onContentChange={setContent}
+          media={media.uploadsArray}
+          onMediaUpload={handleMediaUpload}
+          onMediaRemove={media.removeFile}
+          onMediaRetry={media.retryUpload}
+          onAddLibraryMedia={handleAddLibraryMedia}
+          availableAccounts={availablePlatforms}
+          selectedAccountIds={selectedPlatformIds}
+          onToggleAccount={togglePlatform}
+          validations={validations}
+          recentMedia={filteredRecentMedia}
+          isLoadingRecentMedia={isLoadingMedia}
+          recentDrafts={recentDrafts}
+          isLoadingDrafts={isLoadingDrafts}
+          onSelectDraft={loadDraft}
+          onOpenMediaLibrary={() => setIsMediaLibraryOpen(true)}
+          scheduleType={scheduleType}
+          onScheduleTypeChange={setScheduleType}
+          scheduledDate={scheduledDate}
+          onScheduledDateChange={setScheduledDate}
+          onSubmit={submitPost}
+          isSubmitting={isSubmitting}
+          canSubmit={canContinue}
+        />
 
         {/* Media library modal */}
         <MediaLibraryModal

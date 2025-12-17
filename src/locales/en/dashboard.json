@@ -382,7 +382,12 @@
         "publish": {
           "button": "Publish to {{count}} platform",
           "button_other": "Publish to {{count}} platforms",
-          "publishing": "Publishing..."
+          "publishing": "Publishing...",
+          "postNow": "Post now",
+          "schedule": "Schedule",
+          "time": "Time",
+          "scheduling": "Scheduling...",
+          "scheduleFor": "Schedule for {{date}} at {{time}}"
         },
         "success": {
           "posted": "Post published successfully!",

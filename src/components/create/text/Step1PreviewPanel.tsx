@@ -2,6 +2,7 @@
  * Step1PreviewPanel Component
  * Desktop-only sticky preview panel for Step 1 of the text-first flow
  * Shows live preview with platform tabs for switching between selected platforms
+ * Includes compact library section below the preview
  */
 
 import { useState, useEffect, useMemo } from 'react'
@@ -13,14 +14,25 @@ import { AccountAvatar } from '@/components/common/AccountAvatar'
 import { TwitterPreview } from '@/components/dashboard/create-post/TwitterPreview'
 import { LinkedInPreview } from '@/components/dashboard/create-post/LinkedInPreview'
 import { FacebookPreview } from '@/components/dashboard/create-post/FacebookPreview'
+import { CompactLibrarySection } from './CompactLibrarySection'
 import type { PlatformWithValidation } from '@/types/create'
 import type { FileUploadState } from '@/hooks/useMediaUpload'
 import type { MediaFile } from '@/components/dashboard/create-post/MediaUploader'
+import type { MediaItem } from '@/types/media'
+import type { PostResponse } from '@/types/posts'
 
 interface Step1PreviewPanelProps {
   content: string
   media: FileUploadState[]
   selectedPlatforms: PlatformWithValidation[]
+  // Library section props
+  recentMedia?: MediaItem[]
+  recentDrafts?: PostResponse[]
+  isLoadingMedia?: boolean
+  isLoadingDrafts?: boolean
+  onAddMedia?: (media: MediaItem) => void
+  onSelectDraft?: (draft: PostResponse) => void
+  onOpenMediaLibrary?: () => void
   className?: string
 }
 
@@ -28,6 +40,13 @@ export function Step1PreviewPanel({
   content,
   media,
   selectedPlatforms,
+  recentMedia = [],
+  recentDrafts = [],
+  isLoadingMedia = false,
+  isLoadingDrafts = false,
+  onAddMedia,
+  onSelectDraft,
+  onOpenMediaLibrary,
   className,
 }: Step1PreviewPanelProps) {
   const { t } = useTranslation()
@@ -231,6 +250,21 @@ export function Step1PreviewPanel({
           </>
         ) : null}
       </div>
+
+      {/* Compact Library Section - only show if callbacks provided */}
+      {onAddMedia && onSelectDraft && onOpenMediaLibrary && (
+        <div className="border-border border-t px-4 py-4">
+          <CompactLibrarySection
+            recentMedia={recentMedia}
+            recentDrafts={recentDrafts}
+            isLoadingMedia={isLoadingMedia}
+            isLoadingDrafts={isLoadingDrafts}
+            onAddMedia={onAddMedia}
+            onSelectDraft={onSelectDraft}
+            onOpenMediaLibrary={onOpenMediaLibrary}
+          />
+        </div>
+      )}
     </div>
   )
 }
