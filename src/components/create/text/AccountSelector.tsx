@@ -12,6 +12,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { AccountAvatar } from '@/components/common/AccountAvatar'
 import { ValidationWarnings } from './ValidationWarnings'
 import type { PlatformWithValidation, ValidationWarning } from '@/types/create'
+import type { SocialPlatform } from '@/types/connections'
 
 interface AccountSelectorProps {
   accounts: PlatformWithValidation[]
@@ -21,7 +22,20 @@ interface AccountSelectorProps {
   onShortenWithAI?: (platformId: string) => void
   onOpenPreview?: () => void
   onOpenLibrary?: () => void
+  unconnectedPlatforms?: SocialPlatform[]
+  onConnectPlatform?: () => void
   className?: string
+}
+
+// Platform display names for tooltips
+const PLATFORM_NAMES: Record<SocialPlatform, string> = {
+  twitter: 'X (Twitter)',
+  linkedin: 'LinkedIn',
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  tiktok: 'TikTok',
+  youtube: 'YouTube',
+  pinterest: 'Pinterest',
 }
 
 export function AccountSelector({
@@ -32,11 +46,13 @@ export function AccountSelector({
   onShortenWithAI,
   onOpenPreview,
   onOpenLibrary,
+  unconnectedPlatforms = [],
+  onConnectPlatform,
   className,
 }: AccountSelectorProps) {
   const { t } = useTranslation()
 
-  if (accounts.length === 0) {
+  if (accounts.length === 0 && unconnectedPlatforms.length === 0) {
     return (
       <div className={cn('rounded-xl py-4', className)}>
         <div className="text-center">
@@ -85,6 +101,7 @@ export function AccountSelector({
       {/* Horizontal scrollable account avatars */}
       <TooltipProvider delayDuration={300}>
         <div className="scrollbar-none flex gap-4 overflow-x-auto py-1">
+          {/* Connected accounts */}
           {accounts.map((account) => {
             const isSelected = selectedIds.includes(account.id)
             const displayName = account.displayName || account.platformUsername
@@ -134,6 +151,32 @@ export function AccountSelector({
               </Tooltip>
             )
           })}
+
+          {/* Unconnected platforms */}
+          {unconnectedPlatforms.map((platform) => (
+            <Tooltip key={platform}>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={onConnectPlatform}
+                  className="group relative shrink-0 focus-visible:outline-none"
+                >
+                  <div className="opacity-50 transition-opacity duration-150 group-hover:opacity-80">
+                    <AccountAvatar
+                      platform={platform}
+                      size="lg"
+                      isUnconnected
+                    />
+                  </div>
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="text-center">
+                <p className="font-medium">
+                  {t('dashboard.create.text.accountSelector.connect')} {PLATFORM_NAMES[platform]}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          ))}
         </div>
       </TooltipProvider>
 

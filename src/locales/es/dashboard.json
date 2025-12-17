@@ -260,6 +260,12 @@
         "contentPreview": {
           "label": "Tu publicación"
         },
+        "accountSelector": {
+          "title": "Publicar en",
+          "noAccounts": "No hay cuentas conectadas",
+          "connectAccounts": "Conectar cuentas",
+          "connect": "Conectar"
+        },
         "preview": {
           "title": "Vista previa",
           "selectPlatform": "Selecciona una plataforma para ver la vista previa",
@@ -344,6 +350,14 @@
           "addSelected": "Añadir {{count}} elemento",
           "addSelected_one": "Añadir 1 elemento",
           "addSelected_other": "Añadir {{count}} elementos"
+        }
+      },
+      "media": {
+        "accountSelector": {
+          "title": "Publicar en",
+          "noAccounts": "No hay cuentas de medios conectadas",
+          "mediaRequired": "Medio requerido",
+          "connect": "Conectar"
         }
       }
     },

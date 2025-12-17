@@ -24,6 +24,7 @@ import type {
   MediaFlowValidationWarning,
   MediaFlowScheduleType,
 } from '@/types/create'
+import type { SocialPlatform } from '@/types/connections'
 import type {
   PlatformConfigurations,
   InstagramConfig,
@@ -50,6 +51,8 @@ interface Step1MediaProps {
   selectedAccountIds: string[]
   onToggleAccount: (id: string) => void
   validations?: MediaFlowValidationWarning[]
+  unconnectedPlatforms?: SocialPlatform[]
+  onConnectPlatform?: () => void
 
   // Platform configurations
   platformConfigs: PlatformConfigurations
@@ -99,6 +102,8 @@ export function Step1Media({
   selectedAccountIds,
   onToggleAccount,
   validations = [],
+  unconnectedPlatforms = [],
+  onConnectPlatform,
   platformConfigs,
   onInstagramConfigChange,
   onTikTokConfigChange,
@@ -187,6 +192,8 @@ export function Step1Media({
           validations={validations}
           onOpenPreview={() => setPreviewOpen(true)}
           onOpenLibrary={onOpenMediaLibrary}
+          unconnectedPlatforms={unconnectedPlatforms}
+          onConnectPlatform={onConnectPlatform}
           className="shrink-0"
         />
 

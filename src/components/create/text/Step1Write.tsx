@@ -24,6 +24,7 @@ import type {
   ValidationWarning,
   TextFlowScheduleType,
 } from '@/types/create'
+import type { SocialPlatform } from '@/types/connections'
 
 interface Step1WriteProps {
   // Content
@@ -43,6 +44,8 @@ interface Step1WriteProps {
   onToggleAccount: (id: string) => void
   validations?: ValidationWarning[]
   onShortenWithAI?: (platformId: string) => void
+  unconnectedPlatforms?: SocialPlatform[]
+  onConnectPlatform?: () => void
 
   // Library panel data
   recentMedia: MediaItem[]
@@ -85,6 +88,8 @@ export function Step1Write({
   onToggleAccount,
   validations = [],
   onShortenWithAI,
+  unconnectedPlatforms = [],
+  onConnectPlatform,
   recentMedia,
   isLoadingRecentMedia,
   recentDrafts,
@@ -189,6 +194,8 @@ export function Step1Write({
           onShortenWithAI={onShortenWithAI}
           onOpenPreview={() => setPreviewOpen(true)}
           onOpenLibrary={onOpenMediaLibrary}
+          unconnectedPlatforms={unconnectedPlatforms}
+          onConnectPlatform={onConnectPlatform}
           className="shrink-0"
         />
 

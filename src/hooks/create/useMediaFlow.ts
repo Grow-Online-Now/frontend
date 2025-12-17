@@ -28,6 +28,7 @@ import type {
   YouTubeConfig,
   PinterestConfig,
 } from '@/types/posts'
+import type { SocialPlatform } from '@/types/connections'
 
 /**
  * Hook return type
@@ -80,6 +81,9 @@ export interface UseMediaFlowReturn {
   // Connections state
   isLoadingConnections: boolean
   hasMediaFirstAccounts: boolean
+
+  // Unconnected platforms
+  unconnectedPlatforms: SocialPlatform[]
 }
 
 export function useMediaFlow(): UseMediaFlowReturn {
@@ -114,6 +118,12 @@ export function useMediaFlow(): UseMediaFlowReturn {
   )
 
   const hasMediaFirstAccounts = mediaFirstConnections.length > 0
+
+  // Calculate unconnected media-first platforms
+  const unconnectedPlatforms = useMemo(() => {
+    const connectedPlatformTypes = new Set(mediaFirstConnections.map((c) => c.platform))
+    return MEDIA_FIRST_PLATFORMS.filter((p) => !connectedPlatformTypes.has(p))
+  }, [mediaFirstConnections])
 
   // Helper to check media requirements per platform
   const getMediaValidation = useCallback(
@@ -464,5 +474,6 @@ export function useMediaFlow(): UseMediaFlowReturn {
     loadDraft,
     isLoadingConnections,
     hasMediaFirstAccounts,
+    unconnectedPlatforms,
   }
 }

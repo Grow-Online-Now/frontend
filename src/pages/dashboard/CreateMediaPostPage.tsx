@@ -58,7 +58,13 @@ export default function CreateMediaPostPage() {
     loadDraft,
     isLoadingConnections,
     hasMediaFirstAccounts,
+    unconnectedPlatforms,
   } = useMediaFlow()
+
+  // Navigate to accounts page to connect a platform
+  const handleConnectPlatform = useCallback(() => {
+    navigate(localizedHref('/dashboard/accounts'))
+  }, [navigate, localizedHref])
 
   // Fetch recent media for the sidebar
   const { media: recentMedia, isLoading: isLoadingMedia } = useMediaLibrary({ limit: 10 })
@@ -221,6 +227,8 @@ export default function CreateMediaPostPage() {
           selectedAccountIds={selectedPlatformIds}
           onToggleAccount={togglePlatform}
           validations={validations}
+          unconnectedPlatforms={unconnectedPlatforms}
+          onConnectPlatform={handleConnectPlatform}
           // Platform config props
           platformConfigs={platformConfigs}
           onInstagramConfigChange={updateInstagramConfig}

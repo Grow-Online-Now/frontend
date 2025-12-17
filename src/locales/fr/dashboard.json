@@ -262,7 +262,8 @@
         "accountSelector": {
           "title": "Publier sur",
           "noAccounts": "Aucun compte connecté",
-          "connectAccounts": "Connecter des comptes"
+          "connectAccounts": "Connecter des comptes",
+          "connect": "Connecter"
         },
         "preview": {
           "title": "Aperçu",
@@ -350,6 +351,14 @@
           "addSelected": "Ajouter {{count}} élément",
           "addSelected_one": "Ajouter 1 élément",
           "addSelected_other": "Ajouter {{count}} éléments"
+        }
+      },
+      "media": {
+        "accountSelector": {
+          "title": "Publier sur",
+          "noAccounts": "Aucun compte média connecté",
+          "mediaRequired": "Média requis",
+          "connect": "Connecter"
         }
       }
     },

@@ -347,7 +347,8 @@
         "accountSelector": {
           "title": "Post to",
           "noAccounts": "No accounts connected",
-          "connectAccounts": "Connect accounts"
+          "connectAccounts": "Connect accounts",
+          "connect": "Connect"
         },
         "preview": {
           "title": "Preview",
@@ -458,7 +459,8 @@
         "accountSelector": {
           "title": "Post to",
           "noAccounts": "No media-first accounts connected",
-          "mediaRequired": "Media required"
+          "mediaRequired": "Media required",
+          "connect": "Connect"
         },
         "preview": {
           "title": "Preview",

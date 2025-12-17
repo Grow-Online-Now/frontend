@@ -83,6 +83,8 @@ interface AccountAvatarProps {
   showBorder?: boolean
   /** Inline styles */
   style?: React.CSSProperties
+  /** Show as unconnected platform with dashed border */
+  isUnconnected?: boolean
 }
 
 const SIZE_CONFIG: Record<
@@ -120,6 +122,7 @@ export function AccountAvatar({
   showBadge = true,
   showBorder = false,
   style,
+  isUnconnected = false,
 }: AccountAvatarProps) {
   const config = SIZE_CONFIG[size]
   const platformColor = PLATFORM_COLORS[platform]
@@ -130,12 +133,18 @@ export function AccountAvatar({
       {/* Avatar */}
       <div
         className={cn(
-          'bg-muted relative overflow-hidden rounded-full',
+          'relative overflow-hidden rounded-full',
           config.avatar,
-          showBorder && 'border-background box-content border-2'
+          showBorder && 'border-background box-content border-2',
+          isUnconnected
+            ? 'border-2 border-dashed border-muted-foreground/40 bg-muted/30'
+            : 'bg-muted'
         )}
       >
-        {src ? (
+        {isUnconnected ? (
+          // Empty state for unconnected platforms
+          <div className="size-full" />
+        ) : src ? (
           <img src={src} alt={name || 'Account avatar'} className="size-full object-cover" />
         ) : (
           <div className="from-muted to-muted-foreground/20 flex size-full items-center justify-center bg-linear-to-br">
@@ -148,9 +157,12 @@ export function AccountAvatar({
       {showBadge && (
         <div
           className={cn(
-            'ring-background absolute flex items-center justify-center rounded-full ring-2',
+            'absolute flex items-center justify-center rounded-full ring-2',
             config.badge,
-            config.offset
+            config.offset,
+            isUnconnected
+              ? 'ring-foreground/30'
+              : 'ring-background'
           )}
           style={{ backgroundColor: platformColor }}
         >

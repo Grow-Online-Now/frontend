@@ -22,6 +22,7 @@ import type {
   ValidationWarning,
 } from '@/types/create'
 import type { CreatePostRequest, PostResponse } from '@/types/posts'
+import type { SocialPlatform } from '@/types/connections'
 
 /**
  * Hook return type
@@ -73,6 +74,9 @@ export interface UseTextFlowReturn {
   // Connections state
   isLoadingConnections: boolean
   hasTextFirstAccounts: boolean
+
+  // Unconnected platforms
+  unconnectedPlatforms: SocialPlatform[]
 }
 
 export function useTextFlow(): UseTextFlowReturn {
@@ -105,6 +109,12 @@ export function useTextFlow(): UseTextFlowReturn {
   )
 
   const hasTextFirstAccounts = textFirstConnections.length > 0
+
+  // Calculate unconnected text-first platforms
+  const unconnectedPlatforms = useMemo(() => {
+    const connectedPlatformTypes = new Set(textFirstConnections.map((c) => c.platform))
+    return TEXT_FIRST_PLATFORMS.filter((p) => !connectedPlatformTypes.has(p))
+  }, [textFirstConnections])
 
   // Build platform validation state
   const availablePlatforms: PlatformWithValidation[] = useMemo(
@@ -415,5 +425,6 @@ export function useTextFlow(): UseTextFlowReturn {
     loadDraft,
     isLoadingConnections,
     hasTextFirstAccounts,
+    unconnectedPlatforms,
   }
 }
