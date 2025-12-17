@@ -140,7 +140,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       </div>
 
       {/* Create Post Quick Action */}
-      <div className="px-3 pt-4 pb-2">
+      <div className="px-4 py-4">
         <Button
           asChild
           className="w-full justify-center gap-2 font-medium transition-opacity hover:opacity-90"
@@ -153,10 +153,10 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto px-3 pb-4">
+      <nav className="flex-1 overflow-y-auto px-4 pb-4">
         {navCategories.map((category, categoryIndex) => (
           <div key={category.labelKey} className={cn(categoryIndex > 0 && 'mt-6')}>
-            <h3 className="text-muted-foreground/60 mb-2 px-3 text-xs font-medium tracking-[0.05em] uppercase">
+            <h3 className="text-muted-foreground/60 mb-2 px-2 text-xs font-medium tracking-[0.05em] uppercase">
               {t(category.labelKey)}
             </h3>
             <ul className="space-y-0.5">
@@ -200,7 +200,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       </nav>
 
       {/* User Profile Section */}
-      <div className="border-sidebar-border border-t p-3">
+      <div className="border-sidebar-border border-t p-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="hover:bg-accent/50 flex w-full items-center gap-3 rounded-lg p-2 transition-all duration-150">
