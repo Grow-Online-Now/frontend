@@ -80,10 +80,11 @@ export default function MediaLibraryPage() {
             </div>
           }
         />
+        {/* Tab skeleton - matches MediaTypeTabs structure exactly */}
         <div className="bg-muted/50 mt-6 inline-flex gap-1 rounded-xl p-1">
-          <div className="bg-background h-9 w-16 animate-pulse rounded-lg" />
-          <div className="h-9 w-20 animate-pulse rounded-lg" />
-          <div className="h-9 w-20 animate-pulse rounded-lg" />
+          <div className="bg-background h-9 w-[52px] animate-pulse rounded-lg" />
+          <div className="h-9 w-[72px] animate-pulse rounded-lg" />
+          <div className="h-9 w-[72px] animate-pulse rounded-lg" />
         </div>
         <MediaGridSkeleton className="mt-6" />
       </div>
@@ -104,7 +105,25 @@ export default function MediaLibraryPage() {
   if (media.length === 0 && activeTab === 'all' && !isLoading) {
     return (
       <div>
-        <PageHeader titleKey="dashboard.media.title" descriptionKey="dashboard.media.description" />
+        <PageHeader
+          titleKey="dashboard.media.title"
+          descriptionKey="dashboard.media.description"
+          actions={
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleRefresh}
+                disabled={isLoading}
+                className="size-9"
+              >
+                <RefreshCw className="size-4" />
+              </Button>
+            </div>
+          }
+        />
+        {/* Keep tabs visible for consistent layout */}
+        <MediaTypeTabs activeTab={activeTab} onTabChange={handleTabChange} className="mt-6" />
         <EmptyState
           icon={<ImageIcon className="h-6 w-6" />}
           titleKey="dashboard.media.empty.title"
