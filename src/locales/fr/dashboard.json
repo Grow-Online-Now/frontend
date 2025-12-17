@@ -21,6 +21,19 @@
       "settings": "Paramètres",
       "comingSoon": "Bientôt"
     },
+    "createTypeModal": {
+      "title": "Créer une publication",
+      "description": "Choisissez comment vous voulez commencer",
+      "bestFor": "Idéal pour",
+      "text": {
+        "title": "Publication texte",
+        "description": "Commencez par votre message"
+      },
+      "media": {
+        "title": "Publication média",
+        "description": "Commencez avec des photos ou vidéos"
+      }
+    },
     "user": {
       "plan": "Plan Gratuit"
     },

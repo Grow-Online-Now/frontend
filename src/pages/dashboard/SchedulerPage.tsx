@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
+import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
 import { Button } from '@/components/ui/button'
 import { SchedulerCalendar, SchedulerWeekView } from '@/components/dashboard/scheduler'
 import { PostCard } from '@/components/dashboard/posts/PostCard'
@@ -21,6 +22,7 @@ export default function SchedulerPage() {
   const [calendarView, setCalendarView] = useState<CalendarView>('month')
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
   const [currentWeek, setCurrentWeek] = useState<Date>(new Date())
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
   // Calculate date range based on current view
   const dateRange = useMemo(() => {
@@ -43,7 +45,7 @@ export default function SchedulerPage() {
   )
 
   const handleCreatePost = () => {
-    navigate(`/${i18n.language}/dashboard/create/text`)
+    setIsCreateModalOpen(true)
   }
 
   // Format selected date for sidebar header
@@ -160,6 +162,9 @@ export default function SchedulerPage() {
           )}
         </div>
       </div>
+
+      {/* Create Post Type Modal */}
+      <CreatePostTypeModal open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen} />
     </div>
   )
 }

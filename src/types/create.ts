@@ -93,3 +93,67 @@ export interface ComposerMediaFile {
   progress?: number
   error?: string | null
 }
+
+// ============================================
+// Media Flow Types (Media-First Post Creation)
+// ============================================
+
+/**
+ * Schedule type options for the media flow
+ * Note: 'best' not included initially - can be added later
+ */
+export type MediaFlowScheduleType = 'now' | 'scheduled'
+
+/**
+ * Media validation warning types
+ */
+export type MediaFlowValidationWarningType =
+  | 'over_limit'
+  | 'near_limit'
+  | 'media_required'
+  | 'media_invalid'
+  | 'wrong_media_type'
+
+/**
+ * Platform with validation state for media-first flow
+ * Includes media-specific validation fields
+ */
+export interface MediaPlatformWithValidation {
+  id: string
+  platform: SocialPlatform
+  displayName: string | null
+  platformUsername: string
+  avatarUrl?: string | null
+  // Character validation
+  characterCount: number
+  characterLimit: number
+  isOverLimit: boolean
+  isNearLimit: boolean
+  // Media validation
+  hasRequiredMedia: boolean
+  mediaValidationError?: string | null
+  // Overall validity
+  isValid: boolean
+}
+
+/**
+ * Validation warning for media flow
+ */
+export interface MediaFlowValidationWarning {
+  platform: SocialPlatform
+  platformId: string
+  type: MediaFlowValidationWarningType
+  messageKey: string
+  messageParams?: Record<string, string | number>
+  excessCharacters?: number
+}
+
+/**
+ * Media flow complete state
+ */
+export interface MediaFlowState {
+  caption: string
+  selectedPlatformIds: string[]
+  scheduleType: MediaFlowScheduleType
+  scheduledDate: Date | null
+}

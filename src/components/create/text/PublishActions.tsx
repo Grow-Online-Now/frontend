@@ -11,11 +11,14 @@ import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import type { TextFlowScheduleType } from '@/types/create'
+import type { TextFlowScheduleType, MediaFlowScheduleType } from '@/types/create'
+
+// Accept both text and media flow schedule types
+type ScheduleType = TextFlowScheduleType | MediaFlowScheduleType
 
 interface PublishActionsProps {
-  scheduleType: TextFlowScheduleType
-  onScheduleTypeChange: (type: TextFlowScheduleType) => void
+  scheduleType: ScheduleType
+  onScheduleTypeChange: (type: 'now' | 'scheduled') => void
   scheduledDate: Date | null
   onScheduledDateChange: (date: Date | null) => void
   onSubmit: () => void

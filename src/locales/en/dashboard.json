@@ -21,6 +21,19 @@
       "settings": "Settings",
       "comingSoon": "Soon"
     },
+    "createTypeModal": {
+      "title": "Create a Post",
+      "description": "Choose how you want to start",
+      "bestFor": "Best for",
+      "text": {
+        "title": "Text Post",
+        "description": "Start with your message"
+      },
+      "media": {
+        "title": "Media Post",
+        "description": "Start with photos or videos"
+      }
+    },
     "user": {
       "plan": "Free Plan"
     },
@@ -422,6 +435,58 @@
           "addSelected": "Add {{count}} item",
           "addSelected_one": "Add 1 item",
           "addSelected_other": "Add {{count}} items"
+        }
+      },
+      "media": {
+        "title": "Create Media Post",
+        "description": "Share photos and videos to Instagram, TikTok, YouTube, and Pinterest",
+        "empty": {
+          "title": "No media-first accounts connected",
+          "description": "Connect Instagram, TikTok, YouTube, or Pinterest to create media posts."
+        },
+        "dropzone": {
+          "title": "Drop your media here",
+          "description": "or click to browse from your computer",
+          "upload": "Upload Media",
+          "fromLibrary": "From Library",
+          "limits": "Images up to 10MB, Videos up to 100MB"
+        },
+        "caption": {
+          "label": "Caption",
+          "placeholder": "Write a caption..."
+        },
+        "accountSelector": {
+          "title": "Post to",
+          "noAccounts": "No media-first accounts connected",
+          "mediaRequired": "Media required"
+        },
+        "preview": {
+          "title": "Preview",
+          "openPreview": "Preview",
+          "noPlatforms": "Select platforms to preview",
+          "noMedia": "Add media to see preview"
+        },
+        "mediaPanel": {
+          "browse": "Browse"
+        },
+        "shortcuts": {
+          "dragFiles": "Drag files to attach",
+          "saveDraft": "to save draft"
+        },
+        "validation": {
+          "mediaRequired": "{{platform}} requires media",
+          "youtubeRequiresVideo": "YouTube requires a video",
+          "pinterestRequiresImage": "Pinterest requires an image",
+          "overLimit": "{{excess}} characters over limit for {{platform}}"
+        },
+        "success": {
+          "published": "Media post published successfully!",
+          "scheduled": "Media post scheduled successfully!"
+        },
+        "draft": {
+          "saved": "Draft saved successfully",
+          "emptyContent": "Add media or caption before saving as draft",
+          "loaded": "Draft loaded"
         }
       }
     },

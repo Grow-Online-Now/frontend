@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
@@ -6,6 +7,7 @@ import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { TooltipIcon } from '@/components/dashboard/shared/TooltipIcon'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
 import { StreakWidget } from '@/components/dashboard/shared/StreakWidget'
+import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
 import { Button } from '@/components/ui/button'
 import { Calendar, Users, PenSquare, BarChart3, Link2 } from 'lucide-react'
 import { useStreak } from '@/hooks/useStreak'
@@ -14,6 +16,7 @@ export default function DashboardOverview() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
   // Fetch streak data
   const { streak, isLoading: isStreakLoading, error: streakError } = useStreak()
@@ -31,7 +34,7 @@ export default function DashboardOverview() {
   }
 
   const handleCreatePost = () => {
-    navigate(`/${lang}/dashboard/scheduler`)
+    setIsCreateModalOpen(true)
   }
 
   if (!hasAccounts) {
@@ -57,6 +60,9 @@ export default function DashboardOverview() {
           ctaKey="dashboard.overview.empty.cta"
           onCtaClick={handleConnectAccount}
         />
+
+        {/* Create Post Type Modal */}
+        <CreatePostTypeModal open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen} />
       </div>
     )
   }
@@ -138,6 +144,9 @@ export default function DashboardOverview() {
         </div>
         <InfoHint textKey="dashboard.hints.overview.quickActions" className="mt-4" />
       </DashboardCard>
+
+      {/* Create Post Type Modal */}
+      <CreatePostTypeModal open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen} />
     </div>
   )
 }

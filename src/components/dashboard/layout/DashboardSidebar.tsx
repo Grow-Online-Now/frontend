@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSession, signOut } from '@/lib/auth-client'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -18,6 +18,7 @@ import {
   Moon,
   ImageIcon,
 } from 'lucide-react'
+import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
 import { cn } from '@/lib/utils'
 import type { SidebarNavItem } from '@/types/dashboard'
 import { Logo } from '@/components/ui/logo'
@@ -35,7 +36,7 @@ import { WorkspaceSelector } from '@/components/dashboard/workspace/WorkspaceSel
 
 interface NavCategory {
   labelKey: string
-  items: SidebarNavItem[]
+  items: (SidebarNavItem & { action?: 'openCreateModal' })[]
 }
 
 const navCategories: NavCategory[] = [
@@ -61,7 +62,8 @@ const navCategories: NavCategory[] = [
       {
         labelKey: 'dashboard.nav.createPost',
         icon: PenSquare,
-        href: '/dashboard/create/text',
+        href: '/dashboard/create/text', // Fallback href, but action takes precedence
+        action: 'openCreateModal',
       },
       {
         labelKey: 'dashboard.nav.media',
@@ -112,6 +114,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
   const { isDark, toggleTheme } = useTheme()
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
   const user = session?.user
   const userName = user?.name || 'User'
@@ -148,13 +151,11 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       {/* Create Post Quick Action */}
       <div className="px-4 py-4">
         <Button
-          asChild
+          onClick={() => setIsCreateModalOpen(true)}
           className="w-full justify-center gap-2 font-medium transition-opacity hover:opacity-90"
         >
-          <NavLink to="/dashboard/create/text">
-            <Plus className="h-4 w-4" />
-            <span>{t('dashboard.nav.createPost')}</span>
-          </NavLink>
+          <Plus className="h-4 w-4" />
+          <span>{t('dashboard.nav.createPost')}</span>
         </Button>
       </div>
 
@@ -181,6 +182,18 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
                         {t('dashboard.nav.comingSoon')}
                       </span>
                     </span>
+                  ) : item.action === 'openCreateModal' ? (
+                    <button
+                      type="button"
+                      onClick={() => setIsCreateModalOpen(true)}
+                      className={cn(
+                        'group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-150',
+                        'text-muted-foreground hover:bg-accent/50 hover:text-foreground font-normal'
+                      )}
+                    >
+                      <item.icon className="size-5 opacity-70 transition-opacity group-hover:opacity-100" />
+                      <span>{t(item.labelKey)}</span>
+                    </button>
                   ) : (
                     <NavLink
                       to={item.href}
@@ -253,6 +266,9 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+
+      {/* Create Post Type Modal */}
+      <CreatePostTypeModal open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen} />
     </aside>
   )
 }
