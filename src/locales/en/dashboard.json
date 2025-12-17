@@ -305,6 +305,7 @@
     "create": {
       "text": {
         "title": "Create Post",
+        "description": "Share your content across all connected platforms",
         "topBar": {
           "back": "Back",
           "continue": "Continue"

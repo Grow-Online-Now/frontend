@@ -3,7 +3,7 @@
  * Post Now and Schedule buttons with calendar popover for scheduling
  */
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, Send, Clock } from 'lucide-react'
@@ -37,13 +37,6 @@ export function PublishActions({
   const { t } = useTranslation()
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [selectedTime, setSelectedTime] = useState('12:00')
-
-  // Detect Mac vs Windows/Linux for modifier key display
-  const isMac = useMemo(
-    () => typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(navigator.userAgent),
-    []
-  )
-  const modKey = isMac ? '⌘' : 'Ctrl'
 
   const handlePostNow = () => {
     onScheduleTypeChange('now')
@@ -85,8 +78,11 @@ export function PublishActions({
   const isScheduleDisabled = disabled || isSubmitting
   const isPostNowDisabled = disabled || isSubmitting
 
+  // Common button styles for consistent sizing
+  const buttonStyles = 'h-9 min-w-[120px] justify-center gap-2 transition-all duration-150'
+
   return (
-    <div className={cn('flex items-center gap-2', className)}>
+    <div className={cn('flex items-center gap-3', className)}>
       {/* Schedule button with popover */}
       <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
         <PopoverTrigger asChild>
@@ -94,7 +90,7 @@ export function PublishActions({
             variant="outline"
             disabled={isScheduleDisabled}
             className={cn(
-              'gap-2',
+              buttonStyles,
               scheduleType === 'scheduled' &&
                 scheduledDate &&
                 'border-primary/30 bg-primary/5 text-primary'
@@ -160,7 +156,12 @@ export function PublishActions({
       </Popover>
 
       {/* Post Now button */}
-      <Button onClick={handlePostNow} disabled={isPostNowDisabled} className="gap-2">
+      <Button
+        variant="outline"
+        onClick={handlePostNow}
+        disabled={isPostNowDisabled}
+        className={cn(buttonStyles, 'bg-primary text-primary-foreground hover:bg-primary/90')}
+      >
         {isSubmitting && scheduleType === 'now' ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -170,9 +171,6 @@ export function PublishActions({
           <>
             <Send className="h-4 w-4" />
             <span>{t('dashboard.create.text.publish.postNow')}</span>
-            <kbd className="bg-primary-foreground/20 ml-1 hidden rounded px-1.5 py-0.5 text-[10px] font-medium sm:inline">
-              {modKey}+Enter
-            </kbd>
           </>
         )}
       </Button>

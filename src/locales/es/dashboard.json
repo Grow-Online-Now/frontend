@@ -221,6 +221,7 @@
     "create": {
       "text": {
         "title": "Crear publicación",
+        "description": "Comparte tu contenido en todas tus plataformas conectadas",
         "topBar": {
           "back": "Atrás",
           "continue": "Continuar"

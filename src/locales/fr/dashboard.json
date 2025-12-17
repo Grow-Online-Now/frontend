@@ -220,6 +220,7 @@
     "create": {
       "text": {
         "title": "Créer une publication",
+        "description": "Partagez votre contenu sur toutes vos plateformes connectées",
         "topBar": {
           "back": "Retour",
           "continue": "Continuer"

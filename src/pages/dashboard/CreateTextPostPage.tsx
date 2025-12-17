@@ -6,11 +6,14 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { CreateFlowTopBar } from '@/components/create/shared'
+import { UserPlus } from 'lucide-react'
+import { PageHeader } from '@/components/dashboard/shared/PageHeader'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { Step1Write, MediaLibraryModal } from '@/components/create/text'
 import { useTextFlow } from '@/hooks/create/useTextFlow'
 import { useMediaLibrary } from '@/hooks/useMediaLibrary'
 import { usePosts } from '@/hooks/usePosts'
+import { useLocalizedHref } from '@/hooks/useLocalizedHref'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { MediaItem } from '@/types/media'
 import type { PostResponse } from '@/types/posts'
@@ -21,10 +24,11 @@ interface LocationState {
 }
 
 export default function CreateTextPostPage() {
-  const { t } = useTranslation()
+  useTranslation() // Initialize i18n
   const navigate = useNavigate()
   const location = useLocation()
   const { lang } = useParams<{ lang: string }>()
+  const localizedHref = useLocalizedHref()
   const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false)
 
   const {
@@ -116,11 +120,6 @@ export default function CreateTextPostPage() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [canContinue, isSubmitting, submitPost, saveDraft, isSavingDraft, navigate, lang])
 
-  // Handle back navigation
-  const handleBack = useCallback(() => {
-    navigate(`/${lang}/dashboard/posts`)
-  }, [navigate, lang])
-
   // Handle media upload from hook
   const handleMediaUpload = useCallback(
     (files: FileList) => {
@@ -154,50 +153,51 @@ export default function CreateTextPostPage() {
   // Loading state
   if (isLoadingConnections) {
     return (
-      <div className="flex flex-col gap-6">
-        <Skeleton className="h-12 w-full" />
-        <div className="mx-auto max-w-[560px] space-y-4">
-          <Skeleton className="h-[200px] w-full" />
-          <Skeleton className="h-10 w-full" />
+      <div className="flex h-full flex-col">
+        <PageHeader
+          titleKey="dashboard.create.text.title"
+          descriptionKey="dashboard.create.text.description"
+        />
+        <div className="mt-6 flex flex-1 gap-5">
+          <div className="flex flex-1 flex-col gap-4">
+            <Skeleton className="h-16 w-full rounded-xl" />
+            <Skeleton className="h-[400px] w-full rounded-2xl" />
+          </div>
+          <Skeleton className="hidden h-[500px] w-[380px] rounded-2xl lg:block" />
         </div>
       </div>
     )
   }
 
-  // No text-first accounts - redirect to accounts page
+  // No text-first accounts - show empty state
   if (!hasTextFirstAccounts) {
     return (
-      <div className="flex min-h-full flex-col">
-        <CreateFlowTopBar
-          onBack={handleBack}
+      <div className="flex h-full flex-col">
+        <PageHeader
           titleKey="dashboard.create.text.title"
-          showContinue={false}
+          descriptionKey="dashboard.create.text.description"
         />
-        <main className="flex flex-1 items-center justify-center px-4 py-8">
-          <div className="text-center">
-            <h2 className="text-foreground text-lg font-semibold">
-              {t('dashboard.create.text.step2.empty.title')}
-            </h2>
-            <p className="text-muted-foreground mt-2 text-sm">
-              {t('dashboard.create.text.step2.empty.description')}
-            </p>
-          </div>
-        </main>
+        <EmptyState
+          icon={<UserPlus className="h-6 w-6" />}
+          titleKey="dashboard.create.text.step2.empty.title"
+          descriptionKey="dashboard.create.text.step2.empty.description"
+          ctaKey="dashboard.accounts.connect"
+          onCtaClick={() => navigate(localizedHref('/dashboard/accounts'))}
+          className="mt-6"
+        />
       </div>
     )
   }
 
   return (
-    <div className="flex h-full flex-col overflow-hidden">
-      {/* Top bar - simplified without step indicator */}
-      <CreateFlowTopBar
-        onBack={handleBack}
+    <div className="flex h-full flex-col">
+      <PageHeader
         titleKey="dashboard.create.text.title"
-        showContinue={false}
+        descriptionKey="dashboard.create.text.description"
       />
 
-      {/* Main content - fills available space, no page scroll */}
-      <main className="flex min-h-0 flex-1 px-5 py-4">
+      {/* Main content */}
+      <div className="mt-6 flex min-h-0 flex-1">
         <Step1Write
           content={content}
           onContentChange={setContent}
@@ -224,15 +224,15 @@ export default function CreateTextPostPage() {
           isSubmitting={isSubmitting}
           canSubmit={canContinue}
         />
+      </div>
 
-        {/* Media library modal */}
-        <MediaLibraryModal
-          open={isMediaLibraryOpen}
-          onOpenChange={setIsMediaLibraryOpen}
-          onSelect={handleSelectLibraryMedia}
-          excludeIds={addedMediaIds}
-        />
-      </main>
+      {/* Media library modal */}
+      <MediaLibraryModal
+        open={isMediaLibraryOpen}
+        onOpenChange={setIsMediaLibraryOpen}
+        onSelect={handleSelectLibraryMedia}
+        excludeIds={addedMediaIds}
+      />
     </div>
   )
 }
