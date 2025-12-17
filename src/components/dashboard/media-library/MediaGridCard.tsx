@@ -37,7 +37,7 @@ export function MediaGridCard({
     <div
       className={cn(
         'group border-border bg-card relative aspect-square overflow-hidden rounded-xl border transition-all',
-        'hover:border-primary/50 hover:shadow-md',
+        'hover:border-border-emphasis',
         className
       )}
     >
@@ -63,17 +63,35 @@ export function MediaGridCard({
         </div>
       )}
 
-      {/* Video Play Icon Overlay */}
+      {/* Video Play Icon Overlay - hidden on hover */}
       {isVideo && media.url && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="bg-background/80 flex h-10 w-10 items-center justify-center rounded-full shadow-lg backdrop-blur-sm">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity group-hover:opacity-0">
+          <div className="bg-background/80 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-sm">
             <Play className="text-foreground h-5 w-5 fill-current" />
           </div>
         </div>
       )}
 
+      {/* Bottom Info Bar - hidden on hover */}
+      <div className="bg-background/90 absolute right-0 bottom-0 left-0 flex items-center justify-between px-2 py-1.5 backdrop-blur-sm transition-opacity group-hover:opacity-0">
+        <span className="text-foreground max-w-[60%] truncate text-xs font-medium">
+          {media.fileName}
+        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-muted-foreground text-xs">{formatFileSize(media.fileSize)}</span>
+          <span
+            className={cn(
+              'rounded px-1.5 py-0.5 text-xs font-medium uppercase',
+              isVideo ? 'bg-info/10 text-info' : 'bg-success/10 text-success'
+            )}
+          >
+            {isVideo ? 'video' : 'image'}
+          </span>
+        </div>
+      </div>
+
       {/* Hover Overlay with Actions */}
-      <div className="bg-foreground/0 group-hover:bg-foreground/40 absolute inset-0 flex flex-col justify-between p-2 opacity-0 transition-all group-hover:opacity-100">
+      <div className="absolute inset-0 flex flex-col justify-between bg-black/50 p-2 opacity-0 transition-opacity group-hover:opacity-100">
         {/* Top Actions */}
         <div className="flex justify-end gap-1">
           {onView && (
@@ -94,7 +112,7 @@ export function MediaGridCard({
             <Button
               variant="secondary"
               size="icon"
-              className="text-destructive hover:text-destructive h-8 w-8 bg-white/90 hover:bg-white"
+              className="bg-background/90 text-destructive hover:bg-background hover:text-destructive h-8 w-8"
               onClick={(e) => {
                 e.stopPropagation()
                 onDelete(media)
@@ -121,24 +139,6 @@ export function MediaGridCard({
             {t('dashboard.media.card.useInPost')}
           </Button>
         )}
-      </div>
-
-      {/* Bottom Info Bar */}
-      <div className="bg-background/90 absolute right-0 bottom-0 left-0 flex items-center justify-between px-2 py-1.5 backdrop-blur-sm">
-        <span className="text-foreground max-w-[60%] truncate text-xs font-medium">
-          {media.fileName}
-        </span>
-        <div className="flex items-center gap-1.5">
-          <span className="text-muted-foreground text-xs">{formatFileSize(media.fileSize)}</span>
-          <span
-            className={cn(
-              'rounded px-1.5 py-0.5 text-xs font-medium uppercase',
-              isVideo ? 'bg-info/10 text-info' : 'bg-success/10 text-success'
-            )}
-          >
-            {isVideo ? 'video' : 'image'}
-          </span>
-        </div>
       </div>
     </div>
   )
