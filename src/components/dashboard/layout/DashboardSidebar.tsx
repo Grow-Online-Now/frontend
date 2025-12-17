@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useTheme } from '@/hooks/useTheme'
+import { WorkspaceSelector } from '@/components/dashboard/workspace/WorkspaceSelector'
 
 interface NavCategory {
   labelKey: string
@@ -137,6 +138,11 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       {/* Logo */}
       <div className="border-sidebar-border flex h-16 items-center border-b px-6">
         <Logo size="sm" showText />
+      </div>
+
+      {/* Workspace Selector */}
+      <div className="border-sidebar-border border-b px-4 py-3">
+        <WorkspaceSelector />
       </div>
 
       {/* Create Post Quick Action */}

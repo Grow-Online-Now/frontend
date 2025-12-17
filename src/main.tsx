@@ -23,6 +23,8 @@ import RootLayout from './layout/RootLayout.tsx'
 import { LanguageLayout } from './layout/LanguageLayout.tsx'
 import { ProtectedRoute } from './components/auth/ProtectedRoute.tsx'
 import { PublicOnlyRoute } from './components/auth/PublicOnlyRoute.tsx'
+import { WorkspaceGuard } from './components/auth/WorkspaceGuard.tsx'
+import { WorkspaceProvider } from './components/providers/WorkspaceProvider.tsx'
 import { DashboardPageLoader } from './components/common/DashboardPageLoader.tsx'
 
 // Lazy load dashboard pages for performance
@@ -79,9 +81,13 @@ const localizedRoutes = [
     path: 'dashboard',
     element: (
       <ProtectedRoute>
-        <Suspense fallback={<DashboardPageLoader />}>
-          <DashboardLayout />
-        </Suspense>
+        <WorkspaceProvider>
+          <WorkspaceGuard>
+            <Suspense fallback={<DashboardPageLoader />}>
+              <DashboardLayout />
+            </Suspense>
+          </WorkspaceGuard>
+        </WorkspaceProvider>
       </ProtectedRoute>
     ),
     children: [

@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
 import { TooltipIcon } from '@/components/dashboard/shared/TooltipIcon'
+import { WorkspaceSettings } from '@/components/dashboard/settings/WorkspaceSettings'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -107,6 +108,9 @@ export default function SettingsPage() {
           </div>
         </div>
       </DashboardCard>
+
+      {/* Workspace Section */}
+      <WorkspaceSettings />
 
       {/* Notifications Section */}
       <DashboardCard titleKey="dashboard.settings.notifications.title" className="mb-6">

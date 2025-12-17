@@ -33,9 +33,11 @@ export async function getConnections(): Promise<ConnectionsResponse> {
 /**
  * Get the OAuth URL for connecting a platform
  * Used to open in popup window
+ * @param platform - The social platform to connect
+ * @param workspaceId - The workspace ID to associate the connection with
  */
-export function getConnectUrl(platform: SocialPlatform): string {
-  return getOAuthUrl(ENDPOINTS.connect(platform))
+export function getConnectUrl(platform: SocialPlatform, workspaceId: string): string {
+  return getOAuthUrl(`${ENDPOINTS.connect(platform)}?workspaceId=${workspaceId}`)
 }
 
 /**

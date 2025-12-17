@@ -6,6 +6,28 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
 /**
+ * Workspace ID getter function
+ * Set by WorkspaceProvider to inject X-Workspace-Id header into all requests
+ */
+let workspaceIdGetter: (() => string | null) | null = null
+
+/**
+ * Set the workspace ID getter function
+ * Called by WorkspaceProvider on mount
+ */
+export function setWorkspaceIdGetter(getter: () => string | null): void {
+  workspaceIdGetter = getter
+}
+
+/**
+ * Clear the workspace ID getter function
+ * Called by WorkspaceProvider on unmount
+ */
+export function clearWorkspaceIdGetter(): void {
+  workspaceIdGetter = null
+}
+
+/**
  * Custom error class for API errors
  */
 export class ApiError extends Error {
@@ -33,10 +55,23 @@ interface RequestOptions extends Omit<RequestInit, 'body'> {
 async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
   const { body, headers, ...rest } = options
 
+  // Build headers with optional workspace ID
+  const requestHeaders: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  // Inject workspace ID header if available
+  if (workspaceIdGetter) {
+    const workspaceId = workspaceIdGetter()
+    if (workspaceId) {
+      requestHeaders['X-Workspace-Id'] = workspaceId
+    }
+  }
+
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...rest,
     headers: {
-      'Content-Type': 'application/json',
+      ...requestHeaders,
       ...headers,
     },
     credentials: 'include', // Include cookies for better-auth session

@@ -24,6 +24,91 @@
     "user": {
       "plan": "Free Plan"
     },
+    "workspace": {
+      "selector": {
+        "title": "Workspaces",
+        "personal": "Personal",
+        "switch": "Switch workspace",
+        "create": "Create workspace"
+      },
+      "roles": {
+        "owner": "Owner",
+        "member": "Member"
+      },
+      "settings": {
+        "title": "Workspace",
+        "nameLabel": "Workspace name",
+        "slugLabel": "Workspace URL",
+        "slugHint": "The URL slug cannot be changed after creation",
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "updateSuccess": "Workspace updated successfully",
+        "deleteSuccess": "Workspace deleted successfully",
+        "delete": {
+          "title": "Delete Workspace",
+          "description": "This action cannot be undone. All posts, media, and connections in this workspace will be permanently deleted.",
+          "button": "Delete Workspace",
+          "confirmTitle": "Are you absolutely sure?",
+          "confirmDescription": "This will permanently delete \"{{name}}\" and all its content. This action cannot be undone."
+        }
+      },
+      "create": {
+        "title": "Create Workspace",
+        "description": "Create a new workspace for a brand or client.",
+        "nameLabel": "Workspace name",
+        "namePlaceholder": "e.g., Acme Corporation",
+        "slugLabel": "URL slug (optional)",
+        "slugPlaceholder": "e.g., acme-corp",
+        "slugHint": "Leave empty to auto-generate from name",
+        "submit": "Create Workspace",
+        "success": "Workspace created successfully",
+        "errors": {
+          "nameRequired": "Workspace name is required"
+        }
+      },
+      "members": {
+        "title": "Members",
+        "you": "(you)",
+        "invite": "Invite Member",
+        "inviteTitle": "Invite a member",
+        "inviteDescription": "Send an invitation to add someone to this workspace.",
+        "emailLabel": "Email address",
+        "emailPlaceholder": "Enter email address",
+        "roleLabel": "Role",
+        "memberRoleDescription": "Can create and manage posts, but cannot manage workspace settings or members",
+        "ownerRoleDescription": "Full access to workspace settings, members, and all content",
+        "inviteSubmit": "Send Invitation",
+        "inviteSuccess": "Invitation sent successfully",
+        "remove": "Remove",
+        "removeConfirmTitle": "Remove member",
+        "removeConfirmDescription": "Are you sure you want to remove {{name}} from this workspace? They will lose access to all content.",
+        "removed": "Member removed successfully",
+        "leave": "Leave",
+        "leaveConfirmTitle": "Leave workspace",
+        "leaveConfirmDescription": "Are you sure you want to leave this workspace? You will lose access to all content.",
+        "left": "You have left the workspace",
+        "makeOwner": "Make Owner",
+        "makeMembers": "Make Member",
+        "roleUpdated": "Role updated successfully",
+        "errors": {
+          "emailRequired": "Email address is required",
+          "invalidEmail": "Please enter a valid email address"
+        }
+      },
+      "errors": {
+        "loadFailed": "Failed to load workspaces",
+        "createFailed": "Failed to create workspace",
+        "updateFailed": "Failed to update workspace",
+        "deleteFailed": "Failed to delete workspace",
+        "leaveFailed": "Failed to leave workspace",
+        "inviteFailed": "Failed to send invitation",
+        "updateRoleFailed": "Failed to update role",
+        "removeFailed": "Failed to remove member",
+        "slugTaken": "This URL is already taken",
+        "cannotDeletePersonal": "Cannot delete personal workspace",
+        "cannotLeavePersonal": "Cannot leave personal workspace"
+      }
+    },
     "header": {
       "welcome": "Welcome back, {{name}}",
       "signOut": "Sign out",
@@ -756,7 +841,9 @@
         "profile": "This information is visible to other users",
         "notifications": "Control how we contact you about activity",
         "emailNotifications": "Post updates and weekly summaries",
-        "pushNotifications": "Real-time alerts for comments and mentions"
+        "pushNotifications": "Real-time alerts for comments and mentions",
+        "workspace": "Manage your workspace settings and team members",
+        "members": "View and manage team members in this workspace"
       }
     },
     "gettingStarted": {

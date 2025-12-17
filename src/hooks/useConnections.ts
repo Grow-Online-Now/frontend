@@ -6,6 +6,7 @@ import {
   selectFacebookPage,
 } from '@/services/connections.service'
 import { ApiError } from '@/lib/api-client'
+import { useWorkspace } from '@/hooks/useWorkspace'
 import type { Connection, SocialPlatform, FacebookPage } from '@/types/connections'
 
 interface UseConnectionsState {
@@ -37,6 +38,7 @@ const POPUP_POLL_INTERVAL = 500
  * Handles fetching, connecting (OAuth popup), and disconnecting
  */
 export function useConnections(): UseConnectionsReturn {
+  const { currentWorkspace } = useWorkspace()
   const [state, setState] = useState<UseConnectionsState>({
     connections: [],
     isLoading: true,
@@ -103,7 +105,15 @@ export function useConnections(): UseConnectionsReturn {
    */
   const connect = useCallback(
     (platform: SocialPlatform) => {
-      const url = getConnectUrl(platform)
+      if (!currentWorkspace) {
+        setState((prev) => ({
+          ...prev,
+          error: 'Please select a workspace first.',
+        }))
+        return
+      }
+
+      const url = getConnectUrl(platform, currentWorkspace.id)
 
       // Calculate popup position (centered)
       const left = window.screenX + (window.outerWidth - POPUP_WIDTH) / 2
@@ -138,7 +148,7 @@ export function useConnections(): UseConnectionsReturn {
         }
       }, POPUP_POLL_INTERVAL)
     },
-    [fetchConnections]
+    [currentWorkspace, fetchConnections]
   )
 
   /**
