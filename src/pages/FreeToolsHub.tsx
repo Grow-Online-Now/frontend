@@ -42,9 +42,10 @@ function ToolCard({ titleKey, descriptionKey, ctaKey, href, icon }: ToolCardProp
 export function FreeToolsHub() {
   const { t, i18n } = useTranslation()
 
+  // Breadcrumb data for SEO - include language prefix
   const breadcrumbs = [
-    { name: 'Home', url: 'https://growonline.now' },
-    { name: 'Free Tools', url: 'https://growonline.now/free-tools' },
+    { name: 'Home', url: `https://growonline.now/${i18n.language}` },
+    { name: 'Free Tools', url: `https://growonline.now/${i18n.language}/free-tools` },
   ]
 
   const tools = [
@@ -70,7 +71,7 @@ export function FreeToolsHub() {
         <SEOHead
           title={t('tools.meta.hubTitle')}
           description={t('tools.meta.hubDescription')}
-          canonicalUrl="https://growonline.now/free-tools"
+          pagePath="/free-tools"
           lang={i18n.language}
         />
 

@@ -64,7 +64,7 @@ export function Landing() {
         <SEOHead
           title="Grow Online - AI-Powered Social Media Growth | Join Waitlist"
           description="Stop wasting 15+ hours per week on social media management. Grow Online's AI handles content creation, intelligent scheduling, and analytics across all platforms. Join 1,200+ creators on the waitlist."
-          canonicalUrl="https://growonline.now"
+          pagePath=""
           lang={i18n.language}
         />
 

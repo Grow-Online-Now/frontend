@@ -47,7 +47,11 @@ export function SEOHead({
   pagePath = '',
 }: SEOHeadProps) {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`
-  const canonical = canonicalUrl || `${SITE_URL}${pagePath}`
+
+  // Build canonical URL with language prefix
+  // If canonicalUrl is provided, use it; otherwise build from pagePath
+  // Always include language prefix for proper international SEO
+  const canonical = canonicalUrl || `${SITE_URL}/${lang}${pagePath}`
   const robotsContent = [
     noIndex ? 'noindex' : 'index',
     noFollow ? 'nofollow' : 'follow',
@@ -154,7 +158,8 @@ export function SEOHead({
       <link rel="alternate" hrefLang="en" href={generateHreflangUrl('en')} />
       <link rel="alternate" hrefLang="fr" href={generateHreflangUrl('fr')} />
       <link rel="alternate" hrefLang="es" href={generateHreflangUrl('es')} />
-      <link rel="alternate" hrefLang="x-default" href={canonical} />
+      {/* x-default points to English as the fallback for unmatched languages */}
+      <link rel="alternate" hrefLang="x-default" href={generateHreflangUrl('en')} />
 
       {/* DNS Prefetch for performance */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />

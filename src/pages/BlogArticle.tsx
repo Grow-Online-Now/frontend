@@ -22,11 +22,11 @@ export function BlogArticle() {
   const relatedArticles = getRelatedArticles(article.slug, 3)
   const contentKey = article.contentKey
 
-  // Breadcrumb data for SEO
+  // Breadcrumb data for SEO - include language prefix
   const breadcrumbs = [
-    { name: 'Home', url: 'https://growonline.now' },
-    { name: 'Blog', url: 'https://growonline.now/blog' },
-    { name: t(article.titleKey), url: `https://growonline.now/blog/${article.slug}` },
+    { name: 'Home', url: `${SITE_URL}/${i18n.language}` },
+    { name: 'Blog', url: `${SITE_URL}/${i18n.language}/blog` },
+    { name: t(article.titleKey), url: `${SITE_URL}/${i18n.language}/blog/${article.slug}` },
   ]
 
   return (
@@ -39,7 +39,7 @@ export function BlogArticle() {
           ogImage={`${SITE_URL}${article.imageUrl}`}
           ogType="article"
           publishedTime={article.publishedAt}
-          canonicalUrl={`${SITE_URL}/blog/og/${article.slug}`}
+          pagePath={`/blog/${article.slug}`}
           keywords={article.keywords}
           lang={i18n.language}
         />

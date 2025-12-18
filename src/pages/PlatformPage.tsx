@@ -50,7 +50,7 @@ export function PlatformPage() {
           <SEOHead
             title={t(config.seo.titleKey)}
             description={t(config.seo.descriptionKey)}
-            canonicalUrl={`https://growonline.now/platforms/${platform}`}
+            pagePath={`/platforms/${platform}`}
             lang={i18n.language}
           />
 

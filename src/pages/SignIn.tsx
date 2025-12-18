@@ -73,7 +73,7 @@ export function SignIn() {
         <SEOHead
           title={t('auth.login.seo.title')}
           description={t('auth.login.seo.description')}
-          canonicalUrl="https://growonline.now/login"
+          pagePath="/login"
           lang={i18n.language}
         />
 
