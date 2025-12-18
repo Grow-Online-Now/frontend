@@ -21,6 +21,10 @@ const ENDPOINTS = {
   facebookSelectPage: '/api/oauth/facebook/select-page',
   facebookPendingPages: (pendingKey: string) =>
     `/api/oauth/facebook/pages?pendingKey=${pendingKey}`,
+  // Bluesky endpoints (credential-based, not OAuth)
+  blueskyConnect: '/api/connections/bluesky/connect',
+  blueskyStatus: '/api/connections/bluesky/status',
+  blueskyRefresh: '/api/connections/bluesky/refresh',
 } as const
 
 /**
@@ -74,6 +78,64 @@ export async function getPendingFacebookPages(pendingKey: string): Promise<Faceb
   return apiClient.get<FacebookPagesResponse>(ENDPOINTS.facebookPendingPages(pendingKey))
 }
 
+// ============================================
+// BLUESKY (Credential-based, not OAuth)
+// ============================================
+
+/**
+ * Bluesky connection response
+ */
+export interface BlueskyConnectResponse {
+  success: boolean
+  message: string
+  connection: Connection
+}
+
+/**
+ * Bluesky status response
+ */
+export interface BlueskyStatusResponse {
+  connected: boolean
+  connection?: {
+    id: string
+    platformUsername: string
+    displayName: string
+    avatarUrl?: string
+    isActive: boolean
+    needsRefresh: boolean
+  }
+}
+
+/**
+ * Connect Bluesky account with handle and app password
+ * Unlike other platforms, Bluesky uses credential-based auth, not OAuth
+ * @param handle - Bluesky handle (e.g., "username.bsky.social")
+ * @param appPassword - App password from Bluesky settings (NOT account password)
+ */
+export async function connectBluesky(
+  handle: string,
+  appPassword: string
+): Promise<BlueskyConnectResponse> {
+  return apiClient.post<BlueskyConnectResponse>(ENDPOINTS.blueskyConnect, {
+    handle,
+    appPassword,
+  })
+}
+
+/**
+ * Check Bluesky connection status
+ */
+export async function getBlueskyStatus(): Promise<BlueskyStatusResponse> {
+  return apiClient.get<BlueskyStatusResponse>(ENDPOINTS.blueskyStatus)
+}
+
+/**
+ * Refresh Bluesky session tokens
+ */
+export async function refreshBlueskySession(): Promise<{ success: boolean; message: string }> {
+  return apiClient.post<{ success: boolean; message: string }>(ENDPOINTS.blueskyRefresh)
+}
+
 /**
  * Connections service object (alternative API)
  */
@@ -84,4 +146,8 @@ export const connectionsService = {
   refresh: refreshConnection,
   selectFacebookPage,
   getPendingFacebookPages,
+  // Bluesky
+  connectBluesky,
+  getBlueskyStatus,
+  refreshBlueskySession,
 }

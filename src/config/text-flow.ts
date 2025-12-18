@@ -67,6 +67,18 @@ export const PLATFORM_CONFIG: Record<SocialPlatform, TextPlatformConfig> = {
     supportsTextOnly: false,
     supportsMedia: true,
   },
+  bluesky: {
+    platform: 'bluesky',
+    characterLimit: 280,
+    supportsTextOnly: true,
+    supportsMedia: true,
+  },
+  threads: {
+    platform: 'threads',
+    characterLimit: 280,
+    supportsTextOnly: true,
+    supportsMedia: true,
+  },
 }
 
 /**

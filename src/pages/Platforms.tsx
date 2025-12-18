@@ -20,7 +20,7 @@ export function Platforms() {
         <SEOHead
           title={t('platforms.hub.seo.title')}
           description={t('platforms.hub.seo.description')}
-          canonicalUrl="https://growonline.now/platforms"
+          pagePath="/platforms"
           lang={i18n.language}
         />
 

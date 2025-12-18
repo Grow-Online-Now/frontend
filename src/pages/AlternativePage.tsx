@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { Toaster } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft } from 'lucide-react'
-import { SEOHead, SITE_URL } from '@/lib/seo/SEOHead'
+import { SEOHead } from '@/lib/seo/SEOHead'
 import { FAQSchema, ProductComparisonSchema } from '@/lib/seo/StructuredData'
 import { Navbar } from '@/components/layouts/Navbar'
 import { WaitlistFooter } from '@/components/waitlist/WaitlistFooter'
@@ -36,7 +36,7 @@ export function AlternativePage() {
           <SEOHead
             title={t('alternatives.notFound.title')}
             description={t('alternatives.notFound.subtitle')}
-            canonicalUrl={`${SITE_URL}/alternatives`}
+            pagePath="/alternatives"
             lang={i18n.language}
             noIndex={true}
           />
@@ -97,9 +97,8 @@ export function AlternativePage() {
         <SEOHead
           title={t('alternatives.meta.title', { competitor: competitor.name })}
           description={t('alternatives.meta.description', { competitor: competitor.name })}
-          canonicalUrl={`${SITE_URL}/alternatives/${competitor.slug}`}
-          lang={i18n.language}
           pagePath={`/alternatives/${competitor.slug}`}
+          lang={i18n.language}
           keywords={competitorKeywords}
           ogType="product"
         />

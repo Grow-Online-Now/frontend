@@ -14,6 +14,7 @@ export { PlatformConfigPanel } from './PlatformConfigPanel'
 export { PostingProgressModal } from './PostingProgressModal'
 export { LinkedInConfigSection } from './LinkedInConfigSection'
 export { PinterestConfigSection } from './PinterestConfigSection'
+export { ThreadsConfigSection } from './ThreadsConfigSection'
 
 // Twitter components
 export { TwitterPreview } from './TwitterPreview'

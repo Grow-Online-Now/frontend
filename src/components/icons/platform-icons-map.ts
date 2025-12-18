@@ -11,6 +11,8 @@ import {
   LinkedInIcon,
   PinterestIcon,
   FacebookIcon,
+  BlueskyIcon,
+  ThreadsIcon,
 } from './PlatformIcons'
 
 interface IconProps {
@@ -25,4 +27,6 @@ export const platformIcons: Record<SocialPlatform, React.ComponentType<IconProps
   linkedin: LinkedInIcon,
   pinterest: PinterestIcon,
   facebook: FacebookIcon,
+  bluesky: BlueskyIcon,
+  threads: ThreadsIcon,
 }

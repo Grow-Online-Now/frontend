@@ -40,7 +40,6 @@ export function LegalPageLayout({
   className,
 }: LegalPageLayoutProps) {
   const { t, i18n } = useTranslation()
-  const canonicalUrl = `${SITE_URL}${pagePath}`
   const breadcrumbItems = getLegalBreadcrumbs(pageType, pagePath)
 
   return (
@@ -49,12 +48,11 @@ export function LegalPageLayout({
         <SEOHead
           title={t(titleKey)}
           description={t(descriptionKey)}
-          canonicalUrl={canonicalUrl}
+          pagePath={pagePath}
           lang={i18n.language}
           ogType="article"
           publishedTime={datePublished}
           modifiedTime={lastUpdated}
-          pagePath={pagePath}
           keywords={keywords}
         />
 
@@ -63,7 +61,7 @@ export function LegalPageLayout({
           description={t(descriptionKey)}
           datePublished={datePublished}
           dateModified={lastUpdated}
-          url={canonicalUrl}
+          url={`${SITE_URL}/${i18n.language}${pagePath}`}
         />
 
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">

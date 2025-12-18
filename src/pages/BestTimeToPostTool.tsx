@@ -246,12 +246,13 @@ export function BestTimeToPostTool() {
   const [heatmapData, setHeatmapData] = useState<TimeSlot[] | null>(null)
   const [bestTimes, setBestTimes] = useState<BestTime[] | null>(null)
 
+  // Breadcrumb data for SEO - include language prefix
   const breadcrumbs = [
-    { name: 'Home', url: 'https://growonline.now' },
-    { name: 'Free Tools', url: 'https://growonline.now/free-tools' },
+    { name: 'Home', url: `https://growonline.now/${i18n.language}` },
+    { name: 'Free Tools', url: `https://growonline.now/${i18n.language}/free-tools` },
     {
       name: 'Best Time to Post',
-      url: 'https://growonline.now/free-tools/best-time-to-post-calculator',
+      url: `https://growonline.now/${i18n.language}/free-tools/best-time-to-post-calculator`,
     },
   ]
 
@@ -320,7 +321,7 @@ export function BestTimeToPostTool() {
         <SEOHead
           title={t('tools.meta.bestTimeTitle')}
           description={t('tools.meta.bestTimeDescription')}
-          canonicalUrl="https://growonline.now/free-tools/best-time-to-post-calculator"
+          pagePath="/free-tools/best-time-to-post-calculator"
           lang={i18n.language}
         />
 

@@ -226,7 +226,8 @@
         "tiktok": "TikTok",
         "youtube": "YouTube",
         "pinterest": "Pinterest",
-        "threads": "Threads"
+        "threads": "Threads",
+        "bluesky": "Bluesky"
       },
       "empty": {
         "title": "No accounts connected",
@@ -282,7 +283,31 @@
         "facebook": {
           "page": "Must be an admin of at least one Facebook Page",
           "permissions": "You need permission to manage the Page"
+        },
+        "bluesky": {
+          "account": "Must have a Bluesky account",
+          "appPassword": "You'll need an App Password (not your account password)"
+        },
+        "threads": {
+          "account": "Must have a Threads account connected to Instagram",
+          "permissions": "You need permission to post on Threads"
         }
+      }
+    },
+    "bluesky": {
+      "connect": {
+        "title": "Connect Bluesky",
+        "description": "Enter your Bluesky handle and an app password to connect your account.",
+        "handleLabel": "Bluesky Handle",
+        "handlePlaceholder": "username.bsky.social",
+        "handleHint": "Your handle (e.g., username.bsky.social or custom domain)",
+        "appPasswordLabel": "App Password",
+        "appPasswordPlaceholder": "xxxx-xxxx-xxxx-xxxx",
+        "appPasswordHint": "Create an app password in your Bluesky settings. Never use your account password.",
+        "createAppPassword": "Create an App Password",
+        "connect": "Connect",
+        "connecting": "Connecting...",
+        "error": "Failed to connect. Please check your handle and app password."
       }
     },
     "facebook": {
@@ -767,6 +792,18 @@
           "useDefault": "Use default ({{name}})",
           "selectBoard": "Select a board",
           "noDefaultWarning": "No default board set. Please select a board."
+        },
+        "threads": {
+          "title": "Threads",
+          "replyControlLabel": "Who can reply",
+          "replyControl": {
+            "everyone": "Everyone",
+            "everyoneDesc": "Anyone can reply to this post",
+            "accountsYouFollow": "Accounts you follow",
+            "accountsYouFollowDesc": "Only accounts you follow can reply",
+            "mentionedOnly": "Mentioned only",
+            "mentionedOnlyDesc": "Only accounts you mention can reply"
+          }
         }
       },
       "twitter": {

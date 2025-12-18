@@ -4,6 +4,7 @@ import {
   getConnectUrl,
   disconnectConnection,
   selectFacebookPage,
+  connectBluesky,
 } from '@/services/connections.service'
 import { ApiError } from '@/lib/api-client'
 import { useWorkspace } from '@/hooks/useWorkspace'
@@ -27,6 +28,12 @@ interface UseConnectionsReturn extends UseConnectionsState {
   facebookPagesData: FacebookPagesData | null
   selectFacebookPageAndConnect: (pageId: string) => Promise<void>
   clearFacebookPages: () => void
+  // Bluesky credential flow (not OAuth)
+  showBlueskyModal: boolean
+  setShowBlueskyModal: (show: boolean) => void
+  connectBlueskyAccount: (handle: string, appPassword: string) => Promise<void>
+  blueskyLoading: boolean
+  blueskyError: string | null
 }
 
 const POPUP_WIDTH = 600
@@ -47,6 +54,11 @@ export function useConnections(): UseConnectionsReturn {
   const [facebookPagesData, setFacebookPagesData] = useState<FacebookPagesData | null>(null)
   const popupRef = useRef<Window | null>(null)
   const receivedFacebookPagesRef = useRef(false)
+
+  // Bluesky credential flow state
+  const [showBlueskyModal, setShowBlueskyModal] = useState(false)
+  const [blueskyLoading, setBlueskyLoading] = useState(false)
+  const [blueskyError, setBlueskyError] = useState<string | null>(null)
 
   /**
    * Fetch all connections
@@ -102,6 +114,7 @@ export function useConnections(): UseConnectionsReturn {
 
   /**
    * Open OAuth popup for connecting a platform
+   * For Bluesky, opens modal instead (credential-based auth)
    */
   const connect = useCallback(
     (platform: SocialPlatform) => {
@@ -110,6 +123,13 @@ export function useConnections(): UseConnectionsReturn {
           ...prev,
           error: 'Please select a workspace first.',
         }))
+        return
+      }
+
+      // Bluesky uses credential-based auth, not OAuth
+      if (platform === 'bluesky') {
+        setBlueskyError(null)
+        setShowBlueskyModal(true)
         return
       }
 
@@ -201,6 +221,33 @@ export function useConnections(): UseConnectionsReturn {
     receivedFacebookPagesRef.current = false
   }, [])
 
+  /**
+   * Connect Bluesky account with credentials
+   * Called from BlueskyConnectModal after user enters handle and app password
+   */
+  const connectBlueskyAccount = useCallback(
+    async (handle: string, appPassword: string) => {
+      setBlueskyLoading(true)
+      setBlueskyError(null)
+
+      try {
+        await connectBluesky(handle, appPassword)
+        setShowBlueskyModal(false)
+        await fetchConnections()
+      } catch (err) {
+        const message =
+          err instanceof ApiError
+            ? err.message
+            : 'Failed to connect Bluesky. Please check your handle and app password.'
+        setBlueskyError(message)
+        throw err
+      } finally {
+        setBlueskyLoading(false)
+      }
+    },
+    [fetchConnections]
+  )
+
   // Fetch connections on mount
   useEffect(() => {
     fetchConnections()
@@ -222,5 +269,11 @@ export function useConnections(): UseConnectionsReturn {
     facebookPagesData,
     selectFacebookPageAndConnect,
     clearFacebookPages,
+    // Bluesky
+    showBlueskyModal,
+    setShowBlueskyModal,
+    connectBlueskyAccount,
+    blueskyLoading,
+    blueskyError,
   }
 }

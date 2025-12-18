@@ -249,12 +249,13 @@ export function LinkedInPreviewTool() {
   const [analysisStep, setAnalysisStep] = useState(0)
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null)
 
+  // Breadcrumb data for SEO - include language prefix
   const breadcrumbs = [
-    { name: 'Home', url: 'https://growonline.now' },
-    { name: 'Free Tools', url: 'https://growonline.now/free-tools' },
+    { name: 'Home', url: `https://growonline.now/${i18n.language}` },
+    { name: 'Free Tools', url: `https://growonline.now/${i18n.language}/free-tools` },
     {
       name: 'LinkedIn Preview',
-      url: 'https://growonline.now/free-tools/linkedin-post-preview-tool',
+      url: `https://growonline.now/${i18n.language}/free-tools/linkedin-post-preview-tool`,
     },
   ]
 
@@ -308,7 +309,7 @@ export function LinkedInPreviewTool() {
         <SEOHead
           title={t('tools.meta.linkedinPreviewTitle')}
           description={t('tools.meta.linkedinPreviewDescription')}
-          canonicalUrl="https://growonline.now/free-tools/linkedin-post-preview-tool"
+          pagePath="/free-tools/linkedin-post-preview-tool"
           lang={i18n.language}
         />
 

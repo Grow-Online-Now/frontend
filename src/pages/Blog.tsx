@@ -24,10 +24,10 @@ export function Blog() {
     imageUrl: article.imageUrl,
   }))
 
-  // Breadcrumb data for SEO
+  // Breadcrumb data for SEO - include language prefix
   const breadcrumbs = [
-    { name: 'Home', url: 'https://growonline.now' },
-    { name: 'Blog', url: 'https://growonline.now/blog' },
+    { name: 'Home', url: `https://growonline.now/${i18n.language}` },
+    { name: 'Blog', url: `https://growonline.now/${i18n.language}/blog` },
   ]
 
   return (
@@ -37,7 +37,7 @@ export function Blog() {
         <SEOHead
           title={t('blog.meta.title')}
           description={t('blog.meta.description')}
-          canonicalUrl="https://growonline.now/blog"
+          pagePath="/blog"
           lang={i18n.language}
         />
 
