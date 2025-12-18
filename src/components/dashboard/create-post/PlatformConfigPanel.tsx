@@ -11,6 +11,7 @@ import { TikTokConfigSection } from './TikTokConfigSection'
 import { YouTubeConfigSection } from './YouTubeConfigSection'
 import { LinkedInConfigSection } from './LinkedInConfigSection'
 import { PinterestConfigSection } from './PinterestConfigSection'
+import { ThreadsConfigSection } from './ThreadsConfigSection'
 import type { PlatformConfigurations } from '@/types/posts'
 import type { Connection, SocialPlatform } from '@/types/connections'
 import type { MediaFile } from './MediaUploader'
@@ -46,6 +47,7 @@ export function PlatformConfigPanel({
   const hasYouTube = selectedPlatforms.includes('youtube')
   const hasLinkedIn = selectedPlatforms.includes('linkedin')
   const hasPinterest = selectedPlatforms.includes('pinterest')
+  const hasThreads = selectedPlatforms.includes('threads')
 
   // Get Pinterest connection ID for board fetching
   const pinterestConnectionId = useMemo(
@@ -54,7 +56,7 @@ export function PlatformConfigPanel({
   )
 
   // Only show if at least one configurable platform is selected
-  if (!hasInstagram && !hasTikTok && !hasYouTube && !hasLinkedIn && !hasPinterest) {
+  if (!hasInstagram && !hasTikTok && !hasYouTube && !hasLinkedIn && !hasPinterest && !hasThreads) {
     return null
   }
 
@@ -104,6 +106,13 @@ export function PlatformConfigPanel({
             connectionId={pinterestConnectionId}
             config={platformConfigs.pinterest || {}}
             onChange={(pinterest) => onConfigChange({ ...platformConfigs, pinterest })}
+          />
+        )}
+
+        {hasThreads && (
+          <ThreadsConfigSection
+            config={platformConfigs.threads || {}}
+            onChange={(threads) => onConfigChange({ ...platformConfigs, threads })}
           />
         )}
       </div>

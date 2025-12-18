@@ -4,6 +4,7 @@ import {
   PlatformRow,
   ConnectPlatformModal,
   FacebookPageSelector,
+  BlueskyConnectModal,
 } from '@/components/dashboard/accounts'
 import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
@@ -68,6 +69,20 @@ const platforms: PlatformConfig[] = [
       { textKey: 'dashboard.accounts.requirements.pinterest.permissions' },
     ],
   },
+  {
+    id: 'bluesky',
+    requirements: [
+      { textKey: 'dashboard.accounts.requirements.bluesky.account' },
+      { textKey: 'dashboard.accounts.requirements.bluesky.appPassword' },
+    ],
+  },
+  {
+    id: 'threads',
+    requirements: [
+      { textKey: 'dashboard.accounts.requirements.threads.account' },
+      { textKey: 'dashboard.accounts.requirements.threads.permissions' },
+    ],
+  },
 ]
 
 export default function AccountsPage() {
@@ -80,6 +95,12 @@ export default function AccountsPage() {
     facebookPagesData,
     clearFacebookPages,
     refetch,
+    // Bluesky
+    showBlueskyModal,
+    setShowBlueskyModal,
+    connectBlueskyAccount,
+    blueskyLoading,
+    blueskyError,
   } = useConnections()
   const [selectedPlatform, setSelectedPlatform] = useState<PlatformConfig | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -177,6 +198,14 @@ export default function AccountsPage() {
           onCancel={clearFacebookPages}
         />
       )}
+
+      <BlueskyConnectModal
+        open={showBlueskyModal}
+        onOpenChange={setShowBlueskyModal}
+        onConnect={connectBlueskyAccount}
+        isLoading={blueskyLoading}
+        error={blueskyError}
+      />
     </div>
   )
 }

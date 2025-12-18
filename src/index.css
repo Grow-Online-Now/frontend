@@ -79,6 +79,8 @@
   --platform-youtube: #ff0000;
   --platform-facebook: #1877f2;
   --platform-pinterest: #bd081c;
+  --platform-bluesky: #1185fe;
+  --platform-threads: #000000;
 
   /* Feature Gradient (static) */
   --gradient-feature: linear-gradient(135deg, #8b5cf6, #ec4899);
@@ -555,6 +557,16 @@ h6 {
 .platform-facebook {
   --platform-color: #1877f2;
   --platform-bg: rgba(24, 119, 242, 0.1);
+}
+
+.platform-bluesky {
+  --platform-color: #1185fe;
+  --platform-bg: rgba(17, 133, 254, 0.1);
+}
+
+.platform-threads {
+  --platform-color: #000000;
+  --platform-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* ============================================

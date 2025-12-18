@@ -73,6 +73,16 @@ const platformStyles: Record<SocialPlatform, { bg: string; icon: string; classNa
     icon: 'text-[var(--platform-pinterest)]',
     className: 'platform-pinterest',
   },
+  bluesky: {
+    bg: 'bg-[var(--platform-bluesky)]/10',
+    icon: 'text-[var(--platform-bluesky)]',
+    className: 'platform-bluesky',
+  },
+  threads: {
+    bg: 'bg-foreground/5',
+    icon: 'text-foreground',
+    className: 'platform-threads',
+  },
 }
 
 export function PlatformIcon({

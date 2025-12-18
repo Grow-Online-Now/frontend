@@ -136,6 +136,26 @@ export interface PinterestConfig {
 }
 
 /**
+ * Threads reply control options
+ */
+export type ThreadsReplyControl = 'everyone' | 'accounts_you_follow' | 'mentioned_only'
+
+/**
+ * Threads content type
+ */
+export type ThreadsContentType = 'text' | 'image' | 'video' | 'carousel'
+
+/**
+ * Threads platform configuration
+ */
+export interface ThreadsConfig {
+  caption?: string
+  media?: string[]
+  contentType?: ThreadsContentType
+  replyControl?: ThreadsReplyControl
+}
+
+/**
  * Platform-specific configurations for post creation
  */
 export interface PlatformConfigurations {
@@ -145,6 +165,7 @@ export interface PlatformConfigurations {
   twitter?: TwitterConfig
   linkedin?: LinkedInConfig
   pinterest?: PinterestConfig
+  threads?: ThreadsConfig
 }
 
 /**
@@ -166,7 +187,9 @@ export interface PlatformPost {
  */
 export const PLATFORM_CHARACTER_LIMITS: Record<SocialPlatform, number> = {
   twitter: 280,
+  bluesky: 300,
   pinterest: 500,
+  threads: 500,
   instagram: 2200,
   tiktok: 2200,
   linkedin: 3000,

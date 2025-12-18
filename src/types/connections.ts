@@ -9,6 +9,8 @@ export type SocialPlatform =
   | 'instagram'
   | 'youtube'
   | 'facebook'
+  | 'bluesky'
+  | 'threads'
 
 /**
  * A social media connection/account
