@@ -707,7 +707,6 @@
         "scheduling": "Las publicaciones programadas ayudan a mantener una presencia constante"
       },
       "scheduler": {
-        "calendarUsage": "Haz clic en cualquier fecha para ver publicaciones programadas y agregar nuevas",
         "emptyHint": "Planifica tu contenido con anticipación para mantener una presencia constante",
         "viewTips": {
           "month": "Vista general de todo tu mes",

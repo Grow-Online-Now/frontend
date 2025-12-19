@@ -33,7 +33,7 @@ interface SchedulerWeekViewProps {
   className?: string
 }
 
-const MAX_BADGES_WEEK = 5
+const MAX_BADGES_WEEK = 8
 
 export function SchedulerWeekView({
   selectedDate,
@@ -138,7 +138,7 @@ export function SchedulerWeekView({
                 'hover:bg-surface-elevated/80 focus-visible:ring-primary focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
                 selected && 'bg-primary/[0.06] ring-primary/30 ring-1 ring-inset',
                 today && !selected && 'bg-primary/[0.03]',
-                isExpanded ? 'min-h-[auto]' : 'min-h-[200px]'
+                isExpanded ? 'min-h-[auto]' : 'min-h-[400px]'
               )}
             >
               {/* Day header */}

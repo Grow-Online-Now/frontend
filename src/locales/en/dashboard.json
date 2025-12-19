@@ -982,7 +982,6 @@
         "scheduling": "Scheduled posts help maintain consistent presence"
       },
       "scheduler": {
-        "calendarUsage": "Click any date to see scheduled posts and add new ones",
         "emptyHint": "Plan your content ahead to maintain a consistent presence",
         "viewTips": {
           "month": "Overview of your entire month",

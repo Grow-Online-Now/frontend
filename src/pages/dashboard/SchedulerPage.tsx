@@ -103,12 +103,6 @@ export default function SchedulerPage() {
         }
       />
 
-      <InfoHint
-        textKey="dashboard.hints.scheduler.calendarUsage"
-        variant="tip"
-        className="mt-2 mb-6"
-      />
-
       {/* Calendar View Toggle - Pill style */}
       <div className="mb-6">
         <div className="bg-muted/50 inline-flex gap-0.5 rounded-lg p-1">

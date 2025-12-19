@@ -723,7 +723,6 @@
         "scheduling": "Les publications planifiées aident à maintenir une présence constante"
       },
       "scheduler": {
-        "calendarUsage": "Cliquez sur une date pour voir les publications planifiées et en ajouter",
         "emptyHint": "Planifiez votre contenu à l'avance pour maintenir une présence constante",
         "viewTips": {
           "month": "Vue d'ensemble de tout votre mois",
