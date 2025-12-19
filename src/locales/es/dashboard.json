@@ -592,6 +592,13 @@
     "settings": {
       "title": "Configuración",
       "description": "Gestiona las preferencias de tu cuenta",
+      "tabs": {
+        "profile": "Perfil",
+        "workspace": "Espacio de trabajo",
+        "notifications": "Notificaciones",
+        "language": "Idioma",
+        "account": "Cuenta"
+      },
       "profile": {
         "title": "Perfil",
         "name": "Nombre completo",

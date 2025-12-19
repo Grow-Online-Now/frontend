@@ -867,6 +867,13 @@
     "settings": {
       "title": "Settings",
       "description": "Manage your account preferences",
+      "tabs": {
+        "profile": "Profile",
+        "workspace": "Workspace",
+        "notifications": "Notifications",
+        "language": "Language",
+        "account": "Account"
+      },
       "profile": {
         "title": "Profile",
         "name": "Full Name",
