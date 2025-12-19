@@ -36,6 +36,8 @@ const PLATFORM_NAMES: Record<SocialPlatform, string> = {
   tiktok: 'TikTok',
   youtube: 'YouTube',
   pinterest: 'Pinterest',
+  bluesky: 'Bluesky',
+  threads: 'Threads',
 }
 
 export function AccountSelector({

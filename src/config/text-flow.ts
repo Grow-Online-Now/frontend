@@ -9,7 +9,13 @@ import type { TextPlatformConfig, ScheduleOption } from '@/types/create'
 /**
  * Platforms that support text-first posting (text is primary, media optional)
  */
-export const TEXT_FIRST_PLATFORMS: SocialPlatform[] = ['twitter', 'linkedin', 'facebook']
+export const TEXT_FIRST_PLATFORMS: SocialPlatform[] = [
+  'twitter',
+  'bluesky',
+  'threads',
+  'linkedin',
+  'facebook',
+]
 
 /**
  * Platforms that require media (media is primary, caption secondary)
@@ -69,13 +75,13 @@ export const PLATFORM_CONFIG: Record<SocialPlatform, TextPlatformConfig> = {
   },
   bluesky: {
     platform: 'bluesky',
-    characterLimit: 280,
+    characterLimit: 300,
     supportsTextOnly: true,
     supportsMedia: true,
   },
   threads: {
     platform: 'threads',
-    characterLimit: 280,
+    characterLimit: 500,
     supportsTextOnly: true,
     supportsMedia: true,
   },
@@ -85,7 +91,7 @@ export const PLATFORM_CONFIG: Record<SocialPlatform, TextPlatformConfig> = {
  * Platforms to show in the character count bar (Step 1)
  * Shows the most restrictive platforms first
  */
-export const CHARACTER_COUNT_PLATFORMS: SocialPlatform[] = ['twitter', 'linkedin']
+export const CHARACTER_COUNT_PLATFORMS: SocialPlatform[] = ['twitter', 'bluesky']
 
 /**
  * Schedule options for Step 3

@@ -14,18 +14,10 @@
 import { cn } from '@/lib/utils'
 import type { SocialPlatform } from '@/types/connections'
 
-// Platform brand colors using CSS variables from design system
-const PLATFORM_COLORS: Record<SocialPlatform, string> = {
-  youtube: 'var(--platform-youtube)',
-  instagram: 'var(--platform-instagram)',
-  tiktok: 'var(--platform-tiktok)',
-  twitter: 'var(--platform-twitter)',
-  linkedin: 'var(--platform-linkedin)',
-  facebook: 'var(--platform-facebook)',
-  pinterest: 'var(--platform-pinterest)',
-  bluesky: 'var(--platform-bluesky)',
-  threads: 'var(--platform-threads)',
-}
+// Monochrome badge style for premium look
+// All platforms use foreground color for badge background, icons use background color
+// This creates visual consistency: dark badges in light mode, light badges in dark mode
+const BADGE_BG_COLOR = 'var(--color-foreground)'
 
 // Platform icons as inline SVGs for crisp rendering at small sizes
 const PLATFORM_ICONS: Record<SocialPlatform, React.ReactNode> = {
@@ -65,13 +57,13 @@ const PLATFORM_ICONS: Record<SocialPlatform, React.ReactNode> = {
     </svg>
   ),
   bluesky: (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    <svg viewBox="0 0 48 48" fill="currentColor" className="size-full">
+      <path d="M10.8576 6.06895C16.1772 10.1191 21.8992 18.3313 24 22.7383C26.1009 18.3316 31.8225 10.1191 37.1424 6.06895C40.9808 3.14649 47.2 0.885261 47.2 8.08062C47.2 9.51763 46.3876 20.1523 45.9111 21.8788C44.2548 27.8812 38.2196 29.4122 32.8511 28.4856C42.2351 30.1053 44.6223 35.4704 39.4668 40.8355C29.6756 51.0249 25.394 38.279 24.2964 35.013C24.0953 34.4143 24.0012 34.1342 23.9998 34.3723C23.9984 34.1342 23.9043 34.4143 23.7032 35.013C22.6061 38.279 18.3246 51.0252 8.5328 40.8355C3.37728 35.4704 5.7644 30.105 15.1486 28.4856C9.77992 29.4122 3.74456 27.8812 2.08856 21.8788C1.61207 20.1521 0.799683 9.51747 0.799683 8.08062C0.799683 0.885261 7.01904 3.14649 10.8573 6.06895H10.8576Z" />
     </svg>
   ),
   threads: (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    <svg viewBox="0 0 48 48" fill="currentColor" className="size-full">
+      <path d="M35.3843 22.2471C35.1775 22.148 34.9675 22.0526 34.7547 21.9613C34.3842 15.1346 30.654 11.2262 24.3905 11.1862C24.3621 11.1861 24.3339 11.1861 24.3055 11.1861C20.5591 11.1861 17.4433 12.7852 15.5255 15.6952L18.9702 18.0582C20.4029 15.8846 22.6513 15.4212 24.3071 15.4212C24.3263 15.4212 24.3455 15.4212 24.3644 15.4214C26.4268 15.4345 27.983 16.0342 28.9902 17.2035C29.7232 18.0548 30.2135 19.2313 30.4562 20.716C28.6277 20.4052 26.6502 20.3096 24.5362 20.4308C18.5812 20.7738 14.7528 24.247 15.0099 29.073C15.1404 31.521 16.3599 33.627 18.4438 35.0028C20.2056 36.1657 22.4748 36.7345 24.8331 36.6058C27.9475 36.435 30.3907 35.2467 32.0952 33.074C33.3897 31.424 34.2085 29.2857 34.57 26.5915C36.0542 27.4872 37.1543 28.666 37.7617 30.083C38.7948 32.4917 38.855 36.45 35.6253 39.677C32.7955 42.504 29.394 43.727 24.2534 43.7648C18.551 43.7225 14.2384 41.8937 11.4345 38.3293C8.80887 34.9915 7.45192 30.1705 7.4013 24C7.45192 17.8295 8.80887 13.0084 11.4345 9.67068C14.2384 6.10623 18.551 4.2775 24.2533 4.23513C29.997 4.27782 34.3848 6.11535 37.296 9.697C38.7235 11.4534 39.7998 13.6622 40.5093 16.2376L44.546 15.1606C43.686 11.9906 42.3327 9.25893 40.4912 6.9935C36.759 2.40167 31.3005 0.048787 24.2674 0H24.2392C17.2204 0.0486175 11.823 2.41045 8.19707 7.01982C4.97047 11.1216 3.3061 16.8289 3.25017 23.9831L3.25 24L3.25017 24.0169C3.3061 31.171 4.97047 36.8785 8.19707 40.9803C11.823 45.5895 17.2204 47.9515 24.2392 48H24.2674C30.5075 47.9567 34.906 46.323 38.5295 42.7028C43.2702 37.9665 43.1275 32.0298 41.565 28.3853C40.444 25.7717 38.3068 23.649 35.3843 22.2471ZM24.6101 32.3768C22.0001 32.5238 19.2886 31.3523 19.1549 28.843C19.0558 26.9825 20.479 24.9065 24.7703 24.6592C25.2617 24.6308 25.744 24.617 26.2178 24.617C27.7765 24.617 29.2347 24.7684 30.5605 25.0583C30.066 31.2337 27.1655 32.2365 24.6101 32.3768Z" />
     </svg>
   ),
 }
@@ -137,7 +129,6 @@ export function AccountAvatar({
   isUnconnected = false,
 }: AccountAvatarProps) {
   const config = SIZE_CONFIG[size]
-  const platformColor = PLATFORM_COLORS[platform]
   const initials = name ? name.replace('@', '').slice(0, 2).toUpperCase() : '?'
 
   return (
@@ -165,20 +156,18 @@ export function AccountAvatar({
         )}
       </div>
 
-      {/* Platform Badge */}
+      {/* Platform Badge - Monochrome style for premium look */}
       {showBadge && (
         <div
           className={cn(
             'absolute flex items-center justify-center rounded-full ring-2',
             config.badge,
             config.offset,
-            isUnconnected
-              ? 'ring-foreground/30'
-              : 'ring-background'
+            isUnconnected ? 'ring-foreground/30' : 'ring-background'
           )}
-          style={{ backgroundColor: platformColor }}
+          style={{ backgroundColor: BADGE_BG_COLOR }}
         >
-          <div className={cn('text-primary-foreground', config.badgeIcon)}>
+          <div className={cn(config.badgeIcon, 'text-background')}>
             {PLATFORM_ICONS[platform]}
           </div>
         </div>
