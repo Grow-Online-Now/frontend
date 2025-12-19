@@ -88,12 +88,48 @@
       "calendar": {
         "today": "Hoy",
         "moreCount": "+{{count}} más",
+        "showLess": "Ver menos",
         "weekOf": "Semana del {{date}}",
         "navigation": {
           "previousMonth": "Mes anterior",
           "nextMonth": "Mes siguiente",
           "previousWeek": "Semana anterior",
           "nextWeek": "Semana siguiente"
+        }
+      },
+      "preview": {
+        "scheduledFor": "Programado para {{date}}",
+        "postedAt": "Publicado {{date}}",
+        "draft": "Borrador",
+        "additionalAccounts": "+{{count}} más",
+        "justNow": "Ahora mismo",
+        "actions": {
+          "like": "Me gusta",
+          "comment": "Comentar",
+          "share": "Compartir"
+        }
+      },
+      "detail": {
+        "title": "Detalles de la publicación",
+        "description": "Ver y gestionar esta publicación",
+        "caption": "Texto",
+        "noCaption": "Sin texto",
+        "postingTo": "Publicando en {{count}} cuenta",
+        "postingTo_other": "Publicando en {{count}} cuentas",
+        "createdAt": "Creado {{time}}",
+        "minutesAgo": "hace {{count}}m",
+        "hoursAgo": "hace {{count}}h",
+        "daysAgo": "hace {{count}}d",
+        "yesterday": "Ayer",
+        "actions": {
+          "edit": "Editar",
+          "duplicate": "Duplicar",
+          "delete": "Eliminar"
+        },
+        "confirmDelete": {
+          "title": "Eliminar publicación",
+          "description": "¿Estás seguro de que quieres eliminar esta publicación? Esta acción no se puede deshacer.",
+          "deleting": "Eliminando..."
         }
       },
       "post": {

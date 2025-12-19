@@ -25,6 +25,9 @@ interface SchedulerCalendarProps {
   postsByDate: Map<string, PostResponse[]>
   currentMonth: Date
   onMonthChange: (month: Date) => void
+  onPostClick?: (post: PostResponse) => void
+  expandedRows?: Set<number>
+  onToggleRowExpansion?: (rowIndex: number) => void
   className?: string
 }
 
@@ -44,6 +47,9 @@ export function SchedulerCalendar({
   postsByDate,
   currentMonth,
   onMonthChange,
+  onPostClick,
+  expandedRows = new Set(),
+  onToggleRowExpansion,
   className,
 }: SchedulerCalendarProps) {
   const { t, i18n } = useTranslation()
@@ -122,11 +128,12 @@ export function SchedulerCalendar({
 
       {/* Calendar grid */}
       <div className="border-border-subtle grid grid-cols-7 border-l">
-        {days.map((day) => {
+        {days.map((day, index) => {
           const posts = getPostsForDate(postsByDate, day)
           const selected = selectedDate ? isSameDay(day, selectedDate) : false
           const today = isToday(day)
           const outside = !isSameMonth(day, currentMonth)
+          const rowIndex = Math.floor(index / 7)
 
           return (
             <SchedulerDayCell
@@ -137,6 +144,10 @@ export function SchedulerCalendar({
               isToday={today}
               isOutside={outside}
               onClick={() => onDateSelect(day)}
+              onPostClick={onPostClick}
+              rowIndex={rowIndex}
+              isRowExpanded={expandedRows.has(rowIndex)}
+              onToggleRowExpansion={onToggleRowExpansion}
             />
           )
         })}

@@ -1,28 +1,37 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
-import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
 import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
 import { Button } from '@/components/ui/button'
-import { SchedulerCalendar, SchedulerWeekView } from '@/components/dashboard/scheduler'
-import { PostCard } from '@/components/dashboard/posts/PostCard'
+import {
+  SchedulerCalendar,
+  SchedulerWeekView,
+  PostDetailModal,
+} from '@/components/dashboard/scheduler'
 import { useSchedulerPosts } from '@/hooks/useSchedulerPosts'
-import { getMonthViewRange, getWeekViewRange, getPostsForDate } from '@/lib/date-utils'
+import { usePosts } from '@/hooks/usePosts'
+import { getMonthViewRange, getWeekViewRange } from '@/lib/date-utils'
 import { cn } from '@/lib/utils'
-import { CalendarDays, Plus, Loader2 } from 'lucide-react'
+import { Plus, Loader2 } from 'lucide-react'
 import type { CalendarView } from '@/types/dashboard'
+import type { PostResponse } from '@/types/posts'
 
 export default function SchedulerPage() {
-  const { t, i18n } = useTranslation()
-  const navigate = useNavigate()
+  const { t } = useTranslation()
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [calendarView, setCalendarView] = useState<CalendarView>('month')
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
   const [currentWeek, setCurrentWeek] = useState<Date>(new Date())
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+
+  // Post detail modal state
+  const [selectedPost, setSelectedPost] = useState<PostResponse | null>(null)
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false)
+
+  // Row expansion state for month view
+  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set())
 
   // Calculate date range based on current view
   const dateRange = useMemo(() => {
@@ -33,28 +42,53 @@ export default function SchedulerPage() {
   }, [calendarView, currentMonth, currentWeek])
 
   // Fetch posts for the visible range
-  const { postsByDate, isLoading } = useSchedulerPosts({
+  const { postsByDate, isLoading, refetch } = useSchedulerPosts({
     startDate: dateRange.start,
     endDate: dateRange.end,
   })
 
-  // Get posts for the selected date
-  const selectedDatePosts = useMemo(
-    () => getPostsForDate(postsByDate, selectedDate),
-    [postsByDate, selectedDate]
-  )
+  // Get delete function from usePosts hook
+  const { deletePostById } = usePosts()
 
   const handleCreatePost = () => {
     setIsCreateModalOpen(true)
   }
 
-  // Format selected date for sidebar header
-  const formattedSelectedDate = new Intl.DateTimeFormat(i18n.language, {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(selectedDate)
+  // Handle post click to open detail modal
+  const handlePostClick = useCallback((post: PostResponse) => {
+    setSelectedPost(post)
+    setIsDetailModalOpen(true)
+  }, [])
+
+  // Handle row expansion toggle
+  const handleToggleRowExpansion = useCallback((rowIndex: number) => {
+    setExpandedRows((prev) => {
+      const next = new Set(prev)
+      if (next.has(rowIndex)) {
+        next.delete(rowIndex)
+      } else {
+        next.add(rowIndex)
+      }
+      return next
+    })
+  }, [])
+
+  // Handle post deletion
+  const handleDeletePost = useCallback(
+    async (post: PostResponse) => {
+      const success = await deletePostById(post.id)
+      if (success) {
+        refetch()
+      }
+    },
+    [deletePostById, refetch]
+  )
+
+  // Reset expanded rows when changing month
+  const handleMonthChange = useCallback((month: Date) => {
+    setCurrentMonth(month)
+    setExpandedRows(new Set())
+  }, [])
 
   return (
     <div>
@@ -62,7 +96,6 @@ export default function SchedulerPage() {
         titleKey="dashboard.scheduler.title"
         descriptionKey="dashboard.scheduler.description"
         actions={
-          // Secondary/outline style - sidebar has primary CTA
           <Button variant="outline" onClick={handleCreatePost} className="gap-2 rounded-lg">
             <Plus className="h-4 w-4" />
             {t('dashboard.scheduler.createPost')}
@@ -104,67 +137,45 @@ export default function SchedulerPage() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Calendar */}
-        <DashboardCard className="overflow-hidden lg:col-span-2">
-          {isLoading ? (
-            <div className="flex min-h-[400px] items-center justify-center">
-              <Loader2 className="text-muted-foreground size-8 animate-spin" />
-            </div>
-          ) : calendarView === 'month' ? (
-            <SchedulerCalendar
-              selectedDate={selectedDate}
-              onDateSelect={setSelectedDate}
-              postsByDate={postsByDate}
-              currentMonth={currentMonth}
-              onMonthChange={setCurrentMonth}
-            />
-          ) : (
-            <SchedulerWeekView
-              selectedDate={selectedDate}
-              onDateSelect={setSelectedDate}
-              postsByDate={postsByDate}
-              currentWeek={currentWeek}
-              onWeekChange={setCurrentWeek}
-            />
-          )}
-        </DashboardCard>
-
-        {/* Scheduled Posts for Selected Date */}
-        <div className="space-y-4">
-          <h3 className="text-foreground font-semibold">{formattedSelectedDate}</h3>
-
-          {selectedDatePosts.length === 0 ? (
-            <EmptyState
-              icon={<CalendarDays className="h-6 w-6" />}
-              titleKey="dashboard.scheduler.empty.title"
-              descriptionKey="dashboard.scheduler.empty.description"
-              ctaKey="dashboard.scheduler.empty.cta"
-              onCtaClick={handleCreatePost}
-              compact
-              className="min-h-[280px]"
-            />
-          ) : (
-            <div className="space-y-3">
-              {selectedDatePosts.map((post) => (
-                <PostCard
-                  key={post.id}
-                  post={post}
-                  onView={() => {
-                    // TODO: Open post detail modal
-                  }}
-                  onEdit={() => {
-                    navigate(`/${i18n.language}/dashboard/posts/${post.id}/edit`)
-                  }}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+      {/* Full-width Calendar */}
+      <DashboardCard className="overflow-hidden">
+        {isLoading ? (
+          <div className="flex min-h-[400px] items-center justify-center">
+            <Loader2 className="text-muted-foreground size-8 animate-spin" />
+          </div>
+        ) : calendarView === 'month' ? (
+          <SchedulerCalendar
+            selectedDate={selectedDate}
+            onDateSelect={setSelectedDate}
+            postsByDate={postsByDate}
+            currentMonth={currentMonth}
+            onMonthChange={handleMonthChange}
+            onPostClick={handlePostClick}
+            expandedRows={expandedRows}
+            onToggleRowExpansion={handleToggleRowExpansion}
+          />
+        ) : (
+          <SchedulerWeekView
+            selectedDate={selectedDate}
+            onDateSelect={setSelectedDate}
+            postsByDate={postsByDate}
+            currentWeek={currentWeek}
+            onWeekChange={setCurrentWeek}
+            onPostClick={handlePostClick}
+          />
+        )}
+      </DashboardCard>
 
       {/* Create Post Type Modal */}
       <CreatePostTypeModal open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen} />
+
+      {/* Post Detail Modal */}
+      <PostDetailModal
+        post={selectedPost}
+        open={isDetailModalOpen}
+        onOpenChange={setIsDetailModalOpen}
+        onDelete={handleDeletePost}
+      />
     </div>
   )
 }

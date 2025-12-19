@@ -3,11 +3,14 @@
  * Week view with taller day columns for showing more posts
  */
 
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { cn } from '@/lib/utils'
 import { SchedulerPostBadge } from './SchedulerPostBadge'
+import { PostHoverPreview } from './PostHoverPreview'
 import {
   getWeekDays,
   getPostsForDate,
@@ -26,6 +29,7 @@ interface SchedulerWeekViewProps {
   postsByDate: Map<string, PostResponse[]>
   currentWeek: Date
   onWeekChange: (week: Date) => void
+  onPostClick?: (post: PostResponse) => void
   className?: string
 }
 
@@ -37,10 +41,12 @@ export function SchedulerWeekView({
   postsByDate,
   currentWeek,
   onWeekChange,
+  onPostClick,
   className,
 }: SchedulerWeekViewProps) {
   const { t, i18n } = useTranslation()
   const days = getWeekDays(currentWeek)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const handlePrevWeek = () => {
     onWeekChange(subWeeks(currentWeek, 1))
@@ -66,6 +72,9 @@ export function SchedulerWeekView({
   }
 
   const weekLabel = `${new Intl.DateTimeFormat(i18n.language, formatOptions).format(weekStart)} - ${new Intl.DateTimeFormat(i18n.language, formatOptions).format(weekEnd)}, ${weekEnd.getFullYear()}`
+
+  // Check if any day has more posts than the limit
+  const hasOverflow = days.some((day) => getPostsForDate(postsByDate, day).length > MAX_BADGES_WEEK)
 
   return (
     <div className={cn('flex flex-col', className)}>
@@ -110,7 +119,6 @@ export function SchedulerWeekView({
           const posts = getPostsForDate(postsByDate, day)
           const selected = selectedDate ? isSameDay(day, selectedDate) : false
           const today = isToday(day)
-          const visiblePosts = posts.slice(0, MAX_BADGES_WEEK)
           const remainingCount = posts.length - MAX_BADGES_WEEK
           const hasPosts = posts.length > 0
 
@@ -119,15 +127,18 @@ export function SchedulerWeekView({
           const dayNum = day.getDate()
 
           return (
-            <button
+            <div
               key={day.toISOString()}
-              type="button"
+              role="button"
+              tabIndex={0}
               onClick={() => onDateSelect(day)}
+              onKeyDown={(e) => e.key === 'Enter' && onDateSelect(day)}
               className={cn(
-                'group border-border-subtle flex min-h-[200px] flex-col border-r border-b p-3 text-left transition-all duration-150',
+                'group border-border-subtle flex flex-col border-r border-b p-3 text-left transition-all duration-150',
                 'hover:bg-surface-elevated/80 focus-visible:ring-primary focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
                 selected && 'bg-primary/[0.06] ring-primary/30 ring-1 ring-inset',
-                today && !selected && 'bg-primary/[0.03]'
+                today && !selected && 'bg-primary/[0.03]',
+                isExpanded ? 'min-h-[auto]' : 'min-h-[200px]'
               )}
             >
               {/* Day header */}
@@ -149,30 +160,125 @@ export function SchedulerWeekView({
                 >
                   {dayNum}
                 </span>
-                {/* Post indicator dot */}
-                {hasPosts && !today && <span className="bg-primary/60 mt-1 h-1 w-1 rounded-full" />}
-              </div>
-
-              {/* Post badges */}
-              <div className="flex flex-1 flex-col gap-1.5">
-                {visiblePosts.map((post) => (
-                  <SchedulerPostBadge key={post.id} post={post} />
-                ))}
-
-                {/* More indicator */}
-                {remainingCount > 0 && (
-                  <div className="text-muted-foreground/60 mt-0.5 flex items-center justify-center gap-1 text-xs font-medium">
-                    <MoreHorizontal className="h-3 w-3" />
-                    <span>
-                      {t('dashboard.scheduler.calendar.moreCount', { count: remainingCount })}
-                    </span>
-                  </div>
+                {/* Post count badge */}
+                {hasPosts && (
+                  <span className="bg-muted text-muted-foreground mt-1 flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-medium">
+                    {posts.length}
+                  </span>
                 )}
               </div>
-            </button>
+
+              {/* Post badges - Always visible */}
+              <div className="flex flex-col gap-1.5">
+                {posts.slice(0, MAX_BADGES_WEEK).map((post) => (
+                  <HoverCard key={post.id} openDelay={300} closeDelay={100}>
+                    <HoverCardTrigger asChild>
+                      <div>
+                        <SchedulerPostBadge
+                          post={post}
+                          onClick={
+                            onPostClick
+                              ? (e) => {
+                                  e.stopPropagation()
+                                  onPostClick(post)
+                                }
+                              : undefined
+                          }
+                        />
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent
+                      side="right"
+                      sideOffset={8}
+                      align="start"
+                      collisionPadding={16}
+                      className="w-auto p-3"
+                    >
+                      <PostHoverPreview post={post} />
+                    </HoverCardContent>
+                  </HoverCard>
+                ))}
+              </div>
+
+              {/* Expandable posts - Animated container */}
+              {remainingCount > 0 && (
+                <div
+                  className={cn(
+                    'grid transition-[grid-template-rows] duration-300 ease-out',
+                    isExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <div className="flex flex-col gap-1.5 pt-1.5">
+                      {posts.slice(MAX_BADGES_WEEK).map((post) => (
+                        <HoverCard key={post.id} openDelay={300} closeDelay={100}>
+                          <HoverCardTrigger asChild>
+                            <div>
+                              <SchedulerPostBadge
+                                post={post}
+                                onClick={
+                                  onPostClick
+                                    ? (e) => {
+                                        e.stopPropagation()
+                                        onPostClick(post)
+                                      }
+                                    : undefined
+                                }
+                              />
+                            </div>
+                          </HoverCardTrigger>
+                          <HoverCardContent
+                            side="right"
+                            sideOffset={8}
+                            align="start"
+                            collisionPadding={16}
+                            className="w-auto p-3"
+                          >
+                            <PostHoverPreview post={post} />
+                          </HoverCardContent>
+                        </HoverCard>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* More indicator */}
+              {remainingCount > 0 && !isExpanded && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setIsExpanded(true)
+                  }}
+                  className={cn(
+                    'text-muted-foreground hover:text-foreground mt-1 flex items-center justify-center gap-1 text-xs font-medium transition-colors',
+                    'hover:bg-foreground/5 rounded px-1 py-0.5'
+                  )}
+                >
+                  <ChevronDown className="h-3 w-3" />
+                  <span>{t('dashboard.scheduler.calendar.moreCount', { count: remainingCount })}</span>
+                </button>
+              )}
+            </div>
           )
         })}
       </div>
+
+      {/* Collapse button when expanded */}
+      {isExpanded && hasOverflow && (
+        <button
+          type="button"
+          onClick={() => setIsExpanded(false)}
+          className={cn(
+            'text-muted-foreground hover:text-foreground mt-2 flex items-center justify-center gap-1 text-xs font-medium transition-colors',
+            'hover:bg-foreground/5 self-center rounded px-2 py-1'
+          )}
+        >
+          <ChevronUp className="h-3 w-3" />
+          <span>{t('dashboard.scheduler.calendar.showLess')}</span>
+        </button>
+      )}
     </div>
   )
 }

@@ -87,12 +87,48 @@
       "calendar": {
         "today": "Aujourd'hui",
         "moreCount": "+{{count}} autres",
+        "showLess": "Voir moins",
         "weekOf": "Semaine du {{date}}",
         "navigation": {
           "previousMonth": "Mois précédent",
           "nextMonth": "Mois suivant",
           "previousWeek": "Semaine précédente",
           "nextWeek": "Semaine suivante"
+        }
+      },
+      "preview": {
+        "scheduledFor": "Planifié pour {{date}}",
+        "postedAt": "Publié {{date}}",
+        "draft": "Brouillon",
+        "additionalAccounts": "+{{count}} autres",
+        "justNow": "À l'instant",
+        "actions": {
+          "like": "J'aime",
+          "comment": "Commenter",
+          "share": "Partager"
+        }
+      },
+      "detail": {
+        "title": "Détails de la publication",
+        "description": "Voir et gérer cette publication",
+        "caption": "Légende",
+        "noCaption": "Pas de légende",
+        "postingTo": "Publication sur {{count}} compte",
+        "postingTo_other": "Publication sur {{count}} comptes",
+        "createdAt": "Créé {{time}}",
+        "minutesAgo": "il y a {{count}}m",
+        "hoursAgo": "il y a {{count}}h",
+        "daysAgo": "il y a {{count}}j",
+        "yesterday": "Hier",
+        "actions": {
+          "edit": "Modifier",
+          "duplicate": "Dupliquer",
+          "delete": "Supprimer"
+        },
+        "confirmDelete": {
+          "title": "Supprimer la publication",
+          "description": "Êtes-vous sûr de vouloir supprimer cette publication ? Cette action est irréversible.",
+          "deleting": "Suppression..."
         }
       },
       "post": {

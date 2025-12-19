@@ -12,6 +12,7 @@ import type { PostResponse } from '@/types/posts'
 interface SchedulerPostBadgeProps {
   post: PostResponse
   className?: string
+  onClick?: (e: React.MouseEvent) => void
 }
 
 const statusConfig = {
@@ -53,28 +54,54 @@ const statusConfig = {
   },
 } as const
 
-export function SchedulerPostBadge({ post, className }: SchedulerPostBadgeProps) {
+export function SchedulerPostBadge({ post, className, onClick }: SchedulerPostBadgeProps) {
   // Determine status - draft takes precedence
   const status = post.is_draft ? 'draft' : post.status
   const config = statusConfig[status]
   const StatusIcon = config.icon
 
-  // Get the primary platform (first one)
-  const primaryAccount = post.social_accounts[0]
-  const additionalCount = post.social_accounts.length - 1
+  // Get platforms for display (show up to 3 stacked)
+  const visibleAccounts = post.social_accounts.slice(0, 3)
+  const additionalCount = post.social_accounts.length - 3
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (onClick) {
+      e.stopPropagation() // Prevent triggering day cell click
+      onClick(e)
+    }
+  }
 
   return (
     <div
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onClick={handleClick}
+      onKeyDown={onClick ? (e) => e.key === 'Enter' && handleClick(e as unknown as React.MouseEvent) : undefined}
       className={cn(
         'flex items-center gap-1.5 rounded-lg border px-2 py-1 transition-all duration-150',
         config.bg,
         config.border,
+        onClick && 'cursor-pointer',
         'hover:scale-[1.02] hover:shadow-sm',
         className
       )}
     >
-      {/* Platform Icon */}
-      {primaryAccount && <PlatformIcon platform={primaryAccount.platform} size="xs" />}
+      {/* Platform Icons - Stacked */}
+      <div className="flex -space-x-1">
+        {visibleAccounts.map((account, idx) => (
+          <div
+            key={account.id}
+            className="relative"
+            style={{ zIndex: visibleAccounts.length - idx }}
+          >
+            <PlatformIcon
+              platform={account.platform}
+              size="xs"
+              className="ring-1 ring-white/20"
+            />
+          </div>
+        ))}
+      </div>
 
       {/* Additional platforms indicator */}
       {additionalCount > 0 && (
