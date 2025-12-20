@@ -225,6 +225,16 @@
         "havingIssues": "¿Tienes problemas?",
         "contactSupport": "Contactar soporte"
       },
+      "oauth": {
+        "success": "¡{{platform}} conectado con éxito!",
+        "error": {
+          "generic": "Error al conectar {{platform}}",
+          "tokenExpired": "La autorización expiró. Por favor, inténtalo de nuevo.",
+          "accessDenied": "Acceso denegado. Por favor, otorga los permisos para continuar.",
+          "invalidState": "Solicitud inválida. Por favor, inténtalo de nuevo.",
+          "rateLimit": "Demasiadas solicitudes. Por favor, espera e inténtalo de nuevo."
+        }
+      },
       "requirements": {
         "youtube": {
           "channel": "Debe ser un canal de YouTube que poseas o administres",

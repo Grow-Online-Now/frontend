@@ -224,6 +224,16 @@
         "havingIssues": "Des problèmes ?",
         "contactSupport": "Contacter le support"
       },
+      "oauth": {
+        "success": "{{platform}} connecté avec succès !",
+        "error": {
+          "generic": "Échec de la connexion à {{platform}}",
+          "tokenExpired": "Autorisation expirée. Veuillez réessayer.",
+          "accessDenied": "Accès refusé. Veuillez accorder les permissions pour continuer.",
+          "invalidState": "Requête invalide. Veuillez réessayer.",
+          "rateLimit": "Trop de requêtes. Veuillez patienter et réessayer."
+        }
+      },
       "requirements": {
         "youtube": {
           "channel": "Doit être une chaîne YouTube que vous possédez ou gérez",

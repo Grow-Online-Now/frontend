@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {
   getConnections,
   getConnectUrl,
@@ -26,6 +26,7 @@ interface UseConnectionsReturn extends UseConnectionsState {
   disconnect: (connectionId: string) => Promise<void>
   refetch: () => Promise<void>
   facebookPagesData: FacebookPagesData | null
+  setFacebookPagesData: (data: FacebookPagesData | null) => void
   selectFacebookPageAndConnect: (pageId: string) => Promise<void>
   clearFacebookPages: () => void
   // Bluesky credential flow (not OAuth)
@@ -36,13 +37,9 @@ interface UseConnectionsReturn extends UseConnectionsState {
   blueskyError: string | null
 }
 
-const POPUP_WIDTH = 600
-const POPUP_HEIGHT = 700
-const POPUP_POLL_INTERVAL = 500
-
 /**
  * Hook to manage social media connections
- * Handles fetching, connecting (OAuth popup), and disconnecting
+ * Handles fetching, connecting (OAuth redirect), and disconnecting
  */
 export function useConnections(): UseConnectionsReturn {
   const { currentWorkspace } = useWorkspace()
@@ -52,8 +49,6 @@ export function useConnections(): UseConnectionsReturn {
     error: null,
   })
   const [facebookPagesData, setFacebookPagesData] = useState<FacebookPagesData | null>(null)
-  const popupRef = useRef<Window | null>(null)
-  const receivedFacebookPagesRef = useRef(false)
 
   // Bluesky credential flow state
   const [showBlueskyModal, setShowBlueskyModal] = useState(false)
@@ -84,36 +79,7 @@ export function useConnections(): UseConnectionsReturn {
   }, [])
 
   /**
-   * Handle messages from OAuth popup (for Facebook page selection)
-   */
-  const handleOAuthMessage = useCallback(
-    (event: MessageEvent) => {
-      // Verify origin matches our frontend (the popup sends from same origin)
-      if (event.origin !== window.location.origin) {
-        return
-      }
-
-      const data = event.data
-      if (data?.type === 'oauth-callback' && data?.platform === 'facebook' && data?.pages) {
-        // Facebook OAuth returned pages for selection
-        receivedFacebookPagesRef.current = true
-        setFacebookPagesData({
-          pendingKey: data.pendingKey,
-          pages: data.pages,
-        })
-        // Close the popup
-        popupRef.current?.close()
-      } else if (data?.type === 'oauth-callback' && data?.success) {
-        // Other platforms: connection complete
-        popupRef.current?.close()
-        fetchConnections()
-      }
-    },
-    [fetchConnections]
-  )
-
-  /**
-   * Open OAuth popup for connecting a platform
+   * Redirect to OAuth for connecting a platform
    * For Bluesky, opens modal instead (credential-based auth)
    */
   const connect = useCallback(
@@ -133,42 +99,11 @@ export function useConnections(): UseConnectionsReturn {
         return
       }
 
+      // Full page redirect to OAuth
       const url = getConnectUrl(platform, currentWorkspace.id)
-
-      // Calculate popup position (centered)
-      const left = window.screenX + (window.outerWidth - POPUP_WIDTH) / 2
-      const top = window.screenY + (window.outerHeight - POPUP_HEIGHT) / 2
-
-      const popup = window.open(
-        url,
-        'oauth-popup',
-        `width=${POPUP_WIDTH},height=${POPUP_HEIGHT},left=${left},top=${top},toolbar=no,menubar=no`
-      )
-
-      if (!popup) {
-        setState((prev) => ({
-          ...prev,
-          error: 'Popup was blocked. Please allow popups and try again.',
-        }))
-        return
-      }
-
-      popupRef.current = popup
-      receivedFacebookPagesRef.current = false
-
-      // Poll for popup close
-      const pollInterval = setInterval(() => {
-        if (popup.closed) {
-          clearInterval(pollInterval)
-          popupRef.current = null
-          // Refetch connections after popup closes (unless we received Facebook pages to select)
-          if (!receivedFacebookPagesRef.current) {
-            fetchConnections()
-          }
-        }
-      }, POPUP_POLL_INTERVAL)
+      window.location.href = url
     },
-    [currentWorkspace, fetchConnections]
+    [currentWorkspace]
   )
 
   /**
@@ -218,7 +153,6 @@ export function useConnections(): UseConnectionsReturn {
    */
   const clearFacebookPages = useCallback(() => {
     setFacebookPagesData(null)
-    receivedFacebookPagesRef.current = false
   }, [])
 
   /**
@@ -253,20 +187,13 @@ export function useConnections(): UseConnectionsReturn {
     fetchConnections()
   }, [fetchConnections])
 
-  // Listen for OAuth callback messages
-  useEffect(() => {
-    window.addEventListener('message', handleOAuthMessage)
-    return () => {
-      window.removeEventListener('message', handleOAuthMessage)
-    }
-  }, [handleOAuthMessage])
-
   return {
     ...state,
     connect,
     disconnect,
     refetch: fetchConnections,
     facebookPagesData,
+    setFacebookPagesData,
     selectFacebookPageAndConnect,
     clearFacebookPages,
     // Bluesky

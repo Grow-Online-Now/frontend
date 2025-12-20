@@ -309,6 +309,16 @@
         "havingIssues": "Having issues?",
         "contactSupport": "Contact support"
       },
+      "oauth": {
+        "success": "{{platform}} connected successfully!",
+        "error": {
+          "generic": "Failed to connect {{platform}}",
+          "tokenExpired": "Authorization expired. Please try again.",
+          "accessDenied": "Access was denied. Please grant permissions to continue.",
+          "invalidState": "Invalid request. Please try again.",
+          "rateLimit": "Too many requests. Please wait and try again."
+        }
+      },
       "requirements": {
         "youtube": {
           "channel": "Must be a YouTube channel you own or manage",

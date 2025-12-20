@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
 import {
@@ -12,6 +13,7 @@ import {
 import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useConnections } from '@/hooks/useConnections'
+import { useOAuthResult } from '@/hooks/useOAuthResult'
 import type { SocialPlatform, Connection } from '@/types/connections'
 
 // Platform configuration with requirements for the connect modal
@@ -95,6 +97,7 @@ export default function AccountsPage() {
     connect,
     disconnect,
     facebookPagesData,
+    setFacebookPagesData,
     clearFacebookPages,
     refetch,
     // Bluesky
@@ -104,8 +107,32 @@ export default function AccountsPage() {
     blueskyLoading,
     blueskyError,
   } = useConnections()
+  const oauthResult = useOAuthResult()
   const [selectedPlatform, setSelectedPlatform] = useState<PlatformConfig | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [handledOAuthResult, setHandledOAuthResult] = useState(false)
+
+  // Handle OAuth callback results from URL params (only once)
+  useEffect(() => {
+    if (!oauthResult || handledOAuthResult) return
+
+    setHandledOAuthResult(true)
+
+    if (oauthResult.success && oauthResult.platform === 'facebook' && oauthResult.facebookPages) {
+      // Facebook: show page selector modal
+      setFacebookPagesData({
+        pendingKey: oauthResult.pendingKey!,
+        pages: oauthResult.facebookPages,
+      })
+    } else if (oauthResult.success && oauthResult.platform) {
+      // Other platforms: show success toast and refresh
+      const platformName = t(`dashboard.accounts.platforms.${oauthResult.platform}`)
+      toast.success(t('dashboard.accounts.oauth.success', { platform: platformName }))
+      refetch()
+    } else if (oauthResult.error) {
+      toast.error(oauthResult.error)
+    }
+  }, [oauthResult, handledOAuthResult, refetch, setFacebookPagesData, t])
 
   // Filter platforms to show only unconnected ones
   const availablePlatforms = platforms.filter(

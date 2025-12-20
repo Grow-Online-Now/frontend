@@ -84,7 +84,6 @@ export default function CreateTextPostPage() {
     resetFlow()
   }, [setShowProgressModal, resetFlow])
 
-
   // Fetch recent media for the sidebar
   const { media: recentMedia, isLoading: isLoadingMedia } = useMediaLibrary({ limit: 10 })
 

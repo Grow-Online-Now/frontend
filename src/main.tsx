@@ -18,7 +18,6 @@ import { BestTimeToPostTool } from './pages/BestTimeToPostTool.tsx'
 import { SignUp } from './pages/SignUp.tsx'
 import { SignIn } from './pages/SignIn.tsx'
 import { NotFound } from './pages/NotFound.tsx'
-import OAuthCallback from './pages/OAuthCallback.tsx'
 import RootLayout from './layout/RootLayout.tsx'
 import { LanguageLayout } from './layout/LanguageLayout.tsx'
 import { ProtectedRoute } from './components/auth/ProtectedRoute.tsx'
@@ -167,8 +166,6 @@ const router = createBrowserRouter([
     children: [
       // Redirect root to default language
       { path: '/', element: <Navigate to="/en" replace /> },
-      // OAuth callback (no language prefix - called from backend)
-      { path: '/oauth/callback', element: <OAuthCallback /> },
       // Language-prefixed routes
       {
         path: '/:lang',
