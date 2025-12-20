@@ -241,18 +241,34 @@
       }
     },
     "accounts": {
-      "title": "Connected Accounts",
-      "description": "Manage your social media accounts",
+      "title": "Accounts",
+      "description": "Manage your social media connections",
       "connectNew": "Connect Account",
+      "connected": {
+        "title": "Connected Accounts",
+        "description": "Manage your connected social media accounts",
+        "empty": "No accounts connected yet"
+      },
+      "available": {
+        "title": "Available Platforms",
+        "description": "Connect new social media accounts",
+        "privacyNote": "We only request permissions to schedule posts. Passwords are never stored. Disconnect anytime in settings."
+      },
       "status": {
         "connected": "Connected",
         "disconnected": "Disconnected",
-        "error": "Connection Error"
+        "error": "Connection Error",
+        "expired": "Connection expired - please reconnect",
+        "needsRefresh": "Connection needs to be refreshed"
       },
       "actions": {
         "disconnect": "Disconnect",
         "reconnect": "Reconnect",
         "settings": "Settings"
+      },
+      "disconnect": {
+        "title": "Disconnect account?",
+        "description": "Are you sure you want to disconnect {{platform}} (@{{username}})? Any scheduled posts using this account will be removed."
       },
       "platforms": {
         "instagram": "Instagram",

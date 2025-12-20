@@ -32,21 +32,16 @@ interface SchedulerPostPreviewProps {
 /**
  * Main preview component that routes to platform-specific previews
  */
-export function SchedulerPostPreview({
-  post,
-  platform,
-  className,
-}: SchedulerPostPreviewProps) {
+export function SchedulerPostPreview({ post, platform, className }: SchedulerPostPreviewProps) {
   // Use provided platform or first account's platform
   const targetPlatform = platform || post.social_accounts[0]?.platform
-  const account = post.social_accounts.find((a) => a.platform === targetPlatform) ||
-    post.social_accounts[0]
+  const account =
+    post.social_accounts.find((a) => a.platform === targetPlatform) || post.social_accounts[0]
 
   if (!account) return null
 
-  const truncatedCaption = post.caption.length > 150
-    ? post.caption.slice(0, 150) + '...'
-    : post.caption
+  const truncatedCaption =
+    post.caption.length > 150 ? post.caption.slice(0, 150) + '...' : post.caption
 
   return (
     <div className={cn('w-[300px]', className)}>
@@ -83,9 +78,7 @@ export function SchedulerPostPreview({
       <div className="mt-2 flex items-center justify-between">
         <PostStatusBadge status={post.status} isDraft={post.is_draft} />
         {post.social_accounts.length > 1 && (
-          <span className="text-muted-foreground text-xs">
-            +{post.social_accounts.length - 1}
-          </span>
+          <span className="text-muted-foreground text-xs">+{post.social_accounts.length - 1}</span>
         )}
       </div>
     </div>
@@ -110,20 +103,21 @@ function TwitterSchedulerPreview({
             <span className="truncate text-sm font-bold text-white">
               {account.display_name || account.username}
             </span>
-            <span className="text-[#71767b] text-sm">
-              @{account.username}
-            </span>
+            <span className="text-sm text-[#71767b]">@{account.username}</span>
           </div>
           {/* Caption */}
-          <p className="mt-1 whitespace-pre-wrap text-sm leading-[1.3] text-white">
-            {caption || <span className="italic text-[#71767b]">No caption</span>}
+          <p className="mt-1 text-sm leading-[1.3] whitespace-pre-wrap text-white">
+            {caption || <span className="text-[#71767b] italic">No caption</span>}
           </p>
         </div>
       </div>
 
       {/* Actions */}
       <div className="flex items-center justify-between px-3 pb-3">
-        <EngagementButton icon={<MessageCircle className="h-4 w-4" />} hoverColor="text-[#1d9bf0]" />
+        <EngagementButton
+          icon={<MessageCircle className="h-4 w-4" />}
+          hoverColor="text-[#1d9bf0]"
+        />
         <EngagementButton icon={<Repeat2 className="h-4 w-4" />} hoverColor="text-[#00ba7c]" />
         <EngagementButton icon={<Heart className="h-4 w-4" />} hoverColor="text-[#f91880]" />
         <EngagementButton icon={<BarChart2 className="h-4 w-4" />} hoverColor="text-[#1d9bf0]" />
@@ -135,13 +129,7 @@ function TwitterSchedulerPreview({
 
 function TwitterAvatar({ account }: { account: PostSocialAccount }) {
   if (account.avatar_url) {
-    return (
-      <img
-        src={account.avatar_url}
-        alt=""
-        className="h-10 w-10 rounded-full object-cover"
-      />
-    )
+    return <img src={account.avatar_url} alt="" className="h-10 w-10 rounded-full object-cover" />
   }
 
   return (
@@ -151,21 +139,9 @@ function TwitterAvatar({ account }: { account: PostSocialAccount }) {
   )
 }
 
-function EngagementButton({
-  icon,
-  hoverColor,
-}: {
-  icon: React.ReactNode
-  hoverColor: string
-}) {
+function EngagementButton({ icon, hoverColor }: { icon: React.ReactNode; hoverColor: string }) {
   return (
-    <button
-      type="button"
-      className={cn(
-        'text-[#71767b] transition-colors',
-        `hover:${hoverColor}`
-      )}
-    >
+    <button type="button" className={cn('text-[#71767b] transition-colors', `hover:${hoverColor}`)}>
       {icon}
     </button>
   )
@@ -196,9 +172,7 @@ function InstagramSchedulerPreview({
             </div>
           )}
         </div>
-        <span className="text-foreground text-sm font-semibold">
-          {account.username}
-        </span>
+        <span className="text-foreground text-sm font-semibold">{account.username}</span>
         <MoreHorizontal className="text-foreground ml-auto h-4 w-4" />
       </div>
 
@@ -219,8 +193,7 @@ function InstagramSchedulerPreview({
       {caption && (
         <div className="px-3 pb-3">
           <p className="text-foreground text-sm leading-[1.4]">
-            <span className="font-semibold">{account.username}</span>{' '}
-            {caption}
+            <span className="font-semibold">{account.username}</span> {caption}
           </p>
         </div>
       )}
@@ -243,11 +216,7 @@ function LinkedInSchedulerPreview({
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
         {account.avatar_url ? (
-          <img
-            src={account.avatar_url}
-            alt=""
-            className="h-10 w-10 rounded-full object-cover"
-          />
+          <img src={account.avatar_url} alt="" className="h-10 w-10 rounded-full object-cover" />
         ) : (
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#0a66c2] to-[#004182] text-sm font-semibold text-white">
             {(account.display_name || account.username)?.[0]?.toUpperCase() || 'U'}
@@ -306,11 +275,7 @@ function FacebookSchedulerPreview({
       {/* Header */}
       <div className="flex items-center gap-2.5 p-3">
         {account.avatar_url ? (
-          <img
-            src={account.avatar_url}
-            alt=""
-            className="h-10 w-10 rounded-full object-cover"
-          />
+          <img src={account.avatar_url} alt="" className="h-10 w-10 rounded-full object-cover" />
         ) : (
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#1877f2] to-[#0a5dc2] text-sm font-semibold text-white">
             {(account.display_name || account.username)?.[0]?.toUpperCase() || 'U'}
@@ -408,9 +373,7 @@ function TikTokSchedulerPreview({
             )}
             <span className="text-sm font-semibold text-white">@{account.username}</span>
           </div>
-          {caption && (
-            <p className="mt-2 line-clamp-2 text-sm text-white">{caption}</p>
-          )}
+          {caption && <p className="mt-2 line-clamp-2 text-sm text-white">{caption}</p>}
         </div>
       </div>
     </div>
@@ -441,18 +404,14 @@ function YouTubeSchedulerPreview({
       {/* Info */}
       <div className="flex gap-3 p-3">
         {account.avatar_url ? (
-          <img
-            src={account.avatar_url}
-            alt=""
-            className="h-9 w-9 rounded-full object-cover"
-          />
+          <img src={account.avatar_url} alt="" className="h-9 w-9 rounded-full object-cover" />
         ) : (
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff0000] text-sm font-semibold text-white">
             {(account.display_name || account.username)?.[0]?.toUpperCase() || 'U'}
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <h4 className="text-foreground line-clamp-2 text-sm font-medium leading-tight">
+          <h4 className="text-foreground line-clamp-2 text-sm leading-tight font-medium">
             {caption || 'Untitled video'}
           </h4>
           <p className="text-muted-foreground mt-1 text-xs">
@@ -490,16 +449,10 @@ function PinterestSchedulerPreview({
 
       {/* Info */}
       <div className="p-3">
-        {caption && (
-          <p className="text-foreground line-clamp-2 text-sm font-medium">{caption}</p>
-        )}
+        {caption && <p className="text-foreground line-clamp-2 text-sm font-medium">{caption}</p>}
         <div className="mt-2 flex items-center gap-2">
           {account.avatar_url ? (
-            <img
-              src={account.avatar_url}
-              alt=""
-              className="h-6 w-6 rounded-full object-cover"
-            />
+            <img src={account.avatar_url} alt="" className="h-6 w-6 rounded-full object-cover" />
           ) : (
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#e60023] text-xs font-semibold text-white">
               {account.username?.[0]?.toUpperCase() || 'U'}
@@ -534,9 +487,7 @@ function GenericSchedulerPreview({
         </div>
       </div>
 
-      {caption && (
-        <p className="text-foreground text-sm leading-[1.4]">{caption}</p>
-      )}
+      {caption && <p className="text-foreground text-sm leading-[1.4]">{caption}</p>}
     </div>
   )
 }

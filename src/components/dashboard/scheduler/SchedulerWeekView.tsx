@@ -257,7 +257,9 @@ export function SchedulerWeekView({
                   )}
                 >
                   <ChevronDown className="h-3 w-3" />
-                  <span>{t('dashboard.scheduler.calendar.moreCount', { count: remainingCount })}</span>
+                  <span>
+                    {t('dashboard.scheduler.calendar.moreCount', { count: remainingCount })}
+                  </span>
                 </button>
               )}
             </div>

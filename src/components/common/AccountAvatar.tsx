@@ -140,7 +140,7 @@ export function AccountAvatar({
           config.avatar,
           showBorder && 'border-background box-content border-2',
           isUnconnected
-            ? 'border-2 border-dashed border-muted-foreground/40 bg-muted/30'
+            ? 'border-muted-foreground/40 bg-muted/30 border-2 border-dashed'
             : 'bg-muted'
         )}
       >
@@ -167,9 +167,7 @@ export function AccountAvatar({
           )}
           style={{ backgroundColor: BADGE_BG_COLOR }}
         >
-          <div className={cn(config.badgeIcon, 'text-background')}>
-            {PLATFORM_ICONS[platform]}
-          </div>
+          <div className={cn(config.badgeIcon, 'text-background')}>{PLATFORM_ICONS[platform]}</div>
         </div>
       )}
     </div>

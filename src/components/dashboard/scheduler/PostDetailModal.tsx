@@ -170,10 +170,10 @@ export function PostDetailModal({ post, open, onOpenChange, onDelete }: PostDeta
 
             {/* Caption */}
             <div className="space-y-2">
-              <h4 className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
+              <h4 className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
                 {t('dashboard.scheduler.detail.caption')}
               </h4>
-              <p className="text-foreground max-h-48 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed">
+              <p className="text-foreground max-h-48 overflow-y-auto text-sm leading-relaxed whitespace-pre-wrap">
                 {post.caption || (
                   <span className="text-muted-foreground italic">
                     {t('dashboard.scheduler.detail.noCaption')}
@@ -211,7 +211,9 @@ export function PostDetailModal({ post, open, onOpenChange, onDelete }: PostDeta
       <AlertDialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>{t('dashboard.scheduler.detail.confirmDelete.title')}</AlertDialogTitle>
+            <AlertDialogTitle>
+              {t('dashboard.scheduler.detail.confirmDelete.title')}
+            </AlertDialogTitle>
             <AlertDialogDescription>
               {t('dashboard.scheduler.detail.confirmDelete.description')}
             </AlertDialogDescription>

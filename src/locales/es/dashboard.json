@@ -157,18 +157,34 @@
       }
     },
     "accounts": {
-      "title": "Cuentas conectadas",
-      "description": "Gestiona tus cuentas de redes sociales",
+      "title": "Cuentas",
+      "description": "Gestiona tus conexiones de redes sociales",
       "connectNew": "Conectar cuenta",
+      "connected": {
+        "title": "Cuentas conectadas",
+        "description": "Gestiona tus cuentas de redes sociales conectadas",
+        "empty": "Aún no hay cuentas conectadas"
+      },
+      "available": {
+        "title": "Plataformas disponibles",
+        "description": "Conecta nuevas cuentas de redes sociales",
+        "privacyNote": "Solo solicitamos permisos para programar publicaciones. Las contraseñas nunca se almacenan. Desconéctate en cualquier momento en la configuración."
+      },
       "status": {
         "connected": "Conectada",
         "disconnected": "Desconectada",
-        "error": "Error de conexión"
+        "error": "Error de conexión",
+        "expired": "Conexión expirada - por favor reconecta",
+        "needsRefresh": "La conexión necesita ser actualizada"
       },
       "actions": {
         "disconnect": "Desconectar",
         "reconnect": "Reconectar",
         "settings": "Configuración"
+      },
+      "disconnect": {
+        "title": "¿Desconectar cuenta?",
+        "description": "¿Estás seguro de que quieres desconectar {{platform}} (@{{username}})? Todas las publicaciones programadas que usen esta cuenta serán eliminadas."
       },
       "platforms": {
         "instagram": "Instagram",
@@ -178,7 +194,8 @@
         "tiktok": "TikTok",
         "youtube": "YouTube",
         "pinterest": "Pinterest",
-        "threads": "Threads"
+        "threads": "Threads",
+        "bluesky": "Bluesky"
       },
       "empty": {
         "title": "No hay cuentas conectadas",

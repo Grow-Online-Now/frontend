@@ -164,11 +164,7 @@ export function AccountSelector({
                   className="group relative shrink-0 focus-visible:outline-none"
                 >
                   <div className="opacity-50 transition-opacity duration-150 group-hover:opacity-80">
-                    <AccountAvatar
-                      platform={platform}
-                      size="lg"
-                      isUnconnected
-                    />
+                    <AccountAvatar platform={platform} size="lg" isUnconnected />
                   </div>
                 </button>
               </TooltipTrigger>

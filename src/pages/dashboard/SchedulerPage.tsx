@@ -2,7 +2,6 @@ import { useState, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
-import { InfoHint } from '@/components/dashboard/shared/InfoHint'
 import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
 import { Button } from '@/components/ui/button'
 import {

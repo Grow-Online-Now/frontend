@@ -1,5 +1,7 @@
 export { AccountBadge } from './AccountBadge'
+export { AvailablePlatformCard } from './AvailablePlatformCard'
 export { BlueskyConnectModal } from './BlueskyConnectModal'
+export { ConnectedAccountRow } from './ConnectedAccountRow'
 export { ConnectPlatformModal } from './ConnectPlatformModal'
 export { FacebookPageSelector } from './FacebookPageSelector'
 export { PinterestBoardSettings } from './PinterestBoardSettings'

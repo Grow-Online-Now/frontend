@@ -1,14 +1,15 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
+import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
 import {
-  PlatformRow,
+  ConnectedAccountRow,
+  AvailablePlatformCard,
   ConnectPlatformModal,
   FacebookPageSelector,
   BlueskyConnectModal,
 } from '@/components/dashboard/accounts'
 import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
-import { InfoHint } from '@/components/dashboard/shared/InfoHint'
-import { ProgressIndicator } from '@/components/dashboard/shared/ProgressIndicator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useConnections } from '@/hooks/useConnections'
 import type { SocialPlatform, Connection } from '@/types/connections'
@@ -86,6 +87,7 @@ const platforms: PlatformConfig[] = [
 ]
 
 export default function AccountsPage() {
+  const { t } = useTranslation()
   const {
     connections,
     isLoading,
@@ -105,13 +107,10 @@ export default function AccountsPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<PlatformConfig | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const getConnectionsForPlatform = (platformId: SocialPlatform): Connection[] => {
-    return connections.filter((connection) => connection.platform === platformId)
-  }
-
-  const connectedPlatformsCount = platforms.filter(
-    (platform) => getConnectionsForPlatform(platform.id).length > 0
-  ).length
+  // Filter platforms to show only unconnected ones
+  const availablePlatforms = platforms.filter(
+    (platform) => !connections.some((conn) => conn.platform === platform.id)
+  )
 
   const handleConnectClick = (platformId: SocialPlatform) => {
     const platform = platforms.find((p) => p.id === platformId)
@@ -136,11 +135,32 @@ export default function AccountsPage() {
           titleKey="dashboard.accounts.title"
           descriptionKey="dashboard.accounts.description"
         />
-        <div className="mt-6 space-y-4">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Skeleton key={i} className="h-20 w-full rounded-2xl" />
-          ))}
-        </div>
+
+        {/* Connected Accounts Skeleton */}
+        <DashboardCard
+          titleKey="dashboard.accounts.connected.title"
+          descriptionKey="dashboard.accounts.connected.description"
+          className="mt-6"
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[1, 2].map((i) => (
+              <Skeleton key={i} className="h-16 w-full rounded-lg" />
+            ))}
+          </div>
+        </DashboardCard>
+
+        {/* Available Platforms Skeleton */}
+        <DashboardCard
+          titleKey="dashboard.accounts.available.title"
+          descriptionKey="dashboard.accounts.available.description"
+          className="mt-6"
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Skeleton key={i} className="h-16 w-full rounded-lg" />
+            ))}
+          </div>
+        </DashboardCard>
       </div>
     )
   }
@@ -152,29 +172,50 @@ export default function AccountsPage() {
         descriptionKey="dashboard.accounts.description"
       />
 
-      <InfoHint textKey="dashboard.hints.accounts.intro" className="mt-2 mb-6" />
+      {error && <ErrorAlert message={error} className="mt-6" />}
 
-      <ProgressIndicator
-        current={connectedPlatformsCount}
-        total={platforms.length}
-        labelKey="dashboard.hints.accounts.progress"
-        showBar
-        className="mb-6"
-      />
+      {/* Connected Accounts Section */}
+      <DashboardCard
+        titleKey="dashboard.accounts.connected.title"
+        descriptionKey="dashboard.accounts.connected.description"
+        className="mt-6"
+      >
+        {connections.length === 0 ? (
+          <p className="text-muted-foreground text-sm">{t('dashboard.accounts.connected.empty')}</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {connections.map((connection) => (
+              <ConnectedAccountRow
+                key={connection.id}
+                connection={connection}
+                onDisconnect={handleDisconnect}
+              />
+            ))}
+          </div>
+        )}
+      </DashboardCard>
 
-      {error && <ErrorAlert message={error} className="mb-6" />}
-
-      <div className="space-y-4">
-        {platforms.map((platform) => (
-          <PlatformRow
-            key={platform.id}
-            platform={platform}
-            connections={getConnectionsForPlatform(platform.id)}
-            onConnect={handleConnectClick}
-            onDisconnect={handleDisconnect}
-          />
-        ))}
-      </div>
+      {/* Available Platforms Section */}
+      {availablePlatforms.length > 0 && (
+        <DashboardCard
+          titleKey="dashboard.accounts.available.title"
+          descriptionKey="dashboard.accounts.available.description"
+          className="mt-6"
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {availablePlatforms.map((platform) => (
+              <AvailablePlatformCard
+                key={platform.id}
+                platform={platform}
+                onConnect={handleConnectClick}
+              />
+            ))}
+          </div>
+          <p className="text-muted-foreground mt-4 text-sm">
+            {t('dashboard.accounts.available.privacyNote')}
+          </p>
+        </DashboardCard>
+      )}
 
       <ConnectPlatformModal
         open={isModalOpen}

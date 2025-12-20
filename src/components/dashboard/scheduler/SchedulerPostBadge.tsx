@@ -76,7 +76,11 @@ export function SchedulerPostBadge({ post, className, onClick }: SchedulerPostBa
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       onClick={handleClick}
-      onKeyDown={onClick ? (e) => e.key === 'Enter' && handleClick(e as unknown as React.MouseEvent) : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => e.key === 'Enter' && handleClick(e as unknown as React.MouseEvent)
+          : undefined
+      }
       className={cn(
         'flex items-center gap-1.5 rounded-lg border px-2 py-1 transition-all duration-150',
         config.bg,
@@ -94,11 +98,7 @@ export function SchedulerPostBadge({ post, className, onClick }: SchedulerPostBa
             className="relative"
             style={{ zIndex: visibleAccounts.length - idx }}
           >
-            <PlatformIcon
-              platform={account.platform}
-              size="xs"
-              className="ring-1 ring-white/20"
-            />
+            <PlatformIcon platform={account.platform} size="xs" className="ring-1 ring-white/20" />
           </div>
         ))}
       </div>

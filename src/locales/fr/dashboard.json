@@ -156,18 +156,34 @@
       }
     },
     "accounts": {
-      "title": "Comptes connectés",
-      "description": "Gérez vos comptes de réseaux sociaux",
+      "title": "Comptes",
+      "description": "Gérez vos connexions de réseaux sociaux",
       "connectNew": "Connecter un compte",
+      "connected": {
+        "title": "Comptes connectés",
+        "description": "Gérez vos comptes de réseaux sociaux connectés",
+        "empty": "Aucun compte connecté pour le moment"
+      },
+      "available": {
+        "title": "Plateformes disponibles",
+        "description": "Connecter de nouveaux comptes de réseaux sociaux",
+        "privacyNote": "Nous ne demandons que les autorisations nécessaires pour planifier des publications. Les mots de passe ne sont jamais stockés. Déconnectez-vous à tout moment dans les paramètres."
+      },
       "status": {
         "connected": "Connecté",
         "disconnected": "Déconnecté",
-        "error": "Erreur de connexion"
+        "error": "Erreur de connexion",
+        "expired": "Connexion expirée - veuillez reconnecter",
+        "needsRefresh": "La connexion doit être actualisée"
       },
       "actions": {
         "disconnect": "Déconnecter",
         "reconnect": "Reconnecter",
         "settings": "Paramètres"
+      },
+      "disconnect": {
+        "title": "Déconnecter le compte ?",
+        "description": "Êtes-vous sûr de vouloir déconnecter {{platform}} (@{{username}}) ? Toutes les publications programmées utilisant ce compte seront supprimées."
       },
       "platforms": {
         "instagram": "Instagram",
@@ -177,7 +193,8 @@
         "tiktok": "TikTok",
         "youtube": "YouTube",
         "pinterest": "Pinterest",
-        "threads": "Threads"
+        "threads": "Threads",
+        "bluesky": "Bluesky"
       },
       "empty": {
         "title": "Aucun compte connecté",
