@@ -78,6 +78,9 @@ export interface UseTextFlowReturn {
   // Unconnected platforms
   unconnectedPlatforms: SocialPlatform[]
 
+  // Connect a platform (opens OAuth popup)
+  connectPlatform: (platform: SocialPlatform) => void
+
   // Progress modal state
   showProgressModal: boolean
   setShowProgressModal: (show: boolean) => void
@@ -92,7 +95,7 @@ export function useTextFlow(): UseTextFlowReturn {
   const { lang } = useParams<{ lang: string }>()
 
   // Compose existing hooks
-  const { connections, isLoading: isLoadingConnections } = useConnections()
+  const { connections, isLoading: isLoadingConnections, connect } = useConnections()
   const mediaUpload = useMediaUpload()
   const {
     submitPost: createPost,
@@ -454,6 +457,7 @@ export function useTextFlow(): UseTextFlowReturn {
     isLoadingConnections,
     hasTextFirstAccounts,
     unconnectedPlatforms,
+    connectPlatform: connect,
     // Progress modal state
     showProgressModal,
     setShowProgressModal,

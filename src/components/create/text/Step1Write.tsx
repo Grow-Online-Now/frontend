@@ -45,7 +45,7 @@ interface Step1WriteProps {
   validations?: ValidationWarning[]
   onShortenWithAI?: (platformId: string) => void
   unconnectedPlatforms?: SocialPlatform[]
-  onConnectPlatform?: () => void
+  onConnectPlatform?: (platform: SocialPlatform) => void
 
   // Library panel data
   recentMedia: MediaItem[]

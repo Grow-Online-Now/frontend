@@ -23,7 +23,7 @@ interface AccountSelectorProps {
   onOpenPreview?: () => void
   onOpenLibrary?: () => void
   unconnectedPlatforms?: SocialPlatform[]
-  onConnectPlatform?: () => void
+  onConnectPlatform?: (platform: SocialPlatform) => void
   className?: string
 }
 
@@ -160,7 +160,7 @@ export function AccountSelector({
               <TooltipTrigger asChild>
                 <button
                   type="button"
-                  onClick={onConnectPlatform}
+                  onClick={() => onConnectPlatform?.(platform)}
                   className="group relative shrink-0 focus-visible:outline-none"
                 >
                   <div className="opacity-50 transition-opacity duration-150 group-hover:opacity-80">

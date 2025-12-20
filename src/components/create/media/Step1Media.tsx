@@ -52,7 +52,7 @@ interface Step1MediaProps {
   onToggleAccount: (id: string) => void
   validations?: MediaFlowValidationWarning[]
   unconnectedPlatforms?: SocialPlatform[]
-  onConnectPlatform?: () => void
+  onConnectPlatform?: (platform: SocialPlatform) => void
 
   // Platform configurations
   platformConfigs: PlatformConfigurations

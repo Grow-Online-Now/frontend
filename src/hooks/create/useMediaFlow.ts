@@ -85,6 +85,9 @@ export interface UseMediaFlowReturn {
   // Unconnected platforms
   unconnectedPlatforms: SocialPlatform[]
 
+  // Connect a platform (opens OAuth popup)
+  connectPlatform: (platform: SocialPlatform) => void
+
   // Progress modal state
   showProgressModal: boolean
   setShowProgressModal: (show: boolean) => void
@@ -99,7 +102,7 @@ export function useMediaFlow(): UseMediaFlowReturn {
   const { lang } = useParams<{ lang: string }>()
 
   // Compose existing hooks
-  const { connections, isLoading: isLoadingConnections } = useConnections()
+  const { connections, isLoading: isLoadingConnections, connect } = useConnections()
   const mediaUpload = useMediaUpload()
   const {
     submitPost: createPost,
@@ -503,6 +506,7 @@ export function useMediaFlow(): UseMediaFlowReturn {
     isLoadingConnections,
     hasMediaFirstAccounts,
     unconnectedPlatforms,
+    connectPlatform: connect,
     // Progress modal state
     showProgressModal,
     setShowProgressModal,
