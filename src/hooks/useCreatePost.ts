@@ -78,17 +78,18 @@ export function useCreatePost(): UseCreatePostReturn {
         try {
           const response = await getPost(postId)
 
-          // Update state with latest platform posts
+          // Update state with latest platform posts (API returns platform_results)
           setState((prev) => ({
             ...prev,
             createdPost: response,
-            platformPosts: response.platformPosts || [],
+            platformPosts: response.platform_results || response.platformPosts || [],
           }))
 
           // Check if all platforms are done
-          const allDone = response.platformPosts?.every(
-            (p) => p.status === 'posted' || p.status === 'failed'
-          )
+          const platformResults = response.platform_results || response.platformPosts || []
+          const allDone =
+            platformResults.length > 0 &&
+            platformResults.every((p) => p.status === 'posted' || p.status === 'failed')
 
           if (allDone || response.status === 'completed' || response.status === 'failed') {
             stopPolling()
@@ -127,7 +128,7 @@ export function useCreatePost(): UseCreatePostReturn {
         error: null,
         success: true,
         createdPost: response,
-        platformPosts: response.platformPosts || [],
+        platformPosts: response.platform_results || response.platformPosts || [],
       }))
       return response
     } catch (err) {

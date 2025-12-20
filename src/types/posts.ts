@@ -172,13 +172,15 @@ export interface PlatformConfigurations {
  * Individual platform post status in response
  */
 export interface PlatformPost {
-  id: string
+  id?: string
   platform: SocialPlatform
   status: PlatformPostStatus
   platformPostId?: string
-  url?: string
-  errorMessage?: string
-  postedAt?: string
+  url?: string | null
+  error?: string | null
+  errorMessage?: string // Alias for error (legacy support)
+  posted_at?: string | null
+  postedAt?: string // Alias for posted_at (legacy support)
 }
 
 /**
@@ -243,7 +245,8 @@ export interface PostResponse {
   created_at: string
   updated_at: string
   social_accounts: PostSocialAccount[]
-  platformPosts?: PlatformPost[]
+  platform_results?: PlatformPost[]
+  platformPosts?: PlatformPost[] // Alias for platform_results (legacy support)
 }
 
 /**

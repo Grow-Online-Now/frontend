@@ -640,6 +640,33 @@
           "selectBoard": "Seleccionar un tablero",
           "noDefaultWarning": "No hay tablero por defecto. Por favor, selecciona un tablero."
         }
+      },
+      "posting": {
+        "title": "Publicando tu contenido",
+        "subtitle": "Publicando en tus cuentas...",
+        "status": {
+          "queued": "En cola",
+          "posting": "Publicando...",
+          "posted": "Publicado",
+          "failed": "Fallido"
+        },
+        "progress": "{{completed}} de {{total}} completado(s)",
+        "viewPost": "Ver",
+        "done": "Listo",
+        "close": "Cerrar",
+        "error": "Error: {{message}}"
+      },
+      "progress": {
+        "scheduling": "Programando...",
+        "pleaseWait": "Por favor espera mientras programamos tu publicación",
+        "success": "¡Publicación exitosa!",
+        "scheduledSuccess": "¡Publicación programada con éxito!",
+        "partialSuccess": "Publicación con algunos errores",
+        "failed": "La publicación falló",
+        "viewPosts": "Ver publicaciones",
+        "viewCalendar": "Ver en calendario",
+        "createAnother": "Crear otra",
+        "willPostTo": "Se publicará en"
       }
     },
     "settings": {

@@ -656,6 +656,18 @@
         "done": "Terminé",
         "close": "Fermer",
         "error": "Erreur : {{message}}"
+      },
+      "progress": {
+        "scheduling": "Planification...",
+        "pleaseWait": "Veuillez patienter pendant que nous planifions votre publication",
+        "success": "Publication réussie !",
+        "scheduledSuccess": "Publication planifiée avec succès !",
+        "partialSuccess": "Publication avec quelques erreurs",
+        "failed": "La publication a échoué",
+        "viewPosts": "Voir les publications",
+        "viewCalendar": "Voir dans le calendrier",
+        "createAnother": "Créer une autre",
+        "willPostTo": "Sera publié sur"
       }
     },
     "settings": {

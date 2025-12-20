@@ -12,6 +12,7 @@ import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { Step1Media } from '@/components/create/media'
 import { MediaLibraryModal } from '@/components/create/text'
+import { PostingProgressModal } from '@/components/dashboard/create-post/PostingProgressModal'
 import { useMediaFlow } from '@/hooks/create/useMediaFlow'
 import { useMediaLibrary } from '@/hooks/useMediaLibrary'
 import { usePosts } from '@/hooks/usePosts'
@@ -59,7 +60,35 @@ export default function CreateMediaPostPage() {
     isLoadingConnections,
     hasMediaFirstAccounts,
     unconnectedPlatforms,
+    // Progress modal state
+    showProgressModal,
+    setShowProgressModal,
+    platformPosts,
+    createdPost,
+    resetFlow,
   } = useMediaFlow()
+
+  // Get selected accounts for the modal
+  const selectedAccounts = useMemo(
+    () => availablePlatforms.filter((p) => selectedPlatformIds.includes(p.id)),
+    [availablePlatforms, selectedPlatformIds]
+  )
+
+  // Modal navigation handlers
+  const handleViewCalendar = useCallback(() => {
+    setShowProgressModal(false)
+    navigate(`/${lang}/dashboard/scheduler`)
+  }, [navigate, lang, setShowProgressModal])
+
+  const handleViewPosts = useCallback(() => {
+    setShowProgressModal(false)
+    navigate(`/${lang}/dashboard/posts`)
+  }, [navigate, lang, setShowProgressModal])
+
+  const handleCreateAnother = useCallback(() => {
+    setShowProgressModal(false)
+    resetFlow()
+  }, [setShowProgressModal, resetFlow])
 
   // Navigate to accounts page to connect a platform
   const handleConnectPlatform = useCallback(() => {
@@ -260,6 +289,21 @@ export default function CreateMediaPostPage() {
         onOpenChange={setIsMediaLibraryOpen}
         onSelect={handleSelectLibraryMedia}
         excludeIds={addedMediaIds}
+      />
+
+      {/* Posting progress modal */}
+      <PostingProgressModal
+        isOpen={showProgressModal}
+        onClose={() => setShowProgressModal(false)}
+        postId={createdPost?.id ?? null}
+        selectedAccounts={selectedAccounts}
+        platformPosts={platformPosts}
+        overallStatus={createdPost?.status ?? 'pending'}
+        scheduleType={scheduleType === 'scheduled' ? 'scheduled' : 'now'}
+        scheduledAt={scheduledDate}
+        onViewCalendar={handleViewCalendar}
+        onViewPosts={handleViewPosts}
+        onCreateAnother={handleCreateAnother}
       />
     </div>
   )

@@ -6,7 +6,7 @@
  * Orchestrates existing hooks (useConnections, useMediaUpload, useCreatePost)
  */
 
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
@@ -77,6 +77,13 @@ export interface UseTextFlowReturn {
 
   // Unconnected platforms
   unconnectedPlatforms: SocialPlatform[]
+
+  // Progress modal state
+  showProgressModal: boolean
+  setShowProgressModal: (show: boolean) => void
+  platformPosts: import('@/types/posts').PlatformPost[]
+  createdPost: PostResponse | null
+  resetFlow: () => void
 }
 
 export function useTextFlow(): UseTextFlowReturn {
@@ -92,6 +99,10 @@ export function useTextFlow(): UseTextFlowReturn {
     isLoading: isSubmitting,
     startPolling,
     setShowProgressModal,
+    showProgressModal,
+    platformPosts,
+    createdPost,
+    reset: resetCreatePost,
   } = useCreatePost()
 
   // Flow state
@@ -101,6 +112,24 @@ export function useTextFlow(): UseTextFlowReturn {
   const [scheduleType, setScheduleType] = useState<TextFlowScheduleType>('now')
   const [scheduledDate, setScheduledDate] = useState<Date | null>(null)
   const [isSavingDraft, setIsSavingDraft] = useState(false)
+
+  // Toast error when post fails
+  useEffect(() => {
+    if (createdPost?.status === 'failed') {
+      // Get first error from platform results
+      const platformResults = createdPost.platform_results || []
+      const firstError = platformResults.find(
+        (p) => p.status === 'failed' && (p.error || p.errorMessage)
+      )
+      const errorMessage = firstError?.error || firstError?.errorMessage
+
+      if (errorMessage) {
+        toast.error(errorMessage)
+      } else {
+        toast.error(t('dashboard.createPost.progress.failed'))
+      }
+    }
+  }, [createdPost?.status, createdPost?.platform_results, t])
 
   // Filter to text-first capable platforms
   const textFirstConnections = useMemo(
@@ -281,25 +310,15 @@ export function useTextFlow(): UseTextFlowReturn {
     const result = await createPost(request)
 
     if (result) {
-      // If posting now, show progress modal and start polling
+      // Show progress modal for both scheduled and now posts
+      setShowProgressModal(true)
+
+      // If posting now, start polling for status updates
       if (scheduleType === 'now') {
-        setShowProgressModal(true)
         startPolling(result.id)
       }
 
-      // Show success toast
-      const toastKey =
-        scheduleType === 'scheduled'
-          ? 'dashboard.create.text.success.scheduled'
-          : 'dashboard.create.text.success.published'
-      toast.success(t(toastKey))
-
-      // Navigate based on schedule type
-      if (scheduleType === 'scheduled') {
-        navigate(`/${lang}/dashboard/scheduler`)
-      } else {
-        navigate(`/${lang}/dashboard/posts`)
-      }
+      // Note: Navigation is now handled by the modal CTAs, not here
 
       return true
     }
@@ -316,8 +335,6 @@ export function useTextFlow(): UseTextFlowReturn {
     createPost,
     startPolling,
     setShowProgressModal,
-    navigate,
-    lang,
     t,
   ])
 
@@ -387,6 +404,17 @@ export function useTextFlow(): UseTextFlowReturn {
     [availablePlatforms, step, t]
   )
 
+  // Reset entire flow (for "Create Another" action)
+  const resetFlow = useCallback(() => {
+    setStep(1)
+    setContent('')
+    setSelectedPlatformIds([])
+    setScheduleType('now')
+    setScheduledDate(null)
+    mediaUpload.reset()
+    resetCreatePost()
+  }, [mediaUpload, resetCreatePost])
+
   // Build state object
   const state: TextFlowState = {
     step,
@@ -426,5 +454,11 @@ export function useTextFlow(): UseTextFlowReturn {
     isLoadingConnections,
     hasTextFirstAccounts,
     unconnectedPlatforms,
+    // Progress modal state
+    showProgressModal,
+    setShowProgressModal,
+    platformPosts,
+    createdPost,
+    resetFlow,
   }
 }

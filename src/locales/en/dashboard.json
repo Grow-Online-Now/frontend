@@ -914,6 +914,18 @@
         "done": "Done",
         "close": "Close",
         "error": "Error: {{message}}"
+      },
+      "progress": {
+        "scheduling": "Scheduling...",
+        "pleaseWait": "Please wait while we schedule your post",
+        "success": "Post published successfully!",
+        "scheduledSuccess": "Post scheduled successfully!",
+        "partialSuccess": "Post published with some errors",
+        "failed": "Post failed",
+        "viewPosts": "View Posts",
+        "viewCalendar": "View in Calendar",
+        "createAnother": "Create Another",
+        "willPostTo": "Will post to"
       }
     },
     "settings": {
