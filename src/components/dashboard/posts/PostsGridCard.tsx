@@ -4,7 +4,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
-import { MoreHorizontal, Pencil, Trash2, Send } from 'lucide-react'
+import { MoreHorizontal, Pencil, Trash2, Send, Play, Images } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -84,8 +84,12 @@ export function PostsGridCard({
     }).format(date)
   }
 
-  // TODO: Add media_urls support when backend returns it
-  const hasMedia = false
+  // Check if post has media
+  const hasMedia = post.media && post.media.length > 0
+  const firstMedia = hasMedia ? post.media![0] : null
+  const mediaCount = post.media?.length ?? 0
+  const hasMultipleMedia = mediaCount > 1
+  const isVideo = firstMedia?.mediaType === 'video'
   const gradient = getGradientForPost(post.id)
   const displayDate = post.scheduled_at || post.created_at
   const canPublishNow = post.is_draft || (post.scheduled_at && post.status === 'pending')
@@ -131,13 +135,45 @@ export function PostsGridCard({
         {(hasMedia || !post.caption) && (
           <div
             className={cn(
-              'h-24 w-24 shrink-0 overflow-hidden rounded-md bg-linear-to-br',
-              gradient
+              'relative h-24 w-24 shrink-0 overflow-hidden rounded-md',
+              !hasMedia && 'bg-linear-to-br',
+              !hasMedia && gradient
             )}
           >
-            {hasMedia ? (
-              // TODO: Display media thumbnail when available
-              <div className="bg-muted h-full w-full" />
+            {hasMedia && firstMedia ? (
+              <>
+                {isVideo ? (
+                  // Video thumbnail with play icon
+                  <div className="bg-muted flex h-full w-full items-center justify-center">
+                    <video
+                      src={firstMedia.url}
+                      className="h-full w-full object-cover"
+                      muted
+                      preload="metadata"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90">
+                        <Play className="h-4 w-4 fill-current text-black" />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  // Image thumbnail
+                  <img
+                    src={firstMedia.url}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                )}
+                {/* Multiple media indicator */}
+                {hasMultipleMedia && (
+                  <div className="absolute right-1 bottom-1 flex items-center gap-0.5 rounded bg-black/60 px-1.5 py-0.5">
+                    <Images className="h-3 w-3 text-white" />
+                    <span className="text-[10px] font-medium text-white">{mediaCount}</span>
+                  </div>
+                )}
+              </>
             ) : null}
           </div>
         )}

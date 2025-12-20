@@ -111,6 +111,8 @@
       "detail": {
         "title": "Détails de la publication",
         "description": "Voir et gérer cette publication",
+        "media": "Médias",
+        "mediaCount": "{{count}} fichiers",
         "caption": "Légende",
         "noCaption": "Pas de légende",
         "postingTo": "Publication sur {{count}} compte",

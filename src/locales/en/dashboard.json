@@ -196,6 +196,8 @@
       "detail": {
         "title": "Post Details",
         "description": "View and manage this post",
+        "media": "Media",
+        "mediaCount": "{{count}} files",
         "caption": "Caption",
         "noCaption": "No caption",
         "postingTo": "Posting to {{count}} account",

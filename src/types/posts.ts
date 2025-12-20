@@ -234,6 +234,17 @@ export interface CreatePostRequest {
 }
 
 /**
+ * Media item in post response
+ */
+export interface PostMediaItem {
+  id: string
+  url: string
+  fileName: string
+  contentType: string
+  mediaType: 'image' | 'video'
+}
+
+/**
  * Post response from API
  */
 export interface PostResponse {
@@ -245,6 +256,7 @@ export interface PostResponse {
   created_at: string
   updated_at: string
   social_accounts: PostSocialAccount[]
+  media?: PostMediaItem[]
   platform_results?: PlatformPost[]
   platformPosts?: PlatformPost[] // Alias for platform_results (legacy support)
 }

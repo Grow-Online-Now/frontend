@@ -5,7 +5,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { X, Pencil, Copy, Trash2, Calendar, Clock } from 'lucide-react'
+import { X, Pencil, Copy, Trash2, Calendar, Clock, Play, Images } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -167,6 +167,50 @@ export function PostDetailModal({ post, open, onOpenChange, onDelete }: PostDeta
                 </span>
               </div>
             </div>
+
+            {/* Media Gallery */}
+            {post.media && post.media.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
+                  {t('dashboard.scheduler.detail.media')}
+                </h4>
+                <div className="flex gap-2 overflow-x-auto pb-2">
+                  {post.media.map((media) => (
+                    <div
+                      key={media.id}
+                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg"
+                    >
+                      {media.mediaType === 'video' ? (
+                        <>
+                          <video
+                            src={media.url}
+                            className="h-full w-full object-cover"
+                            muted
+                            preload="metadata"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                            <Play className="h-5 w-5 fill-current text-white" />
+                          </div>
+                        </>
+                      ) : (
+                        <img
+                          src={media.url}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {post.media.length > 1 && (
+                  <p className="text-muted-foreground flex items-center gap-1 text-xs">
+                    <Images className="h-3 w-3" />
+                    {t('dashboard.scheduler.detail.mediaCount', { count: post.media.length })}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Caption */}
             <div className="space-y-2">
