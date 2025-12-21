@@ -139,7 +139,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
       )}
     >
       {/* Logo */}
-      <div className="border-sidebar-border flex h-16 items-center border-b px-6">
+      <div className="border-sidebar-border flex h-16 items-center justify-center border-b px-6">
         <Logo size="sm" showText />
       </div>
 
