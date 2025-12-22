@@ -768,6 +768,7 @@
       "current": {
         "title": "Plan actual",
         "description": "Gestiona tu suscripción y facturación",
+        "freeDescription": "Comienza con las funciones básicas",
         "cancelWarning": "Tu suscripción se cancelará el {{date}}. Serás degradado al plan gratuito.",
         "pastDueWarning": "Tu pago falló. Por favor actualiza tu método de pago para evitar perder acceso a las funciones premium.",
         "renews": "Se renueva",
@@ -775,12 +776,27 @@
         "monthlyBilling": "Facturación mensual",
         "yearlyBilling": "Facturación anual"
       },
+      "status": {
+        "active": "Activo",
+        "canceling": "Cancelando"
+      },
+      "usage": {
+        "title": "Uso"
+      },
+      "modal": {
+        "upgradeTitle": "Mejora tu plan",
+        "upgradeDescription": "Accede a más funciones y límites más altos",
+        "changePlanTitle": "Cambiar plan",
+        "changePlanDescription": "Actualmente estás en {{plan}}. Elige un nuevo plan a continuación."
+      },
       "upgrade": {
         "title": "Mejora tu plan",
         "changePlan": "Cambiar plan",
         "description": "Accede a más funciones y límites más altos"
       },
       "actions": {
+        "upgrade": "Mejorar",
+        "changePlan": "Cambiar plan",
         "manageBilling": "Gestionar facturación",
         "opening": "Abriendo...",
         "cancel": "Cancelar suscripción",

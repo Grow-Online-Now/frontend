@@ -4,15 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { useSubscription } from '@/hooks/useSubscription'
 import { CurrentSubscription } from '@/components/dashboard/billing/CurrentSubscription'
-import { PricingCard } from '@/components/dashboard/billing/PricingCard'
-import { BillingIntervalToggle } from '@/components/dashboard/billing/BillingIntervalToggle'
+import { UpgradeModal } from '@/components/dashboard/billing/UpgradeModal'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { BillingInterval, PlanType } from '@/types/subscription'
 
 export function BillingSettings() {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [billingInterval, setBillingInterval] = useState<BillingInterval>('yearly')
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const {
     subscription,
@@ -34,6 +33,7 @@ export function BillingSettings() {
     if (searchParams.get('success') === 'true') {
       toast.success(t('dashboard.billing.toast.success'))
       setSearchParams({})
+      setIsModalOpen(false)
     }
     if (searchParams.get('canceled') === 'true') {
       toast.info(t('dashboard.billing.toast.canceled'))
@@ -44,15 +44,15 @@ export function BillingSettings() {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-48 w-full rounded-xl" />
-        <Skeleton className="h-96 w-full rounded-xl" />
+        <Skeleton className="h-32 w-full rounded-xl" />
+        <Skeleton className="h-24 w-full rounded-xl" />
       </div>
     )
   }
 
   if (error || !subscription || !plans) {
     return (
-      <div className="bg-error/5 border-error/15 rounded-xl border p-6 text-center">
+      <div className="bg-error/10 border-error/20 rounded-xl border p-6 text-center">
         <p className="text-error text-sm">{error || t('dashboard.billing.error.load')}</p>
       </div>
     )
@@ -72,11 +72,19 @@ export function BillingSettings() {
     toast.success(t('dashboard.billing.toast.resumeSuccess'))
   }
 
+  // TODO: Replace with actual usage data from API
+  const mockUsage = {
+    workspaces: 1,
+    postsThisMonth: 12,
+    platforms: 3,
+  }
+
   return (
-    <div className="space-y-8">
-      {/* Current Subscription */}
+    <>
       <CurrentSubscription
         subscription={subscription}
+        usage={mockUsage}
+        onChangePlan={() => setIsModalOpen(true)}
         onManageBilling={openPortal}
         onCancel={handleCancel}
         onResume={handleResume}
@@ -85,41 +93,14 @@ export function BillingSettings() {
         isResuming={isResuming}
       />
 
-      {/* Upgrade Section */}
-      {subscription.plan !== 'GROWTH' && (
-        <div className="space-y-8">
-          {/* Centered Header */}
-          <div className="text-center">
-            <h3 className="text-text-primary text-xl font-semibold tracking-tight">
-              {subscription.plan === 'FREE'
-                ? t('dashboard.billing.upgrade.title')
-                : t('dashboard.billing.upgrade.changePlan')}
-            </h3>
-            <p className="text-text-muted mt-2 text-sm">
-              {t('dashboard.billing.upgrade.description')}
-            </p>
-          </div>
-
-          {/* Centered Toggle */}
-          <div className="flex justify-center">
-            <BillingIntervalToggle value={billingInterval} onChange={setBillingInterval} />
-          </div>
-
-          {/* Pricing Cards Grid */}
-          <div className="grid gap-6 md:grid-cols-3">
-            {plans.map((plan) => (
-              <PricingCard
-                key={plan.id}
-                plan={plan}
-                currentPlan={subscription.plan}
-                billingInterval={billingInterval}
-                onSelect={handleSelectPlan}
-                isLoading={isCheckingOut}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
+      <UpgradeModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        plans={plans}
+        currentPlan={subscription.plan}
+        onSelectPlan={handleSelectPlan}
+        isLoading={isCheckingOut}
+      />
+    </>
   )
 }

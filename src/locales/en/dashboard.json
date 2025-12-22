@@ -1027,6 +1027,7 @@
       "current": {
         "title": "Current Plan",
         "description": "Manage your subscription and billing",
+        "freeDescription": "Get started with basic features",
         "cancelWarning": "Your subscription will be canceled on {{date}}. You'll be downgraded to the Free plan.",
         "pastDueWarning": "Your payment failed. Please update your payment method to avoid losing access to premium features.",
         "renews": "Renews",
@@ -1034,12 +1035,27 @@
         "monthlyBilling": "Monthly billing",
         "yearlyBilling": "Yearly billing"
       },
+      "status": {
+        "active": "Active",
+        "canceling": "Canceling"
+      },
+      "usage": {
+        "title": "Usage"
+      },
+      "modal": {
+        "upgradeTitle": "Upgrade Your Plan",
+        "upgradeDescription": "Get access to more features and higher limits",
+        "changePlanTitle": "Change Plan",
+        "changePlanDescription": "You're currently on {{plan}}. Choose a new plan below."
+      },
       "upgrade": {
         "title": "Upgrade Your Plan",
         "changePlan": "Change Plan",
         "description": "Get access to more features and higher limits"
       },
       "actions": {
+        "upgrade": "Upgrade",
+        "changePlan": "Change Plan",
         "manageBilling": "Manage Billing",
         "opening": "Opening...",
         "cancel": "Cancel Subscription",
