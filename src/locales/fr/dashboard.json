@@ -729,13 +729,15 @@
     "billing": {
       "interval": {
         "monthly": "Mensuel",
-        "yearly": "Annuel"
+        "yearly": "Annuel",
+        "save": "-20%"
       },
       "pricing": {
         "free": "Gratuit",
         "month": "mois",
         "yearlyBilled": "{{amount}} facturé annuellement (économisez 20%)",
         "mostPopular": "Le plus populaire",
+        "recommended": "Recommandé",
         "currentPlan": "Plan actuel",
         "freePlan": "Plan gratuit",
         "upgrade": "Mettre à niveau",

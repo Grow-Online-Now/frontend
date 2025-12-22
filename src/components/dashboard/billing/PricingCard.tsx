@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Sparkles } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -32,9 +32,10 @@ export function PricingCard({
 
   const monthlyEquivalent = billingInterval === 'yearly' && price ? Math.round(price / 12) : price
 
-  const formatPrice = (cents: number | null) => {
-    if (cents === null) return t('dashboard.billing.pricing.free')
-    return `$${(cents / 100).toFixed(0)}`
+  const formatPrice = (amount: number | null) => {
+    if (isFree) return t('dashboard.billing.pricing.free')
+    if (amount === null) return '—'
+    return `$${Math.round(amount)}`
   }
 
   const handleSelect = () => {
@@ -43,53 +44,54 @@ export function PricingCard({
     }
   }
 
+  const isRecommended = plan.id === 'PRO' && !isCurrentPlan
+
   return (
     <Card
       className={cn(
-        'relative flex flex-col transition-all duration-150 hover:shadow-md',
-        isCurrentPlan && 'border-primary ring-primary ring-2',
-        plan.id === 'PRO' && !isCurrentPlan && 'border-info'
+        'relative flex min-h-[520px] flex-col transition-all duration-150',
+        isCurrentPlan && 'ring-primary ring-2',
+        isRecommended && 'ring-info/40 bg-bg-elevated ring-2 scale-[1.02]'
       )}
     >
-      {plan.id === 'PRO' && (
-        <Badge className="bg-text-primary text-bg-base absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-medium">
-          {t('dashboard.billing.pricing.mostPopular')}
-        </Badge>
-      )}
-
       <CardContent className="flex flex-1 flex-col p-6">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-4">
           <div className="flex items-center justify-between">
             <h3 className="text-text-primary text-lg font-semibold">{plan.name}</h3>
             {isCurrentPlan && (
               <Badge variant="secondary">{t('dashboard.billing.pricing.currentPlan')}</Badge>
             )}
           </div>
-          <p className="text-text-muted mt-1 text-sm">{plan.description}</p>
+          {isRecommended && (
+            <Badge className="bg-info/15 text-info mt-2 border-0">
+              {t('dashboard.billing.pricing.recommended')}
+            </Badge>
+          )}
+          <p className="text-text-muted mt-2 text-sm">{plan.description}</p>
         </div>
 
         {/* Pricing */}
         <div className="mb-6">
           <div className="flex items-baseline gap-1">
-            <span className="text-text-primary text-4xl font-bold">
+            <span className="text-text-primary text-4xl font-bold tracking-tight">
               {formatPrice(monthlyEquivalent)}
             </span>
-            {price !== null && (
+            {!isFree && price !== null && (
               <span className="text-text-muted">/{t('dashboard.billing.pricing.month')}</span>
             )}
           </div>
-          {billingInterval === 'yearly' && price !== null && (
-            <p className="text-text-muted text-sm">
+          {billingInterval === 'yearly' && price !== null && !isFree && (
+            <p className="text-text-muted mt-1 text-sm">
               {t('dashboard.billing.pricing.yearlyBilled', {
-                amount: `$${(price / 100).toFixed(0)}`,
+                amount: `$${Math.round(price)}`,
               })}
             </p>
           )}
         </div>
 
         {/* Limits */}
-        <div className="mb-6 space-y-2 text-sm">
+        <div className="border-border-default mb-6 space-y-2.5 border-b pb-6 text-sm">
           <div className="flex justify-between">
             <span className="text-text-muted">{t('dashboard.billing.limits.workspaces')}</span>
             <span className="text-text-primary font-medium">
@@ -111,10 +113,10 @@ export function PricingCard({
         </div>
 
         {/* Features */}
-        <ul className="mb-6 flex-1 space-y-3">
+        <ul className="flex-1 space-y-3">
           {plan.features.map((feature) => (
-            <li key={feature} className="flex items-center gap-2 text-sm">
-              <Sparkles className="text-primary h-4 w-4 shrink-0" />
+            <li key={feature} className="flex items-center gap-2.5 text-sm">
+              <Check className="text-success h-4 w-4 shrink-0" />
               <span className="text-text-secondary">
                 {t(`dashboard.billing.features.${feature}`)}
               </span>
@@ -123,7 +125,7 @@ export function PricingCard({
         </ul>
 
         {/* Action Button */}
-        <div className="mt-auto">
+        <div className="mt-6 pt-4">
           {isCurrentPlan ? (
             <Button className="w-full" variant="outline" disabled>
               {t('dashboard.billing.pricing.currentPlan')}

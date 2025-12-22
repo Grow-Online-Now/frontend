@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
+import { Badge } from '@/components/ui/badge'
 import type { BillingInterval } from '@/types/subscription'
 
 interface BillingIntervalToggleProps {
@@ -11,15 +12,15 @@ export function BillingIntervalToggle({ value, onChange }: BillingIntervalToggle
   const { t } = useTranslation()
 
   return (
-    <div className="flex items-center justify-center gap-1">
-      <div className="bg-bg-subtle inline-flex gap-1 rounded-lg p-1">
+    <div className="flex items-center justify-center">
+      <div className="bg-muted/50 inline-flex gap-1 rounded-xl p-1">
         <button
           type="button"
           className={cn(
-            'rounded-md px-4 py-2 text-sm font-medium transition-all duration-150',
+            'rounded-lg px-5 py-2 text-sm font-medium transition-all',
             value === 'monthly'
-              ? 'bg-bg-elevated text-text-primary shadow-sm'
-              : 'text-text-muted hover:text-text-primary'
+              ? 'bg-background text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
           )}
           onClick={() => onChange('monthly')}
         >
@@ -28,17 +29,17 @@ export function BillingIntervalToggle({ value, onChange }: BillingIntervalToggle
         <button
           type="button"
           className={cn(
-            'relative rounded-md px-4 py-2 text-sm font-medium transition-all duration-150',
+            'flex items-center gap-2 rounded-lg px-5 py-2 text-sm font-medium transition-all',
             value === 'yearly'
-              ? 'bg-bg-elevated text-text-primary shadow-sm'
-              : 'text-text-muted hover:text-text-primary'
+              ? 'bg-background text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
           )}
           onClick={() => onChange('yearly')}
         >
           {t('dashboard.billing.interval.yearly')}
-          <span className="bg-success text-success-foreground absolute -top-2 -right-2 rounded-full px-1.5 py-0.5 text-xs font-medium">
-            -20%
-          </span>
+          <Badge className="bg-success/15 text-success border-0 text-xs">
+            {t('dashboard.billing.interval.save')}
+          </Badge>
         </button>
       </div>
     </div>

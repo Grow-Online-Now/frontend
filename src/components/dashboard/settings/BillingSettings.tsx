@@ -65,34 +65,28 @@ export function BillingSettings() {
 
   return (
     <div className="space-y-8">
-      {/* Current Subscription */}
-      <CurrentSubscription
-        subscription={subscription}
-        onManageBilling={openPortal}
-        onCancel={cancel}
-        onResume={resume}
-        isOpeningPortal={isOpeningPortal}
-        isCanceling={isCanceling}
-        isResuming={isResuming}
-      />
 
       {/* Upgrade Section */}
       {subscription.plan !== 'GROWTH' && (
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-text-primary text-lg font-semibold tracking-tight">
-                {subscription.plan === 'FREE'
-                  ? t('dashboard.billing.upgrade.title')
-                  : t('dashboard.billing.upgrade.changePlan')}
-              </h3>
-              <p className="text-text-muted text-sm">
-                {t('dashboard.billing.upgrade.description')}
-              </p>
-            </div>
+        <div className="space-y-8">
+          {/* Centered Header */}
+          <div className="text-center">
+            <h3 className="text-text-primary text-xl font-semibold tracking-tight">
+              {subscription.plan === 'FREE'
+                ? t('dashboard.billing.upgrade.title')
+                : t('dashboard.billing.upgrade.changePlan')}
+            </h3>
+            <p className="text-text-muted mt-2 text-sm">
+              {t('dashboard.billing.upgrade.description')}
+            </p>
+          </div>
+
+          {/* Centered Toggle */}
+          <div className="flex justify-center">
             <BillingIntervalToggle value={billingInterval} onChange={setBillingInterval} />
           </div>
 
+          {/* Pricing Cards Grid */}
           <div className="grid gap-6 md:grid-cols-3">
             {plans.map((plan) => (
               <PricingCard

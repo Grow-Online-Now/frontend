@@ -987,13 +987,15 @@
     "billing": {
       "interval": {
         "monthly": "Monthly",
-        "yearly": "Yearly"
+        "yearly": "Yearly",
+        "save": "-20%"
       },
       "pricing": {
         "free": "Free",
         "month": "month",
         "yearlyBilled": "{{amount}} billed yearly (save 20%)",
         "mostPopular": "Most Popular",
+        "recommended": "Recommended",
         "currentPlan": "Current Plan",
         "freePlan": "Free Plan",
         "upgrade": "Upgrade",
