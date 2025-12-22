@@ -687,6 +687,7 @@
       "tabs": {
         "profile": "Perfil",
         "workspace": "Espacio de trabajo",
+        "billing": "Facturación",
         "notifications": "Notificaciones",
         "language": "Idioma",
         "account": "Cuenta"
@@ -722,6 +723,82 @@
         "deleteAccount": "Eliminar cuenta",
         "deleteDescription": "Eliminar permanentemente tu cuenta y todos tus datos",
         "deleteConfirm": "¿Estás seguro? Esta acción no se puede deshacer."
+      }
+    },
+    "billing": {
+      "interval": {
+        "monthly": "Mensual",
+        "yearly": "Anual"
+      },
+      "pricing": {
+        "free": "Gratis",
+        "month": "mes",
+        "yearlyBilled": "{{amount}} facturado anualmente (ahorra 20%)",
+        "mostPopular": "Más popular",
+        "currentPlan": "Plan actual",
+        "freePlan": "Plan gratuito",
+        "upgrade": "Mejorar",
+        "switchPlan": "Cambiar plan",
+        "loading": "Cargando..."
+      },
+      "limits": {
+        "workspaces": "Espacios de trabajo",
+        "postsPerMonth": "Publicaciones/mes",
+        "platforms": "Plataformas",
+        "banner": {
+          "title": "Límite de espacios de trabajo alcanzado",
+          "description": "Estás usando {{current}} de {{max}} espacios de trabajo en el plan {{plan}}.",
+          "upgrade": "Mejorar"
+        }
+      },
+      "features": {
+        "basic_scheduling": "Programación básica",
+        "single_workspace": "Un espacio de trabajo",
+        "multi_workspace": "Múltiples espacios de trabajo",
+        "analytics_basic": "Analíticas básicas",
+        "analytics_advanced": "Analíticas avanzadas",
+        "priority_support": "Soporte prioritario",
+        "team_collaboration": "Colaboración en equipo",
+        "api_access": "Acceso API",
+        "unlimited_posts": "Publicaciones ilimitadas",
+        "unlimited_platforms": "Plataformas ilimitadas"
+      },
+      "current": {
+        "title": "Plan actual",
+        "description": "Gestiona tu suscripción y facturación",
+        "cancelWarning": "Tu suscripción se cancelará el {{date}}. Serás degradado al plan gratuito.",
+        "pastDueWarning": "Tu pago falló. Por favor actualiza tu método de pago para evitar perder acceso a las funciones premium.",
+        "renews": "Se renueva",
+        "accessUntil": "Acceso hasta",
+        "monthlyBilling": "Facturación mensual",
+        "yearlyBilling": "Facturación anual"
+      },
+      "upgrade": {
+        "title": "Mejora tu plan",
+        "changePlan": "Cambiar plan",
+        "description": "Accede a más funciones y límites más altos"
+      },
+      "actions": {
+        "manageBilling": "Gestionar facturación",
+        "opening": "Abriendo...",
+        "cancel": "Cancelar suscripción",
+        "canceling": "Cancelando...",
+        "resume": "Reanudar suscripción",
+        "resuming": "Reanudando..."
+      },
+      "toast": {
+        "success": "¡Suscripción actualizada con éxito!",
+        "canceled": "Pago cancelado",
+        "cancelSuccess": "La suscripción se cancelará al final del período de facturación",
+        "resumeSuccess": "Suscripción reanudada con éxito"
+      },
+      "error": {
+        "load": "Error al cargar los datos de suscripción"
+      },
+      "enterprise": {
+        "title": "¿Buscas algo personalizado?",
+        "description": "Contáctanos para planes empresariales, soluciones personalizadas y soporte dedicado.",
+        "cta": "Hablemos"
       }
     },
     "common": {

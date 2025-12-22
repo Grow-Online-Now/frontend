@@ -6,6 +6,7 @@ import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
 import { InfoHint } from '@/components/dashboard/shared/InfoHint'
 import { TooltipIcon } from '@/components/dashboard/shared/TooltipIcon'
 import { WorkspaceSettings } from '@/components/dashboard/settings/WorkspaceSettings'
+import { BillingSettings } from '@/components/dashboard/settings/BillingSettings'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -50,7 +51,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-4xl">
       <PageHeader
         titleKey="dashboard.settings.title"
         descriptionKey="dashboard.settings.description"
@@ -60,6 +61,7 @@ export default function SettingsPage() {
         <TabsList className="mb-6 w-full justify-start">
           <TabsTrigger value="profile">{t('dashboard.settings.tabs.profile')}</TabsTrigger>
           <TabsTrigger value="workspace">{t('dashboard.settings.tabs.workspace')}</TabsTrigger>
+          <TabsTrigger value="billing">{t('dashboard.settings.tabs.billing')}</TabsTrigger>
           <TabsTrigger value="notifications">
             {t('dashboard.settings.tabs.notifications')}
           </TabsTrigger>
@@ -130,6 +132,11 @@ export default function SettingsPage() {
         {/* Workspace Tab */}
         <TabsContent value="workspace">
           <WorkspaceSettings />
+        </TabsContent>
+
+        {/* Billing Tab */}
+        <TabsContent value="billing">
+          <BillingSettings />
         </TabsContent>
 
         {/* Notifications Tab */}

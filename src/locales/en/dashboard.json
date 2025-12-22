@@ -946,6 +946,7 @@
       "tabs": {
         "profile": "Profile",
         "workspace": "Workspace",
+        "billing": "Billing",
         "notifications": "Notifications",
         "language": "Language",
         "account": "Account"
@@ -981,6 +982,82 @@
         "deleteAccount": "Delete Account",
         "deleteDescription": "Permanently delete your account and all data",
         "deleteConfirm": "Are you sure? This action cannot be undone."
+      }
+    },
+    "billing": {
+      "interval": {
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      },
+      "pricing": {
+        "free": "Free",
+        "month": "month",
+        "yearlyBilled": "{{amount}} billed yearly (save 20%)",
+        "mostPopular": "Most Popular",
+        "currentPlan": "Current Plan",
+        "freePlan": "Free Plan",
+        "upgrade": "Upgrade",
+        "switchPlan": "Switch Plan",
+        "loading": "Loading..."
+      },
+      "limits": {
+        "workspaces": "Workspaces",
+        "postsPerMonth": "Posts/month",
+        "platforms": "Platforms",
+        "banner": {
+          "title": "Workspace limit reached",
+          "description": "You're using {{current}} of {{max}} workspaces on the {{plan}} plan.",
+          "upgrade": "Upgrade"
+        }
+      },
+      "features": {
+        "basic_scheduling": "Basic scheduling",
+        "single_workspace": "Single workspace",
+        "multi_workspace": "Multiple workspaces",
+        "analytics_basic": "Basic analytics",
+        "analytics_advanced": "Advanced analytics",
+        "priority_support": "Priority support",
+        "team_collaboration": "Team collaboration",
+        "api_access": "API access",
+        "unlimited_posts": "Unlimited posts",
+        "unlimited_platforms": "Unlimited platforms"
+      },
+      "current": {
+        "title": "Current Plan",
+        "description": "Manage your subscription and billing",
+        "cancelWarning": "Your subscription will be canceled on {{date}}. You'll be downgraded to the Free plan.",
+        "pastDueWarning": "Your payment failed. Please update your payment method to avoid losing access to premium features.",
+        "renews": "Renews",
+        "accessUntil": "Access until",
+        "monthlyBilling": "Monthly billing",
+        "yearlyBilling": "Yearly billing"
+      },
+      "upgrade": {
+        "title": "Upgrade Your Plan",
+        "changePlan": "Change Plan",
+        "description": "Get access to more features and higher limits"
+      },
+      "actions": {
+        "manageBilling": "Manage Billing",
+        "opening": "Opening...",
+        "cancel": "Cancel Subscription",
+        "canceling": "Canceling...",
+        "resume": "Resume Subscription",
+        "resuming": "Resuming..."
+      },
+      "toast": {
+        "success": "Subscription updated successfully!",
+        "canceled": "Checkout canceled",
+        "cancelSuccess": "Subscription will be canceled at the end of the billing period",
+        "resumeSuccess": "Subscription resumed successfully"
+      },
+      "error": {
+        "load": "Failed to load subscription data"
+      },
+      "enterprise": {
+        "title": "Looking for something custom?",
+        "description": "Contact us for enterprise plans, custom solutions, and dedicated support.",
+        "cta": "Let's Talk"
       }
     },
     "common": {
