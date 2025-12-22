@@ -6,7 +6,6 @@ import { useSubscription } from '@/hooks/useSubscription'
 import { CurrentSubscription } from '@/components/dashboard/billing/CurrentSubscription'
 import { PricingCard } from '@/components/dashboard/billing/PricingCard'
 import { BillingIntervalToggle } from '@/components/dashboard/billing/BillingIntervalToggle'
-import { EnterpriseContact } from '@/components/dashboard/billing/EnterpriseContact'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { BillingInterval, PlanType } from '@/types/subscription'
 
@@ -63,8 +62,28 @@ export function BillingSettings() {
     startCheckout(plan, interval)
   }
 
+  const handleCancel = async () => {
+    await cancel()
+    toast.success(t('dashboard.billing.toast.cancelSuccess'))
+  }
+
+  const handleResume = async () => {
+    await resume()
+    toast.success(t('dashboard.billing.toast.resumeSuccess'))
+  }
+
   return (
     <div className="space-y-8">
+      {/* Current Subscription */}
+      <CurrentSubscription
+        subscription={subscription}
+        onManageBilling={openPortal}
+        onCancel={handleCancel}
+        onResume={handleResume}
+        isOpeningPortal={isOpeningPortal}
+        isCanceling={isCanceling}
+        isResuming={isResuming}
+      />
 
       {/* Upgrade Section */}
       {subscription.plan !== 'GROWTH' && (
@@ -99,9 +118,6 @@ export function BillingSettings() {
               />
             ))}
           </div>
-
-          {/* Enterprise Contact */}
-          <EnterpriseContact />
         </div>
       )}
     </div>
