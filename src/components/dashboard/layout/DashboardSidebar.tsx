@@ -32,7 +32,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useTheme } from '@/hooks/useTheme'
+import { useSubscription } from '@/hooks/useSubscription'
 import { WorkspaceSelector } from '@/components/dashboard/workspace/WorkspaceSelector'
+import { PLAN_DISPLAY_NAMES } from '@/types/subscription'
 
 interface NavCategory {
   labelKey: string
@@ -114,6 +116,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
   const { isDark, toggleTheme } = useTheme()
+  const { subscription } = useSubscription()
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
   const user = session?.user
@@ -240,9 +243,11 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
             <div className="px-2 py-1.5">
               <p className="text-sm font-medium">{userName}</p>
               <p className="text-muted-foreground text-xs">{userEmail}</p>
-              <span className="bg-primary/10 text-primary mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium">
-                {t('dashboard.user.plan')}
-              </span>
+              {subscription && (
+                <span className="bg-primary/10 text-primary mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium">
+                  {PLAN_DISPLAY_NAMES[subscription.plan]}
+                </span>
+              )}
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
