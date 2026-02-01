@@ -91,7 +91,7 @@ export function CurrentSubscription({
               </Badge>
             )}
             {isCanceled && (
-              <Badge variant="destructive" className="text-xs">
+              <Badge variant="error" className="text-xs">
                 {t('dashboard.billing.status.canceling')}
               </Badge>
             )}
