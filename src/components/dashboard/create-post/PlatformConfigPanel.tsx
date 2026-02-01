@@ -55,6 +55,12 @@ export function PlatformConfigPanel({
     [selectedAccounts]
   )
 
+  // Get TikTok connection ID for creator info fetching
+  const tiktokConnectionId = useMemo(
+    () => selectedAccounts.find((c) => c.platform === 'tiktok')?.id ?? null,
+    [selectedAccounts]
+  )
+
   // Only show if at least one configurable platform is selected
   if (!hasInstagram && !hasTikTok && !hasYouTube && !hasLinkedIn && !hasPinterest && !hasThreads) {
     return null
@@ -77,6 +83,7 @@ export function PlatformConfigPanel({
 
         {hasTikTok && (
           <TikTokConfigSection
+            connectionId={tiktokConnectionId}
             config={platformConfigs.tiktok || {}}
             onChange={(tiktok) => onConfigChange({ ...platformConfigs, tiktok })}
             media={media}

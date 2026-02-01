@@ -103,8 +103,18 @@ export interface TikTokConfig {
   contentType?: TikTokContentType
   privacyLevel?: TikTokPrivacyLevel
   disableComment?: boolean
+  disableDuet?: boolean
+  disableStitch?: boolean
   autoAddMusic?: boolean
   coverIndex?: number
+  /** Title for the post (max 90 characters) */
+  title?: string
+  /** Mark as branded content (paid partnership) */
+  brandContentToggle?: boolean
+  /** Mark as promoting creator's own business */
+  brandOrganicToggle?: boolean
+  /** Video cover timestamp in milliseconds (video only) */
+  videoCoverTimestampMs?: number
 }
 
 /**

@@ -769,6 +769,7 @@
         },
         "tiktok": {
           "title": "TikTok",
+          "postingAs": "Posting as",
           "contentType": "Content Type",
           "types": {
             "video": "Video",
@@ -776,15 +777,62 @@
             "photo": "Photo Carousel",
             "photoDesc": "Up to 35 images with music"
           },
-          "privacy": "Privacy",
+          "titleField": {
+            "label": "Title",
+            "placeholder": "Add a title (optional)",
+            "hint": "Maximum 90 characters",
+            "charCount": "{{count}}/90"
+          },
+          "privacy": "Who can view this video",
+          "privacyPlaceholder": "Select privacy setting",
+          "privacyRequired": "Please select a privacy setting",
           "privacyLevels": {
             "PUBLIC_TO_EVERYONE": "Public",
             "MUTUAL_FOLLOW_FRIENDS": "Friends",
             "FOLLOWER_OF_CREATOR": "Followers",
             "SELF_ONLY": "Private"
           },
+          "interactions": {
+            "title": "Allow users to",
+            "comment": "Comment",
+            "duet": "Duet",
+            "stitch": "Stitch",
+            "disabledByCreator": "Disabled in your TikTok settings"
+          },
           "disableComment": "Disable comments",
-          "autoAddMusic": "Auto-add music"
+          "autoAddMusic": "Auto-add music",
+          "commercialContent": {
+            "title": "Content disclosure",
+            "toggle": "Indicate if this content promotes goods or services in exchange for something of value",
+            "toggleHint": "Your video will be labeled \"Promotional content\" or \"Paid partnership\" to comply with regulations",
+            "yourBrand": {
+              "label": "Your brand",
+              "description": "You are promoting yourself or your own business",
+              "labelPrompt": "Your video will be labeled as \"Promotional content\""
+            },
+            "brandedContent": {
+              "label": "Branded content",
+              "description": "You are promoting another brand or third party",
+              "labelPrompt": "Your video will be labeled as \"Paid partnership\"",
+              "privateWarning": "Branded content cannot be set to private visibility",
+              "privateDisabledTooltip": "Branded content visibility cannot be set to private"
+            },
+            "selectionRequired": "Please select at least one option when content disclosure is enabled",
+            "selectionRequiredTooltip": "You need to indicate if your content promotes yourself, a third party, or both"
+          },
+          "consent": {
+            "musicUsage": "By posting, you agree to TikTok's Music Usage Confirmation",
+            "brandedContent": "By posting, you also agree to TikTok's Branded Content Policy",
+            "brandedContentAndMusic": "By posting, you agree to TikTok's Branded Content Policy and Music Usage Confirmation",
+            "learnMore": "Learn more"
+          },
+          "processingNotice": "Your content may take a few minutes to appear on TikTok after publishing",
+          "errors": {
+            "creatorInfoFailed": "Failed to load TikTok account settings",
+            "postingLimitReached": "You've reached your daily posting limit on TikTok",
+            "videoDurationExceeded": "Video exceeds maximum duration of {{max}} seconds",
+            "videoDurationHint": "Your video is {{current}}s, but maximum allowed is {{max}}s"
+          }
         },
         "youtube": {
           "title": "YouTube",

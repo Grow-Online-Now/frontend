@@ -121,6 +121,7 @@ export function PlatformConfigAccordion({
           </AccordionTrigger>
           <AccordionContent className="px-4 pb-4">
             <TikTokConfigSection
+              connectionId={tiktokAccount.id}
               config={platformConfigs.tiktok || {}}
               onChange={(newConfig) => onTikTokConfigChange(newConfig)}
               media={mediaFiles}
