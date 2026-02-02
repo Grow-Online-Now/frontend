@@ -6,6 +6,7 @@
 
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Settings2 } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
@@ -82,93 +83,119 @@ export function PlatformConfigAccordion({
     return null
   }
 
-  // Determine default open accordion items
-  const defaultOpenItems: string[] = []
-  if (instagramAccount) defaultOpenItems.push('instagram')
-  if (youtubeAccount) defaultOpenItems.push('youtube')
-
   return (
-    <Accordion type="multiple" defaultValue={defaultOpenItems} className={className}>
-      {instagramAccount && (
-        <AccordionItem value="instagram" className="border-border border-b">
-          <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-2">
-              <PlatformIcon platform="instagram" size="xs" />
-              <span className="text-text-primary text-sm font-medium">
-                {t('dashboard.createPost.platformConfig.instagram.title')}
-              </span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-4 pb-4">
-            <InstagramConfigSection
-              config={platformConfigs.instagram || {}}
-              onChange={(newConfig) => onInstagramConfigChange(newConfig)}
-              media={mediaFiles}
-            />
-          </AccordionContent>
-        </AccordionItem>
-      )}
+    <div className={className}>
+      {/* Section header */}
+      <div className="flex items-center gap-2 px-4 py-3">
+        <Settings2 className="text-text-muted h-4 w-4" />
+        <span className="text-text-muted text-xs font-medium tracking-wider uppercase">
+          {t('dashboard.createPost.platformConfig.sectionTitle')}
+        </span>
+      </div>
 
-      {tiktokAccount && (
-        <AccordionItem value="tiktok" className="border-border border-b">
-          <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-2">
-              <PlatformIcon platform="tiktok" size="xs" />
-              <span className="text-text-primary text-sm font-medium">
-                {t('dashboard.createPost.platformConfig.tiktok.title')}
-              </span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-4 pb-4">
-            <TikTokConfigSection
-              connectionId={tiktokAccount.id}
-              config={platformConfigs.tiktok || {}}
-              onChange={(newConfig) => onTikTokConfigChange(newConfig)}
-              media={mediaFiles}
-            />
-          </AccordionContent>
-        </AccordionItem>
-      )}
+      {/* Platform accordions - all closed by default */}
+      <Accordion type="multiple" defaultValue={[]}>
+        {instagramAccount && (
+          <AccordionItem value="instagram" className="border-border border-t last:border-b-0">
+            <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
+              <div className="flex w-full items-center justify-between pr-2">
+                <div className="flex items-center gap-2.5">
+                  <PlatformIcon platform="instagram" size="xs" />
+                  <span className="text-text-primary text-sm font-medium">
+                    {t('dashboard.createPost.platformConfig.instagram.title')}
+                  </span>
+                </div>
+                <span className="text-text-muted text-xs">
+                  {t('dashboard.createPost.platformConfig.clickToConfigure')}
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-1">
+              <InstagramConfigSection
+                config={platformConfigs.instagram || {}}
+                onChange={(newConfig) => onInstagramConfigChange(newConfig)}
+                media={mediaFiles}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        )}
 
-      {youtubeAccount && (
-        <AccordionItem value="youtube" className="border-border border-b">
-          <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-2">
-              <PlatformIcon platform="youtube" size="xs" />
-              <span className="text-text-primary text-sm font-medium">
-                {t('dashboard.createPost.platformConfig.youtube.title')}
-              </span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-4 pb-4">
-            <YouTubeConfigSection
-              config={platformConfigs.youtube || {}}
-              onChange={(newConfig) => onYouTubeConfigChange(newConfig)}
-              media={mediaFiles}
-            />
-          </AccordionContent>
-        </AccordionItem>
-      )}
+        {tiktokAccount && (
+          <AccordionItem value="tiktok" className="border-border border-t last:border-b-0">
+            <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
+              <div className="flex w-full items-center justify-between pr-2">
+                <div className="flex items-center gap-2.5">
+                  <PlatformIcon platform="tiktok" size="xs" />
+                  <span className="text-text-primary text-sm font-medium">
+                    {t('dashboard.createPost.platformConfig.tiktok.title')}
+                  </span>
+                </div>
+                <span className="text-text-muted text-xs">
+                  {t('dashboard.createPost.platformConfig.clickToConfigure')}
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-1">
+              <TikTokConfigSection
+                connectionId={tiktokAccount.id}
+                config={platformConfigs.tiktok || {}}
+                onChange={(newConfig) => onTikTokConfigChange(newConfig)}
+                media={mediaFiles}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        )}
 
-      {pinterestAccount && (
-        <AccordionItem value="pinterest" className="border-border border-b last:border-b-0">
-          <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-2">
-              <PlatformIcon platform="pinterest" size="xs" />
-              <span className="text-text-primary text-sm font-medium">
-                {t('dashboard.createPost.platformConfig.pinterest.title')}
-              </span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-4 pb-4">
-            <PinterestConfigSection
-              connectionId={pinterestAccount.id}
-              config={platformConfigs.pinterest || {}}
-              onChange={(newConfig) => onPinterestConfigChange(newConfig)}
-            />
-          </AccordionContent>
-        </AccordionItem>
-      )}
-    </Accordion>
+        {youtubeAccount && (
+          <AccordionItem value="youtube" className="border-border border-t last:border-b-0">
+            <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
+              <div className="flex w-full items-center justify-between pr-2">
+                <div className="flex items-center gap-2.5">
+                  <PlatformIcon platform="youtube" size="xs" />
+                  <span className="text-text-primary text-sm font-medium">
+                    {t('dashboard.createPost.platformConfig.youtube.title')}
+                  </span>
+                </div>
+                <span className="text-text-muted text-xs">
+                  {t('dashboard.createPost.platformConfig.clickToConfigure')}
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-1">
+              <YouTubeConfigSection
+                config={platformConfigs.youtube || {}}
+                onChange={(newConfig) => onYouTubeConfigChange(newConfig)}
+                media={mediaFiles}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        )}
+
+        {pinterestAccount && (
+          <AccordionItem value="pinterest" className="border-border border-t last:border-b-0">
+            <AccordionTrigger className="hover:bg-bg-hover px-4 py-3 hover:no-underline">
+              <div className="flex w-full items-center justify-between pr-2">
+                <div className="flex items-center gap-2.5">
+                  <PlatformIcon platform="pinterest" size="xs" />
+                  <span className="text-text-primary text-sm font-medium">
+                    {t('dashboard.createPost.platformConfig.pinterest.title')}
+                  </span>
+                </div>
+                <span className="text-text-muted text-xs">
+                  {t('dashboard.createPost.platformConfig.clickToConfigure')}
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-1">
+              <PinterestConfigSection
+                connectionId={pinterestAccount.id}
+                config={platformConfigs.pinterest || {}}
+                onChange={(newConfig) => onPinterestConfigChange(newConfig)}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        )}
+      </Accordion>
+    </div>
   )
 }

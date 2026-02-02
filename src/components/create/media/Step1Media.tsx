@@ -203,25 +203,59 @@ export function Step1Media({
           onDragOver={handleDragOver}
           onDrop={handleDrop}
         >
-          {/* Media upload area - PRIMARY focus */}
-          {media.length === 0 ? (
-            <MediaDropZone
-              onUpload={onMediaUpload}
-              onOpenLibrary={onOpenMediaLibrary}
-              disabled={isUploading}
-              className="m-4 flex-1"
-            />
-          ) : (
-            <div className="flex-1 overflow-auto p-4">
-              <MediaPreviewGrid
-                media={media}
-                onRemove={onMediaRemove}
-                onRetry={onMediaRetry}
-                variant="default"
-                maxVisible={10}
-              />
+          {/* Main content area - two-column when platforms selected */}
+          <div
+            className={cn(
+              'flex min-h-0 flex-1',
+              selectedAccountIds.length > 0 ? 'flex-col md:flex-row' : 'flex-col'
+            )}
+          >
+            {/* Left: Media area - always visible */}
+            <div
+              className={cn(
+                'flex min-h-0 flex-col',
+                selectedAccountIds.length > 0
+                  ? 'min-h-[200px] md:min-h-0 md:w-1/2 md:border-r md:border-border'
+                  : 'flex-1'
+              )}
+            >
+              {media.length === 0 ? (
+                <MediaDropZone
+                  onUpload={onMediaUpload}
+                  onOpenLibrary={onOpenMediaLibrary}
+                  disabled={isUploading}
+                  className="m-4 flex-1"
+                />
+              ) : (
+                <div className="flex-1 overflow-auto p-4">
+                  <MediaPreviewGrid
+                    media={media}
+                    onRemove={onMediaRemove}
+                    onRetry={onMediaRetry}
+                    variant="default"
+                    maxVisible={10}
+                  />
+                </div>
+              )}
             </div>
-          )}
+
+            {/* Right: Platform settings - scrollable */}
+            {selectedAccountIds.length > 0 && (
+              <div className="border-border flex min-h-0 flex-col border-t md:w-1/2 md:border-t-0">
+                <div className="flex-1 overflow-y-auto">
+                  <PlatformConfigAccordion
+                    selectedPlatforms={selectedPlatforms}
+                    media={media}
+                    platformConfigs={platformConfigs}
+                    onInstagramConfigChange={onInstagramConfigChange}
+                    onTikTokConfigChange={onTikTokConfigChange}
+                    onYouTubeConfigChange={onYouTubeConfigChange}
+                    onPinterestConfigChange={onPinterestConfigChange}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* Caption input - SECONDARY, compact */}
           <div className="border-border shrink-0 border-t p-4">
@@ -232,21 +266,6 @@ export function Step1Media({
               platformsMap={platformsMap}
             />
           </div>
-
-          {/* Platform config accordion - only when platforms selected */}
-          {selectedAccountIds.length > 0 && (
-            <div className="border-border shrink-0 border-t">
-              <PlatformConfigAccordion
-                selectedPlatforms={selectedPlatforms}
-                media={media}
-                platformConfigs={platformConfigs}
-                onInstagramConfigChange={onInstagramConfigChange}
-                onTikTokConfigChange={onTikTokConfigChange}
-                onYouTubeConfigChange={onYouTubeConfigChange}
-                onPinterestConfigChange={onPinterestConfigChange}
-              />
-            </div>
-          )}
 
           {/* Publish actions - fixed at bottom */}
           <div className="border-border flex shrink-0 items-center justify-end gap-3 border-t px-5 py-3">

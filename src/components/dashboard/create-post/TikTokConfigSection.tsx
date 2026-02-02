@@ -8,7 +8,6 @@ import { useEffect, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Film, Image, Loader2, AlertCircle, Info, ExternalLink, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import {
   Select,
   SelectContent,
@@ -248,12 +247,6 @@ export function TikTokConfigSection({
   if (isLoadingCreatorInfo) {
     return (
       <div className={cn('space-y-3', className)}>
-        <div className="flex items-center gap-2">
-          <PlatformIcon platform="tiktok" size="xs" />
-          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-            {t('dashboard.createPost.platformConfig.tiktok.title')}
-          </h4>
-        </div>
         <div className="text-muted-foreground flex items-center gap-2 text-sm">
           <Loader2 className="h-4 w-4 animate-spin" />
           {t('dashboard.common.loading')}
@@ -266,12 +259,6 @@ export function TikTokConfigSection({
   if (creatorInfoError) {
     return (
       <div className={cn('space-y-3', className)}>
-        <div className="flex items-center gap-2">
-          <PlatformIcon platform="tiktok" size="xs" />
-          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-            {t('dashboard.createPost.platformConfig.tiktok.title')}
-          </h4>
-        </div>
         <div className="text-warning flex items-center gap-2 text-sm">
           <AlertCircle className="h-4 w-4" />
           {t('dashboard.createPost.platformConfig.tiktok.errors.creatorInfoFailed')}

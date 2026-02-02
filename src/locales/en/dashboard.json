@@ -245,6 +245,7 @@
     "accounts": {
       "title": "Accounts",
       "description": "Manage your social media connections",
+      "connect": "Connect Account",
       "connectNew": "Connect Account",
       "connected": {
         "title": "Connected Accounts",
@@ -565,10 +566,10 @@
           "saveDraft": "to save draft"
         },
         "validation": {
-          "mediaRequired": "{{platform}} requires media",
-          "youtubeRequiresVideo": "YouTube requires a video",
-          "pinterestRequiresImage": "Pinterest requires an image",
-          "overLimit": "{{excess}} characters over limit for {{platform}}"
+          "mediaRequired": "Add a photo or video to post to {{platform}}",
+          "youtubeRequiresVideo": "Add a video to create a YouTube post",
+          "pinterestRequiresImage": "Add an image to create a Pinterest Pin",
+          "overLimit": "Caption exceeds {{platform}}'s limit by {{excess}} characters"
         },
         "success": {
           "published": "Media post published successfully!",
@@ -752,6 +753,8 @@
       },
       "platformConfig": {
         "title": "Platform Settings",
+        "sectionTitle": "Platform Settings",
+        "clickToConfigure": "Click to configure",
         "instagram": {
           "title": "Instagram",
           "contentType": "Content Type",

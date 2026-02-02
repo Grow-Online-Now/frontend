@@ -6,7 +6,6 @@
 import { useTranslation } from 'react-i18next'
 import { Image, Film, Clock, LayoutGrid } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import type { InstagramConfig, InstagramContentType } from '@/types/posts'
 import type { MediaFile } from './MediaUploader'
 
@@ -75,13 +74,6 @@ export function InstagramConfigSection({
 
   return (
     <div className={cn('space-y-3', className)}>
-      <div className="flex items-center gap-2">
-        <PlatformIcon platform="instagram" size="xs" />
-        <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-          {t('dashboard.createPost.platformConfig.instagram.title')}
-        </h4>
-      </div>
-
       <div className="space-y-2">
         {CONTENT_TYPE_OPTIONS.map((option) => {
           const Icon = option.icon

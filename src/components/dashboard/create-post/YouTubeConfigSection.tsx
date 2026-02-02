@@ -7,7 +7,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Film, Smartphone, ImageIcon, X, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import {
@@ -123,13 +122,6 @@ export function YouTubeConfigSection({
 
   return (
     <div className={cn('space-y-3', className)}>
-      <div className="flex items-center gap-2">
-        <PlatformIcon platform="youtube" size="xs" />
-        <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-          {t('dashboard.createPost.platformConfig.youtube.title')}
-        </h4>
-      </div>
-
       {/* Content Type */}
       <div className="space-y-2">
         {CONTENT_TYPE_OPTIONS.map((option) => {

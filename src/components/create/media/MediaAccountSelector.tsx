@@ -5,7 +5,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
-import { Check, Eye, FolderOpen, ImageOff } from 'lucide-react'
+import { AlertTriangle, Check, Eye, FolderOpen, ImageOff } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -198,12 +198,18 @@ export function MediaAccountSelector({
 
       {/* Validation warnings summary */}
       {validations.length > 0 && selectedIds.length > 0 && (
-        <div className="bg-warning/10 text-warning rounded-lg px-3 py-2 text-sm">
-          {validations.map((warning, idx) => (
-            <p key={`${warning.platformId}-${warning.type}-${idx}`}>
-              {t(warning.messageKey, warning.messageParams)}
-            </p>
-          ))}
+        <div className="bg-warning-muted border-warning/20 flex items-start gap-2.5 rounded-lg border px-3 py-2.5">
+          <AlertTriangle className="text-warning mt-0.5 h-4 w-4 shrink-0" />
+          <div className="flex flex-col gap-0.5">
+            {validations.map((warning, idx) => (
+              <p
+                key={`${warning.platformId}-${warning.type}-${idx}`}
+                className="text-warning text-sm"
+              >
+                {t(warning.messageKey, warning.messageParams)}
+              </p>
+            ))}
+          </div>
         </div>
       )}
     </div>

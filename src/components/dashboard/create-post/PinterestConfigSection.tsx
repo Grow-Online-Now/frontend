@@ -7,7 +7,6 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Globe, Users, Lock, Loader2, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import {
   Select,
   SelectContent,
@@ -91,12 +90,6 @@ export function PinterestConfigSection({
   if (isLoading) {
     return (
       <div className={cn('space-y-3', className)}>
-        <div className="flex items-center gap-2">
-          <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-            {t('dashboard.createPost.platformConfig.pinterest.title')}
-          </h4>
-        </div>
         <div className="text-muted-foreground flex items-center gap-2 text-sm">
           <Loader2 className="h-4 w-4 animate-spin" />
           {t('dashboard.pinterest.boards.loading')}
@@ -108,12 +101,6 @@ export function PinterestConfigSection({
   if (error) {
     return (
       <div className={cn('space-y-3', className)}>
-        <div className="flex items-center gap-2">
-          <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-            {t('dashboard.createPost.platformConfig.pinterest.title')}
-          </h4>
-        </div>
         <div className="text-destructive flex items-center gap-2 text-sm">
           <AlertCircle className="h-4 w-4" />
           {error}
@@ -125,12 +112,6 @@ export function PinterestConfigSection({
   if (boards.length === 0) {
     return (
       <div className={cn('space-y-3', className)}>
-        <div className="flex items-center gap-2">
-          <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-            {t('dashboard.createPost.platformConfig.pinterest.title')}
-          </h4>
-        </div>
         <p className="text-muted-foreground text-sm">{t('dashboard.pinterest.boards.noBoards')}</p>
       </div>
     )
@@ -140,12 +121,6 @@ export function PinterestConfigSection({
   if (!defaultBoard && !config.boardId) {
     return (
       <div className={cn('space-y-3', className)}>
-        <div className="flex items-center gap-2">
-          <PlatformIcon platform="pinterest" size="xs" />
-          <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-            {t('dashboard.createPost.platformConfig.pinterest.title')}
-          </h4>
-        </div>
         <div className="space-y-1.5">
           <div className="border-warning/50 bg-warning/10 text-warning rounded-lg border p-2 text-xs">
             {t('dashboard.createPost.platformConfig.pinterest.noDefaultWarning')}
@@ -177,13 +152,6 @@ export function PinterestConfigSection({
 
   return (
     <div className={cn('space-y-3', className)}>
-      <div className="flex items-center gap-2">
-        <PlatformIcon platform="pinterest" size="xs" />
-        <h4 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-          {t('dashboard.createPost.platformConfig.pinterest.title')}
-        </h4>
-      </div>
-
       {/* Board selector */}
       <div className="space-y-1.5">
         <label className="text-muted-foreground text-xs font-medium">

@@ -160,6 +160,7 @@
     "accounts": {
       "title": "Comptes",
       "description": "Gérez vos connexions de réseaux sociaux",
+      "connect": "Connecter un compte",
       "connectNew": "Connecter un compte",
       "connected": {
         "title": "Comptes connectés",
@@ -424,6 +425,12 @@
           "noAccounts": "Aucun compte média connecté",
           "mediaRequired": "Média requis",
           "connect": "Connecter"
+        },
+        "validation": {
+          "mediaRequired": "Ajoutez une photo ou vidéo pour publier sur {{platform}}",
+          "youtubeRequiresVideo": "Ajoutez une vidéo pour créer une publication YouTube",
+          "pinterestRequiresImage": "Ajoutez une image pour créer une épingle Pinterest",
+          "overLimit": "La légende dépasse la limite de {{platform}} de {{excess}} caractères"
         }
       }
     },
@@ -548,6 +555,8 @@
       },
       "platformConfig": {
         "title": "Paramètres des plateformes",
+        "sectionTitle": "Paramètres",
+        "clickToConfigure": "Cliquez pour configurer",
         "instagram": {
           "title": "Instagram",
           "contentType": "Type de contenu",
