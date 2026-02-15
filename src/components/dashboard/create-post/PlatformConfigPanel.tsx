@@ -27,6 +27,8 @@ interface PlatformConfigPanelProps {
   onYouTubeThumbnailUpload?: (file: File) => Promise<string | null>
   youTubeThumbnailPreviewUrl?: string | null
   isUploadingYouTubeThumbnail?: boolean
+  /** Callback for TikTok config validation state changes */
+  onTikTokValidationChange?: (isValid: boolean, errors: string[]) => void
 }
 
 export function PlatformConfigPanel({
@@ -39,6 +41,7 @@ export function PlatformConfigPanel({
   onYouTubeThumbnailUpload,
   youTubeThumbnailPreviewUrl,
   isUploadingYouTubeThumbnail,
+  onTikTokValidationChange,
 }: PlatformConfigPanelProps) {
   const { t } = useTranslation()
 
@@ -87,6 +90,7 @@ export function PlatformConfigPanel({
             config={platformConfigs.tiktok || {}}
             onChange={(tiktok) => onConfigChange({ ...platformConfigs, tiktok })}
             media={media}
+            onValidationChange={onTikTokValidationChange}
           />
         )}
 

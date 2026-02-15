@@ -109,6 +109,8 @@ export interface TikTokConfig {
   coverIndex?: number
   /** Title for the post (max 90 characters) */
   title?: string
+  /** Whether commercial content disclosure is enabled (toggle) */
+  isCommercialContent?: boolean
   /** Mark as branded content (paid partnership) */
   brandContentToggle?: boolean
   /** Mark as promoting creator's own business */

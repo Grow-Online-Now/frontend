@@ -589,7 +589,14 @@
             "SELF_ONLY": "Privé"
           },
           "disableComment": "Désactiver les commentaires",
-          "autoAddMusic": "Ajouter musique auto"
+          "autoAddMusic": "Ajouter musique auto",
+          "errors": {
+            "creatorInfoFailed": "Échec du chargement des paramètres du compte TikTok",
+            "rateLimited": "Vous ne pouvez pas publier sur TikTok en ce moment",
+            "rateLimitedHint": "Vous avez atteint votre limite de publication. Veuillez réessayer plus tard.",
+            "videoDurationExceeded": "La vidéo dépasse la durée maximale de {{max}} secondes",
+            "videoDurationHint": "Votre vidéo fait {{current}}s, mais le maximum autorisé est {{max}}s"
+          }
         },
         "youtube": {
           "title": "YouTube",

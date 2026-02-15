@@ -18,6 +18,8 @@ export interface TikTokCreatorInfo {
   duetDisabled: boolean
   stitchDisabled: boolean
   maxVideoPostDurationSec: number
+  /** Whether the creator has reached their posting limit (backend may set this) */
+  canPost?: boolean
 }
 
 const ENDPOINTS = {

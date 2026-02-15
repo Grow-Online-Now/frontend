@@ -61,6 +61,8 @@ export default function CreateMediaPostPage() {
     hasMediaFirstAccounts,
     unconnectedPlatforms,
     connectPlatform,
+    // Platform config validation
+    handleTikTokValidationChange,
     // Progress modal state
     showProgressModal,
     setShowProgressModal,
@@ -260,6 +262,7 @@ export default function CreateMediaPostPage() {
           onTikTokConfigChange={updateTikTokConfig}
           onYouTubeConfigChange={updateYouTubeConfig}
           onPinterestConfigChange={updatePinterestConfig}
+          onTikTokValidationChange={handleTikTokValidationChange}
           // Library props
           recentMedia={filteredRecentMedia}
           isLoadingRecentMedia={isLoadingMedia}

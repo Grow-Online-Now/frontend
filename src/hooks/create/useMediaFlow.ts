@@ -88,6 +88,9 @@ export interface UseMediaFlowReturn {
   // Connect a platform (opens OAuth popup)
   connectPlatform: (platform: SocialPlatform) => void
 
+  // Platform config validation
+  handleTikTokValidationChange: (isValid: boolean, errors: string[]) => void
+
   // Progress modal state
   showProgressModal: boolean
   setShowProgressModal: (show: boolean) => void
@@ -124,6 +127,13 @@ export function useMediaFlow(): UseMediaFlowReturn {
 
   // Platform-specific configurations
   const [platformConfigs, setPlatformConfigs] = useState<PlatformConfigurations>({})
+
+  // Platform config validation state (tracks validity per platform)
+  const [platformConfigValid, setPlatformConfigValid] = useState<Record<string, boolean>>({})
+
+  const handleTikTokValidationChange = useCallback((isValid: boolean, _errors: string[]) => {
+    setPlatformConfigValid((prev) => ({ ...prev, tiktok: isValid }))
+  }, [])
 
   // Toast error when post fails
   useEffect(() => {
@@ -279,16 +289,31 @@ export function useMediaFlow(): UseMediaFlowReturn {
     (v) => v.type === 'over_limit' || v.type === 'media_required' || v.type === 'wrong_media_type'
   )
 
-  // Can submit logic - must have media
+  // Check if all selected platforms with config validation are valid
+  const allPlatformConfigsValid = useMemo(() => {
+    const selectedPlatformTypes = new Set(
+      selectedPlatformIds
+        .map((id) => availablePlatforms.find((p) => p.id === id)?.platform)
+        .filter(Boolean)
+    )
+    // For each selected platform that has validation tracking, check if valid
+    // Platforms not in platformConfigValid are considered valid (no config validation needed)
+    return [...selectedPlatformTypes].every(
+      (platform) => platformConfigValid[platform as string] !== false
+    )
+  }, [selectedPlatformIds, availablePlatforms, platformConfigValid])
+
+  // Can submit logic - must have media and all platform configs valid
   const canSubmit = useMemo(() => {
     return (
       selectedPlatformIds.length > 0 &&
       mediaUpload.completedUploads.length > 0 &&
       !mediaUpload.isUploading &&
       !hasValidationErrors &&
+      allPlatformConfigsValid &&
       (scheduleType !== 'scheduled' || scheduledDate !== null)
     )
-  }, [selectedPlatformIds, mediaUpload, hasValidationErrors, scheduleType, scheduledDate])
+  }, [selectedPlatformIds, mediaUpload, hasValidationErrors, allPlatformConfigsValid, scheduleType, scheduledDate])
 
   // Platform selection
   const togglePlatform = useCallback((id: string) => {
@@ -464,6 +489,7 @@ export function useMediaFlow(): UseMediaFlowReturn {
     setScheduleType('now')
     setScheduledDate(null)
     setPlatformConfigs({})
+    setPlatformConfigValid({})
     mediaUpload.reset()
     resetCreatePost()
   }, [mediaUpload, resetCreatePost])
@@ -507,6 +533,8 @@ export function useMediaFlow(): UseMediaFlowReturn {
     hasMediaFirstAccounts,
     unconnectedPlatforms,
     connectPlatform: connect,
+    // Platform config validation
+    handleTikTokValidationChange,
     // Progress modal state
     showProgressModal,
     setShowProgressModal,

@@ -12,6 +12,7 @@ interface UseTikTokCreatorInfoState {
   creatorInfo: TikTokCreatorInfo | null
   isLoading: boolean
   error: string | null
+  isRateLimited: boolean
 }
 
 interface UseTikTokCreatorInfoReturn extends UseTikTokCreatorInfoState {
@@ -22,6 +23,8 @@ interface UseTikTokCreatorInfoReturn extends UseTikTokCreatorInfoState {
   stitchDisabled: boolean
   maxVideoDuration: number
   creatorNickname: string | null
+  /** Whether the creator is rate limited or cannot post more */
+  isRateLimited: boolean
 }
 
 /**
@@ -33,6 +36,7 @@ export function useTikTokCreatorInfo(connectionId: string | null): UseTikTokCrea
     creatorInfo: null,
     isLoading: false,
     error: null,
+    isRateLimited: false,
   })
 
   /**
@@ -41,21 +45,35 @@ export function useTikTokCreatorInfo(connectionId: string | null): UseTikTokCrea
   const fetchCreatorInfo = useCallback(async () => {
     if (!connectionId) return
 
-    setState((prev) => ({ ...prev, isLoading: true, error: null }))
+    setState((prev) => ({ ...prev, isLoading: true, error: null, isRateLimited: false }))
 
     try {
       const info = await getTikTokCreatorInfo(connectionId)
+
+      // Check if the backend indicates the creator can't post
+      const rateLimited = info.canPost === false
+
       setState({
         creatorInfo: info,
         isLoading: false,
         error: null,
+        isRateLimited: rateLimited,
       })
     } catch (err) {
+      // Detect rate limit errors (HTTP 429 or specific error messages)
+      const isRateLimit =
+        err instanceof ApiError &&
+        (err.status === 429 ||
+          err.message.toLowerCase().includes('rate limit') ||
+          err.message.toLowerCase().includes('too many') ||
+          err.message.toLowerCase().includes('spam_risk'))
+
       const message = err instanceof ApiError ? err.message : 'Failed to load TikTok creator info'
       setState((prev) => ({
         ...prev,
         isLoading: false,
         error: message,
+        isRateLimited: isRateLimit,
       }))
     }
   }, [connectionId])
@@ -70,6 +88,7 @@ export function useTikTokCreatorInfo(connectionId: string | null): UseTikTokCrea
         creatorInfo: null,
         isLoading: false,
         error: null,
+        isRateLimited: false,
       })
     }
   }, [connectionId, fetchCreatorInfo])
@@ -114,5 +133,6 @@ export function useTikTokCreatorInfo(connectionId: string | null): UseTikTokCrea
     stitchDisabled,
     maxVideoDuration,
     creatorNickname,
+    isRateLimited: state.isRateLimited,
   }
 }

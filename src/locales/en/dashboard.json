@@ -807,16 +807,16 @@
           "commercialContent": {
             "title": "Content disclosure",
             "toggle": "Indicate if this content promotes goods or services in exchange for something of value",
-            "toggleHint": "Your video will be labeled \"Promotional content\" or \"Paid partnership\" to comply with regulations",
+            "toggleHint": "Your photo/video will be labeled \"Promotional content\" or \"Paid partnership\" to comply with regulations",
             "yourBrand": {
               "label": "Your brand",
               "description": "You are promoting yourself or your own business",
-              "labelPrompt": "Your video will be labeled as \"Promotional content\""
+              "labelPrompt": "Your photo/video will be labeled as \"Promotional content\""
             },
             "brandedContent": {
               "label": "Branded content",
               "description": "You are promoting another brand or third party",
-              "labelPrompt": "Your video will be labeled as \"Paid partnership\"",
+              "labelPrompt": "Your photo/video will be labeled as \"Paid partnership\"",
               "privateWarning": "Branded content cannot be set to private visibility",
               "privateDisabledTooltip": "Branded content visibility cannot be set to private"
             },
@@ -833,6 +833,8 @@
           "errors": {
             "creatorInfoFailed": "Failed to load TikTok account settings",
             "postingLimitReached": "You've reached your daily posting limit on TikTok",
+            "rateLimited": "You cannot post to TikTok at this moment",
+            "rateLimitedHint": "You've reached your posting limit. Please try again later.",
             "videoDurationExceeded": "Video exceeds maximum duration of {{max}} seconds",
             "videoDurationHint": "Your video is {{current}}s, but maximum allowed is {{max}}s"
           }

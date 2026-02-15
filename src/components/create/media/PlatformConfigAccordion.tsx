@@ -43,6 +43,8 @@ interface PlatformConfigAccordionProps {
   onTikTokConfigChange: (config: Partial<TikTokConfig>) => void
   onYouTubeConfigChange: (config: Partial<YouTubeConfig>) => void
   onPinterestConfigChange: (config: Partial<PinterestConfig>) => void
+  /** Callback for TikTok config validation state changes */
+  onTikTokValidationChange?: (isValid: boolean, errors: string[]) => void
   className?: string
 }
 
@@ -54,6 +56,7 @@ export function PlatformConfigAccordion({
   onTikTokConfigChange,
   onYouTubeConfigChange,
   onPinterestConfigChange,
+  onTikTokValidationChange,
   className,
 }: PlatformConfigAccordionProps) {
   const { t } = useTranslation()
@@ -141,6 +144,7 @@ export function PlatformConfigAccordion({
                 config={platformConfigs.tiktok || {}}
                 onChange={(newConfig) => onTikTokConfigChange(newConfig)}
                 media={mediaFiles}
+                onValidationChange={onTikTokValidationChange}
               />
             </AccordionContent>
           </AccordionItem>

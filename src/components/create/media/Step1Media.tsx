@@ -60,6 +60,8 @@ interface Step1MediaProps {
   onTikTokConfigChange: (config: Partial<TikTokConfig>) => void
   onYouTubeConfigChange: (config: Partial<YouTubeConfig>) => void
   onPinterestConfigChange: (config: Partial<PinterestConfig>) => void
+  /** Callback for TikTok config validation state changes */
+  onTikTokValidationChange?: (isValid: boolean, errors: string[]) => void
 
   // Library panel data
   recentMedia?: MediaItem[]
@@ -109,6 +111,7 @@ export function Step1Media({
   onTikTokConfigChange,
   onYouTubeConfigChange,
   onPinterestConfigChange,
+  onTikTokValidationChange,
   recentMedia = [],
   isLoadingRecentMedia,
   recentDrafts = [],
@@ -251,6 +254,7 @@ export function Step1Media({
                     onTikTokConfigChange={onTikTokConfigChange}
                     onYouTubeConfigChange={onYouTubeConfigChange}
                     onPinterestConfigChange={onPinterestConfigChange}
+                    onTikTokValidationChange={onTikTokValidationChange}
                   />
                 </div>
               </div>

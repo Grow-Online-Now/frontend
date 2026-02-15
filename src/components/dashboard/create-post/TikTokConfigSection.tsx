@@ -91,6 +91,7 @@ export function TikTokConfigSection({
     stitchDisabled,
     maxVideoDuration,
     creatorNickname,
+    isRateLimited,
   } = useTikTokCreatorInfo(connectionId ?? null)
 
   // Auto-detect content type based on media
@@ -128,8 +129,8 @@ export function TikTokConfigSection({
     return availablePrivacyOptions
   }, [availablePrivacyOptions, brandedContentSelected])
 
-  // Is commercial disclosure toggle on? (either brand option selected)
-  const commercialDisclosureEnabled = config.brandContentToggle || config.brandOrganicToggle
+  // Is commercial disclosure toggle on? (separate toggle state)
+  const commercialDisclosureEnabled = config.isCommercialContent ?? false
 
   // Validation: commercial toggle on but no option selected
   const commercialSelectionMissing =
@@ -138,6 +139,10 @@ export function TikTokConfigSection({
   // Calculate validation state
   const validationErrors = useMemo(() => {
     const errors: string[] = []
+
+    if (isRateLimited) {
+      errors.push(t('dashboard.createPost.platformConfig.tiktok.errors.rateLimited'))
+    }
 
     if (!config.privacyLevel) {
       errors.push(t('dashboard.createPost.platformConfig.tiktok.privacyRequired'))
@@ -156,7 +161,7 @@ export function TikTokConfigSection({
     }
 
     return errors
-  }, [config.privacyLevel, commercialSelectionMissing, videoDurationExceedsMax, maxVideoDuration, t])
+  }, [isRateLimited, config.privacyLevel, commercialSelectionMissing, videoDurationExceedsMax, maxVideoDuration, t, config.isCommercialContent, config.brandContentToggle, config.brandOrganicToggle])
 
   const isValid = validationErrors.length === 0
 
@@ -217,10 +222,17 @@ export function TikTokConfigSection({
 
   const handleCommercialToggleChange = useCallback(
     (enabled: boolean) => {
-      if (!enabled) {
-        // When turning off, clear both brand options
+      if (enabled) {
+        // When turning on, set the toggle flag (sub-options appear, none checked by default)
         onChange({
           ...config,
+          isCommercialContent: true,
+        })
+      } else {
+        // When turning off, clear the toggle and both brand options
+        onChange({
+          ...config,
+          isCommercialContent: false,
           brandContentToggle: false,
           brandOrganicToggle: false,
         })
@@ -255,7 +267,26 @@ export function TikTokConfigSection({
     )
   }
 
-  // Error state - still render form with defaults
+  // Rate limited state - block publishing and prompt to try again later
+  if (isRateLimited) {
+    return (
+      <div className={cn('space-y-3', className)}>
+        <div className="border-warning/50 bg-warning/10 flex items-start gap-2 rounded-lg border p-3">
+          <AlertCircle className="text-warning mt-0.5 h-4 w-4 shrink-0" />
+          <div>
+            <p className="text-warning text-sm font-medium">
+              {t('dashboard.createPost.platformConfig.tiktok.errors.rateLimited')}
+            </p>
+            <p className="text-warning/80 text-xs">
+              {t('dashboard.createPost.platformConfig.tiktok.errors.rateLimitedHint')}
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Error state - block form when creator info fails
   if (creatorInfoError) {
     return (
       <div className={cn('space-y-3', className)}>
@@ -677,8 +708,7 @@ export function validateTikTokConfig(
     errors.push('Privacy level is required')
   }
 
-  const commercialEnabled = config.brandContentToggle || config.brandOrganicToggle
-  if (commercialEnabled && !config.brandContentToggle && !config.brandOrganicToggle) {
+  if (config.isCommercialContent && !config.brandContentToggle && !config.brandOrganicToggle) {
     errors.push('Commercial content selection is required')
   }
 
