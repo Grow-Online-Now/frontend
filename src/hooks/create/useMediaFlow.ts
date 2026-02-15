@@ -375,12 +375,19 @@ export function useMediaFlow(): UseMediaFlowReturn {
       return false
     }
 
+    // Strip UI-only fields before sending to backend
+    const { isCommercialContent: _ic, ...tiktokApiConfig } = platformConfigs.tiktok || {}
+    const apiPlatformConfigs: PlatformConfigurations = {
+      ...platformConfigs,
+      tiktok: Object.keys(tiktokApiConfig).length > 0 ? tiktokApiConfig : undefined,
+    }
+
     const request: CreatePostRequest = {
       caption,
       social_accounts: selectedPlatformIds,
       is_draft: false,
       media_ids: mediaUpload.getMediaIds(),
-      platform_configurations: platformConfigs,
+      platform_configurations: apiPlatformConfigs,
     }
 
     // Add scheduled date if scheduling
@@ -437,11 +444,18 @@ export function useMediaFlow(): UseMediaFlowReturn {
     setIsSavingDraft(true)
 
     try {
+      // Strip UI-only fields before sending to backend
+      const { isCommercialContent: _ic, ...tiktokDraftConfig } = platformConfigs.tiktok || {}
+      const draftPlatformConfigs: PlatformConfigurations = {
+        ...platformConfigs,
+        tiktok: Object.keys(tiktokDraftConfig).length > 0 ? tiktokDraftConfig : undefined,
+      }
+
       const request: CreatePostRequest = {
         caption,
         social_accounts: selectedPlatformIds.length > 0 ? selectedPlatformIds : [],
         is_draft: true,
-        platform_configurations: platformConfigs,
+        platform_configurations: draftPlatformConfigs,
       }
 
       // Add media if any
