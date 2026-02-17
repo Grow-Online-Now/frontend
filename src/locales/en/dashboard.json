@@ -789,6 +789,7 @@
           "privacy": "Who can view this video",
           "privacyPlaceholder": "Select privacy setting",
           "privacyRequired": "Please select a privacy setting",
+          "privacyAutoSwitched": "Privacy was automatically changed to Public because branded content cannot be set to private",
           "privacyLevels": {
             "PUBLIC_TO_EVERYONE": "Public",
             "MUTUAL_FOLLOW_FRIENDS": "Friends",

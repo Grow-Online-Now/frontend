@@ -4,7 +4,7 @@
  * Compliant with TikTok UX Guidelines requirements
  */
 
-import { useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Film, Image, Loader2, AlertCircle, Info, ExternalLink, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -129,6 +129,17 @@ export function TikTokConfigSection({
     return availablePrivacyOptions
   }, [availablePrivacyOptions, brandedContentSelected])
 
+  // Track when privacy is auto-switched due to branded content constraint
+  const [showPrivacyAutoSwitchNotice, setShowPrivacyAutoSwitchNotice] = useState(false)
+
+  // Auto-dismiss the notice after 5 seconds
+  useEffect(() => {
+    if (showPrivacyAutoSwitchNotice) {
+      const timer = setTimeout(() => setShowPrivacyAutoSwitchNotice(false), 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [showPrivacyAutoSwitchNotice])
+
   // Is commercial disclosure toggle on? (separate toggle state)
   const commercialDisclosureEnabled = config.isCommercialContent ?? false
 
@@ -170,10 +181,11 @@ export function TikTokConfigSection({
     onValidationChange?.(isValid, validationErrors)
   }, [isValid, validationErrors, onValidationChange])
 
-  // Reset privacy if branded content selected and current is SELF_ONLY
+  // Auto-switch privacy to PUBLIC_TO_EVERYONE if branded content is selected and current is SELF_ONLY
   useEffect(() => {
     if (brandedContentSelected && config.privacyLevel === 'SELF_ONLY') {
-      onChange({ ...config, privacyLevel: undefined })
+      onChange({ ...config, privacyLevel: 'PUBLIC_TO_EVERYONE' })
+      setShowPrivacyAutoSwitchNotice(true)
     }
   }, [brandedContentSelected, config, onChange])
 
@@ -420,7 +432,12 @@ export function TikTokConfigSection({
               {brandedContentSelected && availablePrivacyOptions.includes('SELF_ONLY') && (
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <div className="text-muted-foreground relative flex cursor-not-allowed select-none items-center rounded-sm px-2 py-1.5 text-sm opacity-50 outline-none">
+                    <div
+                      className="text-muted-foreground relative flex cursor-not-allowed select-none items-center rounded-sm px-2 py-1.5 text-sm opacity-50 outline-none"
+                      title={t(
+                        'dashboard.createPost.platformConfig.tiktok.commercialContent.brandedContent.privateDisabledTooltip'
+                      )}
+                    >
                       {t(PRIVACY_LEVEL_LABELS.SELF_ONLY)}
                     </div>
                   </TooltipTrigger>
@@ -439,6 +456,14 @@ export function TikTokConfigSection({
             <p className="text-warning text-xs">
               {t('dashboard.createPost.platformConfig.tiktok.privacyRequired')}
             </p>
+          )}
+          {showPrivacyAutoSwitchNotice && (
+            <div className="flex items-center gap-1.5">
+              <Info className="text-info h-3.5 w-3.5 shrink-0" />
+              <p className="text-info text-xs">
+                {t('dashboard.createPost.platformConfig.tiktok.privacyAutoSwitched')}
+              </p>
+            </div>
           )}
         </div>
 
@@ -710,6 +735,10 @@ export function validateTikTokConfig(
 
   if (config.isCommercialContent && !config.brandContentToggle && !config.brandOrganicToggle) {
     errors.push('Commercial content selection is required')
+  }
+
+  if (config.brandContentToggle && config.privacyLevel === 'SELF_ONLY') {
+    errors.push('Branded content cannot be set to private visibility')
   }
 
   if (hasVideo && videoDuration && maxVideoDuration && videoDuration > maxVideoDuration) {

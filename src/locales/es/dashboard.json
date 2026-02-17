@@ -581,6 +581,7 @@
             "photoDesc": "Hasta 35 imágenes con música"
           },
           "privacy": "Privacidad",
+          "privacyAutoSwitched": "La privacidad se cambió automáticamente a Público porque el contenido de marca no puede ser privado",
           "privacyLevels": {
             "PUBLIC_TO_EVERYONE": "Público",
             "MUTUAL_FOLLOW_FRIENDS": "Amigos",

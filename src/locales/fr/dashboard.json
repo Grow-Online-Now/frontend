@@ -582,6 +582,7 @@
             "photoDesc": "Jusqu'à 35 images avec musique"
           },
           "privacy": "Confidentialité",
+          "privacyAutoSwitched": "La confidentialité a été automatiquement changée en Public car le contenu de marque ne peut pas être privé",
           "privacyLevels": {
             "PUBLIC_TO_EVERYONE": "Public",
             "MUTUAL_FOLLOW_FRIENDS": "Amis",
