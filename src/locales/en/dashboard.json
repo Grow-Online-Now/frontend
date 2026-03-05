@@ -10,8 +10,10 @@
         "general": "General",
         "create": "Create",
         "posts": "Posts",
+        "automate": "Automate",
         "configuration": "Configuration"
       },
+      "automations": "Automations",
       "media": "Media Library",
       "overview": "Overview",
       "analytics": "Analytics",
@@ -1301,6 +1303,139 @@
       },
       "loading": {
         "more": "Loading more..."
+      }
+    },
+    "automations": {
+      "title": "Automations",
+      "description": "Create and manage automation workflows",
+      "create": "Create Workflow",
+      "filter": {
+        "all": "All"
+      },
+      "status": {
+        "draft": "Draft",
+        "active": "Active",
+        "paused": "Paused",
+        "archived": "Archived"
+      },
+      "card": {
+        "nodes": "{{count}} nodes"
+      },
+      "actions": {
+        "edit": "Edit",
+        "run": "Run",
+        "delete": "Delete",
+        "executions": "Executions"
+      },
+      "empty": {
+        "title": "No workflows yet",
+        "description": "Create your first automation workflow to start posting across platforms automatically.",
+        "cta": "Create your first workflow",
+        "filteredTitle": "No workflows found",
+        "filteredDescription": "No workflows match the selected filter."
+      },
+      "createDialog": {
+        "title": "Create Workflow",
+        "description": "Give your workflow a name to get started.",
+        "nameLabel": "Name",
+        "namePlaceholder": "My workflow",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "What does this workflow do?",
+        "create": "Create",
+        "creating": "Creating..."
+      },
+      "deleteDialog": {
+        "title": "Delete Workflow",
+        "description": "Are you sure you want to delete this workflow? This action cannot be undone."
+      },
+      "editor": {
+        "save": "Save",
+        "saving": "Saving...",
+        "saved": "Workflow saved",
+        "saveFailed": "Failed to save workflow",
+        "run": "Run",
+        "activate": "Activate",
+        "pause": "Pause",
+        "statusChanged": "Workflow status updated",
+        "executionStarted": "Workflow execution started",
+        "executionFailed": "Failed to start execution",
+        "notFound": "Workflow not found",
+        "backToList": "Back to automations",
+        "palette": {
+          "title": "Nodes",
+          "triggers": "Triggers",
+          "processors": "Processors",
+          "actions": "Actions"
+        },
+        "config": {
+          "title": "Configuration",
+          "labelField": "Label",
+          "rawJson": "Configuration (JSON)",
+          "trigger": {
+            "descriptionLabel": "Description",
+            "descriptionPlaceholder": "Describe when this workflow should run...",
+            "descriptionHint": "This description is for your reference only."
+          },
+          "template": {
+            "templateLabel": "Template",
+            "templatePlaceholder": "Enter your template text with {{variable}} placeholders...",
+            "templateHint": "Use {{variableName}} syntax to insert values from the previous node.",
+            "availableVariables": "Available Variables"
+          },
+          "post": {
+            "connectionsLabel": "Post to Accounts",
+            "connectionsHint": "Select the social accounts to post to.",
+            "noConnections": "No active connections. Connect accounts first."
+          }
+        }
+      },
+      "executions": {
+        "title": "Executions",
+        "description": "View execution history and run workflows",
+        "detailTitle": "Execution Details",
+        "run": "Run Workflow",
+        "cancel": "Cancel",
+        "executionStarted": "Workflow execution started",
+        "executionFailed": "Failed to start execution",
+        "cancelled": "Execution cancelled",
+        "cancelFailed": "Failed to cancel execution",
+        "polling": "Updating...",
+        "started": "Started",
+        "completed": "Completed",
+        "durationLabel": "Duration",
+        "duration": "{{seconds}}s",
+        "steps": "Steps",
+        "stepsTitle": "Steps",
+        "stepsCount": "{{count}} steps",
+        "input": "Input",
+        "output": "Output",
+        "error": "Error",
+        "status": {
+          "pending": "Pending",
+          "running": "Running",
+          "completed": "Completed",
+          "failed": "Failed",
+          "cancelled": "Cancelled"
+        },
+        "stepStatus": {
+          "pending": "Pending",
+          "running": "Running",
+          "completed": "Completed",
+          "failed": "Failed",
+          "skipped": "Skipped"
+        },
+        "empty": {
+          "title": "No executions yet",
+          "description": "Run this workflow to see execution history here."
+        },
+        "triggerDialog": {
+          "title": "Run Workflow",
+          "description": "Optionally provide data for the trigger node.",
+          "keyPlaceholder": "Key",
+          "valuePlaceholder": "Value",
+          "addField": "Add Field",
+          "execute": "Execute"
+        }
       }
     }
   }

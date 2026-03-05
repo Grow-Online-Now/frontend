@@ -16,6 +16,7 @@
     "learnMore": "Más Información",
     "backToHome": "Volver al inicio"
   },
+  "loading": "Cargando...",
   "closingWindow": "Esta ventana se cerrará automáticamente...",
   "errors": {
     "connectionFailed": "Error de conexión",
