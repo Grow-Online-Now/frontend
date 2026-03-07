@@ -36,6 +36,10 @@ const CreateMediaPostPage = lazy(() => import('./pages/dashboard/CreateMediaPost
 const MediaLibraryPage = lazy(() => import('./pages/dashboard/MediaLibraryPage.tsx'))
 const AccountsPage = lazy(() => import('./pages/dashboard/AccountsPage.tsx'))
 const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage.tsx'))
+const AutomationsPage = lazy(() => import('./pages/dashboard/AutomationsPage.tsx'))
+const WorkflowEditorPage = lazy(() => import('./pages/dashboard/WorkflowEditorPage.tsx'))
+const WorkflowExecutionsPage = lazy(() => import('./pages/dashboard/WorkflowExecutionsPage.tsx'))
+const ExecutionDetailPage = lazy(() => import('./pages/dashboard/ExecutionDetailPage.tsx'))
 
 // Define routes that will be used with language prefix
 const localizedRoutes = [
@@ -76,6 +80,21 @@ const localizedRoutes = [
   { path: 'free-tools', element: <FreeToolsHub /> },
   { path: 'free-tools/linkedin-post-preview-tool', element: <LinkedInPreviewTool /> },
   { path: 'free-tools/best-time-to-post-calculator', element: <BestTimeToPostTool /> },
+  // Workflow editor (full-screen, outside DashboardLayout)
+  {
+    path: 'dashboard/automations/:id/edit',
+    element: (
+      <ProtectedRoute>
+        <WorkspaceProvider>
+          <WorkspaceGuard>
+            <Suspense fallback={<DashboardPageLoader />}>
+              <WorkflowEditorPage />
+            </Suspense>
+          </WorkspaceGuard>
+        </WorkspaceProvider>
+      </ProtectedRoute>
+    ),
+  },
   // Dashboard routes (protected)
   {
     path: 'dashboard',
@@ -144,6 +163,30 @@ const localizedRoutes = [
         element: (
           <Suspense fallback={<DashboardPageLoader />}>
             <AccountsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'automations',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <AutomationsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'automations/:id/executions',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <WorkflowExecutionsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'automations/executions/:executionId',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <ExecutionDetailPage />
           </Suspense>
         ),
       },

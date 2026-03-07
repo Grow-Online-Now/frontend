@@ -10,8 +10,10 @@
         "general": "General",
         "create": "Crear",
         "posts": "Publicaciones",
+        "automate": "Automatizar",
         "configuration": "Configuración"
       },
+      "automations": "Automatizaciones",
       "media": "Biblioteca de medios",
       "overview": "Resumen",
       "analytics": "Analíticas",
@@ -1003,6 +1005,145 @@
       },
       "loading": {
         "more": "Cargando más..."
+      }
+    },
+    "automations": {
+      "title": "Automatizaciones",
+      "description": "Crea y gestiona workflows de automatización",
+      "create": "Crear Workflow",
+      "filter": {
+        "all": "Todos"
+      },
+      "status": {
+        "draft": "Borrador",
+        "active": "Activo",
+        "paused": "Pausado",
+        "archived": "Archivado"
+      },
+      "card": {
+        "nodes": "{{count}} nodos"
+      },
+      "actions": {
+        "edit": "Editar",
+        "run": "Ejecutar",
+        "delete": "Eliminar",
+        "executions": "Ejecuciones"
+      },
+      "empty": {
+        "title": "Sin workflows",
+        "description": "Crea tu primer workflow de automatización para publicar automáticamente en tus plataformas.",
+        "cta": "Crear tu primer workflow",
+        "filteredTitle": "No se encontraron workflows",
+        "filteredDescription": "Ningún workflow coincide con el filtro seleccionado."
+      },
+      "createDialog": {
+        "title": "Crear Workflow",
+        "description": "Dale un nombre a tu workflow para empezar.",
+        "nameLabel": "Nombre",
+        "namePlaceholder": "Mi workflow",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "¿Qué hace este workflow?",
+        "create": "Crear",
+        "creating": "Creando..."
+      },
+      "deleteDialog": {
+        "title": "Eliminar Workflow",
+        "description": "¿Estás seguro de que quieres eliminar este workflow? Esta acción no se puede deshacer."
+      },
+      "breadcrumbs": {
+        "automations": "Automatizaciones",
+        "executions": "Ejecuciones",
+        "executionDetail": "Detalles de Ejecución"
+      },
+      "editor": {
+        "executions": "Ejecuciones",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "saved": "Workflow guardado",
+        "saveFailed": "Error al guardar el workflow",
+        "run": "Ejecutar",
+        "activate": "Activar",
+        "pause": "Pausar",
+        "statusChanged": "Estado del workflow actualizado",
+        "executionStarted": "Ejecución del workflow iniciada",
+        "executionFailed": "Error al iniciar la ejecución",
+        "notFound": "Workflow no encontrado",
+        "backToList": "Volver a automatizaciones",
+        "palette": {
+          "title": "Nodos",
+          "triggers": "Disparadores",
+          "processors": "Procesadores",
+          "actions": "Acciones"
+        },
+        "config": {
+          "title": "Configuración",
+          "labelField": "Etiqueta",
+          "rawJson": "Configuración (JSON)",
+          "trigger": {
+            "descriptionLabel": "Descripción",
+            "descriptionPlaceholder": "Describe cuándo debe ejecutarse este workflow...",
+            "descriptionHint": "Esta descripción es solo para tu referencia."
+          },
+          "template": {
+            "templateLabel": "Plantilla",
+            "templatePlaceholder": "Ingresa tu texto con variables {{variable}}...",
+            "templateHint": "Usa la sintaxis {{nombreVariable}} para insertar valores del nodo anterior.",
+            "availableVariables": "Variables disponibles"
+          },
+          "post": {
+            "connectionsLabel": "Publicar en cuentas",
+            "connectionsHint": "Selecciona las cuentas sociales donde publicar.",
+            "noConnections": "No hay conexiones activas. Conecta tus cuentas primero."
+          }
+        }
+      },
+      "executions": {
+        "title": "Ejecuciones",
+        "description": "Ver historial de ejecuciones y ejecutar workflows",
+        "detailTitle": "Detalles de Ejecución",
+        "run": "Ejecutar Workflow",
+        "cancel": "Cancelar",
+        "executionStarted": "Ejecución del workflow iniciada",
+        "executionFailed": "Error al iniciar la ejecución",
+        "cancelled": "Ejecución cancelada",
+        "cancelFailed": "Error al cancelar la ejecución",
+        "polling": "Actualizando...",
+        "started": "Iniciado",
+        "completed": "Completado",
+        "durationLabel": "Duración",
+        "duration": "{{seconds}}s",
+        "steps": "Pasos",
+        "stepsTitle": "Pasos",
+        "stepsCount": "{{count}} pasos",
+        "input": "Entrada",
+        "output": "Salida",
+        "error": "Error",
+        "status": {
+          "pending": "Pendiente",
+          "running": "En ejecución",
+          "completed": "Completado",
+          "failed": "Fallido",
+          "cancelled": "Cancelado"
+        },
+        "stepStatus": {
+          "pending": "Pendiente",
+          "running": "En ejecución",
+          "completed": "Completado",
+          "failed": "Fallido",
+          "skipped": "Omitido"
+        },
+        "empty": {
+          "title": "Sin ejecuciones",
+          "description": "Ejecuta este workflow para ver el historial de ejecuciones aquí."
+        },
+        "triggerDialog": {
+          "title": "Ejecutar Workflow",
+          "description": "Opcionalmente proporciona datos para el nodo disparador.",
+          "keyPlaceholder": "Clave",
+          "valuePlaceholder": "Valor",
+          "addField": "Añadir campo",
+          "execute": "Ejecutar"
+        }
       }
     }
   }

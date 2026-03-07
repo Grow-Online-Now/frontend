@@ -16,6 +16,7 @@
     "learnMore": "Learn More",
     "backToHome": "Back to Home"
   },
+  "loading": "Loading...",
   "closingWindow": "This window will close automatically...",
   "errors": {
     "connectionFailed": "Connection failed",
