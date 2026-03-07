@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { Loader2 } from 'lucide-react'
 import { ReactFlowProvider } from '@xyflow/react'
 import { toast } from 'sonner'
+import { Toaster } from '@/components/ui/sonner'
 import { useWorkflow } from '@/hooks/useWorkflow'
 import { useNodeRegistry } from '@/hooks/useNodeRegistry'
 import { executeWorkflow } from '@/services/automations.service'
@@ -194,6 +195,8 @@ export default function WorkflowEditorPage() {
           />
         )}
       </div>
+
+      <Toaster position="bottom-right" />
     </div>
   )
 }

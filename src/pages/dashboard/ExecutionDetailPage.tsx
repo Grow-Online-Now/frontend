@@ -10,6 +10,8 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
+import { DashboardBreadcrumbs } from '@/components/dashboard/shared/DashboardBreadcrumbs'
+import { useWorkflow } from '@/hooks/useWorkflow'
 import { ExecutionStatusBadge } from '@/components/dashboard/automations/ExecutionStatusBadge'
 import { StepCard } from '@/components/dashboard/automations/executions/StepCard'
 import { useExecutionPolling } from '@/hooks/useExecutionPolling'
@@ -19,6 +21,7 @@ export default function ExecutionDetailPage() {
   const { executionId } = useParams<{ executionId: string }>()
   const { t } = useTranslation()
   const { execution, isPolling, error } = useExecutionPolling(executionId)
+  const { workflow } = useWorkflow(execution?.workflowId)
 
   const handleCancel = async () => {
     if (!executionId) return
@@ -73,6 +76,30 @@ export default function ExecutionDetailPage() {
 
   return (
     <div>
+      {workflow && (
+        <DashboardBreadcrumbs
+          items={[
+            {
+              labelKey: 'dashboard.automations.breadcrumbs.automations',
+              href: '/dashboard/automations',
+            },
+            {
+              label: workflow.name,
+              href: `/dashboard/automations/${workflow.id}/edit`,
+            },
+            {
+              labelKey: 'dashboard.automations.breadcrumbs.executions',
+              href: `/dashboard/automations/${workflow.id}/executions`,
+            },
+            {
+              labelKey: 'dashboard.automations.breadcrumbs.executionDetail',
+              href: `/dashboard/automations/executions/${executionId}`,
+              isCurrentPage: true,
+            },
+          ]}
+        />
+      )}
+
       <PageHeader
         titleKey="dashboard.automations.executions.detailTitle"
         actions={

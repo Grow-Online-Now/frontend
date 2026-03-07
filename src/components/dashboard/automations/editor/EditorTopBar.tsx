@@ -6,9 +6,10 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Save, Play, Loader2 } from 'lucide-react'
+import { ArrowLeft, Save, Play, Loader2, History } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Link } from '@/components/common/LocalizedLink'
 import { WorkflowStatusBadge } from '../WorkflowStatusBadge'
 import type { Workflow, WorkflowStatus } from '@/types/automations'
 
@@ -79,6 +80,14 @@ export function EditorTopBar({
         )}
 
         <WorkflowStatusBadge status={workflow.status} />
+
+        <Link
+          to={`/dashboard/automations/${workflow.id}/executions`}
+          className="text-text-muted hover:text-text-primary flex items-center gap-1.5 text-sm transition-colors"
+        >
+          <History className="size-4" />
+          {t('dashboard.automations.editor.executions')}
+        </Link>
       </div>
 
       <div className="flex items-center gap-2">

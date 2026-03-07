@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link } from '@/components/common/LocalizedLink'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
+import { DashboardBreadcrumbs } from '@/components/dashboard/shared/DashboardBreadcrumbs'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
 import { ExecutionStatusBadge } from '@/components/dashboard/automations/ExecutionStatusBadge'
@@ -104,9 +105,23 @@ export default function WorkflowExecutionsPage() {
       />
 
       {workflow && (
-        <p className="text-text-secondary mb-6 -mt-4 text-sm">
-          {workflow.name}
-        </p>
+        <DashboardBreadcrumbs
+          items={[
+            {
+              labelKey: 'dashboard.automations.breadcrumbs.automations',
+              href: '/dashboard/automations',
+            },
+            {
+              label: workflow.name,
+              href: `/dashboard/automations/${workflow.id}/edit`,
+            },
+            {
+              labelKey: 'dashboard.automations.breadcrumbs.executions',
+              href: `/dashboard/automations/${id}/executions`,
+              isCurrentPage: true,
+            },
+          ]}
+        />
       )}
 
       {executions.length === 0 ? (

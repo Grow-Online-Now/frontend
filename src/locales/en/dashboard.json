@@ -1348,7 +1348,13 @@
         "title": "Delete Workflow",
         "description": "Are you sure you want to delete this workflow? This action cannot be undone."
       },
+      "breadcrumbs": {
+        "automations": "Automations",
+        "executions": "Executions",
+        "executionDetail": "Execution Detail"
+      },
       "editor": {
+        "executions": "Executions",
         "save": "Save",
         "saving": "Saving...",
         "saved": "Workflow saved",

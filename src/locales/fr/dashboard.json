@@ -1051,7 +1051,13 @@
         "title": "Supprimer le workflow",
         "description": "Êtes-vous sûr de vouloir supprimer ce workflow ? Cette action est irréversible."
       },
+      "breadcrumbs": {
+        "automations": "Automatisations",
+        "executions": "Exécutions",
+        "executionDetail": "Détails de l'exécution"
+      },
       "editor": {
+        "executions": "Exécutions",
         "save": "Enregistrer",
         "saving": "Enregistrement...",
         "saved": "Workflow enregistré",

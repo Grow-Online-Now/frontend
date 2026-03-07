@@ -6,6 +6,7 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MoreHorizontal, Pencil, Play, Trash2, History } from 'lucide-react'
+import { Link } from '@/components/common/LocalizedLink'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -31,7 +32,10 @@ export function WorkflowCard({ workflow, onDelete }: WorkflowCardProps) {
   const updatedDate = new Date(workflow.updatedAt).toLocaleDateString()
 
   return (
-    <div className="bg-bg-elevated border-border hover:border-border-emphasis group rounded-xl border p-5 transition-all duration-150">
+    <Link
+      to={`/dashboard/automations/${workflow.id}/edit`}
+      className="bg-bg-elevated border-border hover:border-border-emphasis group block rounded-xl border p-5 transition-all duration-150"
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <h3 className="text-text-primary truncate text-base font-semibold tracking-tight">
@@ -45,7 +49,12 @@ export function WorkflowCard({ workflow, onDelete }: WorkflowCardProps) {
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="size-8 shrink-0">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-8 shrink-0"
+              onClick={(e) => e.preventDefault()}
+            >
               <MoreHorizontal className="size-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -93,6 +102,6 @@ export function WorkflowCard({ workflow, onDelete }: WorkflowCardProps) {
         </span>
         <span className="text-text-muted text-xs">{updatedDate}</span>
       </div>
-    </div>
+    </Link>
   )
 }

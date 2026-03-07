@@ -7,7 +7,6 @@ import { useCallback, useRef, useMemo } from 'react'
 import {
   ReactFlow,
   Controls,
-  MiniMap,
   Background,
   BackgroundVariant,
   useNodesState,
@@ -18,8 +17,10 @@ import {
   type Node,
   type NodeTypes,
   type OnConnect,
+  type ColorMode,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
+import { useTheme } from '@/hooks/useTheme'
 import { WorkflowNodeMemo, type WorkflowNodeData } from './WorkflowNode'
 import type {
   NodeDefinition,
@@ -88,6 +89,8 @@ export function WorkflowCanvas({
   selectedNodeId,
 }: WorkflowCanvasProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null)
+  const { resolvedTheme } = useTheme()
+  const colorMode: ColorMode = resolvedTheme === 'light' ? 'light' : 'dark'
   const [nodes, setNodes, onNodesChange] = useNodesState(
     toFlowNodes(definition.nodes, nodeRegistry)
   )
@@ -149,6 +152,20 @@ export function WorkflowCanvas({
   const onPaneClick = useCallback(() => {
     onNodeSelect(null)
   }, [onNodeSelect])
+
+  const handleDeleteNode = useCallback(
+    (nodeId: string) => {
+      setNodes((nds) => nds.filter((n) => n.id !== nodeId))
+      setEdges((eds) => eds.filter((e) => e.source !== nodeId && e.target !== nodeId))
+      if (selectedNodeId === nodeId) {
+        onNodeSelect(null)
+      }
+      const newNodes = definition.nodes.filter((n) => n.id !== nodeId)
+      const newEdges = definition.edges.filter((e) => e.source !== nodeId && e.target !== nodeId)
+      onDefinitionChange({ nodes: newNodes, edges: newEdges })
+    },
+    [definition, onDefinitionChange, onNodeSelect, selectedNodeId, setNodes, setEdges]
+  )
 
   const handleNodesChange = useCallback(
     (changes: Parameters<typeof onNodesChange>[0]) => {
@@ -236,12 +253,13 @@ export function WorkflowCanvas({
       nodes.map((n) => ({
         ...n,
         selected: n.id === selectedNodeId,
+        data: { ...n.data, onDelete: handleDeleteNode },
       })),
-    [nodes, selectedNodeId]
+    [nodes, selectedNodeId, handleDeleteNode]
   )
 
   return (
-    <div ref={reactFlowWrapper} className="flex-1">
+    <div ref={reactFlowWrapper} className="h-full flex-1">
       <ReactFlow
         nodes={selectedNodes}
         edges={edges}
@@ -253,17 +271,12 @@ export function WorkflowCanvas({
         onDragOver={onDragOver}
         onDrop={onDrop}
         nodeTypes={nodeTypes}
+        colorMode={colorMode}
         fitView
         proOptions={{ hideAttribution: true }}
-        className="bg-bg-base"
       >
-        <Controls className="!bg-bg-elevated !border-border !shadow-sm [&>button]:!bg-bg-elevated [&>button]:!border-border [&>button]:!fill-text-secondary hover:[&>button]:!bg-bg-hover" />
-        <MiniMap
-          className="!bg-bg-elevated !border-border"
-          nodeColor="var(--border-emphasis)"
-          maskColor="var(--bg-base)"
-        />
-        <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="var(--border-default)" />
+        <Controls />
+        <Background variant={BackgroundVariant.Dots} gap={20} size={1.5} color="var(--border-emphasis)" />
       </ReactFlow>
     </div>
   )

@@ -1050,7 +1050,13 @@
         "title": "Eliminar Workflow",
         "description": "¿Estás seguro de que quieres eliminar este workflow? Esta acción no se puede deshacer."
       },
+      "breadcrumbs": {
+        "automations": "Automatizaciones",
+        "executions": "Ejecuciones",
+        "executionDetail": "Detalles de Ejecución"
+      },
       "editor": {
+        "executions": "Ejecuciones",
         "save": "Guardar",
         "saving": "Guardando...",
         "saved": "Workflow guardado",
