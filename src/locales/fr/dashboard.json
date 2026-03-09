@@ -10,7 +10,8 @@
         "general": "Général",
         "create": "Créer",
         "posts": "Publications",
-        "configuration": "Configuration"
+        "configuration": "Configuration",
+        "automate": "Automatiser"
       },
       "media": "Médiathèque",
       "overview": "Vue d'ensemble",
@@ -19,7 +20,8 @@
       "calendar": "Calendrier",
       "accounts": "Comptes",
       "settings": "Paramètres",
-      "comingSoon": "Bientôt"
+      "comingSoon": "Bientôt",
+      "workflows": "Workflows"
     },
     "createTypeModal": {
       "title": "Créer une publication",
@@ -1004,6 +1006,169 @@
       },
       "loading": {
         "more": "Chargement..."
+      }
+    },
+    "workflows": {
+      "title": "Workflows",
+      "description": "Automatisez votre pipeline de contenu avec des workflows visuels",
+      "newWorkflow": "Nouveau workflow",
+      "filters": {
+        "all": "Tous",
+        "active": "Actifs",
+        "paused": "En pause",
+        "drafts": "Brouillons"
+      },
+      "status": {
+        "active": "Actif",
+        "paused": "En pause",
+        "draft": "Brouillon"
+      },
+      "card": {
+        "run": "Exécuter",
+        "nodes": "{{count}} nœuds",
+        "runs": "{{count}} exécutions",
+        "lastRun": "Dernière exécution : {{time}}",
+        "neverRun": "Jamais",
+        "triggerCron": "Planifié",
+        "triggerWebhook": "Webhook",
+        "triggerManual": "Manuel"
+      },
+      "empty": {
+        "title": "Aucun workflow",
+        "description": "Créez votre premier workflow pour automatiser votre pipeline de contenu",
+        "cta": "Créer un workflow"
+      },
+      "editor": {
+        "backToList": "Retour aux workflows",
+        "lastRun": "Dernière exécution : {{time}}",
+        "run": "Exécuter",
+        "running": "En cours...",
+        "addNode": "Ajouter un nœud",
+        "searchNodes": "Rechercher des nœuds...",
+        "aiAgent": "Agent IA",
+        "aiAgentDesc": "Décrivez votre workflow en langage naturel",
+        "aiAgentPlaceholder": "Récupérer la dernière vidéo et publier quotidiennement...",
+        "tabs": {
+          "config": "Config",
+          "preview": "Aperçu",
+          "output": "Sortie"
+        },
+        "noPreview": "Aucune donnée d'aperçu. Exécutez le workflow pour obtenir des données.",
+        "outputSchema": "Schéma de sortie",
+        "reference": "Référence",
+        "contextInput": "Entrée de contexte"
+      },
+      "executions": {
+        "title": "Exécutions",
+        "logs": "Journaux",
+        "columns": {
+          "runId": "ID d'exécution",
+          "status": "Statut",
+          "time": "Heure",
+          "duration": "Durée",
+          "steps": "Étapes"
+        },
+        "details": "Détails"
+      },
+      "categories": {
+        "triggers": "Déclencheurs",
+        "media": "Médias",
+        "text": "Texte & IA",
+        "logic": "Logique",
+        "output": "Sortie"
+      },
+      "nodes": {
+        "cronTrigger": {
+          "name": "Planification Cron",
+          "desc": "Exécuter selon un horaire"
+        },
+        "manualTrigger": {
+          "name": "Déclenchement manuel",
+          "desc": "Exécuter manuellement"
+        },
+        "webhookTrigger": {
+          "name": "Webhook",
+          "desc": "Point d'entrée HTTP"
+        },
+        "youtubeFetch": {
+          "name": "Récupérer YouTube",
+          "desc": "Obtenir la dernière vidéo"
+        },
+        "twitchClip": {
+          "name": "Clip Twitch",
+          "desc": "Récupérer les clips récents"
+        },
+        "videoClip": {
+          "name": "Extraire clip",
+          "desc": "Découper un segment vidéo"
+        },
+        "subtitleOverlay": {
+          "name": "Sous-titres",
+          "desc": "Graver les sous-titres via Whisper"
+        },
+        "thumbnailGen": {
+          "name": "Miniature",
+          "desc": "Générer une miniature"
+        },
+        "textTemplate": {
+          "name": "Modèle de texte",
+          "desc": "Composer avec des variables"
+        },
+        "aiCaption": {
+          "name": "Légende IA",
+          "desc": "Générer une légende depuis le contexte"
+        },
+        "aiTranslate": {
+          "name": "Traduire",
+          "desc": "Traduction par IA"
+        },
+        "ifElse": {
+          "name": "Si / Sinon",
+          "desc": "Bifurquer selon une condition"
+        },
+        "delay": {
+          "name": "Délai",
+          "desc": "Attendre avant de continuer"
+        },
+        "filter": {
+          "name": "Filtrer",
+          "desc": "Filtrer la liste par critères"
+        },
+        "postInstagram": {
+          "name": "Publier Instagram",
+          "desc": "Publier sur Instagram"
+        },
+        "postTiktok": {
+          "name": "Publier TikTok",
+          "desc": "Publier sur TikTok"
+        },
+        "postYoutube": {
+          "name": "Publier YouTube",
+          "desc": "Téléverser sur YouTube"
+        },
+        "notify": {
+          "name": "Notifier",
+          "desc": "Envoyer une notification"
+        }
+      },
+      "fields": {
+        "schedule": "Horaire",
+        "channelUrl": "URL de la chaîne",
+        "channel": "Chaîne",
+        "start": "Début",
+        "end": "Fin",
+        "template": "Modèle",
+        "tone": "Ton",
+        "maxLength": "Longueur maximale",
+        "targetLanguage": "Langue cible",
+        "condition": "Condition",
+        "duration": "Durée",
+        "criteria": "Critères"
+      },
+      "languages": {
+        "en": "Anglais",
+        "es": "Espagnol",
+        "fr": "Français"
       }
     }
   }

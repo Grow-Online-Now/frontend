@@ -1,0 +1,56 @@
+/**
+ * React Flow style overrides to match Grow Online design system
+ */
+
+.react-flow__node {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.react-flow__edge-path {
+  stroke: var(--border-subtle);
+}
+
+.react-flow__controls {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.react-flow__controls-button {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  width: 28px;
+  height: 28px;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+.react-flow__minimap {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__background pattern circle {
+  fill: var(--border-subtle);
+}

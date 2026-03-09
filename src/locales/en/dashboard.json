@@ -10,8 +10,10 @@
         "general": "General",
         "create": "Create",
         "posts": "Posts",
-        "configuration": "Configuration"
+        "configuration": "Configuration",
+        "automate": "Automate"
       },
+      "workflows": "Workflows",
       "media": "Media Library",
       "overview": "Overview",
       "analytics": "Analytics",
@@ -1301,6 +1303,169 @@
       },
       "loading": {
         "more": "Loading more..."
+      }
+    },
+    "workflows": {
+      "title": "Workflows",
+      "description": "Automate your content pipeline with visual workflows",
+      "newWorkflow": "New Workflow",
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "paused": "Paused",
+        "drafts": "Drafts"
+      },
+      "status": {
+        "active": "Active",
+        "paused": "Paused",
+        "draft": "Draft"
+      },
+      "card": {
+        "run": "Run",
+        "nodes": "{{count}} nodes",
+        "runs": "{{count}} runs",
+        "lastRun": "Last run: {{time}}",
+        "neverRun": "Never",
+        "triggerCron": "Cron",
+        "triggerWebhook": "Webhook",
+        "triggerManual": "Manual"
+      },
+      "empty": {
+        "title": "No workflows yet",
+        "description": "Create your first workflow to automate your content pipeline",
+        "cta": "Create Workflow"
+      },
+      "editor": {
+        "backToList": "Back to workflows",
+        "lastRun": "Last run: {{time}}",
+        "run": "Run",
+        "running": "Running...",
+        "addNode": "Add node",
+        "searchNodes": "Search nodes...",
+        "aiAgent": "AI Agent",
+        "aiAgentDesc": "Describe your workflow in plain English",
+        "aiAgentPlaceholder": "Fetch latest video and post daily...",
+        "tabs": {
+          "config": "Config",
+          "preview": "Preview",
+          "output": "Output"
+        },
+        "noPreview": "No preview data. Run the workflow to populate.",
+        "outputSchema": "Output schema",
+        "reference": "Reference",
+        "contextInput": "Context input"
+      },
+      "executions": {
+        "title": "Executions",
+        "logs": "Logs",
+        "columns": {
+          "runId": "Run ID",
+          "status": "Status",
+          "time": "Time",
+          "duration": "Duration",
+          "steps": "Steps"
+        },
+        "details": "Details"
+      },
+      "categories": {
+        "triggers": "Triggers",
+        "media": "Media",
+        "text": "Text & AI",
+        "logic": "Logic",
+        "output": "Output"
+      },
+      "nodes": {
+        "cronTrigger": {
+          "name": "Cron Schedule",
+          "desc": "Run on a schedule"
+        },
+        "manualTrigger": {
+          "name": "Manual Trigger",
+          "desc": "Run manually"
+        },
+        "webhookTrigger": {
+          "name": "Webhook",
+          "desc": "HTTP endpoint trigger"
+        },
+        "youtubeFetch": {
+          "name": "YouTube Fetch",
+          "desc": "Get latest video from channel"
+        },
+        "twitchClip": {
+          "name": "Twitch Clip",
+          "desc": "Fetch recent clips"
+        },
+        "videoClip": {
+          "name": "Clip Extract",
+          "desc": "Trim video segment"
+        },
+        "subtitleOverlay": {
+          "name": "Subtitles",
+          "desc": "Burn subtitles via Whisper"
+        },
+        "thumbnailGen": {
+          "name": "Thumbnail",
+          "desc": "Generate thumbnail"
+        },
+        "textTemplate": {
+          "name": "Text Template",
+          "desc": "Compose with variables"
+        },
+        "aiCaption": {
+          "name": "AI Caption",
+          "desc": "Generate caption from context"
+        },
+        "aiTranslate": {
+          "name": "Translate",
+          "desc": "AI translation"
+        },
+        "ifElse": {
+          "name": "If / Else",
+          "desc": "Branch on condition"
+        },
+        "delay": {
+          "name": "Delay",
+          "desc": "Wait before continuing"
+        },
+        "filter": {
+          "name": "Filter",
+          "desc": "Filter list by criteria"
+        },
+        "postInstagram": {
+          "name": "Post Instagram",
+          "desc": "Publish to Instagram"
+        },
+        "postTiktok": {
+          "name": "Post TikTok",
+          "desc": "Publish to TikTok"
+        },
+        "postYoutube": {
+          "name": "Post YouTube",
+          "desc": "Upload to YouTube"
+        },
+        "notify": {
+          "name": "Notify",
+          "desc": "Send notification"
+        }
+      },
+      "fields": {
+        "schedule": "Schedule",
+        "channelUrl": "Channel URL",
+        "channel": "Channel",
+        "start": "Start",
+        "end": "End",
+        "template": "Template",
+        "tone": "Tone",
+        "maxLength": "Max length",
+        "targetLanguage": "Target language",
+        "condition": "Condition",
+        "duration": "Duration",
+        "criteria": "Criteria"
+      },
+      "languages": {
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French"
       }
     }
   }
