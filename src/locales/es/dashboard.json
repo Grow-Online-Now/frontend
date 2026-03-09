@@ -1011,6 +1011,7 @@
       "title": "Flujos de trabajo",
       "description": "Automatiza tu pipeline de contenido con flujos de trabajo visuales",
       "newWorkflow": "Nuevo flujo",
+      "newWorkflowDefault": "Flujo sin título",
       "filters": {
         "all": "Todos",
         "active": "Activos",
@@ -1042,6 +1043,20 @@
         "lastRun": "Última ejecución: {{time}}",
         "run": "Ejecutar",
         "running": "Ejecutando...",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "unsavedChanges": "Cambios sin guardar",
+        "toasts": {
+          "saved": "Flujo guardado",
+          "saveFailed": "Error al guardar el flujo",
+          "runSuccess": "Flujo completado con éxito",
+          "runFailed": "Error en la ejecución del flujo",
+          "statusFailed": "Error al actualizar el estado",
+          "status": {
+            "active": "Flujo activado",
+            "paused": "Flujo pausado"
+          }
+        },
         "addNode": "Añadir nodo",
         "searchNodes": "Buscar nodos...",
         "aiAgent": "Agente IA",
@@ -1053,13 +1068,23 @@
           "output": "Salida"
         },
         "noPreview": "Sin datos de vista previa. Ejecuta el flujo para obtener datos.",
+        "noConfig": "No se necesita configuración para este nodo.",
+        "statusToggle": {
+          "draft": "Activar flujo de trabajo",
+          "active": "Pausar flujo de trabajo",
+          "paused": "Activar flujo de trabajo"
+        },
+        "variableHint": "Usa {{ nodeId.portKey }} para referenciar salidas anteriores",
         "outputSchema": "Esquema de salida",
         "reference": "Referencia",
         "contextInput": "Entrada de contexto"
       },
       "executions": {
         "title": "Ejecuciones",
-        "logs": "Registros",
+        "tabs": {
+          "executions": "Ejecuciones",
+          "logs": "Registros"
+        },
         "columns": {
           "runId": "ID de ejecución",
           "status": "Estado",
@@ -1067,107 +1092,22 @@
           "duration": "Duración",
           "steps": "Pasos"
         },
-        "details": "Detalles"
+        "details": "Detalles",
+        "empty": "Sin ejecuciones. Ejecuta el flujo para ver el historial.",
+        "logs": {
+          "noSteps": "No se registraron pasos para esta ejecución.",
+          "error": "Error",
+          "input": "Entrada",
+          "output": "Salida"
+        }
       },
       "categories": {
         "triggers": "Disparadores",
         "media": "Medios",
         "text": "Texto e IA",
         "logic": "Lógica",
-        "output": "Salida"
-      },
-      "nodes": {
-        "cronTrigger": {
-          "name": "Programación Cron",
-          "desc": "Ejecutar en horario"
-        },
-        "manualTrigger": {
-          "name": "Activación manual",
-          "desc": "Ejecutar manualmente"
-        },
-        "webhookTrigger": {
-          "name": "Webhook",
-          "desc": "Endpoint HTTP"
-        },
-        "youtubeFetch": {
-          "name": "Obtener YouTube",
-          "desc": "Obtener último video del canal"
-        },
-        "twitchClip": {
-          "name": "Clip de Twitch",
-          "desc": "Obtener clips recientes"
-        },
-        "videoClip": {
-          "name": "Extraer clip",
-          "desc": "Recortar segmento de video"
-        },
-        "subtitleOverlay": {
-          "name": "Subtítulos",
-          "desc": "Añadir subtítulos con Whisper"
-        },
-        "thumbnailGen": {
-          "name": "Miniatura",
-          "desc": "Generar miniatura"
-        },
-        "textTemplate": {
-          "name": "Plantilla de texto",
-          "desc": "Componer con variables"
-        },
-        "aiCaption": {
-          "name": "Caption IA",
-          "desc": "Generar caption desde contexto"
-        },
-        "aiTranslate": {
-          "name": "Traducir",
-          "desc": "Traducción con IA"
-        },
-        "ifElse": {
-          "name": "Si / Sino",
-          "desc": "Bifurcar por condición"
-        },
-        "delay": {
-          "name": "Retraso",
-          "desc": "Esperar antes de continuar"
-        },
-        "filter": {
-          "name": "Filtrar",
-          "desc": "Filtrar lista por criterios"
-        },
-        "postInstagram": {
-          "name": "Publicar Instagram",
-          "desc": "Publicar en Instagram"
-        },
-        "postTiktok": {
-          "name": "Publicar TikTok",
-          "desc": "Publicar en TikTok"
-        },
-        "postYoutube": {
-          "name": "Publicar YouTube",
-          "desc": "Subir a YouTube"
-        },
-        "notify": {
-          "name": "Notificar",
-          "desc": "Enviar notificación"
-        }
-      },
-      "fields": {
-        "schedule": "Horario",
-        "channelUrl": "URL del canal",
-        "channel": "Canal",
-        "start": "Inicio",
-        "end": "Fin",
-        "template": "Plantilla",
-        "tone": "Tono",
-        "maxLength": "Longitud máxima",
-        "targetLanguage": "Idioma destino",
-        "condition": "Condición",
-        "duration": "Duración",
-        "criteria": "Criterios"
-      },
-      "languages": {
-        "en": "Inglés",
-        "es": "Español",
-        "fr": "Francés"
+        "output": "Salida",
+        "ai": "IA"
       }
     }
   }

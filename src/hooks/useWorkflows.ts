@@ -1,12 +1,15 @@
 /**
  * useWorkflows
  * Hook for fetching and filtering workflows
- * Currently uses mock data, will integrate with API later
  */
 
-import { useState, useMemo, useCallback } from 'react'
-import { MOCK_WORKFLOWS } from '@/data/workflow-mocks'
-import type { Workflow, WorkflowStatus } from '@/types/workflow'
+import { useState, useEffect, useMemo, useCallback } from 'react'
+import {
+  getWorkflows,
+  deleteWorkflow as deleteWorkflowApi,
+  createWorkflow as createWorkflowApi,
+} from '@/services/workflows.service'
+import type { Workflow, WorkflowStatus, CreateWorkflowRequest } from '@/types/workflow'
 
 type WorkflowFilter = 'all' | WorkflowStatus
 
@@ -18,14 +21,32 @@ interface UseWorkflowsReturn {
   setFilter: (filter: WorkflowFilter) => void
   counts: Record<WorkflowFilter, number>
   refetch: () => void
+  deleteWorkflow: (id: string) => Promise<boolean>
+  createWorkflow: (data: CreateWorkflowRequest) => Promise<Workflow | null>
 }
 
 export function useWorkflows(): UseWorkflowsReturn {
-  const [isLoading] = useState(false)
-  const [error] = useState<string | null>(null)
+  const [allWorkflows, setAllWorkflows] = useState<Workflow[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [filter, setFilter] = useState<WorkflowFilter>('all')
 
-  const allWorkflows = MOCK_WORKFLOWS
+  const fetchWorkflows = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
+      const data = await getWorkflows()
+      setAllWorkflows(data.workflows)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch workflows')
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchWorkflows()
+  }, [fetchWorkflows])
 
   const counts = useMemo(
     () => ({
@@ -42,9 +63,35 @@ export function useWorkflows(): UseWorkflowsReturn {
     [allWorkflows, filter]
   )
 
-  const refetch = useCallback(() => {
-    // Will trigger API refetch when integrated
+  const deleteWorkflow = useCallback(async (id: string): Promise<boolean> => {
+    try {
+      await deleteWorkflowApi(id)
+      setAllWorkflows((prev) => prev.filter((w) => w.id !== id))
+      return true
+    } catch {
+      return false
+    }
   }, [])
 
-  return { workflows, isLoading, error, filter, setFilter, counts, refetch }
+  const createWorkflow = useCallback(async (data: CreateWorkflowRequest): Promise<Workflow | null> => {
+    try {
+      const wf = await createWorkflowApi(data)
+      setAllWorkflows((prev) => [wf, ...prev])
+      return wf
+    } catch {
+      return null
+    }
+  }, [])
+
+  return {
+    workflows,
+    isLoading,
+    error,
+    filter,
+    setFilter,
+    counts,
+    refetch: fetchWorkflows,
+    deleteWorkflow,
+    createWorkflow,
+  }
 }

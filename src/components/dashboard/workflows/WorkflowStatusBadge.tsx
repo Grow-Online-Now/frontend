@@ -1,6 +1,7 @@
 /**
  * WorkflowStatusBadge
- * Displays workflow status as a colored badge
+ * Displays workflow status as a soft colored badge.
+ * Uses semantic color tokens for theme support.
  */
 
 import { useTranslation } from 'react-i18next'
@@ -15,7 +16,7 @@ interface WorkflowStatusBadgeProps {
 const statusStyles: Record<WorkflowStatus, string> = {
   active: 'bg-success-muted text-success',
   paused: 'bg-warning-muted text-warning',
-  draft: 'bg-muted text-muted-foreground',
+  draft: 'bg-bg-active text-text-muted',
 }
 
 const statusKeys: Record<WorkflowStatus, string> = {

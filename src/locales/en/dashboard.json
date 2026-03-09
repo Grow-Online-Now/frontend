@@ -1309,6 +1309,7 @@
       "title": "Workflows",
       "description": "Automate your content pipeline with visual workflows",
       "newWorkflow": "New Workflow",
+      "newWorkflowDefault": "Untitled Workflow",
       "filters": {
         "all": "All",
         "active": "Active",
@@ -1340,6 +1341,20 @@
         "lastRun": "Last run: {{time}}",
         "run": "Run",
         "running": "Running...",
+        "save": "Save",
+        "saving": "Saving...",
+        "unsavedChanges": "Unsaved changes",
+        "toasts": {
+          "saved": "Workflow saved",
+          "saveFailed": "Failed to save workflow",
+          "runSuccess": "Workflow completed successfully",
+          "runFailed": "Workflow run failed",
+          "statusFailed": "Failed to update status",
+          "status": {
+            "active": "Workflow activated",
+            "paused": "Workflow paused"
+          }
+        },
         "addNode": "Add node",
         "searchNodes": "Search nodes...",
         "aiAgent": "AI Agent",
@@ -1351,13 +1366,23 @@
           "output": "Output"
         },
         "noPreview": "No preview data. Run the workflow to populate.",
+        "noConfig": "No configuration needed for this node.",
+        "statusToggle": {
+          "draft": "Activate workflow",
+          "active": "Pause workflow",
+          "paused": "Activate workflow"
+        },
+        "variableHint": "Use {{ nodeId.portKey }} to reference upstream outputs",
         "outputSchema": "Output schema",
         "reference": "Reference",
         "contextInput": "Context input"
       },
       "executions": {
         "title": "Executions",
-        "logs": "Logs",
+        "tabs": {
+          "executions": "Executions",
+          "logs": "Logs"
+        },
         "columns": {
           "runId": "Run ID",
           "status": "Status",
@@ -1365,107 +1390,22 @@
           "duration": "Duration",
           "steps": "Steps"
         },
-        "details": "Details"
+        "details": "Details",
+        "empty": "No runs yet. Run the workflow to see execution history.",
+        "logs": {
+          "noSteps": "No steps recorded for this run.",
+          "error": "Error",
+          "input": "Input",
+          "output": "Output"
+        }
       },
       "categories": {
         "triggers": "Triggers",
         "media": "Media",
         "text": "Text & AI",
         "logic": "Logic",
-        "output": "Output"
-      },
-      "nodes": {
-        "cronTrigger": {
-          "name": "Cron Schedule",
-          "desc": "Run on a schedule"
-        },
-        "manualTrigger": {
-          "name": "Manual Trigger",
-          "desc": "Run manually"
-        },
-        "webhookTrigger": {
-          "name": "Webhook",
-          "desc": "HTTP endpoint trigger"
-        },
-        "youtubeFetch": {
-          "name": "YouTube Fetch",
-          "desc": "Get latest video from channel"
-        },
-        "twitchClip": {
-          "name": "Twitch Clip",
-          "desc": "Fetch recent clips"
-        },
-        "videoClip": {
-          "name": "Clip Extract",
-          "desc": "Trim video segment"
-        },
-        "subtitleOverlay": {
-          "name": "Subtitles",
-          "desc": "Burn subtitles via Whisper"
-        },
-        "thumbnailGen": {
-          "name": "Thumbnail",
-          "desc": "Generate thumbnail"
-        },
-        "textTemplate": {
-          "name": "Text Template",
-          "desc": "Compose with variables"
-        },
-        "aiCaption": {
-          "name": "AI Caption",
-          "desc": "Generate caption from context"
-        },
-        "aiTranslate": {
-          "name": "Translate",
-          "desc": "AI translation"
-        },
-        "ifElse": {
-          "name": "If / Else",
-          "desc": "Branch on condition"
-        },
-        "delay": {
-          "name": "Delay",
-          "desc": "Wait before continuing"
-        },
-        "filter": {
-          "name": "Filter",
-          "desc": "Filter list by criteria"
-        },
-        "postInstagram": {
-          "name": "Post Instagram",
-          "desc": "Publish to Instagram"
-        },
-        "postTiktok": {
-          "name": "Post TikTok",
-          "desc": "Publish to TikTok"
-        },
-        "postYoutube": {
-          "name": "Post YouTube",
-          "desc": "Upload to YouTube"
-        },
-        "notify": {
-          "name": "Notify",
-          "desc": "Send notification"
-        }
-      },
-      "fields": {
-        "schedule": "Schedule",
-        "channelUrl": "Channel URL",
-        "channel": "Channel",
-        "start": "Start",
-        "end": "End",
-        "template": "Template",
-        "tone": "Tone",
-        "maxLength": "Max length",
-        "targetLanguage": "Target language",
-        "condition": "Condition",
-        "duration": "Duration",
-        "criteria": "Criteria"
-      },
-      "languages": {
-        "en": "English",
-        "es": "Spanish",
-        "fr": "French"
+        "output": "Output",
+        "ai": "AI"
       }
     }
   }

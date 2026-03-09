@@ -1012,6 +1012,7 @@
       "title": "Workflows",
       "description": "Automatisez votre pipeline de contenu avec des workflows visuels",
       "newWorkflow": "Nouveau workflow",
+      "newWorkflowDefault": "Workflow sans titre",
       "filters": {
         "all": "Tous",
         "active": "Actifs",
@@ -1043,6 +1044,20 @@
         "lastRun": "Dernière exécution : {{time}}",
         "run": "Exécuter",
         "running": "En cours...",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "unsavedChanges": "Modifications non enregistrées",
+        "toasts": {
+          "saved": "Workflow enregistré",
+          "saveFailed": "Échec de l'enregistrement",
+          "runSuccess": "Workflow terminé avec succès",
+          "runFailed": "Échec de l'exécution",
+          "statusFailed": "Échec de la mise à jour du statut",
+          "status": {
+            "active": "Workflow activé",
+            "paused": "Workflow mis en pause"
+          }
+        },
         "addNode": "Ajouter un nœud",
         "searchNodes": "Rechercher des nœuds...",
         "aiAgent": "Agent IA",
@@ -1054,13 +1069,23 @@
           "output": "Sortie"
         },
         "noPreview": "Aucune donnée d'aperçu. Exécutez le workflow pour obtenir des données.",
+        "noConfig": "Aucune configuration nécessaire pour ce nœud.",
+        "statusToggle": {
+          "draft": "Activer le workflow",
+          "active": "Mettre en pause le workflow",
+          "paused": "Activer le workflow"
+        },
+        "variableHint": "Utilisez {{ nodeId.portKey }} pour référencer les sorties en amont",
         "outputSchema": "Schéma de sortie",
         "reference": "Référence",
         "contextInput": "Entrée de contexte"
       },
       "executions": {
         "title": "Exécutions",
-        "logs": "Journaux",
+        "tabs": {
+          "executions": "Exécutions",
+          "logs": "Journaux"
+        },
         "columns": {
           "runId": "ID d'exécution",
           "status": "Statut",
@@ -1068,107 +1093,22 @@
           "duration": "Durée",
           "steps": "Étapes"
         },
-        "details": "Détails"
+        "details": "Détails",
+        "empty": "Aucune exécution. Lancez le workflow pour voir l'historique.",
+        "logs": {
+          "noSteps": "Aucune étape enregistrée pour cette exécution.",
+          "error": "Erreur",
+          "input": "Entrée",
+          "output": "Sortie"
+        }
       },
       "categories": {
         "triggers": "Déclencheurs",
         "media": "Médias",
         "text": "Texte & IA",
         "logic": "Logique",
-        "output": "Sortie"
-      },
-      "nodes": {
-        "cronTrigger": {
-          "name": "Planification Cron",
-          "desc": "Exécuter selon un horaire"
-        },
-        "manualTrigger": {
-          "name": "Déclenchement manuel",
-          "desc": "Exécuter manuellement"
-        },
-        "webhookTrigger": {
-          "name": "Webhook",
-          "desc": "Point d'entrée HTTP"
-        },
-        "youtubeFetch": {
-          "name": "Récupérer YouTube",
-          "desc": "Obtenir la dernière vidéo"
-        },
-        "twitchClip": {
-          "name": "Clip Twitch",
-          "desc": "Récupérer les clips récents"
-        },
-        "videoClip": {
-          "name": "Extraire clip",
-          "desc": "Découper un segment vidéo"
-        },
-        "subtitleOverlay": {
-          "name": "Sous-titres",
-          "desc": "Graver les sous-titres via Whisper"
-        },
-        "thumbnailGen": {
-          "name": "Miniature",
-          "desc": "Générer une miniature"
-        },
-        "textTemplate": {
-          "name": "Modèle de texte",
-          "desc": "Composer avec des variables"
-        },
-        "aiCaption": {
-          "name": "Légende IA",
-          "desc": "Générer une légende depuis le contexte"
-        },
-        "aiTranslate": {
-          "name": "Traduire",
-          "desc": "Traduction par IA"
-        },
-        "ifElse": {
-          "name": "Si / Sinon",
-          "desc": "Bifurquer selon une condition"
-        },
-        "delay": {
-          "name": "Délai",
-          "desc": "Attendre avant de continuer"
-        },
-        "filter": {
-          "name": "Filtrer",
-          "desc": "Filtrer la liste par critères"
-        },
-        "postInstagram": {
-          "name": "Publier Instagram",
-          "desc": "Publier sur Instagram"
-        },
-        "postTiktok": {
-          "name": "Publier TikTok",
-          "desc": "Publier sur TikTok"
-        },
-        "postYoutube": {
-          "name": "Publier YouTube",
-          "desc": "Téléverser sur YouTube"
-        },
-        "notify": {
-          "name": "Notifier",
-          "desc": "Envoyer une notification"
-        }
-      },
-      "fields": {
-        "schedule": "Horaire",
-        "channelUrl": "URL de la chaîne",
-        "channel": "Chaîne",
-        "start": "Début",
-        "end": "Fin",
-        "template": "Modèle",
-        "tone": "Ton",
-        "maxLength": "Longueur maximale",
-        "targetLanguage": "Langue cible",
-        "condition": "Condition",
-        "duration": "Durée",
-        "criteria": "Critères"
-      },
-      "languages": {
-        "en": "Anglais",
-        "es": "Espagnol",
-        "fr": "Français"
+        "output": "Sortie",
+        "ai": "IA"
       }
     }
   }

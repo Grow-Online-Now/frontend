@@ -1,14 +1,17 @@
 /**
  * Workflow automation type definitions
+ * Matches backend API at /api/workflows
  */
 
-import type { LucideIcon } from 'lucide-react'
-
-// ─── Core Types ───
+// ─── Core Enums ───
 
 export type WorkflowStatus = 'active' | 'paused' | 'draft'
-export type NodeCategory = 'trigger' | 'media' | 'text' | 'logic' | 'output'
-export type RunStatus = 'success' | 'failed' | 'running'
+export type TriggerType = 'manual' | 'cron' | 'webhook'
+export type RunStatus = 'running' | 'success' | 'failed'
+export type StepStatus = 'pending' | 'running' | 'success' | 'failed' | 'skipped'
+export type NodeCategory = 'trigger' | 'media' | 'text' | 'logic' | 'output' | 'ai'
+
+// ─── Workflow ───
 
 export interface WorkflowNode {
   id: string
@@ -20,82 +23,102 @@ export interface WorkflowNode {
 export interface WorkflowEdge {
   id: string
   sourceNodeId: string
+  sourcePortKey: string
   targetNodeId: string
+  targetPortKey: string
 }
 
 export interface Workflow {
   id: string
+  workspaceId: string
   name: string
-  description: string
+  description: string | null
   status: WorkflowStatus
-  trigger: string
+  triggerType: TriggerType
+  triggerConfig: Record<string, unknown>
   nodes: WorkflowNode[]
   edges: WorkflowEdge[]
-  lastRun: string | null
-  lastStatus: RunStatus | null
-  runCount: number
-  nodeCount: number
   createdAt: string
   updatedAt: string
 }
 
-// ─── Node Type Definitions ───
+// ─── Workflow Run ───
 
-export interface NodeOutput {
-  key: string
-  type: string
+export interface WorkflowStepResult {
+  nodeId: string
+  nodeType: string
+  status: StepStatus
+  input: Record<string, unknown> | null
+  output: Record<string, unknown> | null
+  error?: string
+  startedAt: string
+  completedAt?: string
+  durationMs?: number
 }
-
-export type ConfigFieldType =
-  | 'text'
-  | 'number'
-  | 'select'
-  | 'toggle'
-  | 'textarea'
-  | 'variable_ref'
-  | 'cron'
-  | 'json'
-
-export interface ConfigSchemaField {
-  key: string
-  type: ConfigFieldType
-  labelKey: string
-  required?: boolean
-  defaultValue?: unknown
-  options?: { labelKey: string; value: string }[]
-}
-
-export interface NodeTypeDefinition {
-  key: string
-  category: NodeCategory
-  nameKey: string
-  descriptionKey: string
-  icon: LucideIcon
-  configSchema: ConfigSchemaField[]
-  outputs: NodeOutput[]
-}
-
-export interface CategoryDefinition {
-  key: NodeCategory
-  labelKey: string
-  icon: LucideIcon
-  colorClass: string
-  mutedColorClass: string
-}
-
-// ─── Execution / Runs ───
 
 export interface WorkflowRun {
   id: string
   workflowId: string
   status: RunStatus
+  triggeredBy: TriggerType
+  steps: WorkflowStepResult[]
   startedAt: string
-  duration: string
-  stepsCompleted: number
-  stepsTotal: number
+  completedAt: string | null
+  durationMs: number | null
 }
 
-// ─── API Types ───
+// ─── Node Type Definitions (from GET /node-types) ───
+
+export interface PortSchema {
+  key: string
+  type: 'string' | 'number' | 'boolean' | 'object' | 'array' | 'any'
+  label: string
+  description?: string
+  required?: boolean
+}
+
+export interface ConfigFieldSchema {
+  key: string
+  type: 'text' | 'number' | 'select' | 'toggle' | 'textarea' | 'variable_ref' | 'cron' | 'json'
+  label: string
+  description?: string
+  placeholder?: string
+  default?: unknown
+  options?: { label: string; value: string }[]
+  validation?: { min?: number; max?: number; pattern?: string }
+}
+
+export interface NodeTypeDefinition {
+  type: string
+  name: string
+  description: string
+  icon: string
+  category: NodeCategory
+  configSchema: ConfigFieldSchema[]
+  inputPorts: PortSchema[]
+  outputPorts: PortSchema[]
+}
+
+// ─── API Request/Response Types ───
+
+export interface CreateWorkflowRequest {
+  name: string
+  description?: string
+  triggerType: TriggerType
+  triggerConfig?: Record<string, unknown>
+  nodes?: WorkflowNode[]
+  edges?: WorkflowEdge[]
+}
+
+export interface UpdateWorkflowRequest {
+  name?: string
+  description?: string
+  status?: WorkflowStatus
+  triggerType?: TriggerType
+  triggerConfig?: Record<string, unknown>
+  nodes?: WorkflowNode[]
+  edges?: WorkflowEdge[]
+}
 
 export interface WorkflowsListResponse {
   workflows: Workflow[]
@@ -105,4 +128,19 @@ export interface WorkflowsListResponse {
 export interface WorkflowRunsResponse {
   runs: WorkflowRun[]
   total: number
+}
+
+export interface WorkflowsQueryParams {
+  status?: WorkflowStatus
+  page?: number
+  limit?: number
+}
+
+// ─── Frontend-only Types ───
+
+export interface CategoryConfig {
+  labelKey: string
+  colorClass: string
+  mutedColorClass: string
+  bgAccentClass: string
 }

@@ -1,83 +1,131 @@
 /**
  * CustomNode
- * React Flow custom node component for workflow canvas
- * 190x64px card with category accent bar and ports
+ * Soft dark card with category accent bar, tinted icon, name, description, and ports.
+ * Uses inline styles for guaranteed dark-mode rendering inside React Flow.
  */
 
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Handle, Position } from '@xyflow/react'
-import { useTranslation } from 'react-i18next'
-import { cn } from '@/lib/utils'
-import { NODE_TYPE_DEFINITIONS } from '@/data/workflow-mocks'
+import { getNodeIcon, CATEGORY_ACCENT_COLORS, CATEGORY_ICON_BG } from '@/lib/workflow-utils'
+import type { NodeCategory } from '@/types/workflow'
 
-const categoryColorMap: Record<string, string> = {
-  trigger: 'bg-foreground',
-  media: 'bg-success',
-  text: 'bg-[#8b5cf6]',
-  logic: 'bg-warning',
-  output: 'bg-destructive',
+interface CustomNodeData {
+  name: string
+  description: string
+  icon: string
+  category: NodeCategory
+  isRunning: boolean
 }
 
-function CustomNodeComponent({ data, selected }: { data: Record<string, unknown>; selected: boolean }) {
-  const { t } = useTranslation()
-  const nodeType = data.nodeType as string
-  const isRunning = data.isRunning as boolean
-  const def = NODE_TYPE_DEFINITIONS[nodeType]
+function CustomNodeComponent({ data, selected }: { data: CustomNodeData; selected: boolean }) {
+  const [hovered, setHovered] = useState(false)
+  const Icon = getNodeIcon(data.icon)
+  const accent = CATEGORY_ACCENT_COLORS[data.category] ?? '#666666'
+  const iconBg = CATEGORY_ICON_BG[data.category] ?? 'rgba(255,255,255,0.05)'
 
-  if (!def) return null
-
-  const Icon = def.icon
-  const accentColor = categoryColorMap[def.category] || 'bg-foreground'
-  const description = t(def.descriptionKey)
-  const truncatedDesc = description.length > 26 ? description.slice(0, 26) + '…' : description
+  const bg = selected ? '#1c1c1c' : hovered ? '#1a1a1a' : '#161616'
+  const border = selected
+    ? 'rgba(255,255,255,0.14)'
+    : hovered
+      ? 'rgba(255,255,255,0.09)'
+      : 'rgba(255,255,255,0.05)'
+  const accentOpacity = selected ? 1 : hovered ? 0.7 : 0.4
 
   return (
     <div
-      className={cn(
-        'relative h-16 w-[190px] rounded-xl border bg-bg-elevated transition-all duration-150',
-        selected ? 'border-border-emphasis bg-bg-hover' : 'border-border-subtle'
-      )}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: 200,
+        height: 58,
+        background: bg,
+        borderRadius: 10,
+        border: `1px solid ${border}`,
+        position: 'relative',
+        overflow: 'hidden',
+        transition: 'all 150ms ease-out',
+        fontFamily: 'var(--font-sans)',
+      }}
     >
-      {/* Category accent bar */}
+      {/* Left accent bar */}
       <div
-        className={cn(
-          'absolute left-0 top-4 h-8 w-[3px] rounded-sm transition-opacity',
-          accentColor,
-          selected ? 'opacity-90' : 'opacity-30'
-        )}
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: 3,
+          background: accent,
+          opacity: accentOpacity,
+          borderRadius: '10px 0 0 10px',
+          transition: 'opacity 150ms ease-out',
+        }}
       />
 
-      {/* Running pulse */}
-      {isRunning && (
-        <div className="absolute inset-0 animate-pulse rounded-xl border border-border-emphasis" />
-      )}
-
       {/* Content */}
-      <div className="px-[18px] pt-[10px]">
-        <div className="flex items-center gap-1.5">
-          <Icon className="h-3.5 w-3.5 text-text-primary" />
-          <span className="text-sm font-medium text-text-primary">
-            {t(def.nameKey)}
-          </span>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          height: '100%',
+          padding: '0 12px 0 14px',
+          gap: 10,
+        }}
+      >
+        {/* Icon container */}
+        <div
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: 8,
+            background: iconBg,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          <Icon style={{ width: 14, height: 14, color: accent }} />
         </div>
-        <p className="mt-1 text-xs text-text-tertiary">{truncatedDesc}</p>
+
+        {/* Text */}
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 500,
+              color: '#e0e0e0',
+              lineHeight: 1.2,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {data.name}
+          </div>
+          <div
+            style={{
+              fontSize: 11,
+              color: '#555555',
+              lineHeight: 1.3,
+              marginTop: 2,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {data.description}
+          </div>
+        </div>
       </div>
 
-      {/* Input port (not for triggers) */}
-      {def.category !== 'trigger' && (
-        <Handle
-          type="target"
-          position={Position.Left}
-          className="!h-2 !w-2 !rounded-full !border !border-border-default !bg-bg-base"
-        />
+      {/* Input port — triggers have none */}
+      {data.category !== 'trigger' && (
+        <Handle type="target" position={Position.Left} className="workflow-handle" />
       )}
 
       {/* Output port */}
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!h-2 !w-2 !rounded-full !border !border-border-default !bg-bg-base"
-      />
+      <Handle type="source" position={Position.Right} className="workflow-handle" />
     </div>
   )
 }

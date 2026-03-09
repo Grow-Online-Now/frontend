@@ -1,16 +1,22 @@
 /**
  * WorkflowCanvas
  * React Flow canvas wrapper for the workflow editor
+ * Uses local state for smooth drag interactions, syncs back to store
  */
 
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState, useEffect, useRef } from 'react'
 import {
   ReactFlow,
   Background,
   Controls,
+  useReactFlow,
+  applyNodeChanges,
+  applyEdgeChanges,
   type Node,
   type Edge,
-  type OnNodeDrag,
+  type OnNodesChange,
+  type OnEdgesChange,
+  type OnConnect,
   BackgroundVariant,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
@@ -24,21 +30,50 @@ const edgeTypes = { custom: CustomEdge }
 
 export function WorkflowCanvas() {
   const workflow = useWorkflowEditorStore((s) => s.workflow)
+  const nodeTypeMap = useWorkflowEditorStore((s) => s.nodeTypeMap)
   const isRunning = useWorkflowEditorStore((s) => s.isRunning)
+  const selectedNodeId = useWorkflowEditorStore((s) => s.selectedNodeId)
   const selectNode = useWorkflowEditorStore((s) => s.selectNode)
   const updateNodePosition = useWorkflowEditorStore((s) => s.updateNodePosition)
+  const addEdgeToStore = useWorkflowEditorStore((s) => s.addEdge)
+  const removeNode = useWorkflowEditorStore((s) => s.removeNode)
+  const removeEdge = useWorkflowEditorStore((s) => s.removeEdge)
 
-  const nodes: Node[] = useMemo(() => {
+  // Build React Flow nodes from workflow state
+  const storeNodes: Node[] = useMemo(() => {
     if (!workflow) return []
-    return workflow.nodes.map((n) => ({
-      id: n.id,
-      type: 'custom',
-      position: n.position,
-      data: { nodeType: n.type, isRunning },
-    }))
-  }, [workflow, isRunning])
+    return workflow.nodes.map((n) => {
+      const def = nodeTypeMap[n.type]
+      return {
+        id: n.id,
+        type: 'custom',
+        position: n.position,
+        selected: n.id === selectedNodeId,
+        data: {
+          name: def?.name ?? n.type,
+          description: def?.description ?? '',
+          icon: def?.icon ?? 'zap',
+          category: def?.category ?? 'trigger',
+          isRunning,
+        },
+      }
+    })
+  }, [workflow, nodeTypeMap, isRunning, selectedNodeId])
 
-  const edges: Edge[] = useMemo(() => {
+  // Local state for smooth drag interactions
+  const [nodes, setNodes] = useState<Node[]>(storeNodes)
+  const prevStoreNodesRef = useRef(storeNodes)
+
+  // Sync store → local when store changes (new nodes added, etc.)
+  useEffect(() => {
+    if (storeNodes !== prevStoreNodesRef.current) {
+      setNodes(storeNodes)
+      prevStoreNodesRef.current = storeNodes
+    }
+  }, [storeNodes])
+
+  // Build edges — don't pass sourceHandle/targetHandle (single-port nodes)
+  const storeEdges: Edge[] = useMemo(() => {
     if (!workflow) return []
     return workflow.edges.map((e) => ({
       id: e.id,
@@ -49,11 +84,46 @@ export function WorkflowCanvas() {
     }))
   }, [workflow, isRunning])
 
-  const handleNodeDragStop: OnNodeDrag = useCallback(
-    (_, node) => {
-      updateNodePosition(node.id, node.position)
+  // Local edge state for selection tracking (same pattern as nodes)
+  const [localEdges, setLocalEdges] = useState<Edge[]>(storeEdges)
+  const prevStoreEdgesRef = useRef(storeEdges)
+
+  useEffect(() => {
+    if (storeEdges !== prevStoreEdgesRef.current) {
+      setLocalEdges(storeEdges)
+      prevStoreEdgesRef.current = storeEdges
+    }
+  }, [storeEdges])
+
+  // Handle all node changes (drag, select, remove) with smooth local updates
+  const handleNodesChange: OnNodesChange = useCallback(
+    (changes) => {
+      const removals = changes.filter((c) => c.type === 'remove')
+      const rest = changes.filter((c) => c.type !== 'remove')
+
+      for (const r of removals) removeNode(r.id)
+      if (rest.length) setNodes((nds) => applyNodeChanges(rest, nds))
+
+      // Sync final position to store on drag stop
+      for (const change of rest) {
+        if (change.type === 'position' && change.dragging === false && change.position) {
+          updateNodePosition(change.id, change.position)
+        }
+      }
     },
-    [updateNodePosition]
+    [removeNode, updateNodePosition]
+  )
+
+  // Handle edge changes (select, remove)
+  const handleEdgesChange: OnEdgesChange = useCallback(
+    (changes) => {
+      const removals = changes.filter((c) => c.type === 'remove')
+      const rest = changes.filter((c) => c.type !== 'remove')
+
+      for (const r of removals) removeEdge(r.id)
+      if (rest.length) setLocalEdges((eds) => applyEdgeChanges(rest, eds))
+    },
+    [removeEdge]
   )
 
   const handlePaneClick = useCallback(() => {
@@ -67,17 +137,39 @@ export function WorkflowCanvas() {
     [selectNode]
   )
 
+  const handleConnect: OnConnect = useCallback(
+    (params) => {
+      if (!params.source || !params.target) return
+      addEdgeToStore({
+        id: `edge_${Date.now()}`,
+        sourceNodeId: params.source,
+        sourcePortKey: params.sourceHandle ?? 'default',
+        targetNodeId: params.target,
+        targetPortKey: params.targetHandle ?? 'default',
+      })
+    },
+    [addEdgeToStore]
+  )
+
   return (
     <ReactFlow
       nodes={nodes}
-      edges={edges}
+      edges={localEdges}
       nodeTypes={nodeTypes}
       edgeTypes={edgeTypes}
-      onNodeDragStop={handleNodeDragStop}
+      onNodesChange={handleNodesChange}
+      onEdgesChange={handleEdgesChange}
+      deleteKeyCode={['Delete', 'Backspace']}
       onNodeClick={handleNodeClick}
       onPaneClick={handlePaneClick}
+      onConnect={handleConnect}
       fitView
+      fitViewOptions={{ padding: 0.3 }}
+      defaultEdgeOptions={{ type: 'custom' }}
+      colorMode="dark"
       proOptions={{ hideAttribution: true }}
+      snapToGrid
+      snapGrid={[10, 10]}
     >
       <Background variant={BackgroundVariant.Dots} gap={20} size={1} />
       <Controls showInteractive={false} />

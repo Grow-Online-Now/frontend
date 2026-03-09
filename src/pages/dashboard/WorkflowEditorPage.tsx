@@ -6,9 +6,11 @@
 import { useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ReactFlowProvider } from '@xyflow/react'
+import { Loader2 } from 'lucide-react'
 import { useLocalizedHref } from '@/hooks/useLocalizedHref'
+import { useWorkflowDetail } from '@/hooks/useWorkflowDetail'
+import { useNodeTypes } from '@/hooks/useNodeTypes'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
-import { MOCK_WORKFLOWS, MOCK_EDITOR_NODES, MOCK_EDITOR_EDGES } from '@/data/workflow-mocks'
 import { EditorHeader } from '@/components/dashboard/workflows/editor/EditorHeader'
 import { WorkflowCanvas } from '@/components/dashboard/workflows/canvas/WorkflowCanvas'
 import { NodePalette } from '@/components/dashboard/workflows/palette/NodePalette'
@@ -19,28 +21,43 @@ export default function WorkflowEditorPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const localizedHref = useLocalizedHref()
+  const { workflow, isLoading: isLoadingWorkflow } = useWorkflowDetail(id)
+  const { nodeTypeMap, nodesByCategory, isLoading: isLoadingNodeTypes } = useNodeTypes()
   const setWorkflow = useWorkflowEditorStore((s) => s.setWorkflow)
+  const setNodeTypeMap = useWorkflowEditorStore((s) => s.setNodeTypeMap)
   const selectedNodeId = useWorkflowEditorStore((s) => s.selectedNodeId)
   const reset = useWorkflowEditorStore((s) => s.reset)
 
   useEffect(() => {
-    const wf = MOCK_WORKFLOWS.find((w) => w.id === id)
-    if (wf) {
-      setWorkflow({
-        ...wf,
-        nodes: MOCK_EDITOR_NODES,
-        edges: MOCK_EDITOR_EDGES,
-      })
+    if (workflow) {
+      setWorkflow(workflow)
     }
+  }, [workflow, setWorkflow])
+
+  useEffect(() => {
+    if (Object.keys(nodeTypeMap).length > 0) {
+      setNodeTypeMap(nodeTypeMap)
+    }
+  }, [nodeTypeMap, setNodeTypeMap])
+
+  useEffect(() => {
     return () => reset()
-  }, [id, setWorkflow, reset])
+  }, [reset])
 
   const handleBack = useCallback(() => {
     navigate(localizedHref('/dashboard/workflows'))
   }, [navigate, localizedHref])
 
+  if (isLoadingWorkflow || isLoadingNodeTypes) {
+    return (
+      <div className="-m-6 flex h-[calc(100vh-0px)] items-center justify-center lg:-m-8">
+        <Loader2 className="h-6 w-6 animate-spin text-text-muted" />
+      </div>
+    )
+  }
+
   return (
-    <div className="-m-6 flex h-[calc(100vh-0px)] flex-col overflow-hidden lg:-m-8">
+    <div className="dark -m-6 flex h-[calc(100vh-0px)] flex-col overflow-hidden pt-2 lg:-m-8">
       <EditorHeader onBack={handleBack} />
 
       <div className="flex flex-1 overflow-hidden">
@@ -50,7 +67,7 @@ export default function WorkflowEditorPage() {
             <ReactFlowProvider>
               <WorkflowCanvas />
             </ReactFlowProvider>
-            <NodePalette />
+            <NodePalette nodesByCategory={nodesByCategory} />
           </div>
           <ExecutionPanel />
         </div>

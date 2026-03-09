@@ -126,6 +126,31 @@
   --color-accent-border: var(--color-accent-border);
   --color-accent-subtle: var(--color-accent-subtle);
 
+  /* Semantic background tokens */
+  --color-bg-base: var(--bg-base);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-hover: var(--bg-hover);
+  --color-bg-active: var(--bg-active);
+
+  /* Semantic text tokens */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-muted: var(--text-muted);
+
+  /* Semantic border tokens */
+  --color-border-default: var(--border-default);
+  --color-border-emphasis: var(--border-emphasis);
+  --color-border-focus: var(--border-focus);
+
+  /* Semantic muted color tokens */
+  --color-success-muted: var(--success-muted);
+  --color-warning-muted: var(--warning-muted);
+  --color-error-muted: var(--error-muted);
+  --color-info-muted: var(--info-muted);
+  --color-destructive-muted: var(--error-muted);
+
   /* Twitter Preview Theme Colors */
   --color-twitter-bg: var(--twitter-bg);
   --color-twitter-bg-hover: var(--twitter-bg-hover);

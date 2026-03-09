@@ -1,56 +1,140 @@
 /**
- * React Flow style overrides to match Grow Online design system
+ * React Flow style overrides — Grow Online design system
  */
 
+/* ── Node chrome reset ── */
 .react-flow__node {
-  background: none;
-  border: none;
-  padding: 0;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--font-sans);
 }
 
+.react-flow__node:focus,
+.react-flow__node:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-flow__node.selected {
+  box-shadow: none !important;
+}
+
+/* ── Handles (ports) — 8px dark circles, grow on hover ── */
+.workflow-handle {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  background: #000000 !important;
+  border: 1px solid #222222 !important;
+  border-radius: 50% !important;
+  transition: all 150ms ease-out !important;
+}
+
+.react-flow__node:hover .workflow-handle {
+  width: 10px !important;
+  height: 10px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  border-color: #333333 !important;
+}
+
+/* When dragging a connection, light up compatible handles */
+.react-flow__handle.connecting {
+  border-color: #ffffff !important;
+  border-width: 2px !important;
+}
+
+/* ── Edges — forced dark ── */
 .react-flow__edge-path {
-  stroke: var(--border-subtle);
+  stroke: #1a1a1a !important;
+  stroke-width: 1.5px !important;
 }
 
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #333333 !important;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: #333333 !important;
+}
+
+/* Connection line while dragging a new edge */
+.react-flow__connection-path {
+  stroke: #333333 !important;
+  stroke-width: 1.5px !important;
+  stroke-dasharray: 6 3;
+}
+
+/* ── Controls panel — hardcoded dark to match canvas ── */
 .react-flow__controls {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  box-shadow: none;
+  background: #141414 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  overflow: hidden;
 }
 
 .react-flow__controls-button {
-  background: var(--bg-elevated);
-  color: var(--text-secondary);
-  border: none;
-  border-bottom: 1px solid var(--border-subtle);
-  width: 28px;
-  height: 28px;
+  background: #141414 !important;
+  color: #555 !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  width: 28px !important;
+  height: 28px !important;
 }
 
 .react-flow__controls-button:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
+  background: #1a1a1a !important;
+  color: #999 !important;
 }
 
 .react-flow__controls-button:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .react-flow__controls-button svg {
-  fill: currentColor;
+  fill: currentColor !important;
 }
 
+/* ── Minimap ── */
 .react-flow__minimap {
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
 }
 
+/* ── Background dots ── */
+.react-flow__background pattern circle {
+  fill: var(--border-subtle);
+}
+
+/* ── Selection box ── */
+.react-flow__selection {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333333;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Pane cursor ── */
+.react-flow__pane {
+  cursor: grab;
+}
+
+.react-flow__pane:active {
+  cursor: grabbing;
+}
+
+/* ── Attribution ── */
 .react-flow__attribution {
   display: none;
 }
 
-.react-flow__background pattern circle {
-  fill: var(--border-subtle);
+/* ── Running node pulse ── */
+@keyframes node-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
