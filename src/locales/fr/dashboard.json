@@ -1080,7 +1080,8 @@
         "reference": "Référence",
         "contextInput": "Entrée de contexte",
         "insertVariable": "Variable",
-        "availableVariables": "Variables disponibles"
+        "availableVariables": "Variables disponibles",
+        "resolvedValue": "Valeur résolue"
       },
       "executions": {
         "title": "Exécutions",

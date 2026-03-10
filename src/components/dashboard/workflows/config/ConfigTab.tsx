@@ -1,8 +1,8 @@
 /**
  * ConfigTab
- * Renders form fields for the selected node's configuration.
+ * Renders config fields for the selected node.
  * Text/textarea fields support {{ variable }} insertion from upstream nodes.
- * Uses CSS variable tokens — always rendered inside .dark wrapper.
+ * Shows n8n-style resolved value preview from last execution below each field.
  */
 
 import { useRef, useCallback } from 'react'
@@ -32,11 +32,11 @@ export function ConfigTab() {
   const def = nodeTypeMap[node.type]
   if (!def) return null
 
-  // Check if current node has any upstream connections
-  const hasUpstream = workflow?.edges.some((e) => e.targetNodeId === node.id) ?? false
+  const hasUpstream =
+    workflow?.edges.some((e) => e.targetNodeId === node.id) ?? false
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-6">
       {def.configSchema.map((field) => (
         <ConfigField
           key={field.key}
@@ -65,18 +65,28 @@ interface ConfigFieldProps {
   updateNodeConfig: (nodeId: string, config: Record<string, unknown>) => void
 }
 
-function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: ConfigFieldProps) {
+function ConfigField({
+  field,
+  nodeId,
+  value,
+  hasUpstream,
+  updateNodeConfig,
+}: ConfigFieldProps) {
+  const { t } = useTranslation()
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
+  const lastRun = useWorkflowEditorStore((s) => s.lastRun)
 
   const currentValue = String(value ?? field.default ?? '')
-  const isTextLike = field.type === 'text' || field.type === 'textarea' || field.type === 'variable_ref'
+  const isTextLike =
+    field.type === 'text' ||
+    field.type === 'textarea' ||
+    field.type === 'variable_ref'
   const showPicker = isTextLike && hasUpstream
 
   const handleInsert = useCallback(
     (variable: string) => {
       const el = inputRef.current
       if (!el) {
-        // Fallback: append
         updateNodeConfig(nodeId, { [field.key]: currentValue + variable })
         return
       }
@@ -87,7 +97,6 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
       const newValue = before + variable + after
       el.value = newValue
       updateNodeConfig(nodeId, { [field.key]: newValue })
-      // Restore cursor after inserted text
       const cursorPos = start + variable.length
       requestAnimationFrame(() => {
         el.focus()
@@ -97,10 +106,15 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
     [currentValue, nodeId, field.key, updateNodeConfig],
   )
 
+  // Resolve variable preview from last run
+  const resolvedPreview = hasVariableRef(value)
+    ? resolveAllVariables(String(value), lastRun)
+    : null
+
   return (
     <div>
-      <div className="mb-1.5 flex items-center justify-between">
-        <label className="block text-xs font-medium uppercase tracking-wider text-text-tertiary">
+      <div className="mb-1.5 flex items-center justify-between gap-2">
+        <label className="text-xs font-medium uppercase tracking-wider text-text-tertiary">
           {field.label}
         </label>
         {showPicker && <VariablePicker onInsert={handleInsert} />}
@@ -109,11 +123,13 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
         <p className="mb-2 text-xs text-text-muted">{field.description}</p>
       )}
 
-      {(field.type === 'textarea' || field.type === 'variable_ref') ? (
+      {field.type === 'textarea' || field.type === 'variable_ref' ? (
         <textarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           defaultValue={currentValue}
-          onChange={(e) => updateNodeConfig(nodeId, { [field.key]: e.target.value })}
+          onChange={(e) =>
+            updateNodeConfig(nodeId, { [field.key]: e.target.value })
+          }
           placeholder={field.placeholder}
           rows={3}
           className={INPUT_CLASS}
@@ -122,7 +138,9 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
       ) : field.type === 'select' ? (
         <select
           defaultValue={currentValue}
-          onChange={(e) => updateNodeConfig(nodeId, { [field.key]: e.target.value })}
+          onChange={(e) =>
+            updateNodeConfig(nodeId, { [field.key]: e.target.value })
+          }
           className={INPUT_CLASS}
         >
           {field.options?.map((opt) => (
@@ -136,7 +154,9 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
           <input
             type="checkbox"
             checked={Boolean(value ?? field.default ?? false)}
-            onChange={(e) => updateNodeConfig(nodeId, { [field.key]: e.target.checked })}
+            onChange={(e) =>
+              updateNodeConfig(nodeId, { [field.key]: e.target.checked })
+            }
             className="h-4 w-4 rounded"
             style={{ accentColor: '#8b5cf6' }}
           />
@@ -149,7 +169,10 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
           defaultValue={currentValue}
           onChange={(e) =>
             updateNodeConfig(nodeId, {
-              [field.key]: field.type === 'number' ? Number(e.target.value) : e.target.value,
+              [field.key]:
+                field.type === 'number'
+                  ? Number(e.target.value)
+                  : e.target.value,
             })
           }
           placeholder={field.placeholder}
@@ -159,64 +182,67 @@ function ConfigField({ field, nodeId, value, hasUpstream, updateNodeConfig }: Co
         />
       )}
 
-      {/* Inline preview of resolved variable tokens */}
-      {hasVariableRef(value) && (
-        <VariableTokenPreview value={String(value)} />
+      {/* Resolved value preview — n8n-style */}
+      {resolvedPreview !== null && (
+        <div
+          className="mt-1.5 rounded-md px-3 py-2"
+          style={{
+            background: 'rgba(139,92,246,0.06)',
+            border: '1px solid rgba(139,92,246,0.12)',
+          }}
+        >
+          <div
+            className="mb-1 text-[10px] font-medium uppercase tracking-wider"
+            style={{ color: '#8b5cf6' }}
+          >
+            {t('dashboard.workflows.editor.resolvedValue')}
+          </div>
+          <div className="max-h-16 overflow-hidden break-all font-mono text-xs text-text-secondary">
+            {resolvedPreview}
+          </div>
+        </div>
       )}
     </div>
   )
 }
 
-/** Renders the variable tokens found in a value as styled chips */
-function VariableTokenPreview({ value }: { value: string }) {
-  const workflow = useWorkflowEditorStore((s) => s.workflow)
-  const nodeTypeMap = useWorkflowEditorStore((s) => s.nodeTypeMap)
-  const lastRun = useWorkflowEditorStore((s) => s.lastRun)
+/**
+ * Resolve all {{ nodeId.path }} variables in a string using last run data.
+ * Returns the fully resolved string, or null if no run data.
+ */
+function resolveAllVariables(
+  template: string,
+  lastRun: ReturnType<typeof useWorkflowEditorStore.getState>['lastRun'],
+): string | null {
+  if (!lastRun) return null
 
-  const tokens = [...value.matchAll(/\{\{\s*(\w+)\.([\w.\[\]]+)\s*\}\}/g)]
-  if (tokens.length === 0) return null
-
-  return (
-    <div className="mt-1.5 flex flex-wrap gap-1">
-      {tokens.map((match, i) => {
-        const [, nodeId, path] = match
-        const sourceDef = workflow?.nodes.find((n) => n.id === nodeId)
-        const typeDef = sourceDef ? nodeTypeMap[sourceDef.type] : null
-        const step = lastRun?.steps.find((s) => s.nodeId === nodeId)
-        const previewVal = step?.output ? resolvePathClient(step.output, path) : undefined
-        const label = typeDef?.name ?? nodeId
-
-        return (
-          <span
-            key={i}
-            className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-mono text-[10px]"
-            style={{
-              background: 'rgba(139,92,246,0.12)',
-              color: '#a78bfa',
-              border: '1px solid rgba(139,92,246,0.2)',
-            }}
-            title={
-              previewVal !== undefined && previewVal !== null
-                ? `${label}.${path} = ${typeof previewVal === 'object' ? JSON.stringify(previewVal) : String(previewVal)}`
-                : `${label}.${path}`
-            }
-          >
-            {label}.{path}
-            {previewVal !== undefined && previewVal !== null && (
-              <span className="max-w-20 truncate text-text-muted">
-                = {typeof previewVal === 'object' ? '{...}' : String(previewVal)}
-              </span>
-            )}
-          </span>
-        )
-      })}
-    </div>
+  let hasResolution = false
+  const resolved = template.replace(
+    /\{\{\s*(\w+)\.([\w.\[\]]+)\s*\}\}/g,
+    (_match, nodeId: string, path: string) => {
+      const step = lastRun.steps.find((s) => s.nodeId === nodeId)
+      if (!step?.output) return _match
+      const val = resolvePathClient(step.output, path)
+      if (val === undefined) return _match
+      hasResolution = true
+      if (val === null) return 'null'
+      if (typeof val === 'object') {
+        const json = JSON.stringify(val)
+        return json.length > 200 ? json.slice(0, 197) + '...' : json
+      }
+      return String(val)
+    },
   )
+
+  return hasResolution ? resolved : null
 }
 
 /** Resolve a dot/bracket path on a JS object (mirrors backend resolvePath). */
 function resolvePathClient(obj: unknown, path: string): unknown {
-  const segments = path.replace(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean)
+  const segments = path
+    .replace(/\[(\d+)\]/g, '.$1')
+    .split('.')
+    .filter(Boolean)
   let current: unknown = obj
   for (const seg of segments) {
     if (current === null || current === undefined) return undefined

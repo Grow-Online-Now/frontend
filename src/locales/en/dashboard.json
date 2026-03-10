@@ -1377,7 +1377,8 @@
         "reference": "Reference",
         "contextInput": "Context input",
         "insertVariable": "Variable",
-        "availableVariables": "Available variables"
+        "availableVariables": "Available variables",
+        "resolvedValue": "Resolved value"
       },
       "executions": {
         "title": "Executions",

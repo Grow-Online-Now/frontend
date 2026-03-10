@@ -36,9 +36,9 @@ export function NodeConfigPanel() {
   const iconBg = CATEGORY_ICON_BG[def.category] ?? 'rgba(255,255,255,0.05)'
 
   return (
-    <div className="flex w-[280px] shrink-0 flex-col overflow-hidden border-l border-border-subtle bg-bg-subtle">
+    <div className="flex w-[360px] shrink-0 flex-col border-l border-border-subtle bg-bg-subtle">
       {/* Header */}
-      <div className="border-b border-border-subtle p-4">
+      <div className="border-b border-border-subtle px-5 py-4">
         <div className="flex items-center gap-3">
           <div
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
@@ -82,8 +82,8 @@ export function NodeConfigPanel() {
         })}
       </div>
 
-      {/* Tab content */}
-      <div className="flex-1 overflow-y-auto p-4">
+      {/* Tab content — overflow-y-auto but NOT overflow-hidden to allow portals from children */}
+      <div className="flex-1 overflow-y-auto px-5 py-4">
         {rightPanelTab === 'config' && <ConfigTab />}
         {rightPanelTab === 'preview' && <PreviewTab />}
         {rightPanelTab === 'output' && <OutputTab />}
