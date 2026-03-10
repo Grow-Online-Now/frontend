@@ -28,6 +28,7 @@ export default function WorkflowsPage() {
     counts,
     createWorkflow,
     deleteWorkflow,
+    renameWorkflow,
     setFilter,
   } = useWorkflows()
 
@@ -103,6 +104,7 @@ export default function WorkflowsPage() {
               workflow={wf}
               onClick={handleOpenWorkflow}
               onDelete={deleteWorkflow}
+              onRename={renameWorkflow}
             />
           ))
         )}

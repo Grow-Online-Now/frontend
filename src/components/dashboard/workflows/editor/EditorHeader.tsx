@@ -4,10 +4,10 @@
  * Always rendered inside a .dark wrapper so tokens resolve to dark values.
  */
 
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import { ArrowLeft, Play, Loader2, Save, Power } from 'lucide-react'
+import { ArrowLeft, Play, Loader2, Save, Power, Pencil } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { WorkflowStatusBadge } from '../WorkflowStatusBadge'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
@@ -25,8 +25,34 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
   const isDirty = useWorkflowEditorStore((s) => s.isDirty)
   const saveWorkflow = useWorkflowEditorStore((s) => s.saveWorkflow)
   const runWorkflow = useWorkflowEditorStore((s) => s.runWorkflow)
+  const renameWorkflow = useWorkflowEditorStore((s) => s.renameWorkflow)
   const setWorkflowStatus = useWorkflowEditorStore((s) => s.setWorkflowStatus)
   const [isTogglingStatus, setIsTogglingStatus] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [editValue, setEditValue] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const startEditing = useCallback(() => {
+    if (!workflow) return
+    setEditValue(workflow.name)
+    setIsEditing(true)
+    requestAnimationFrame(() => inputRef.current?.select())
+  }, [workflow])
+
+  const commitRename = useCallback(async () => {
+    const trimmed = editValue.trim()
+    if (!trimmed || trimmed === workflow?.name) {
+      setIsEditing(false)
+      return
+    }
+    try {
+      await renameWorkflow(trimmed)
+      toast.success(t('dashboard.workflows.editor.toasts.renamed'))
+    } catch {
+      toast.error(t('dashboard.workflows.editor.toasts.renameFailed'))
+    }
+    setIsEditing(false)
+  }, [editValue, workflow?.name, renameWorkflow, t])
 
   const handleSave = useCallback(async () => {
     try {
@@ -85,9 +111,30 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
           <ArrowLeft className="h-3.5 w-3.5" />
         </button>
         <div>
-          <div className="text-sm font-semibold tracking-tight text-text-primary">
-            {t(workflow.name, { defaultValue: workflow.name })}
-          </div>
+          {isEditing ? (
+            <input
+              ref={inputRef}
+              value={editValue}
+              onChange={(e) => setEditValue(e.target.value)}
+              onBlur={commitRename}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') commitRename()
+                if (e.key === 'Escape') setIsEditing(false)
+              }}
+              className="h-6 w-48 rounded-md border border-border-emphasis bg-bg-elevated px-1.5 text-sm font-semibold tracking-tight text-text-primary outline-none focus:border-border-focus"
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={startEditing}
+              className="group/name flex items-center gap-1.5"
+            >
+              <span className="text-sm font-semibold tracking-tight text-text-primary">
+                {t(workflow.name, { defaultValue: workflow.name })}
+              </span>
+              <Pencil className="h-3 w-3 text-text-muted opacity-0 transition-opacity duration-150 group-hover/name:opacity-100" />
+            </button>
+          )}
           <div className="text-xs text-text-muted">
             {triggerLabel}
           </div>

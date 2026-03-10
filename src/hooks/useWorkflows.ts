@@ -8,6 +8,7 @@ import {
   getWorkflows,
   deleteWorkflow as deleteWorkflowApi,
   createWorkflow as createWorkflowApi,
+  updateWorkflow as updateWorkflowApi,
 } from '@/services/workflows.service'
 import type { Workflow, WorkflowStatus, CreateWorkflowRequest } from '@/types/workflow'
 
@@ -23,6 +24,7 @@ interface UseWorkflowsReturn {
   refetch: () => void
   deleteWorkflow: (id: string) => Promise<boolean>
   createWorkflow: (data: CreateWorkflowRequest) => Promise<Workflow | null>
+  renameWorkflow: (id: string, name: string) => Promise<boolean>
 }
 
 export function useWorkflows(): UseWorkflowsReturn {
@@ -83,6 +85,16 @@ export function useWorkflows(): UseWorkflowsReturn {
     }
   }, [])
 
+  const renameWorkflow = useCallback(async (id: string, name: string): Promise<boolean> => {
+    try {
+      const updated = await updateWorkflowApi(id, { name })
+      setAllWorkflows((prev) => prev.map((w) => w.id === id ? { ...w, name: updated.name } : w))
+      return true
+    } catch {
+      return false
+    }
+  }, [])
+
   return {
     workflows,
     isLoading,
@@ -93,5 +105,6 @@ export function useWorkflows(): UseWorkflowsReturn {
     refetch: fetchWorkflows,
     deleteWorkflow,
     createWorkflow,
+    renameWorkflow,
   }
 }

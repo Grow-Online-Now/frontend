@@ -1025,6 +1025,8 @@
       },
       "card": {
         "run": "Ejecutar",
+        "rename": "Renombrar",
+        "delete": "Eliminar",
         "nodes": "{{count}} nodos",
         "runs": "{{count}} ejecuciones",
         "lastRun": "Última ejecución: {{time}}",
@@ -1049,6 +1051,8 @@
         "toasts": {
           "saved": "Flujo guardado",
           "saveFailed": "Error al guardar el flujo",
+          "renamed": "Flujo renombrado",
+          "renameFailed": "Error al renombrar el flujo",
           "runSuccess": "Flujo completado con éxito",
           "runFailed": "Error en la ejecución del flujo",
           "statusFailed": "Error al actualizar el estado",

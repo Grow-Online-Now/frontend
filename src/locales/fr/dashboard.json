@@ -1026,6 +1026,8 @@
       },
       "card": {
         "run": "Exécuter",
+        "rename": "Renommer",
+        "delete": "Supprimer",
         "nodes": "{{count}} nœuds",
         "runs": "{{count}} exécutions",
         "lastRun": "Dernière exécution : {{time}}",
@@ -1050,6 +1052,8 @@
         "toasts": {
           "saved": "Workflow enregistré",
           "saveFailed": "Échec de l'enregistrement",
+          "renamed": "Workflow renommé",
+          "renameFailed": "Échec du renommage",
           "runSuccess": "Workflow terminé avec succès",
           "runFailed": "Échec de l'exécution",
           "statusFailed": "Échec de la mise à jour du statut",

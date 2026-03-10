@@ -50,6 +50,7 @@ interface WorkflowEditorActions {
   addEdge: (edge: WorkflowEdge) => void
   removeEdge: (edgeId: string) => void
   setWorkflowStatus: (status: 'active' | 'paused' | 'draft') => Promise<void>
+  renameWorkflow: (name: string) => Promise<void>
   saveWorkflow: () => Promise<void>
   runWorkflow: () => Promise<WorkflowRun | null>
   reset: () => void
@@ -174,6 +175,17 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
         set({ workflow: { ...workflow, status: updated.status } })
       } catch {
         throw new Error('Failed to update workflow status')
+      }
+    },
+
+    renameWorkflow: async (name: string) => {
+      const { workflow } = get()
+      if (!workflow) return
+      try {
+        const updated = await updateWorkflow(workflow.id, { name })
+        set({ workflow: { ...workflow, name: updated.name } })
+      } catch {
+        throw new Error('Failed to rename workflow')
       }
     },
 

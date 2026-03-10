@@ -1323,6 +1323,8 @@
       },
       "card": {
         "run": "Run",
+        "rename": "Rename",
+        "delete": "Delete",
         "nodes": "{{count}} nodes",
         "runs": "{{count}} runs",
         "lastRun": "Last run: {{time}}",
@@ -1347,6 +1349,8 @@
         "toasts": {
           "saved": "Workflow saved",
           "saveFailed": "Failed to save workflow",
+          "renamed": "Workflow renamed",
+          "renameFailed": "Failed to rename workflow",
           "runSuccess": "Workflow completed successfully",
           "runFailed": "Workflow run failed",
           "statusFailed": "Failed to update status",
