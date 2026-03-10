@@ -1375,7 +1375,9 @@
         "variableHint": "Use {{ nodeId.portKey }} to reference upstream outputs",
         "outputSchema": "Output schema",
         "reference": "Reference",
-        "contextInput": "Context input"
+        "contextInput": "Context input",
+        "insertVariable": "Variable",
+        "availableVariables": "Available variables"
       },
       "executions": {
         "title": "Executions",

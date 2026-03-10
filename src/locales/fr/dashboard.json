@@ -1078,7 +1078,9 @@
         "variableHint": "Utilisez {{ nodeId.portKey }} pour référencer les sorties en amont",
         "outputSchema": "Schéma de sortie",
         "reference": "Référence",
-        "contextInput": "Entrée de contexte"
+        "contextInput": "Entrée de contexte",
+        "insertVariable": "Variable",
+        "availableVariables": "Variables disponibles"
       },
       "executions": {
         "title": "Exécutions",

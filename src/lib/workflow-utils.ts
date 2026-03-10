@@ -26,6 +26,8 @@ import {
   Image,
   Zap,
   Film,
+  ListVideo,
+  Twitch,
   type LucideIcon,
 } from 'lucide-react'
 import type { NodeCategory, CategoryConfig } from '@/types/workflow'
@@ -57,6 +59,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
   image: Image,
   zap: Zap,
   film: Film,
+  list_video: ListVideo,
+  twitch: Twitch,
 }
 
 /**
