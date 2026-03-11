@@ -6,6 +6,7 @@ import { create } from 'zustand'
 import {
   updateWorkflow,
   runWorkflow as runWorkflowApi,
+  runPartialWorkflow as runPartialApi,
 } from '@/services/workflows.service'
 import type {
   Workflow,
@@ -31,6 +32,7 @@ interface WorkflowEditorState {
   selectedRunId: string | null
   isDirty: boolean
   runCount: number
+  stepByStepMode: boolean
 }
 
 interface WorkflowEditorActions {
@@ -53,6 +55,10 @@ interface WorkflowEditorActions {
   renameWorkflow: (name: string) => Promise<void>
   saveWorkflow: () => Promise<void>
   runWorkflow: () => Promise<WorkflowRun | null>
+  retryFromNode: (sourceRunId: string, nodeId: string) => Promise<WorkflowRun | null>
+  runFromNode: (sourceRunId: string, nodeId: string) => Promise<WorkflowRun | null>
+  stepNode: (sourceRunId: string, nodeId: string) => Promise<WorkflowRun | null>
+  setStepByStepMode: (enabled: boolean) => void
   reset: () => void
 }
 
@@ -69,6 +75,7 @@ const initialState: WorkflowEditorState = {
   selectedRunId: null,
   isDirty: false,
   runCount: 0,
+  stepByStepMode: false,
 }
 
 export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEditorActions>(
@@ -222,6 +229,54 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
         throw new Error('Failed to run workflow')
       }
     },
+
+    retryFromNode: async (sourceRunId, nodeId) => {
+      const { workflow } = get()
+      if (!workflow) return null
+      try {
+        set({ isRunning: true })
+        const run = await runPartialApi(workflow.id, { sourceRunId, fromNodeId: nodeId })
+        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        return run
+      } catch {
+        set({ isRunning: false })
+        throw new Error('Failed to retry from node')
+      }
+    },
+
+    runFromNode: async (sourceRunId, nodeId) => {
+      const { workflow } = get()
+      if (!workflow) return null
+      try {
+        set({ isRunning: true })
+        const run = await runPartialApi(workflow.id, { sourceRunId, fromNodeId: nodeId })
+        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        return run
+      } catch {
+        set({ isRunning: false })
+        throw new Error('Failed to run from node')
+      }
+    },
+
+    stepNode: async (sourceRunId, nodeId) => {
+      const { workflow } = get()
+      if (!workflow) return null
+      try {
+        set({ isRunning: true })
+        const run = await runPartialApi(workflow.id, {
+          sourceRunId,
+          fromNodeId: nodeId,
+          stopAfterNodeId: nodeId,
+        })
+        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        return run
+      } catch {
+        set({ isRunning: false })
+        throw new Error('Failed to step node')
+      }
+    },
+
+    setStepByStepMode: (enabled) => set({ stepByStepMode: enabled }),
 
     reset: () => set(initialState),
   })

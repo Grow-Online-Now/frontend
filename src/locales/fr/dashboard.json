@@ -1046,6 +1046,8 @@
         "lastRun": "Dernière exécution : {{time}}",
         "run": "Exécuter",
         "running": "En cours...",
+        "step": "Étape",
+        "stepByStep": "Mode pas à pas",
         "save": "Enregistrer",
         "saving": "Enregistrement...",
         "unsavedChanges": "Modifications non enregistrées",
@@ -1102,11 +1104,19 @@
         },
         "details": "Détails",
         "empty": "Aucune exécution. Lancez le workflow pour voir l'historique.",
+        "continue": "Continuer",
+        "status": {
+          "paused": "En pause"
+        },
         "logs": {
           "noSteps": "Aucune étape enregistrée pour cette exécution.",
           "error": "Erreur",
           "input": "Entrée",
-          "output": "Sortie"
+          "output": "Sortie",
+          "retry": "Réessayer cette étape",
+          "runFromHere": "Exécuter à partir d'ici",
+          "cached": "en cache",
+          "pending": "en attente"
         }
       },
       "categories": {

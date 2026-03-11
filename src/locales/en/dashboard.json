@@ -1343,6 +1343,8 @@
         "lastRun": "Last run: {{time}}",
         "run": "Run",
         "running": "Running...",
+        "step": "Step",
+        "stepByStep": "Step-by-step mode",
         "save": "Save",
         "saving": "Saving...",
         "unsavedChanges": "Unsaved changes",
@@ -1399,11 +1401,19 @@
         },
         "details": "Details",
         "empty": "No runs yet. Run the workflow to see execution history.",
+        "continue": "Continue",
+        "status": {
+          "paused": "Paused"
+        },
         "logs": {
           "noSteps": "No steps recorded for this run.",
           "error": "Error",
           "input": "Input",
-          "output": "Output"
+          "output": "Output",
+          "retry": "Retry this step",
+          "runFromHere": "Run from here",
+          "cached": "cached",
+          "pending": "pending"
         }
       },
       "categories": {

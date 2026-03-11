@@ -7,8 +7,8 @@
 
 export type WorkflowStatus = 'active' | 'paused' | 'draft'
 export type TriggerType = 'manual' | 'cron' | 'webhook'
-export type RunStatus = 'running' | 'success' | 'failed'
-export type StepStatus = 'pending' | 'running' | 'success' | 'failed' | 'skipped'
+export type RunStatus = 'running' | 'success' | 'failed' | 'paused'
+export type StepStatus = 'pending' | 'running' | 'success' | 'failed' | 'skipped' | 'cached'
 export type NodeCategory = 'trigger' | 'media' | 'text' | 'logic' | 'output' | 'ai'
 
 // ─── Workflow ───
@@ -54,17 +54,25 @@ export interface WorkflowStepResult {
   startedAt: string
   completedAt?: string
   durationMs?: number
+  sourceRunId?: string
 }
 
 export interface WorkflowRun {
   id: string
   workflowId: string
   status: RunStatus
-  triggeredBy: TriggerType
+  triggeredBy: TriggerType | 'partial'
   steps: WorkflowStepResult[]
   startedAt: string
   completedAt: string | null
   durationMs: number | null
+  sourceRunId?: string
+}
+
+export interface RunPartialRequest {
+  sourceRunId: string
+  fromNodeId: string
+  stopAfterNodeId?: string
 }
 
 // ─── Node Type Definitions (from GET /node-types) ───

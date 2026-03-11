@@ -1045,6 +1045,8 @@
         "lastRun": "Última ejecución: {{time}}",
         "run": "Ejecutar",
         "running": "Ejecutando...",
+        "step": "Paso",
+        "stepByStep": "Modo paso a paso",
         "save": "Guardar",
         "saving": "Guardando...",
         "unsavedChanges": "Cambios sin guardar",
@@ -1101,11 +1103,19 @@
         },
         "details": "Detalles",
         "empty": "Sin ejecuciones. Ejecuta el flujo para ver el historial.",
+        "continue": "Continuar",
+        "status": {
+          "paused": "Pausado"
+        },
         "logs": {
           "noSteps": "No se registraron pasos para esta ejecución.",
           "error": "Error",
           "input": "Entrada",
-          "output": "Salida"
+          "output": "Salida",
+          "retry": "Reintentar este paso",
+          "runFromHere": "Ejecutar desde aquí",
+          "cached": "en caché",
+          "pending": "pendiente"
         }
       },
       "categories": {

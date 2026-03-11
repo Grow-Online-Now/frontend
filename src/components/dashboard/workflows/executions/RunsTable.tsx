@@ -5,7 +5,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
-import { Check, XCircle, Loader2 } from 'lucide-react'
+import { Check, XCircle, Loader2, Pause, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { formatDurationMs } from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
@@ -20,6 +20,16 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
   const { t } = useTranslation()
   const selectRun = useWorkflowEditorStore((s) => s.selectRun)
   const selectedRunId = useWorkflowEditorStore((s) => s.selectedRunId)
+  const runFromNode = useWorkflowEditorStore((s) => s.runFromNode)
+  const isRunning = useWorkflowEditorStore((s) => s.isRunning)
+
+  const handleContinue = (run: WorkflowRun) => {
+    // Find the first pending step to continue from
+    const pendingStep = run.steps.find((s) => s.status === 'pending')
+    if (pendingStep) {
+      runFromNode(run.id, pendingStep.nodeId)
+    }
+  }
 
   return (
     <div className="overflow-y-auto" style={{ height: 'calc(100% - 37px)' }}>
@@ -43,7 +53,7 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
       ) : (
         runs.map((run) => {
           const stepsCompleted = run.steps.filter(
-            (s) => s.status === 'success'
+            (s) => s.status === 'success' || s.status === 'cached'
           ).length
           const startedFormatted = new Date(run.startedAt).toLocaleString()
 
@@ -67,13 +77,17 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
                       ? 'bg-success-muted text-success'
                       : run.status === 'running'
                         ? 'bg-info-muted text-info'
-                        : 'bg-destructive-muted text-destructive'
+                        : run.status === 'paused'
+                          ? 'bg-warning-muted text-warning'
+                          : 'bg-destructive-muted text-destructive'
                   )}
                 >
                   {run.status === 'success' ? (
                     <Check className="h-2.5 w-2.5" />
                   ) : run.status === 'running' ? (
                     <Loader2 className="h-2.5 w-2.5 animate-spin" />
+                  ) : run.status === 'paused' ? (
+                    <Pause className="h-2.5 w-2.5" />
                   ) : (
                     <XCircle className="h-2.5 w-2.5" />
                   )}
@@ -86,8 +100,24 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
               <span className="text-xs text-text-tertiary">
                 {stepsCompleted}/{run.steps.length}
               </span>
-              <span className="text-right text-[10px] text-text-muted">
-                {t('dashboard.workflows.executions.details')} →
+              <span className="flex items-center justify-end gap-2">
+                {run.status === 'paused' && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleContinue(run)
+                    }}
+                    disabled={isRunning}
+                    className="flex items-center gap-1 rounded-sm bg-warning-muted px-1.5 py-0.5 text-[10px] font-medium text-warning transition-colors duration-100 hover:opacity-80 disabled:opacity-40"
+                  >
+                    <Play className="h-2.5 w-2.5" />
+                    {t('dashboard.workflows.executions.continue')}
+                  </button>
+                )}
+                <span className="text-[10px] text-text-muted">
+                  {t('dashboard.workflows.executions.details')} →
+                </span>
               </span>
             </div>
           )

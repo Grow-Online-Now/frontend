@@ -13,6 +13,7 @@ import type {
   WorkflowRun,
   WorkflowRunsResponse,
   NodeTypeDefinition,
+  RunPartialRequest,
 } from '@/types/workflow'
 
 const ENDPOINTS = {
@@ -20,6 +21,7 @@ const ENDPOINTS = {
   workflowById: (id: string) => `/api/workflows/${id}`,
   nodeTypes: '/api/workflows/node-types',
   run: (id: string) => `/api/workflows/${id}/run`,
+  runPartial: (id: string) => `/api/workflows/${id}/run/partial`,
   runs: (id: string) => `/api/workflows/${id}/runs`,
   runById: (workflowId: string, runId: string) =>
     `/api/workflows/${workflowId}/runs/${runId}`,
@@ -66,6 +68,13 @@ export async function runWorkflow(id: string): Promise<WorkflowRun> {
   return apiClient.post<WorkflowRun>(ENDPOINTS.run(id))
 }
 
+export async function runPartialWorkflow(
+  workflowId: string,
+  data: RunPartialRequest
+): Promise<WorkflowRun> {
+  return apiClient.post<WorkflowRun>(ENDPOINTS.runPartial(workflowId), data)
+}
+
 export async function getWorkflowRuns(
   workflowId: string,
   params?: { page?: number; limit?: number }
@@ -89,6 +98,7 @@ export const workflowsService = {
   update: updateWorkflow,
   delete: deleteWorkflow,
   run: runWorkflow,
+  runPartial: runPartialWorkflow,
   getRuns: getWorkflowRuns,
   getRun: getWorkflowRun,
 }

@@ -62,7 +62,8 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
         return
       setOpen(false)
     }
-    function handleScroll() {
+    function handleScroll(e: Event) {
+      if (dropdownRef.current?.contains(e.target as Node)) return
       setOpen(false)
     }
     document.addEventListener('mousedown', handleClick)
