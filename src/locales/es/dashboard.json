@@ -1063,6 +1063,7 @@
             "paused": "Flujo pausado"
           }
         },
+        "selectNode": "Selecciona un nodo para configurar",
         "addNode": "Añadir nodo",
         "searchNodes": "Buscar nodos...",
         "aiAgent": "Agente IA",

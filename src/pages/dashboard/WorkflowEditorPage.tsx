@@ -25,7 +25,6 @@ export default function WorkflowEditorPage() {
   const { nodeTypeMap, nodesByCategory, isLoading: isLoadingNodeTypes } = useNodeTypes()
   const setWorkflow = useWorkflowEditorStore((s) => s.setWorkflow)
   const setNodeTypeMap = useWorkflowEditorStore((s) => s.setNodeTypeMap)
-  const selectedNodeId = useWorkflowEditorStore((s) => s.selectedNodeId)
   const reset = useWorkflowEditorStore((s) => s.reset)
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export default function WorkflowEditorPage() {
         </div>
 
         {/* Right config panel */}
-        {selectedNodeId && <NodeConfigPanel />}
+        <NodeConfigPanel />
       </div>
     </div>
   )

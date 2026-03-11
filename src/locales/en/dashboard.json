@@ -1361,6 +1361,7 @@
             "paused": "Workflow paused"
           }
         },
+        "selectNode": "Select a node to configure",
         "addNode": "Add node",
         "searchNodes": "Search nodes...",
         "aiAgent": "AI Agent",

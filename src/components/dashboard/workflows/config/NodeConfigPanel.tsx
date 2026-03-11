@@ -5,6 +5,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
+import { MousePointerClick } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getNodeIcon, CATEGORY_ACCENT_COLORS, CATEGORY_ICON_BG } from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
@@ -29,7 +30,18 @@ export function NodeConfigPanel() {
   const node = workflow?.nodes.find((n) => n.id === selectedNodeId)
   const def = node ? nodeTypeMap[node.type] : null
 
-  if (!node || !def) return null
+  if (!node || !def) {
+    return (
+      <div className="flex w-[360px] shrink-0 flex-col border-l border-border-subtle bg-bg-subtle">
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 px-5 text-center">
+          <MousePointerClick className="h-6 w-6 text-text-muted" />
+          <p className="text-xs text-text-muted">
+            {t('dashboard.workflows.editor.selectNode')}
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   const Icon = getNodeIcon(def.icon)
   const accent = CATEGORY_ACCENT_COLORS[def.category] ?? '#666'
