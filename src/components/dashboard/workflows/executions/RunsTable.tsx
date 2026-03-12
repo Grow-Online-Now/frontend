@@ -1,11 +1,11 @@
 /**
  * RunsTable
  * Table listing workflow execution runs.
- * Clicking a row selects the run and switches to the Logs tab.
+ * Clicking a row loads the run onto the canvas in execution mode.
  */
 
 import { useTranslation } from 'react-i18next'
-import { Check, XCircle, Loader2, Pause, Play } from 'lucide-react'
+import { Check, XCircle, Loader2, Pause, Play, Eye } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { formatDurationMs } from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
@@ -19,12 +19,18 @@ interface RunsTableProps {
 export function RunsTable({ runs, isLoading }: RunsTableProps) {
   const { t } = useTranslation()
   const selectRun = useWorkflowEditorStore((s) => s.selectRun)
+  const setActiveRun = useWorkflowEditorStore((s) => s.setActiveRun)
+  const activeRun = useWorkflowEditorStore((s) => s.activeRun)
   const selectedRunId = useWorkflowEditorStore((s) => s.selectedRunId)
   const runFromNode = useWorkflowEditorStore((s) => s.runFromNode)
   const isRunning = useWorkflowEditorStore((s) => s.isRunning)
 
+  const handleRowClick = (run: WorkflowRun) => {
+    selectRun(run.id)
+    setActiveRun(run)
+  }
+
   const handleContinue = (run: WorkflowRun) => {
-    // Find the first pending step to continue from
     const pendingStep = run.steps.find((s) => s.status === 'pending')
     if (pendingStep) {
       runFromNode(run.id, pendingStep.nodeId)
@@ -56,17 +62,19 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
             (s) => s.status === 'success' || s.status === 'cached'
           ).length
           const startedFormatted = new Date(run.startedAt).toLocaleString()
+          const isActive = activeRun?.id === run.id
 
           return (
             <div
               key={run.id}
-              onClick={() => selectRun(run.id)}
+              onClick={() => handleRowClick(run)}
               className={cn(
                 'grid cursor-pointer grid-cols-[100px_65px_130px_70px_50px_1fr] items-center border-t border-border-subtle px-5 py-[7px] transition-colors duration-100 hover:bg-bg-hover',
                 selectedRunId === run.id && 'bg-bg-active'
               )}
             >
-              <span className="truncate font-mono text-xs text-text-tertiary">
+              <span className="flex items-center gap-1.5 truncate font-mono text-xs text-text-tertiary">
+                {isActive && <Eye className="h-2.5 w-2.5 text-info" />}
                 {run.id.slice(0, 8)}
               </span>
               <span>

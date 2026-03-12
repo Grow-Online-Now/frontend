@@ -2,12 +2,22 @@
  * EditorHeader
  * Top bar for the workflow editor — uses CSS variable tokens.
  * Always rendered inside a .dark wrapper so tokens resolve to dark values.
+ * Includes view mode toggle (editor/execution) and running indicator.
  */
 
 import { useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import { ArrowLeft, Play, Loader2, Save, Power, Pencil, StepForward } from 'lucide-react'
+import {
+  ArrowLeft,
+  Play,
+  Loader2,
+  Save,
+  Power,
+  Pencil,
+  StepForward,
+  Eye,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { WorkflowStatusBadge } from '../WorkflowStatusBadge'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
@@ -25,13 +35,15 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
   const isDirty = useWorkflowEditorStore((s) => s.isDirty)
   const stepByStepMode = useWorkflowEditorStore((s) => s.stepByStepMode)
   const lastRun = useWorkflowEditorStore((s) => s.lastRun)
+  const activeRun = useWorkflowEditorStore((s) => s.activeRun)
+  const viewMode = useWorkflowEditorStore((s) => s.viewMode)
   const saveWorkflow = useWorkflowEditorStore((s) => s.saveWorkflow)
   const runWorkflow = useWorkflowEditorStore((s) => s.runWorkflow)
   const renameWorkflow = useWorkflowEditorStore((s) => s.renameWorkflow)
   const setWorkflowStatus = useWorkflowEditorStore((s) => s.setWorkflowStatus)
   const setStepByStepMode = useWorkflowEditorStore((s) => s.setStepByStepMode)
   const stepNode = useWorkflowEditorStore((s) => s.stepNode)
-  const runFromNode = useWorkflowEditorStore((s) => s.runFromNode)
+  const setViewMode = useWorkflowEditorStore((s) => s.setViewMode)
   const [isTogglingStatus, setIsTogglingStatus] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [editValue, setEditValue] = useState('')
@@ -70,42 +82,21 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
 
   const handleRun = useCallback(async () => {
     try {
-      if (stepByStepMode && lastRun?.status === 'paused') {
+      if (stepByStepMode && activeRun?.status === 'paused') {
         // Continue paused run: find first pending step
-        const pendingStep = lastRun.steps.find((s) => s.status === 'pending')
+        const pendingStep = activeRun.steps.find((s) => s.status === 'pending')
         if (pendingStep) {
-          const run = await stepNode(lastRun.id, pendingStep.nodeId)
-          if (run?.status === 'success') {
-            toast.success(t('dashboard.workflows.editor.toasts.runSuccess'))
-          } else if (run?.status === 'failed') {
-            toast.error(t('dashboard.workflows.editor.toasts.runFailed'))
-          }
+          await stepNode(activeRun.id, pendingStep.nodeId)
           return
         }
       }
 
-      if (stepByStepMode && workflow) {
-        // Start fresh step-by-step: run the entire workflow but stop after first non-trigger node
-        // For the first step, we do a full run then the user can step through from the paused run
-        const run = await runWorkflow()
-        if (run?.status === 'success') {
-          toast.success(t('dashboard.workflows.editor.toasts.runSuccess'))
-        } else if (run?.status === 'failed') {
-          toast.error(t('dashboard.workflows.editor.toasts.runFailed'))
-        }
-        return
-      }
-
-      const run = await runWorkflow()
-      if (run?.status === 'success') {
-        toast.success(t('dashboard.workflows.editor.toasts.runSuccess'))
-      } else if (run?.status === 'failed') {
-        toast.error(t('dashboard.workflows.editor.toasts.runFailed'))
-      }
+      // Start a new run (non-blocking — polling handles updates)
+      await runWorkflow()
     } catch {
       toast.error(t('dashboard.workflows.editor.toasts.runFailed'))
     }
-  }, [runWorkflow, stepNode, runFromNode, stepByStepMode, lastRun, workflow, t])
+  }, [runWorkflow, stepNode, stepByStepMode, activeRun, t])
 
   const handleToggleStatus = useCallback(async () => {
     if (!workflow || isTogglingStatus) return
@@ -131,7 +122,7 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
     `dashboard.workflows.card.trigger${workflow.triggerType.charAt(0).toUpperCase() + workflow.triggerType.slice(1)}`
   )
 
-  const showStepButton = stepByStepMode && lastRun?.status === 'paused'
+  const showStepButton = stepByStepMode && activeRun?.status === 'paused'
   const runLabel = showStepButton
     ? t('dashboard.workflows.editor.step')
     : stepByStepMode
@@ -189,15 +180,55 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
           <WorkflowStatusBadge status={workflow.status} className="cursor-pointer group-hover:opacity-80" />
           <Power className="h-3 w-3 text-text-muted opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
         </button>
+
+        {/* Running indicator */}
+        {isRunning && (
+          <div className="flex items-center gap-1.5">
+            <div className="h-2 w-2 animate-pulse rounded-full bg-info" />
+            <span className="text-[10px] font-medium text-info">
+              {t('dashboard.workflows.editor.running')}
+            </span>
+          </div>
+        )}
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
+        {/* View mode segmented control */}
+        <div className="flex rounded-lg border border-border-subtle bg-bg-elevated">
+          <button
+            type="button"
+            onClick={() => setViewMode('editor')}
+            className={cn(
+              'flex items-center gap-1.5 rounded-l-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150',
+              viewMode === 'editor'
+                ? 'bg-bg-active text-text-primary'
+                : 'text-text-muted hover:text-text-secondary'
+            )}
+          >
+            <Pencil className="h-3 w-3" />
+            {t('dashboard.workflows.execution.editorMode')}
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('execution')}
+            className={cn(
+              'flex items-center gap-1.5 rounded-r-lg border-l border-border-subtle px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150',
+              viewMode === 'execution'
+                ? 'bg-bg-active text-text-primary'
+                : 'text-text-muted hover:text-text-secondary'
+            )}
+          >
+            <Eye className="h-3 w-3" />
+            {t('dashboard.workflows.execution.executionMode')}
+          </button>
+        </div>
+
         {/* Step-by-step toggle */}
         <button
           type="button"
           onClick={() => setStepByStepMode(!stepByStepMode)}
           className={cn(
-            'flex h-7 w-7 items-center justify-center rounded-md border transition-all duration-150',
+            'flex items-center gap-1.5 rounded-md border px-2 py-1.5 text-[11px] font-medium transition-all duration-150',
             stepByStepMode
               ? 'border-info/40 bg-info-muted text-info'
               : 'border-border-subtle bg-bg-elevated text-text-muted hover:border-border-default hover:text-text-secondary'

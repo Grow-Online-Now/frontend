@@ -10,6 +10,7 @@ import { Loader2 } from 'lucide-react'
 import { useLocalizedHref } from '@/hooks/useLocalizedHref'
 import { useWorkflowDetail } from '@/hooks/useWorkflowDetail'
 import { useNodeTypes } from '@/hooks/useNodeTypes'
+import { useWorkflowRunPolling } from '@/hooks/useWorkflowRunPolling'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
 import { EditorHeader } from '@/components/dashboard/workflows/editor/EditorHeader'
 import { WorkflowCanvas } from '@/components/dashboard/workflows/canvas/WorkflowCanvas'
@@ -26,6 +27,9 @@ export default function WorkflowEditorPage() {
   const setWorkflow = useWorkflowEditorStore((s) => s.setWorkflow)
   const setNodeTypeMap = useWorkflowEditorStore((s) => s.setNodeTypeMap)
   const reset = useWorkflowEditorStore((s) => s.reset)
+
+  // Active run polling — always mounted, only polls when activeRun.status === 'running'
+  useWorkflowRunPolling(id)
 
   useEffect(() => {
     if (workflow) {

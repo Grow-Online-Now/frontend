@@ -13,11 +13,23 @@ import type {
   WorkflowNode,
   WorkflowEdge,
   WorkflowRun,
+  WorkflowStepResult,
   NodeTypeDefinition,
 } from '@/types/workflow'
 
-type RightPanelTab = 'config' | 'preview' | 'output'
+export type ViewMode = 'editor' | 'execution'
+export type RightPanelTab = 'config' | 'preview' | 'output' | 'execution'
 type BottomPanelTab = 'executions' | 'logs'
+
+function computeNodeStepMap(
+  steps: WorkflowStepResult[],
+): Record<string, WorkflowStepResult> {
+  const map: Record<string, WorkflowStepResult> = {}
+  for (const step of steps) {
+    map[step.nodeId] = step
+  }
+  return map
+}
 
 interface WorkflowEditorState {
   workflow: Workflow | null
@@ -33,6 +45,9 @@ interface WorkflowEditorState {
   isDirty: boolean
   runCount: number
   stepByStepMode: boolean
+  viewMode: ViewMode
+  activeRun: WorkflowRun | null
+  nodeStepMap: Record<string, WorkflowStepResult>
 }
 
 interface WorkflowEditorActions {
@@ -59,6 +74,9 @@ interface WorkflowEditorActions {
   runFromNode: (sourceRunId: string, nodeId: string) => Promise<WorkflowRun | null>
   stepNode: (sourceRunId: string, nodeId: string) => Promise<WorkflowRun | null>
   setStepByStepMode: (enabled: boolean) => void
+  setViewMode: (mode: ViewMode) => void
+  setActiveRun: (run: WorkflowRun | null) => void
+  updateActiveRun: (run: WorkflowRun) => void
   reset: () => void
 }
 
@@ -76,6 +94,9 @@ const initialState: WorkflowEditorState = {
   isDirty: false,
   runCount: 0,
   stepByStepMode: false,
+  viewMode: 'editor',
+  activeRun: null,
+  nodeStepMap: {},
 }
 
 export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEditorActions>(
@@ -86,7 +107,13 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
 
     setNodeTypeMap: (map) => set({ nodeTypeMap: map }),
 
-    selectNode: (nodeId) => set({ selectedNodeId: nodeId, rightPanelTab: 'config' }),
+    selectNode: (nodeId) => {
+      const { viewMode } = get()
+      set({
+        selectedNodeId: nodeId,
+        rightPanelTab: viewMode === 'execution' ? 'execution' : 'config',
+      })
+    },
 
     setRunning: (running) => set({ isRunning: running }),
 
@@ -220,12 +247,17 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
       const { workflow } = get()
       if (!workflow) return null
       try {
-        set({ isRunning: true })
         const run = await runWorkflowApi(workflow.id)
-        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        // Run is returned immediately with status: 'running'. Polling handles updates.
+        set({
+          activeRun: run,
+          nodeStepMap: computeNodeStepMap(run.steps),
+          viewMode: 'execution',
+          isRunning: run.status === 'running',
+          selectedRunId: run.id,
+        })
         return run
       } catch {
-        set({ isRunning: false })
         throw new Error('Failed to run workflow')
       }
     },
@@ -234,12 +266,16 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
       const { workflow } = get()
       if (!workflow) return null
       try {
-        set({ isRunning: true })
         const run = await runPartialApi(workflow.id, { sourceRunId, fromNodeId: nodeId })
-        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        set({
+          activeRun: run,
+          nodeStepMap: computeNodeStepMap(run.steps),
+          viewMode: 'execution',
+          isRunning: run.status === 'running',
+          selectedRunId: run.id,
+        })
         return run
       } catch {
-        set({ isRunning: false })
         throw new Error('Failed to retry from node')
       }
     },
@@ -248,12 +284,16 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
       const { workflow } = get()
       if (!workflow) return null
       try {
-        set({ isRunning: true })
         const run = await runPartialApi(workflow.id, { sourceRunId, fromNodeId: nodeId })
-        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        set({
+          activeRun: run,
+          nodeStepMap: computeNodeStepMap(run.steps),
+          viewMode: 'execution',
+          isRunning: run.status === 'running',
+          selectedRunId: run.id,
+        })
         return run
       } catch {
-        set({ isRunning: false })
         throw new Error('Failed to run from node')
       }
     },
@@ -262,21 +302,56 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
       const { workflow } = get()
       if (!workflow) return null
       try {
-        set({ isRunning: true })
         const run = await runPartialApi(workflow.id, {
           sourceRunId,
           fromNodeId: nodeId,
           stopAfterNodeId: nodeId,
         })
-        set((state) => ({ isRunning: false, lastRun: run, runCount: state.runCount + 1 }))
+        set({
+          activeRun: run,
+          nodeStepMap: computeNodeStepMap(run.steps),
+          viewMode: 'execution',
+          isRunning: run.status === 'running',
+          selectedRunId: run.id,
+        })
         return run
       } catch {
-        set({ isRunning: false })
         throw new Error('Failed to step node')
       }
     },
 
     setStepByStepMode: (enabled) => set({ stepByStepMode: enabled }),
+
+    setViewMode: (mode) => {
+      set({
+        viewMode: mode,
+        rightPanelTab: mode === 'execution' ? 'execution' : 'config',
+      })
+    },
+
+    setActiveRun: (run) => {
+      if (!run) {
+        set({ activeRun: null, nodeStepMap: {}, viewMode: 'editor', isRunning: false })
+        return
+      }
+      set({
+        activeRun: run,
+        nodeStepMap: computeNodeStepMap(run.steps),
+        viewMode: 'execution',
+        isRunning: run.status === 'running',
+        selectedRunId: run.id,
+      })
+    },
+
+    updateActiveRun: (run) => {
+      const { activeRun } = get()
+      if (!activeRun || activeRun.id !== run.id) return
+      set({
+        activeRun: run,
+        nodeStepMap: computeNodeStepMap(run.steps),
+        isRunning: run.status === 'running',
+      })
+    },
 
     reset: () => set(initialState),
   })

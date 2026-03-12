@@ -1,6 +1,8 @@
 /**
  * NodeConfigPanel
- * Right panel with Config / Preview / Output tabs for the selected node.
+ * Right panel with conditional tabs based on view mode:
+ * - Editor mode: Config / Preview / Output
+ * - Execution mode: Execution / Config
  * Uses CSS variable tokens — always rendered inside .dark wrapper.
  */
 
@@ -9,14 +11,21 @@ import { MousePointerClick } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getNodeIcon, CATEGORY_ACCENT_COLORS, CATEGORY_ICON_BG } from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
+import type { RightPanelTab } from '@/stores/workflowEditorStore'
 import { ConfigTab } from './ConfigTab'
 import { PreviewTab } from './PreviewTab'
 import { OutputTab } from './OutputTab'
+import { ExecutionDataTab } from './ExecutionDataTab'
 
-const TABS = [
-  { key: 'config' as const, labelKey: 'dashboard.workflows.editor.tabs.config' },
-  { key: 'preview' as const, labelKey: 'dashboard.workflows.editor.tabs.preview' },
-  { key: 'output' as const, labelKey: 'dashboard.workflows.editor.tabs.output' },
+const EDITOR_TABS: { key: RightPanelTab; labelKey: string }[] = [
+  { key: 'config', labelKey: 'dashboard.workflows.editor.tabs.config' },
+  { key: 'preview', labelKey: 'dashboard.workflows.editor.tabs.preview' },
+  { key: 'output', labelKey: 'dashboard.workflows.editor.tabs.output' },
+]
+
+const EXECUTION_TABS: { key: RightPanelTab; labelKey: string }[] = [
+  { key: 'execution', labelKey: 'dashboard.workflows.execution.tab' },
+  { key: 'config', labelKey: 'dashboard.workflows.editor.tabs.config' },
 ]
 
 export function NodeConfigPanel() {
@@ -26,9 +35,13 @@ export function NodeConfigPanel() {
   const selectedNodeId = useWorkflowEditorStore((s) => s.selectedNodeId)
   const rightPanelTab = useWorkflowEditorStore((s) => s.rightPanelTab)
   const setRightPanelTab = useWorkflowEditorStore((s) => s.setRightPanelTab)
+  const viewMode = useWorkflowEditorStore((s) => s.viewMode)
 
   const node = workflow?.nodes.find((n) => n.id === selectedNodeId)
   const def = node ? nodeTypeMap[node.type] : null
+
+  const isExecMode = viewMode === 'execution'
+  const tabs = isExecMode ? EXECUTION_TABS : EDITOR_TABS
 
   if (!node || !def) {
     return (
@@ -46,6 +59,9 @@ export function NodeConfigPanel() {
   const Icon = getNodeIcon(def.icon)
   const accent = CATEGORY_ACCENT_COLORS[def.category] ?? '#666'
   const iconBg = CATEGORY_ICON_BG[def.category] ?? 'rgba(255,255,255,0.05)'
+
+  // Ensure the current tab is valid for the current mode
+  const activeTab = tabs.some((t) => t.key === rightPanelTab) ? rightPanelTab : tabs[0].key
 
   return (
     <div className="flex w-[360px] shrink-0 flex-col border-l border-border-subtle bg-bg-subtle">
@@ -71,8 +87,8 @@ export function NodeConfigPanel() {
 
       {/* Tabs */}
       <div className="flex border-b border-border-subtle">
-        {TABS.map((tab) => {
-          const isActive = rightPanelTab === tab.key
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.key
           return (
             <button
               key={tab.key}
@@ -94,11 +110,12 @@ export function NodeConfigPanel() {
         })}
       </div>
 
-      {/* Tab content — overflow-y-auto but NOT overflow-hidden to allow portals from children */}
+      {/* Tab content */}
       <div className="flex-1 overflow-y-auto px-5 py-4">
-        {rightPanelTab === 'config' && <ConfigTab />}
-        {rightPanelTab === 'preview' && <PreviewTab />}
-        {rightPanelTab === 'output' && <OutputTab />}
+        {activeTab === 'config' && <ConfigTab />}
+        {activeTab === 'preview' && <PreviewTab />}
+        {activeTab === 'output' && <OutputTab />}
+        {activeTab === 'execution' && <ExecutionDataTab />}
       </div>
     </div>
   )

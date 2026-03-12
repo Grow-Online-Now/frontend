@@ -1387,6 +1387,27 @@
         "availableVariables": "Available variables",
         "resolvedValue": "Resolved value"
       },
+      "execution": {
+        "tab": "Execution",
+        "editorMode": "Editor",
+        "executionMode": "Runs",
+        "noData": "No execution data for this node.",
+        "runPaused": "Run paused",
+        "error": "Error",
+        "input": "Input",
+        "output": "Output",
+        "retry": "Retry",
+        "runFromHere": "Run from here",
+        "runThisNode": "Run this node",
+        "status": {
+          "success": "Success",
+          "failed": "Failed",
+          "running": "Running",
+          "pending": "Pending",
+          "skipped": "Skipped",
+          "cached": "Cached"
+        }
+      },
       "executions": {
         "title": "Executions",
         "tabs": {

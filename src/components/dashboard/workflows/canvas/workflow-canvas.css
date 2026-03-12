@@ -138,3 +138,19 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
 }
+
+/* ── Status badge spin (running indicator on node) ── */
+@keyframes node-status-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.node-status-spin {
+  animation: node-status-spin 1s linear infinite;
+}
+
+/* ── Running node glow pulse ── */
+@keyframes running-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(59,130,246,0.35); }
+  50% { box-shadow: 0 0 16px rgba(59,130,246,0.55); }
+}

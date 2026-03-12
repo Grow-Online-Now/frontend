@@ -135,8 +135,8 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
         )}
 
         {/* Action buttons */}
-        <div className="flex shrink-0 items-center gap-1">
-          {/* Retry button — always visible on failed steps */}
+        <div className="flex shrink-0 items-center gap-1.5">
+          {/* Retry button — always visible on failed steps, with label */}
           {isFailed && (
             <button
               type="button"
@@ -145,10 +145,10 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
                 retryFromNode(run.id, step.nodeId)
               }}
               disabled={isRunning}
-              className="flex h-5 w-5 items-center justify-center rounded-sm text-destructive transition-colors duration-100 hover:bg-destructive-muted disabled:opacity-40"
-              title={t('dashboard.workflows.executions.logs.retry')}
+              className="flex items-center gap-1 rounded-sm bg-destructive-muted px-1.5 py-0.5 text-[10px] font-medium text-destructive transition-colors duration-100 hover:opacity-80 disabled:opacity-40"
             >
-              <RefreshCw className="h-3 w-3" />
+              <RefreshCw className="h-2.5 w-2.5" />
+              {t('dashboard.workflows.executions.logs.retry')}
             </button>
           )}
 
@@ -160,10 +160,10 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
               runFromNode(run.id, step.nodeId)
             }}
             disabled={isRunning}
-            className="flex h-5 w-5 items-center justify-center rounded-sm text-text-muted opacity-0 transition-all duration-100 hover:bg-bg-active hover:text-text-primary group-hover/step:opacity-100 disabled:opacity-40"
+            className="flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-medium text-text-muted opacity-0 transition-all duration-100 hover:bg-bg-active hover:text-text-primary group-hover/step:opacity-100 disabled:opacity-40"
             title={t('dashboard.workflows.executions.logs.runFromHere')}
           >
-            <Play className="h-3 w-3" />
+            <Play className="h-2.5 w-2.5" />
           </button>
         </div>
       </div>

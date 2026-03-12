@@ -2,9 +2,10 @@
  * ExecutionPanel
  * Bottom collapsible panel — thin shell managing tab state.
  * Draggable handle bar to resize; click to toggle when collapsed.
+ * Merges live activeRun data into runs list for real-time updates.
  */
 
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronUp, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -26,7 +27,19 @@ export function ExecutionPanel() {
   const setBottomPanelOpen = useWorkflowEditorStore((s) => s.setBottomPanelOpen)
   const activeTab = useWorkflowEditorStore((s) => s.bottomPanelTab)
   const setActiveTab = useWorkflowEditorStore((s) => s.setBottomPanelTab)
-  const { runs, isLoading } = useWorkflowRuns(workflow?.id)
+  const activeRun = useWorkflowEditorStore((s) => s.activeRun)
+  const { runs: fetchedRuns, isLoading } = useWorkflowRuns(workflow?.id)
+
+  // Merge activeRun's latest data into the fetched runs list.
+  // If activeRun exists in fetchedRuns, replace it. Otherwise prepend it.
+  const runs = useMemo(() => {
+    if (!activeRun) return fetchedRuns
+    const exists = fetchedRuns.some((r) => r.id === activeRun.id)
+    if (exists) {
+      return fetchedRuns.map((r) => (r.id === activeRun.id ? activeRun : r))
+    }
+    return [activeRun, ...fetchedRuns]
+  }, [fetchedRuns, activeRun])
 
   const [panelHeight, setPanelHeight] = useState(DEFAULT_HEIGHT)
   const dragRef = useRef<{ startY: number; startHeight: number; moved: boolean } | null>(null)
@@ -58,7 +71,6 @@ export function ExecutionPanel() {
         document.body.style.userSelect = ''
 
         if (dragRef.current && !dragRef.current.moved) {
-          // It was a click, not a drag — toggle
           setBottomPanelOpen(!bottomPanelOpen)
           if (!bottomPanelOpen) setPanelHeight(DEFAULT_HEIGHT)
         }
