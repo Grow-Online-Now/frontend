@@ -30,6 +30,8 @@ import {
   Twitch,
   Mic,
   Flame,
+  Maximize,
+  Clapperboard,
   type LucideIcon,
 } from 'lucide-react'
 import type { NodeCategory, CategoryConfig } from '@/types/workflow'
@@ -65,6 +67,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
   twitch: Twitch,
   mic: Mic,
   flame: Flame,
+  maximize: Maximize,
+  clapperboard: Clapperboard,
 }
 
 /**
