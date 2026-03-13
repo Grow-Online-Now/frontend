@@ -8,6 +8,7 @@ import { X, Trash2, PenSquare, Download, Image as ImageIcon, Film } from 'lucide
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { cn, formatFileSize } from '@/lib/utils'
+import { apiClient } from '@/lib/api-client'
 import type { MediaItem } from '@/types/media'
 
 interface MediaPreviewModalProps {
@@ -41,13 +42,25 @@ export function MediaPreviewModal({
 
   const isVideo = media.mediaType === 'video'
 
-  const handleDownload = () => {
-    if (!media.url) return
-    const link = document.createElement('a')
-    link.href = media.url
-    link.download = media.fileName
-    link.target = '_blank'
-    link.click()
+  const handleDownload = async () => {
+    try {
+      const { url } = await apiClient.get<{ url: string; expiresAt: string }>(
+        `/api/media/${media.id}/download-url`,
+      )
+      const link = document.createElement('a')
+      link.href = url
+      link.download = media.fileName
+      link.target = '_blank'
+      link.click()
+    } catch {
+      // Fallback to media.url if download-url endpoint fails
+      if (!media.url) return
+      const link = document.createElement('a')
+      link.href = media.url
+      link.download = media.fileName
+      link.target = '_blank'
+      link.click()
+    }
   }
 
   return (
