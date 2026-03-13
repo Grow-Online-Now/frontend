@@ -121,6 +121,18 @@ export type AllowedVideoMimeType = (typeof ALLOWED_MIME_TYPES.video)[number]
 export type AllowedMimeType = AllowedImageMimeType | AllowedVideoMimeType
 
 /**
+ * Storage usage response from backend
+ */
+export interface StorageUsage {
+  totalBytes: number
+  fileCount: number
+  byType: {
+    image: { bytes: number; count: number }
+    video: { bytes: number; count: number }
+  }
+}
+
+/**
  * Media type filter tabs for Media Library page
  */
 export type MediaTypeTab = 'all' | 'image' | 'video'

@@ -994,17 +994,38 @@
         "title": "No se encontraron medios",
         "description": "Prueba con otro filtro o sube nuevos medios"
       },
+      "select": {
+        "toggle": "Seleccionar",
+        "cancel": "Cancelar",
+        "selectAll": "Seleccionar todo",
+        "deselectAll": "Deseleccionar todo",
+        "selected": "{{count}} seleccionado(s)",
+        "deleteSelected": "Eliminar selección"
+      },
       "delete": {
         "title": "Eliminar medio",
         "description": "¿Estás seguro de que quieres eliminar este medio? Esta acción no se puede deshacer.",
         "confirm": "Eliminar",
         "cancel": "Cancelar"
       },
+      "batchDelete": {
+        "title": "Eliminar {{count}} archivos",
+        "description": "¿Estás seguro de que quieres eliminar {{count}} archivos ({{size}})? Se eliminarán permanentemente del almacenamiento. Esta acción no se puede deshacer.",
+        "confirm": "Eliminar {{count}} archivos"
+      },
       "preview": {
         "title": "Vista previa del medio"
       },
       "loading": {
         "more": "Cargando más..."
+      },
+      "storage": {
+        "fileCount": "{{count}} archivo",
+        "fileCount_other": "{{count}} archivos",
+        "images": "{{size}} en {{count}} imagen",
+        "images_other": "{{size}} en {{count}} imágenes",
+        "videos": "{{size}} en {{count}} video",
+        "videos_other": "{{size}} en {{count}} videos"
       }
     },
     "workflows": {

@@ -995,17 +995,38 @@
         "title": "Aucun média trouvé",
         "description": "Essayez un autre filtre ou téléchargez de nouveaux médias"
       },
+      "select": {
+        "toggle": "Sélectionner",
+        "cancel": "Annuler",
+        "selectAll": "Tout sélectionner",
+        "deselectAll": "Tout désélectionner",
+        "selected": "{{count}} sélectionné(s)",
+        "deleteSelected": "Supprimer la sélection"
+      },
       "delete": {
         "title": "Supprimer le média",
         "description": "Êtes-vous sûr de vouloir supprimer ce média ? Cette action est irréversible.",
         "confirm": "Supprimer",
         "cancel": "Annuler"
       },
+      "batchDelete": {
+        "title": "Supprimer {{count}} fichiers",
+        "description": "Êtes-vous sûr de vouloir supprimer {{count}} fichiers ({{size}}) ? Ils seront définitivement supprimés du stockage. Cette action est irréversible.",
+        "confirm": "Supprimer {{count}} fichiers"
+      },
       "preview": {
         "title": "Aperçu du média"
       },
       "loading": {
         "more": "Chargement..."
+      },
+      "storage": {
+        "fileCount": "{{count}} fichier",
+        "fileCount_other": "{{count}} fichiers",
+        "images": "{{size}} dans {{count}} image",
+        "images_other": "{{size}} dans {{count}} images",
+        "videos": "{{size}} dans {{count}} vidéo",
+        "videos_other": "{{size}} dans {{count}} vidéos"
       }
     },
     "workflows": {

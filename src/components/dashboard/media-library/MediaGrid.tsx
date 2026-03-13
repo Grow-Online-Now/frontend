@@ -1,6 +1,6 @@
 /**
  * MediaGrid Component
- * Grid layout with infinite scroll and delete confirmation
+ * Grid layout with infinite scroll, delete confirmation, and selection mode
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react'
@@ -28,6 +28,9 @@ interface MediaGridProps {
   hasMore: boolean
   loadMore: () => void
   isLoadingMore: boolean
+  selectable?: boolean
+  selectedIds?: Set<string>
+  onToggleSelect?: (media: MediaItem) => void
   className?: string
 }
 
@@ -39,6 +42,9 @@ export function MediaGrid({
   hasMore,
   loadMore,
   isLoadingMore,
+  selectable = false,
+  selectedIds,
+  onToggleSelect,
   className,
 }: MediaGridProps) {
   const { t } = useTranslation()
@@ -102,9 +108,12 @@ export function MediaGrid({
           <MediaGridCard
             key={item.id}
             media={item}
-            onView={onView}
-            onDelete={onDelete ? handleDeleteClick : undefined}
-            onUseInPost={onUseInPost}
+            onView={selectable ? undefined : onView}
+            onDelete={selectable ? undefined : onDelete ? handleDeleteClick : undefined}
+            onUseInPost={selectable ? undefined : onUseInPost}
+            selectable={selectable}
+            selected={selectedIds?.has(item.id)}
+            onToggleSelect={onToggleSelect}
           />
         ))}
       </div>

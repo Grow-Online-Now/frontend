@@ -1292,17 +1292,38 @@
         "title": "No media found",
         "description": "Try a different filter or upload new media"
       },
+      "select": {
+        "toggle": "Select",
+        "cancel": "Cancel",
+        "selectAll": "Select all",
+        "deselectAll": "Deselect all",
+        "selected": "{{count}} selected",
+        "deleteSelected": "Delete selected"
+      },
       "delete": {
         "title": "Delete Media",
         "description": "Are you sure you want to delete this media? This action cannot be undone.",
         "confirm": "Delete",
         "cancel": "Cancel"
       },
+      "batchDelete": {
+        "title": "Delete {{count}} files",
+        "description": "Are you sure you want to delete {{count}} files ({{size}})? This will permanently remove them from storage. This action cannot be undone.",
+        "confirm": "Delete {{count}} files"
+      },
       "preview": {
         "title": "Media Preview"
       },
       "loading": {
         "more": "Loading more..."
+      },
+      "storage": {
+        "fileCount": "{{count}} file",
+        "fileCount_other": "{{count}} files",
+        "images": "{{size}} in {{count}} image",
+        "images_other": "{{size}} in {{count}} images",
+        "videos": "{{size}} in {{count}} video",
+        "videos_other": "{{size}} in {{count}} videos"
       }
     },
     "workflows": {

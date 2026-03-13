@@ -11,6 +11,7 @@ import type {
   MediaListResponse,
   MediaListParams,
   UploadProgress,
+  StorageUsage,
 } from '@/types/media'
 
 /**
@@ -44,6 +45,7 @@ const ENDPOINTS = {
   requestUpload: '/api/media/request-upload',
   confirmUpload: '/api/media/confirm-upload',
   media: '/api/media',
+  storage: '/api/media/storage',
   mediaById: (id: string) => `/api/media/${id}`,
   downloadUrl: (id: string) => `/api/media/${id}/download-url`,
 } as const
@@ -153,6 +155,20 @@ export async function deleteMedia(id: string): Promise<void> {
 }
 
 /**
+ * Delete multiple media items at once
+ */
+export async function deleteMediaBatch(mediaIds: string[]): Promise<{ deleted: number }> {
+  return apiClient.post<{ deleted: number }>(ENDPOINTS.media + '/batch-delete', { mediaIds })
+}
+
+/**
+ * Get workspace storage usage
+ */
+export async function getStorageUsage(): Promise<StorageUsage> {
+  return apiClient.get<StorageUsage>(ENDPOINTS.storage)
+}
+
+/**
  * Media service object (alternative API)
  */
 export const mediaService = {
@@ -162,4 +178,5 @@ export const mediaService = {
   getAll: getMedia,
   getById: getMediaById,
   delete: deleteMedia,
+  getStorageUsage,
 }
