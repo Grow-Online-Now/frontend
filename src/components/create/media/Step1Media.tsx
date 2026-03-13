@@ -218,7 +218,7 @@ export function Step1Media({
               className={cn(
                 'flex min-h-0 flex-col',
                 selectedAccountIds.length > 0
-                  ? 'min-h-[200px] md:min-h-0 md:w-1/2 md:border-r md:border-border'
+                  ? 'md:border-border min-h-[200px] md:min-h-0 md:w-1/2 md:border-r'
                   : 'flex-1'
               )}
             >

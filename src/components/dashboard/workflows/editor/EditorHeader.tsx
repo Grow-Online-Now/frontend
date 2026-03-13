@@ -8,16 +8,7 @@
 import { useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import {
-  ArrowLeft,
-  Play,
-  Loader2,
-  Save,
-  Power,
-  Pencil,
-  StepForward,
-  Eye,
-} from 'lucide-react'
+import { ArrowLeft, Play, Loader2, Save, Power, Pencil, StepForward, Eye } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { WorkflowStatusBadge } from '../WorkflowStatusBadge'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
@@ -34,7 +25,6 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
   const isSaving = useWorkflowEditorStore((s) => s.isSaving)
   const isDirty = useWorkflowEditorStore((s) => s.isDirty)
   const stepByStepMode = useWorkflowEditorStore((s) => s.stepByStepMode)
-  const lastRun = useWorkflowEditorStore((s) => s.lastRun)
   const activeRun = useWorkflowEditorStore((s) => s.activeRun)
   const viewMode = useWorkflowEditorStore((s) => s.viewMode)
   const saveWorkflow = useWorkflowEditorStore((s) => s.saveWorkflow)
@@ -122,22 +112,19 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
     `dashboard.workflows.card.trigger${workflow.triggerType.charAt(0).toUpperCase() + workflow.triggerType.slice(1)}`
   )
 
-  const showStepButton = stepByStepMode && activeRun?.status === 'paused'
-  const runLabel = showStepButton
+  const runLabel = stepByStepMode
     ? t('dashboard.workflows.editor.step')
-    : stepByStepMode
-      ? t('dashboard.workflows.editor.step')
-      : isRunning
-        ? t('dashboard.workflows.editor.running')
-        : t('dashboard.workflows.editor.run')
+    : isRunning
+      ? t('dashboard.workflows.editor.running')
+      : t('dashboard.workflows.editor.run')
 
   return (
-    <div className="flex shrink-0 items-center justify-between border-b border-border-subtle bg-bg-subtle px-5 py-2.5">
+    <div className="border-border-subtle bg-bg-subtle flex shrink-0 items-center justify-between border-b px-5 py-2.5">
       <div className="flex items-center gap-3.5">
         <button
           type="button"
           onClick={onBack}
-          className="flex h-7 w-7 items-center justify-center rounded-md border border-border-subtle bg-bg-elevated text-text-tertiary transition-all duration-150 hover:bg-bg-hover hover:text-text-secondary"
+          className="border-border-subtle bg-bg-elevated text-text-tertiary hover:bg-bg-hover hover:text-text-secondary flex h-7 w-7 items-center justify-center rounded-md border transition-all duration-150"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
         </button>
@@ -152,7 +139,7 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
                 if (e.key === 'Enter') commitRename()
                 if (e.key === 'Escape') setIsEditing(false)
               }}
-              className="h-6 w-48 rounded-md border border-border-emphasis bg-bg-elevated px-1.5 text-sm font-semibold tracking-tight text-text-primary outline-none focus:border-border-focus"
+              className="border-border-emphasis bg-bg-elevated text-text-primary focus:border-border-focus h-6 w-48 rounded-md border px-1.5 text-sm font-semibold tracking-tight outline-none"
             />
           ) : (
             <button
@@ -160,15 +147,13 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
               onClick={startEditing}
               className="group/name flex items-center gap-1.5"
             >
-              <span className="text-sm font-semibold tracking-tight text-text-primary">
+              <span className="text-text-primary text-sm font-semibold tracking-tight">
                 {t(workflow.name, { defaultValue: workflow.name })}
               </span>
-              <Pencil className="h-3 w-3 text-text-muted opacity-0 transition-opacity duration-150 group-hover/name:opacity-100" />
+              <Pencil className="text-text-muted h-3 w-3 opacity-0 transition-opacity duration-150 group-hover/name:opacity-100" />
             </button>
           )}
-          <div className="text-xs text-text-muted">
-            {triggerLabel}
-          </div>
+          <div className="text-text-muted text-xs">{triggerLabel}</div>
         </div>
         <button
           type="button"
@@ -177,15 +162,18 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
           className="group flex items-center gap-1.5 transition-opacity duration-150 disabled:opacity-40"
           title={t(`dashboard.workflows.editor.statusToggle.${workflow.status}`)}
         >
-          <WorkflowStatusBadge status={workflow.status} className="cursor-pointer group-hover:opacity-80" />
-          <Power className="h-3 w-3 text-text-muted opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+          <WorkflowStatusBadge
+            status={workflow.status}
+            className="cursor-pointer group-hover:opacity-80"
+          />
+          <Power className="text-text-muted h-3 w-3 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
         </button>
 
         {/* Running indicator */}
         {isRunning && (
           <div className="flex items-center gap-1.5">
-            <div className="h-2 w-2 animate-pulse rounded-full bg-info" />
-            <span className="text-[10px] font-medium text-info">
+            <div className="bg-info h-2 w-2 animate-pulse rounded-full" />
+            <span className="text-info text-[10px] font-medium">
               {t('dashboard.workflows.editor.running')}
             </span>
           </div>
@@ -194,7 +182,7 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
 
       <div className="flex items-center gap-2.5">
         {/* View mode segmented control */}
-        <div className="flex rounded-lg border border-border-subtle bg-bg-elevated">
+        <div className="border-border-subtle bg-bg-elevated flex rounded-lg border">
           <button
             type="button"
             onClick={() => setViewMode('editor')}
@@ -212,7 +200,7 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
             type="button"
             onClick={() => setViewMode('execution')}
             className={cn(
-              'flex items-center gap-1.5 rounded-r-lg border-l border-border-subtle px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150',
+              'border-border-subtle flex items-center gap-1.5 rounded-r-lg border-l px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150',
               viewMode === 'execution'
                 ? 'bg-bg-active text-text-primary'
                 : 'text-text-muted hover:text-text-secondary'
@@ -254,9 +242,7 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
           ) : (
             <Save className="h-3.5 w-3.5" />
           )}
-          {isSaving
-            ? t('dashboard.workflows.editor.saving')
-            : t('dashboard.workflows.editor.save')}
+          {isSaving ? t('dashboard.workflows.editor.saving') : t('dashboard.workflows.editor.save')}
         </button>
         <button
           type="button"
@@ -264,8 +250,8 @@ export function EditorHeader({ onBack }: EditorHeaderProps) {
           disabled={isRunning || workflow.status === 'draft'}
           className={
             isRunning
-              ? 'flex items-center gap-1.5 rounded-md border border-border-subtle bg-bg-elevated px-3 py-1.5 text-xs font-medium text-text-secondary transition-all duration-150 hover:bg-bg-hover disabled:opacity-40'
-              : 'flex items-center gap-1.5 rounded-md border border-transparent bg-text-primary px-3 py-1.5 text-xs font-medium text-bg-base transition-all duration-150 hover:opacity-90 disabled:opacity-40'
+              ? 'border-border-subtle bg-bg-elevated text-text-secondary hover:bg-bg-hover flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-all duration-150 disabled:opacity-40'
+              : 'bg-text-primary text-bg-base flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-xs font-medium transition-all duration-150 hover:opacity-90 disabled:opacity-40'
           }
         >
           {isRunning ? (

@@ -21,7 +21,7 @@ import {
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import './workflow-canvas.css'
-import { CustomNode } from './CustomNode'
+import { CustomNode, type CustomNodeData } from './CustomNode'
 import { CustomEdge } from './CustomEdge'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
 
@@ -45,26 +45,28 @@ export function WorkflowCanvas() {
   // Build React Flow nodes from workflow state
   const storeNodes: Node[] = useMemo(() => {
     if (!workflow) return []
+    const execMode = viewMode === 'execution'
     return workflow.nodes.map((n) => {
       const def = nodeTypeMap[n.type]
+      const data: CustomNodeData = {
+        name: def?.name ?? n.type,
+        description: def?.description ?? '',
+        icon: def?.icon ?? 'zap',
+        category: def?.category ?? 'trigger',
+        stepStatus: nodeStepMap[n.id]?.status,
+        viewMode,
+        nodeId: n.id,
+      }
       return {
         id: n.id,
         type: 'custom',
         position: n.position,
         selected: n.id === selectedNodeId,
-        draggable: !isExecMode,
-        data: {
-          name: def?.name ?? n.type,
-          description: def?.description ?? '',
-          icon: def?.icon ?? 'zap',
-          category: def?.category ?? 'trigger',
-          stepStatus: nodeStepMap[n.id]?.status,
-          viewMode,
-          nodeId: n.id,
-        },
+        draggable: !execMode,
+        data,
       }
     })
-  }, [workflow, nodeTypeMap, selectedNodeId, viewMode, nodeStepMap, isExecMode])
+  }, [workflow, nodeTypeMap, selectedNodeId, viewMode, nodeStepMap])
 
   // Local state for smooth drag interactions
   const [nodes, setNodes] = useState<Node[]>(storeNodes)
@@ -82,16 +84,14 @@ export function WorkflowCanvas() {
   const storeEdges: Edge[] = useMemo(() => {
     if (!workflow) return []
     return workflow.edges.map((e) => {
-      const sourceStatus = nodeStepMap[e.sourceNodeId]?.status
-      const targetStatus = nodeStepMap[e.targetNodeId]?.status
       return {
         id: e.id,
         source: e.sourceNodeId,
         target: e.targetNodeId,
         type: 'custom',
         data: {
-          sourceStatus,
-          targetStatus,
+          sourceStatus: nodeStepMap[e.sourceNodeId]?.status,
+          targetStatus: nodeStepMap[e.targetNodeId]?.status,
           viewMode,
         },
       }

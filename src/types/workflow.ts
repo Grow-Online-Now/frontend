@@ -91,6 +91,7 @@ export interface ConfigFieldSchema {
   label: string
   description?: string
   placeholder?: string
+  required?: boolean
   default?: unknown
   options?: { label: string; value: string }[]
   validation?: { min?: number; max?: number; pattern?: string }
@@ -151,4 +152,12 @@ export interface CategoryConfig {
   colorClass: string
   mutedColorClass: string
   bgAccentClass: string
+}
+
+export interface CategoryDefinition {
+  key: NodeCategory
+  labelKey: string
+  icon: React.ComponentType<{ className?: string }>
+  colorClass: string
+  mutedColorClass: string
 }

@@ -39,7 +39,7 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
 
   return (
     <div className="overflow-y-auto" style={{ height: 'calc(100% - 37px)' }}>
-      <div className="grid grid-cols-[100px_65px_130px_70px_50px_1fr] px-5 py-2 text-[10px] font-medium uppercase tracking-wider text-text-muted">
+      <div className="text-text-muted grid grid-cols-[100px_65px_130px_70px_50px_1fr] px-5 py-2 text-[10px] font-medium tracking-wider uppercase">
         <span>{t('dashboard.workflows.executions.columns.runId')}</span>
         <span>{t('dashboard.workflows.executions.columns.status')}</span>
         <span>{t('dashboard.workflows.executions.columns.time')}</span>
@@ -50,10 +50,10 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
 
       {isLoading ? (
         <div className="flex items-center justify-center py-6">
-          <Loader2 className="h-3.5 w-3.5 animate-spin text-text-muted" />
+          <Loader2 className="text-text-muted h-3.5 w-3.5 animate-spin" />
         </div>
       ) : runs.length === 0 ? (
-        <div className="px-5 py-6 text-center text-xs text-text-muted">
+        <div className="text-text-muted px-5 py-6 text-center text-xs">
           {t('dashboard.workflows.executions.empty')}
         </div>
       ) : (
@@ -69,12 +69,12 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
               key={run.id}
               onClick={() => handleRowClick(run)}
               className={cn(
-                'grid cursor-pointer grid-cols-[100px_65px_130px_70px_50px_1fr] items-center border-t border-border-subtle px-5 py-[7px] transition-colors duration-100 hover:bg-bg-hover',
+                'border-border-subtle hover:bg-bg-hover grid cursor-pointer grid-cols-[100px_65px_130px_70px_50px_1fr] items-center border-t px-5 py-[7px] transition-colors duration-100',
                 selectedRunId === run.id && 'bg-bg-active'
               )}
             >
-              <span className="flex items-center gap-1.5 truncate font-mono text-xs text-text-tertiary">
-                {isActive && <Eye className="h-2.5 w-2.5 text-info" />}
+              <span className="text-text-tertiary flex items-center gap-1.5 truncate font-mono text-xs">
+                {isActive && <Eye className="text-info h-2.5 w-2.5" />}
                 {run.id.slice(0, 8)}
               </span>
               <span>
@@ -101,11 +101,11 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
                   )}
                 </span>
               </span>
-              <span className="text-xs text-text-tertiary">{startedFormatted}</span>
-              <span className="font-mono text-xs text-text-tertiary">
+              <span className="text-text-tertiary text-xs">{startedFormatted}</span>
+              <span className="text-text-tertiary font-mono text-xs">
                 {formatDurationMs(run.durationMs)}
               </span>
-              <span className="text-xs text-text-tertiary">
+              <span className="text-text-tertiary text-xs">
                 {stepsCompleted}/{run.steps.length}
               </span>
               <span className="flex items-center justify-end gap-2">
@@ -117,13 +117,13 @@ export function RunsTable({ runs, isLoading }: RunsTableProps) {
                       handleContinue(run)
                     }}
                     disabled={isRunning}
-                    className="flex items-center gap-1 rounded-sm bg-warning-muted px-1.5 py-0.5 text-[10px] font-medium text-warning transition-colors duration-100 hover:opacity-80 disabled:opacity-40"
+                    className="bg-warning-muted text-warning flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-medium transition-colors duration-100 hover:opacity-80 disabled:opacity-40"
                   >
                     <Play className="h-2.5 w-2.5" />
                     {t('dashboard.workflows.executions.continue')}
                   </button>
                 )}
-                <span className="text-[10px] text-text-muted">
+                <span className="text-text-muted text-[10px]">
                   {t('dashboard.workflows.executions.details')} →
                 </span>
               </span>

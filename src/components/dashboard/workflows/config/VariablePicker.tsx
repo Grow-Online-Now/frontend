@@ -140,9 +140,7 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
         if (port.type === 'array' && Array.isArray(portValue) && portValue.length > 0) {
           const firstItem = portValue[0]
           if (typeof firstItem === 'object' && firstItem !== null) {
-            for (const [subKey, subVal] of Object.entries(
-              firstItem as Record<string, unknown>,
-            )) {
+            for (const [subKey, subVal] of Object.entries(firstItem as Record<string, unknown>)) {
               list.push({
                 nodeId: node.id,
                 nodeName: def.name,
@@ -169,7 +167,7 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
       onInsert(ref)
       setOpen(false)
     },
-    [onInsert],
+    [onInsert]
   )
 
   if (entries.length === 0) return null
@@ -180,7 +178,7 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
         ref={buttonRef}
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex h-7 items-center gap-1.5 rounded-md border border-border-subtle px-2 text-[11px] text-text-muted transition-colors duration-150 hover:border-border-emphasis hover:text-text-secondary"
+        className="border-border-subtle text-text-muted hover:border-border-emphasis hover:text-text-secondary flex h-7 items-center gap-1.5 rounded-md border px-2 text-[11px] transition-colors duration-150"
         title={t('dashboard.workflows.editor.insertVariable')}
       >
         <Braces style={{ width: 12, height: 12 }} />
@@ -191,10 +189,10 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
         createPortal(
           <div
             ref={dropdownRef}
-            className="fixed z-[9999] max-h-96 w-80 overflow-y-auto rounded-xl border border-border-subtle bg-bg-elevated shadow-lg"
+            className="border-border-subtle bg-bg-elevated fixed z-[9999] max-h-96 w-80 overflow-y-auto rounded-xl border shadow-lg"
             style={{ top: pos.top, left: pos.left }}
           >
-            <div className="px-3 pb-1 pt-2.5 text-[10px] font-medium uppercase tracking-wider text-text-muted">
+            <div className="text-text-muted px-3 pt-2.5 pb-1 text-[10px] font-medium tracking-wider uppercase">
               {t('dashboard.workflows.editor.availableVariables')}
             </div>
 
@@ -202,13 +200,12 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
               if (v.isGroupHeader) {
                 const Icon = getNodeIcon(v.nodeIcon)
                 const accent =
-                  CATEGORY_ACCENT_COLORS[
-                    v.nodeCategory as keyof typeof CATEGORY_ACCENT_COLORS
-                  ] ?? '#666'
+                  CATEGORY_ACCENT_COLORS[v.nodeCategory as keyof typeof CATEGORY_ACCENT_COLORS] ??
+                  '#666'
                 return (
                   <div
                     key={`header-${v.nodeId}-${idx}`}
-                    className="flex items-center gap-2 border-t border-border-subtle px-3 pb-1 pt-2.5 first:border-t-0"
+                    className="border-border-subtle flex items-center gap-2 border-t px-3 pt-2.5 pb-1 first:border-t-0"
                   >
                     <Icon
                       style={{
@@ -218,24 +215,21 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
                         flexShrink: 0,
                       }}
                     />
-                    <span className="text-xs font-medium text-text-tertiary">
-                      {v.nodeName}
-                    </span>
+                    <span className="text-text-tertiary text-xs font-medium">{v.nodeName}</span>
                   </div>
                 )
               }
 
               const accent =
-                CATEGORY_ACCENT_COLORS[
-                  v.nodeCategory as keyof typeof CATEGORY_ACCENT_COLORS
-                ] ?? '#666'
+                CATEGORY_ACCENT_COLORS[v.nodeCategory as keyof typeof CATEGORY_ACCENT_COLORS] ??
+                '#666'
 
               return (
                 <button
                   key={`${v.nodeId}.${v.path}`}
                   type="button"
                   onClick={() => handleInsert(v.reference)}
-                  className="flex w-full items-start gap-2 px-3 py-1.5 text-left transition-colors duration-150 hover:bg-bg-hover"
+                  className="hover:bg-bg-hover flex w-full items-start gap-2 px-3 py-1.5 text-left transition-colors duration-150"
                   style={{ paddingLeft: v.indent === 2 ? 32 : 20 }}
                 >
                   <div className="flex min-w-0 flex-1 flex-col">
@@ -246,17 +240,15 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
                       >
                         {v.indent === 2 ? `[0].${v.label}` : v.path}
                       </span>
-                      <span className="rounded-sm bg-bg-active px-1 py-0.5 font-mono text-[10px] text-text-muted">
+                      <span className="bg-bg-active text-text-muted rounded-sm px-1 py-0.5 font-mono text-[10px]">
                         {v.portType}
                       </span>
                       {v.indent === 1 && (
-                        <span className="truncate text-[11px] text-text-muted">
-                          {v.label}
-                        </span>
+                        <span className="text-text-muted truncate text-[11px]">{v.label}</span>
                       )}
                     </div>
                     {v.preview !== null && (
-                      <div className="mt-0.5 max-w-full truncate font-mono text-[10px] text-text-muted">
+                      <div className="text-text-muted mt-0.5 max-w-full truncate font-mono text-[10px]">
                         {v.preview}
                       </div>
                     )}
@@ -265,7 +257,7 @@ export function VariablePicker({ onInsert }: VariablePickerProps) {
               )
             })}
           </div>,
-          document.body,
+          document.body
         )}
     </>
   )

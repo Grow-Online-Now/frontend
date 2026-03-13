@@ -6,23 +6,23 @@
  */
 
 import { memo, useState, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Handle, Position } from '@xyflow/react'
+import { Play, RefreshCw } from 'lucide-react'
 import {
-  Check,
-  XCircle,
-  Loader2,
-  Database,
-  SkipForward,
-  Clock,
-  Play,
-  RefreshCw,
-} from 'lucide-react'
-import { getNodeIcon, CATEGORY_ACCENT_COLORS, CATEGORY_ICON_BG } from '@/lib/workflow-utils'
+  getNodeIcon,
+  CATEGORY_ACCENT_COLORS,
+  CATEGORY_ICON_BG,
+  STEP_STATUS_ICONS,
+  STEP_STATUS_GLOW,
+  STEP_STATUS_BORDER,
+  STEP_STATUS_PILL,
+} from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
 import type { NodeCategory, StepStatus } from '@/types/workflow'
 import type { ViewMode } from '@/stores/workflowEditorStore'
 
-interface CustomNodeData {
+export interface CustomNodeData {
   name: string
   description: string
   icon: string
@@ -30,46 +30,11 @@ interface CustomNodeData {
   stepStatus?: StepStatus
   viewMode: ViewMode
   nodeId: string
-}
-
-const STATUS_GLOW: Record<StepStatus, string> = {
-  success: '0 0 10px rgba(34,197,94,0.25), inset 0 0 0 1px rgba(34,197,94,0.15)',
-  failed: '0 0 10px rgba(239,68,68,0.25), inset 0 0 0 1px rgba(239,68,68,0.15)',
-  running: '0 0 12px rgba(59,130,246,0.3), inset 0 0 0 1px rgba(59,130,246,0.15)',
-  cached: '0 0 6px rgba(59,130,246,0.15)',
-  skipped: 'none',
-  pending: 'none',
-}
-
-const STATUS_BORDER: Record<StepStatus, string> = {
-  success: 'rgba(34,197,94,0.5)',
-  failed: 'rgba(239,68,68,0.5)',
-  running: 'rgba(59,130,246,0.5)',
-  cached: 'rgba(59,130,246,0.3)',
-  skipped: 'rgba(255,255,255,0.03)',
-  pending: 'rgba(255,255,255,0.05)',
-}
-
-/** Colors for the inline status pill */
-const STATUS_PILL: Record<StepStatus, { bg: string; text: string; label: string }> = {
-  success: { bg: 'rgba(34,197,94,0.12)', text: '#22c55e', label: 'Done' },
-  failed: { bg: 'rgba(239,68,68,0.12)', text: '#ef4444', label: 'Error' },
-  running: { bg: 'rgba(59,130,246,0.12)', text: '#3b82f6', label: '' },
-  cached: { bg: 'rgba(59,130,246,0.08)', text: '#3b82f680', label: 'Cached' },
-  skipped: { bg: 'rgba(255,255,255,0.04)', text: '#555', label: 'Skip' },
-  pending: { bg: 'rgba(255,255,255,0.04)', text: '#444', label: '' },
-}
-
-const StatusIcon: Record<StepStatus, typeof Check> = {
-  success: Check,
-  failed: XCircle,
-  running: Loader2,
-  cached: Database,
-  skipped: SkipForward,
-  pending: Clock,
+  [key: string]: unknown
 }
 
 function CustomNodeComponent({ data, selected }: { data: CustomNodeData; selected: boolean }) {
+  const { t } = useTranslation()
   const [hovered, setHovered] = useState(false)
   const Icon = getNodeIcon(data.icon)
   const accent = CATEGORY_ACCENT_COLORS[data.category] ?? '#666666'
@@ -84,13 +49,12 @@ function CustomNodeComponent({ data, selected }: { data: CustomNodeData; selecte
     : hovered
       ? 'rgba(255,255,255,0.09)'
       : 'rgba(255,255,255,0.05)'
-  const border = isExecMode && status ? STATUS_BORDER[status] : baseBorder
-  const boxShadow = isExecMode && status ? STATUS_GLOW[status] : 'none'
+  const border = isExecMode && status ? STEP_STATUS_BORDER[status] : baseBorder
+  const boxShadow = isExecMode && status ? STEP_STATUS_GLOW[status] : 'none'
   const accentOpacity = selected ? 1 : hovered ? 0.7 : 0.4
   const nodeOpacity = status === 'skipped' ? 0.4 : 1
 
-  const showActionOverlay =
-    isExecMode && hovered && (status === 'pending' || status === 'failed')
+  const showActionOverlay = isExecMode && hovered && (status === 'pending' || status === 'failed')
 
   const handleActionClick = useCallback(
     (e: React.MouseEvent) => {
@@ -104,10 +68,10 @@ function CustomNodeComponent({ data, selected }: { data: CustomNodeData; selecte
         store.stepNode(activeRun.id, data.nodeId)
       }
     },
-    [status, data.nodeId],
+    [status, data.nodeId]
   )
 
-  const pill = isExecMode && status ? STATUS_PILL[status] : null
+  const pill = isExecMode && status ? STEP_STATUS_PILL[status] : null
 
   return (
     <div
@@ -213,19 +177,16 @@ function CustomNodeComponent({ data, selected }: { data: CustomNodeData; selecte
               flexShrink: 0,
             }}
           >
-            {(() => {
-              const BadgeIcon = StatusIcon[status!]
-              return (
-                <BadgeIcon
-                  style={{
-                    width: 10,
-                    height: 10,
-                    color: pill.text,
-                  }}
-                  className={status === 'running' ? 'node-status-spin' : undefined}
-                />
-              )
-            })()}
+            {status &&
+              (() => {
+                const BadgeIcon = STEP_STATUS_ICONS[status]
+                return (
+                  <BadgeIcon
+                    style={{ width: 10, height: 10, color: pill.text }}
+                    className={status === 'running' ? 'node-status-spin' : undefined}
+                  />
+                )
+              })()}
             {pill.label && (
               <span
                 style={{
@@ -284,7 +245,9 @@ function CustomNodeComponent({ data, selected }: { data: CustomNodeData; selecte
                 letterSpacing: '0.01em',
               }}
             >
-              {status === 'failed' ? 'Retry' : 'Run'}
+              {status === 'failed'
+                ? t('dashboard.workflows.execution.retry')
+                : t('dashboard.workflows.execution.runThisNode')}
             </span>
           </div>
         </div>

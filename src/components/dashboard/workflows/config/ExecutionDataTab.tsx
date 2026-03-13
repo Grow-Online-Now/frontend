@@ -6,40 +6,14 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Check,
-  XCircle,
-  Loader2,
-  Database,
-  SkipForward,
-  Clock,
-  ChevronDown,
-  ChevronRight,
-  RefreshCw,
-  Play,
-} from 'lucide-react'
+import { ChevronDown, ChevronRight, RefreshCw, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { formatDurationMs } from '@/lib/workflow-utils'
+import {
+  formatDurationMs,
+  STEP_STATUS_ICONS,
+  STEP_STATUS_BADGE_CLASSES,
+} from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
-import type { StepStatus } from '@/types/workflow'
-
-const statusIcon: Record<StepStatus, typeof Check> = {
-  success: Check,
-  failed: XCircle,
-  running: Loader2,
-  skipped: SkipForward,
-  pending: Clock,
-  cached: Database,
-}
-
-const statusBg: Record<StepStatus, string> = {
-  success: 'bg-success-muted text-success',
-  failed: 'bg-destructive-muted text-destructive',
-  running: 'bg-info-muted text-info',
-  skipped: 'bg-bg-hover text-text-muted',
-  pending: 'bg-bg-hover text-text-muted',
-  cached: 'bg-info-muted text-info/60',
-}
 
 function CollapsibleJson({ label, data }: { label: string; data: Record<string, unknown> | null }) {
   const [expanded, setExpanded] = useState(false)
@@ -51,7 +25,7 @@ function CollapsibleJson({ label, data }: { label: string; data: Record<string, 
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="mb-1.5 flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider text-text-muted"
+        className="text-text-muted mb-1.5 flex items-center gap-1 text-[10px] font-medium tracking-wider uppercase"
       >
         {expanded ? (
           <ChevronDown className="h-2.5 w-2.5" />
@@ -61,7 +35,7 @@ function CollapsibleJson({ label, data }: { label: string; data: Record<string, 
         {label}
       </button>
       {expanded && (
-        <pre className="max-h-[200px] overflow-auto rounded-md bg-bg-elevated p-2.5 font-mono text-[11px] leading-relaxed text-text-secondary">
+        <pre className="bg-bg-elevated text-text-secondary max-h-[200px] overflow-auto rounded-md p-2.5 font-mono text-[11px] leading-relaxed">
           {JSON.stringify(data, null, 2)}
         </pre>
       )}
@@ -81,7 +55,7 @@ export function ExecutionDataTab() {
 
   if (!selectedNodeId || !activeRun) {
     return (
-      <div className="flex flex-1 items-center justify-center py-8 text-xs text-text-muted">
+      <div className="text-text-muted flex flex-1 items-center justify-center py-8 text-xs">
         {t('dashboard.workflows.execution.noData')}
       </div>
     )
@@ -91,13 +65,13 @@ export function ExecutionDataTab() {
 
   if (!step) {
     return (
-      <div className="flex flex-1 items-center justify-center py-8 text-xs text-text-muted">
+      <div className="text-text-muted flex flex-1 items-center justify-center py-8 text-xs">
         {t('dashboard.workflows.execution.noData')}
       </div>
     )
   }
 
-  const Icon = statusIcon[step.status]
+  const Icon = STEP_STATUS_ICONS[step.status]
 
   return (
     <div className="space-y-4">
@@ -106,16 +80,14 @@ export function ExecutionDataTab() {
         <span
           className={cn(
             'inline-flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs font-semibold',
-            statusBg[step.status],
+            STEP_STATUS_BADGE_CLASSES[step.status]
           )}
         >
-          <Icon
-            className={cn('h-3 w-3', step.status === 'running' && 'animate-spin')}
-          />
+          <Icon className={cn('h-3 w-3', step.status === 'running' && 'animate-spin')} />
           {t(`dashboard.workflows.execution.status.${step.status}`)}
         </span>
         {step.durationMs != null && (
-          <span className="font-mono text-xs text-text-muted">
+          <span className="text-text-muted font-mono text-xs">
             {formatDurationMs(step.durationMs)}
           </span>
         )}
@@ -124,26 +96,20 @@ export function ExecutionDataTab() {
       {/* Error section */}
       {step.error && (
         <div>
-          <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-destructive">
+          <div className="text-destructive mb-1.5 text-[10px] font-medium tracking-wider uppercase">
             {t('dashboard.workflows.execution.error')}
           </div>
-          <pre className="max-h-[100px] overflow-auto rounded-md bg-destructive-muted p-2.5 font-mono text-[11px] leading-relaxed text-destructive">
+          <pre className="bg-destructive-muted text-destructive max-h-[100px] overflow-auto rounded-md p-2.5 font-mono text-[11px] leading-relaxed">
             {step.error}
           </pre>
         </div>
       )}
 
       {/* Input data */}
-      <CollapsibleJson
-        label={t('dashboard.workflows.execution.input')}
-        data={step.input}
-      />
+      <CollapsibleJson label={t('dashboard.workflows.execution.input')} data={step.input} />
 
       {/* Output data */}
-      <CollapsibleJson
-        label={t('dashboard.workflows.execution.output')}
-        data={step.output}
-      />
+      <CollapsibleJson label={t('dashboard.workflows.execution.output')} data={step.output} />
 
       {/* Action buttons */}
       <div className="flex gap-2 pt-2">
@@ -152,7 +118,7 @@ export function ExecutionDataTab() {
             type="button"
             onClick={() => retryFromNode(activeRun.id, selectedNodeId)}
             disabled={isRunning}
-            className="flex items-center gap-1.5 rounded-md border border-destructive/30 bg-destructive-muted px-3 py-1.5 text-xs font-medium text-destructive transition-colors duration-150 hover:opacity-80 disabled:opacity-40"
+            className="border-destructive/30 bg-destructive-muted text-destructive flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors duration-150 hover:opacity-80 disabled:opacity-40"
           >
             <RefreshCw className="h-3 w-3" />
             {t('dashboard.workflows.execution.retry')}
@@ -163,7 +129,7 @@ export function ExecutionDataTab() {
             type="button"
             onClick={() => stepNode(activeRun.id, selectedNodeId)}
             disabled={isRunning}
-            className="flex items-center gap-1.5 rounded-md border border-border-subtle bg-bg-elevated px-3 py-1.5 text-xs font-medium text-text-primary transition-colors duration-150 hover:bg-bg-hover disabled:opacity-40"
+            className="border-border-subtle bg-bg-elevated text-text-primary hover:bg-bg-hover flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors duration-150 disabled:opacity-40"
           >
             <Play className="h-3 w-3" />
             {t('dashboard.workflows.execution.runThisNode')}
@@ -173,7 +139,7 @@ export function ExecutionDataTab() {
           type="button"
           onClick={() => runFromNode(activeRun.id, selectedNodeId)}
           disabled={isRunning}
-          className="flex items-center gap-1.5 rounded-md border border-border-subtle bg-bg-elevated px-3 py-1.5 text-xs font-medium text-text-secondary transition-colors duration-150 hover:bg-bg-hover disabled:opacity-40"
+          className="border-border-subtle bg-bg-elevated text-text-secondary hover:bg-bg-hover flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors duration-150 disabled:opacity-40"
         >
           <Play className="h-3 w-3" />
           {t('dashboard.workflows.execution.runFromHere')}

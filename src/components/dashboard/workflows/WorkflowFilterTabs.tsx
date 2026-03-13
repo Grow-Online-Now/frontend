@@ -23,7 +23,11 @@ const FILTER_TABS: { key: FilterKey; labelKey: string }[] = [
   { key: 'draft', labelKey: 'dashboard.workflows.filters.drafts' },
 ]
 
-export function WorkflowFilterTabs({ activeFilter, onFilterChange, counts }: WorkflowFilterTabsProps) {
+export function WorkflowFilterTabs({
+  activeFilter,
+  onFilterChange,
+  counts,
+}: WorkflowFilterTabsProps) {
   const { t } = useTranslation()
 
   return (
@@ -43,7 +47,9 @@ export function WorkflowFilterTabs({ activeFilter, onFilterChange, counts }: Wor
             )}
           >
             {t(tab.labelKey)}{' '}
-            <span className={cn('ml-1 text-xs', isActive ? 'text-text-tertiary' : 'text-text-muted')}>
+            <span
+              className={cn('ml-1 text-xs', isActive ? 'text-text-tertiary' : 'text-text-muted')}
+            >
               {counts[tab.key]}
             </span>
           </button>

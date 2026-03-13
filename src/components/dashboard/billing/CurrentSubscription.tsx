@@ -27,7 +27,7 @@ interface CurrentSubscriptionProps {
 function UsageCard({
   current,
   max,
-  labelKey
+  labelKey,
 }: {
   current: number
   max: number | null
@@ -155,7 +155,7 @@ export function CurrentSubscription({
 
       {/* Usage Section */}
       <div className="space-y-4">
-        <h4 className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
+        <h4 className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
           {t('dashboard.billing.usage.title')}
         </h4>
 

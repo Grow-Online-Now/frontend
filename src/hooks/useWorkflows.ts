@@ -75,20 +75,23 @@ export function useWorkflows(): UseWorkflowsReturn {
     }
   }, [])
 
-  const createWorkflow = useCallback(async (data: CreateWorkflowRequest): Promise<Workflow | null> => {
-    try {
-      const wf = await createWorkflowApi(data)
-      setAllWorkflows((prev) => [wf, ...prev])
-      return wf
-    } catch {
-      return null
-    }
-  }, [])
+  const createWorkflow = useCallback(
+    async (data: CreateWorkflowRequest): Promise<Workflow | null> => {
+      try {
+        const wf = await createWorkflowApi(data)
+        setAllWorkflows((prev) => [wf, ...prev])
+        return wf
+      } catch {
+        return null
+      }
+    },
+    []
+  )
 
   const renameWorkflow = useCallback(async (id: string, name: string): Promise<boolean> => {
     try {
       const updated = await updateWorkflowApi(id, { name })
-      setAllWorkflows((prev) => prev.map((w) => w.id === id ? { ...w, name: updated.name } : w))
+      setAllWorkflows((prev) => prev.map((w) => (w.id === id ? { ...w, name: updated.name } : w)))
       return true
     } catch {
       return false

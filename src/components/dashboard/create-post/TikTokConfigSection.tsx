@@ -15,12 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useTikTokCreatorInfo } from '@/hooks/useTikTokCreatorInfo'
 import type { TikTokConfig, TikTokContentType, TikTokPrivacyLevel } from '@/types/posts'
 
@@ -160,7 +155,9 @@ export function TikTokConfigSection({
     }
 
     if (commercialSelectionMissing) {
-      errors.push(t('dashboard.createPost.platformConfig.tiktok.commercialContent.selectionRequired'))
+      errors.push(
+        t('dashboard.createPost.platformConfig.tiktok.commercialContent.selectionRequired')
+      )
     }
 
     if (videoDurationExceedsMax) {
@@ -172,7 +169,14 @@ export function TikTokConfigSection({
     }
 
     return errors
-  }, [isRateLimited, config.privacyLevel, commercialSelectionMissing, videoDurationExceedsMax, maxVideoDuration, t, config.isCommercialContent, config.brandContentToggle, config.brandOrganicToggle])
+  }, [
+    isRateLimited,
+    config.privacyLevel,
+    commercialSelectionMissing,
+    videoDurationExceedsMax,
+    maxVideoDuration,
+    t,
+  ])
 
   const isValid = validationErrors.length === 0
 
@@ -259,7 +263,9 @@ export function TikTokConfigSection({
     // - If only "Your Brand" is checked: "Promotional content"
     // - If "Branded Content" is checked (regardless of Your Brand): "Paid partnership"
     if (config.brandContentToggle) {
-      return t('dashboard.createPost.platformConfig.tiktok.commercialContent.brandedContent.labelPrompt')
+      return t(
+        'dashboard.createPost.platformConfig.tiktok.commercialContent.brandedContent.labelPrompt'
+      )
     }
     if (config.brandOrganicToggle) {
       return t('dashboard.createPost.platformConfig.tiktok.commercialContent.yourBrand.labelPrompt')
@@ -433,7 +439,7 @@ export function TikTokConfigSection({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <div
-                      className="text-muted-foreground relative flex cursor-not-allowed select-none items-center rounded-sm px-2 py-1.5 text-sm opacity-50 outline-none"
+                      className="text-muted-foreground relative flex cursor-not-allowed items-center rounded-sm px-2 py-1.5 text-sm opacity-50 outline-none select-none"
                       title={t(
                         'dashboard.createPost.platformConfig.tiktok.commercialContent.brandedContent.privateDisabledTooltip'
                       )}
@@ -611,7 +617,9 @@ export function TikTokConfigSection({
                 />
                 <div className="flex-1">
                   <p className="text-foreground text-sm">
-                    {t('dashboard.createPost.platformConfig.tiktok.commercialContent.yourBrand.label')}
+                    {t(
+                      'dashboard.createPost.platformConfig.tiktok.commercialContent.yourBrand.label'
+                    )}
                   </p>
                   <p className="text-muted-foreground text-xs">
                     {t(
@@ -715,38 +723,4 @@ export function TikTokConfigSection({
       </div>
     </TooltipProvider>
   )
-}
-
-/**
- * Helper to validate TikTok config for publish button
- * Can be used by parent components
- */
-export function validateTikTokConfig(
-  config: TikTokConfig,
-  hasVideo: boolean,
-  videoDuration?: number,
-  maxVideoDuration?: number
-): { isValid: boolean; errors: string[] } {
-  const errors: string[] = []
-
-  if (!config.privacyLevel) {
-    errors.push('Privacy level is required')
-  }
-
-  if (config.isCommercialContent && !config.brandContentToggle && !config.brandOrganicToggle) {
-    errors.push('Commercial content selection is required')
-  }
-
-  if (config.brandContentToggle && config.privacyLevel === 'SELF_ONLY') {
-    errors.push('Branded content cannot be set to private visibility')
-  }
-
-  if (hasVideo && videoDuration && maxVideoDuration && videoDuration > maxVideoDuration) {
-    errors.push(`Video duration exceeds maximum of ${maxVideoDuration} seconds`)
-  }
-
-  return {
-    isValid: errors.length === 0,
-    errors,
-  }
 }

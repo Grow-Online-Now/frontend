@@ -6,7 +6,7 @@
 import { useTranslation } from 'react-i18next'
 import { Eye, Trash2, PenSquare, Play, Image as ImageIcon, Film, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn, formatFileSize } from '@/lib/utils'
 import type { MediaItem } from '@/types/media'
 
 interface MediaGridCardProps {
@@ -18,12 +18,6 @@ interface MediaGridCardProps {
   selected?: boolean
   onToggleSelect?: (media: MediaItem) => void
   className?: string
-}
-
-function formatFileSize(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
 export function MediaGridCard({
@@ -51,7 +45,7 @@ export function MediaGridCard({
         'group border-border bg-card relative aspect-square overflow-hidden rounded-xl border transition-all',
         'hover:border-border-emphasis',
         selectable && 'cursor-pointer',
-        selected && 'ring-2 ring-error border-error',
+        selected && 'ring-error border-error ring-2',
         className
       )}
       onClick={handleClick}
@@ -104,10 +98,12 @@ export function MediaGridCard({
       )}
 
       {/* Bottom Info Bar - hidden on hover when not in select mode */}
-      <div className={cn(
-        'bg-background/90 absolute right-0 bottom-0 left-0 flex items-center justify-between px-2 py-1.5 backdrop-blur-sm transition-opacity',
-        !selectable && 'group-hover:opacity-0'
-      )}>
+      <div
+        className={cn(
+          'bg-background/90 absolute right-0 bottom-0 left-0 flex items-center justify-between px-2 py-1.5 backdrop-blur-sm transition-opacity',
+          !selectable && 'group-hover:opacity-0'
+        )}
+      >
         <span className="text-foreground max-w-[60%] truncate text-xs font-medium">
           {media.fileName}
         </span>

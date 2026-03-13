@@ -54,7 +54,7 @@ export default function WorkflowEditorPage() {
   if (isLoadingWorkflow || isLoadingNodeTypes) {
     return (
       <div className="-m-6 flex h-[calc(100vh-0px)] items-center justify-center lg:-m-8">
-        <Loader2 className="h-6 w-6 animate-spin text-text-muted" />
+        <Loader2 className="text-text-muted h-6 w-6 animate-spin" />
       </div>
     )
   }

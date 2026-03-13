@@ -16,11 +16,15 @@ export function useWorkflowRunPolling(workflowId: string | undefined) {
   const { t } = useTranslation()
   const activeRun = useWorkflowEditorStore((s) => s.activeRun)
   const updateActiveRun = useWorkflowEditorStore((s) => s.updateActiveRun)
+  const completeRun = useWorkflowEditorStore((s) => s.completeRun)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
+  const activeRunId = activeRun?.id
+  const activeRunStatus = activeRun?.status
+  const shouldPoll = !!workflowId && !!activeRunId && activeRunStatus === 'running'
+
   useEffect(() => {
-    // Only poll when there's an active running run
-    if (!workflowId || !activeRun || activeRun.status !== 'running') {
+    if (!shouldPoll || !workflowId || !activeRunId) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current)
         intervalRef.current = null
@@ -28,11 +32,9 @@ export function useWorkflowRunPolling(workflowId: string | undefined) {
       return
     }
 
-    const runId = activeRun.id
-
     const poll = async () => {
       try {
-        const freshRun = await getWorkflowRun(workflowId, runId)
+        const freshRun = await getWorkflowRun(workflowId, activeRunId)
         updateActiveRun(freshRun)
 
         // Run completed — stop polling, update store
@@ -42,11 +44,7 @@ export function useWorkflowRunPolling(workflowId: string | undefined) {
             intervalRef.current = null
           }
 
-          // Set lastRun and increment runCount to trigger runs list refetch
-          useWorkflowEditorStore.setState((state) => ({
-            lastRun: freshRun,
-            runCount: state.runCount + 1,
-          }))
+          completeRun(freshRun)
 
           if (freshRun.status === 'success') {
             toast.success(t('dashboard.workflows.editor.toasts.runSuccess'))
@@ -69,5 +67,5 @@ export function useWorkflowRunPolling(workflowId: string | undefined) {
         intervalRef.current = null
       }
     }
-  }, [workflowId, activeRun?.id, activeRun?.status, updateActiveRun, t])
+  }, [shouldPoll, workflowId, activeRunId, updateActiveRun, completeRun, t])
 }

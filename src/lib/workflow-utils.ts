@@ -32,9 +32,14 @@ import {
   Flame,
   Maximize,
   Clapperboard,
+  Check,
+  XCircle,
+  Loader2,
+  Database,
+  SkipForward,
   type LucideIcon,
 } from 'lucide-react'
-import type { NodeCategory, CategoryConfig } from '@/types/workflow'
+import type { NodeCategory, CategoryConfig, StepStatus } from '@/types/workflow'
 
 const ICON_MAP: Record<string, LucideIcon> = {
   play: Play,
@@ -147,14 +152,7 @@ export const CATEGORY_ICON_BG: Record<NodeCategory, string> = {
 /**
  * Category display order for the palette
  */
-export const CATEGORY_ORDER: NodeCategory[] = [
-  'trigger',
-  'media',
-  'text',
-  'ai',
-  'logic',
-  'output',
-]
+export const CATEGORY_ORDER: NodeCategory[] = ['trigger', 'media', 'text', 'ai', 'logic', 'output']
 
 /**
  * Format duration in milliseconds to human-readable string
@@ -164,3 +162,71 @@ export function formatDurationMs(ms: number | null): string {
   if (ms < 1000) return `${ms}ms`
   return `${(ms / 1000).toFixed(1)}s`
 }
+
+// ─── Step Status Utilities ───
+
+/** Lucide icon per step status */
+export const STEP_STATUS_ICONS: Record<StepStatus, LucideIcon> = {
+  success: Check,
+  failed: XCircle,
+  running: Loader2,
+  cached: Database,
+  skipped: SkipForward,
+  pending: Clock,
+}
+
+/** Tailwind classes for status badges (bg + text) */
+export const STEP_STATUS_BADGE_CLASSES: Record<StepStatus, string> = {
+  success: 'bg-success-muted text-success',
+  failed: 'bg-destructive-muted text-destructive',
+  running: 'bg-info-muted text-info',
+  skipped: 'bg-bg-hover text-text-muted',
+  pending: 'bg-bg-hover text-text-muted',
+  cached: 'bg-info-muted text-info/60',
+}
+
+/** Text-only color class per status */
+export const STEP_STATUS_TEXT_CLASSES: Record<StepStatus, string> = {
+  success: 'text-success',
+  failed: 'text-destructive',
+  running: 'text-info',
+  skipped: 'text-text-muted',
+  pending: 'text-text-muted',
+  cached: 'text-info/60',
+}
+
+/** Canvas inline-style colors per status (for React Flow nodes) */
+export const STEP_STATUS_GLOW: Record<StepStatus, string> = {
+  success: '0 0 10px rgba(34,197,94,0.25), inset 0 0 0 1px rgba(34,197,94,0.15)',
+  failed: '0 0 10px rgba(239,68,68,0.25), inset 0 0 0 1px rgba(239,68,68,0.15)',
+  running: '0 0 12px rgba(59,130,246,0.3), inset 0 0 0 1px rgba(59,130,246,0.15)',
+  cached: '0 0 6px rgba(59,130,246,0.15)',
+  skipped: 'none',
+  pending: 'none',
+}
+
+export const STEP_STATUS_BORDER: Record<StepStatus, string> = {
+  success: 'rgba(34,197,94,0.5)',
+  failed: 'rgba(239,68,68,0.5)',
+  running: 'rgba(59,130,246,0.5)',
+  cached: 'rgba(59,130,246,0.3)',
+  skipped: 'rgba(255,255,255,0.03)',
+  pending: 'rgba(255,255,255,0.05)',
+}
+
+export interface StepStatusPill {
+  bg: string
+  text: string
+  label: string
+}
+
+export const STEP_STATUS_PILL: Record<StepStatus, StepStatusPill> = {
+  success: { bg: 'rgba(34,197,94,0.12)', text: '#22c55e', label: 'Done' },
+  failed: { bg: 'rgba(239,68,68,0.12)', text: '#ef4444', label: 'Error' },
+  running: { bg: 'rgba(59,130,246,0.12)', text: '#3b82f6', label: '' },
+  cached: { bg: 'rgba(59,130,246,0.08)', text: '#3b82f680', label: 'Cached' },
+  skipped: { bg: 'rgba(255,255,255,0.04)', text: '#555', label: 'Skip' },
+  pending: { bg: 'rgba(255,255,255,0.04)', text: '#444', label: '' },
+}
+
+export { type LucideIcon }

@@ -104,10 +104,7 @@ export function useTikTokCreatorInfo(connectionId: string | null): UseTikTokCrea
     [state.creatorInfo]
   )
 
-  const duetDisabled = useMemo(
-    () => state.creatorInfo?.duetDisabled ?? false,
-    [state.creatorInfo]
-  )
+  const duetDisabled = useMemo(() => state.creatorInfo?.duetDisabled ?? false, [state.creatorInfo])
 
   const stitchDisabled = useMemo(
     () => state.creatorInfo?.stitchDisabled ?? false,

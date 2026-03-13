@@ -72,7 +72,7 @@
 /* ── Controls panel — hardcoded dark to match canvas ── */
 .react-flow__controls {
   background: #141414 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 8px !important;
   box-shadow: none !important;
   overflow: hidden;
@@ -82,7 +82,7 @@
   background: #141414 !important;
   color: #555 !important;
   border: none !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
   width: 28px !important;
   height: 28px !important;
 }
@@ -135,14 +135,23 @@
 
 /* ── Running node pulse ── */
 @keyframes node-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* ── Status badge spin (running indicator on node) ── */
 @keyframes node-status-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .node-status-spin {
@@ -151,6 +160,11 @@
 
 /* ── Running node glow pulse ── */
 @keyframes running-glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(59,130,246,0.35); }
-  50% { box-shadow: 0 0 16px rgba(59,130,246,0.55); }
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.55);
+  }
 }

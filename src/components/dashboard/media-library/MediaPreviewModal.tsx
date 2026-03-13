@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { X, Trash2, PenSquare, Download, Image as ImageIcon, Film } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn, formatFileSize } from '@/lib/utils'
 import type { MediaItem } from '@/types/media'
 
 interface MediaPreviewModalProps {
@@ -16,12 +16,6 @@ interface MediaPreviewModalProps {
   onOpenChange: (open: boolean) => void
   onDelete?: (media: MediaItem) => void
   onUseInPost?: (media: MediaItem) => void
-}
-
-function formatFileSize(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
 function formatDate(dateString: string, locale: string): string {

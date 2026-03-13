@@ -12,7 +12,10 @@ import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { Button } from '@/components/ui/button'
 import { WorkflowCard } from '@/components/dashboard/workflows/WorkflowCard'
-import { WorkflowFilterTabs, type FilterKey } from '@/components/dashboard/workflows/WorkflowFilterTabs'
+import {
+  WorkflowFilterTabs,
+  type FilterKey,
+} from '@/components/dashboard/workflows/WorkflowFilterTabs'
 import { useLocalizedHref } from '@/hooks/useLocalizedHref'
 import { useWorkflows } from '@/hooks/useWorkflows'
 import { Skeleton } from '@/components/ui/skeleton'

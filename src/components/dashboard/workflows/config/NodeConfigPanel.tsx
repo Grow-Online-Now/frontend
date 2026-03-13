@@ -45,12 +45,10 @@ export function NodeConfigPanel() {
 
   if (!node || !def) {
     return (
-      <div className="flex w-[360px] shrink-0 flex-col border-l border-border-subtle bg-bg-subtle">
+      <div className="border-border-subtle bg-bg-subtle flex w-[360px] shrink-0 flex-col border-l">
         <div className="flex flex-1 flex-col items-center justify-center gap-3 px-5 text-center">
-          <MousePointerClick className="h-6 w-6 text-text-muted" />
-          <p className="text-xs text-text-muted">
-            {t('dashboard.workflows.editor.selectNode')}
-          </p>
+          <MousePointerClick className="text-text-muted h-6 w-6" />
+          <p className="text-text-muted text-xs">{t('dashboard.workflows.editor.selectNode')}</p>
         </div>
       </div>
     )
@@ -64,9 +62,9 @@ export function NodeConfigPanel() {
   const activeTab = tabs.some((t) => t.key === rightPanelTab) ? rightPanelTab : tabs[0].key
 
   return (
-    <div className="flex w-[360px] shrink-0 flex-col border-l border-border-subtle bg-bg-subtle">
+    <div className="border-border-subtle bg-bg-subtle flex w-[360px] shrink-0 flex-col border-l">
       {/* Header */}
-      <div className="border-b border-border-subtle px-5 py-4">
+      <div className="border-border-subtle border-b px-5 py-4">
         <div className="flex items-center gap-3">
           <div
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
@@ -75,18 +73,14 @@ export function NodeConfigPanel() {
             <Icon style={{ width: 16, height: 16, color: accent }} />
           </div>
           <div className="min-w-0">
-            <div className="truncate text-sm font-semibold text-text-primary">
-              {def.name}
-            </div>
-            <div className="truncate text-xs text-text-tertiary">
-              {def.description}
-            </div>
+            <div className="text-text-primary truncate text-sm font-semibold">{def.name}</div>
+            <div className="text-text-tertiary truncate text-xs">{def.description}</div>
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-border-subtle">
+      <div className="border-border-subtle flex border-b">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key
           return (
@@ -99,9 +93,7 @@ export function NodeConfigPanel() {
                 isActive ? 'text-text-primary' : 'text-text-muted'
               )}
               style={{
-                borderBottom: isActive
-                  ? `2px solid ${accent}`
-                  : '2px solid transparent',
+                borderBottom: isActive ? `2px solid ${accent}` : '2px solid transparent',
               }}
             >
               {t(tab.labelKey)}

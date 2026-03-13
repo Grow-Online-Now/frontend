@@ -51,7 +51,7 @@ export function PricingCard({
       className={cn(
         'relative flex min-h-[520px] flex-col transition-all duration-150',
         isCurrentPlan && 'ring-primary ring-2',
-        isRecommended && 'ring-info/40 bg-bg-elevated ring-2 scale-[1.02]'
+        isRecommended && 'ring-info/40 bg-bg-elevated scale-[1.02] ring-2'
       )}
     >
       <CardContent className="flex flex-1 flex-col p-6">

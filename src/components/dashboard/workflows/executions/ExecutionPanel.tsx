@@ -59,7 +59,10 @@ export function ExecutionPanel() {
         }
         if (dragRef.current.moved) {
           if (!bottomPanelOpen) setBottomPanelOpen(true)
-          const next = Math.min(MAX_HEIGHT, Math.max(MIN_HEIGHT, dragRef.current.startHeight + delta))
+          const next = Math.min(
+            MAX_HEIGHT,
+            Math.max(MIN_HEIGHT, dragRef.current.startHeight + delta)
+          )
           setPanelHeight(next)
         }
       }
@@ -87,15 +90,15 @@ export function ExecutionPanel() {
 
   return (
     <div
-      className="shrink-0 border-t border-border-subtle bg-bg-subtle"
+      className="border-border-subtle bg-bg-subtle shrink-0 border-t"
       style={{ height: bottomPanelOpen ? panelHeight : undefined }}
     >
       {/* Drag handle — always visible */}
       <div
         onMouseDown={handleMouseDown}
-        className="group flex h-[6px] cursor-row-resize items-center justify-center transition-colors duration-100 hover:bg-bg-hover"
+        className="group hover:bg-bg-hover flex h-[6px] cursor-row-resize items-center justify-center transition-colors duration-100"
       >
-        <div className="h-[2px] w-8 rounded-full bg-border-default opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
+        <div className="bg-border-default h-[2px] w-8 rounded-full opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
       </div>
 
       {!bottomPanelOpen && (
@@ -105,7 +108,7 @@ export function ExecutionPanel() {
             setBottomPanelOpen(true)
             setPanelHeight(DEFAULT_HEIGHT)
           }}
-          className="flex w-full items-center justify-center gap-1.5 py-1 text-[10px] text-text-muted transition-colors hover:text-text-secondary"
+          className="text-text-muted hover:text-text-secondary flex w-full items-center justify-center gap-1.5 py-1 text-[10px] transition-colors"
         >
           <ChevronUp className="h-3 w-3" />
           {t('dashboard.workflows.executions.tabs.executions')}
@@ -115,7 +118,7 @@ export function ExecutionPanel() {
       {bottomPanelOpen && (
         <>
           {/* Tab bar */}
-          <div className="flex items-center border-b border-border-subtle">
+          <div className="border-border-subtle flex items-center border-b">
             {TABS.map((tab) => (
               <button
                 key={tab}
@@ -125,7 +128,7 @@ export function ExecutionPanel() {
                   'border-b-2 px-5 py-2 text-xs font-medium transition-colors',
                   activeTab === tab
                     ? 'border-border-emphasis text-text-primary'
-                    : 'border-transparent text-text-muted hover:text-text-secondary'
+                    : 'text-text-muted hover:text-text-secondary border-transparent'
                 )}
               >
                 {t(`dashboard.workflows.executions.tabs.${tab}`)}
@@ -134,16 +137,14 @@ export function ExecutionPanel() {
             <button
               type="button"
               onClick={() => setBottomPanelOpen(false)}
-              className="ml-auto flex items-center gap-1 px-4 text-text-muted transition-colors hover:text-text-secondary"
+              className="text-text-muted hover:text-text-secondary ml-auto flex items-center gap-1 px-4 transition-colors"
             >
               <ChevronDown className="h-3.5 w-3.5" />
             </button>
           </div>
 
           {/* Tab content */}
-          {activeTab === 'executions' && (
-            <RunsTable runs={runs} isLoading={isLoading} />
-          )}
+          {activeTab === 'executions' && <RunsTable runs={runs} isLoading={isLoading} />}
           {activeTab === 'logs' && <LogsTab runs={runs} />}
         </>
       )}

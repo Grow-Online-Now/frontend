@@ -3,10 +3,11 @@
  * Browse and manage uploaded media with infinite scroll and bulk delete
  */
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ImageIcon, RefreshCw, Trash2, CheckSquare, X } from 'lucide-react'
+import { formatFileSize } from '@/lib/utils'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { ErrorAlert } from '@/components/dashboard/shared/ErrorAlert'
@@ -32,15 +33,6 @@ import { useMediaLibrary } from '@/hooks/useMediaLibrary'
 import { useLocalizedHref } from '@/hooks/useLocalizedHref'
 import type { MediaItem, MediaTypeTab } from '@/types/media'
 
-function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 B'
-  const units = ['B', 'KB', 'MB', 'GB']
-  const k = 1024
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  const value = bytes / Math.pow(k, i)
-  return `${value < 10 ? value.toFixed(1) : Math.round(value)} ${units[i]}`
-}
-
 export default function MediaLibraryPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -56,18 +48,23 @@ export default function MediaLibraryPage() {
   const [showBatchDeleteDialog, setShowBatchDeleteDialog] = useState(false)
   const [isBatchDeleting, setIsBatchDeleting] = useState(false)
 
-  const { media, isLoading, isLoadingMore, error, hasMore, loadMore, deleteMediaById, deleteMediaByIds, refetch } =
-    useMediaLibrary({
-      type: activeTab === 'all' ? undefined : activeTab,
-    })
+  const {
+    media,
+    isLoading,
+    isLoadingMore,
+    error,
+    hasMore,
+    loadMore,
+    deleteMediaById,
+    deleteMediaByIds,
+    refetch,
+  } = useMediaLibrary({
+    type: activeTab === 'all' ? undefined : activeTab,
+  })
 
-  const handleTabChange = useCallback((tab: MediaTypeTab) => {
-    setActiveTab(tab)
-  }, [])
+  const handleTabChange = (tab: MediaTypeTab) => setActiveTab(tab)
 
-  const handleRefresh = useCallback(async () => {
-    await refetch()
-  }, [refetch])
+  const handleRefresh = () => refetch()
 
   const handleView = useCallback((item: MediaItem) => {
     setPreviewMedia(item)
@@ -139,9 +136,10 @@ export default function MediaLibraryPage() {
     }
   }, [selectedIds, deleteMediaByIds])
 
-  const selectedSize = media
-    .filter((m) => selectedIds.has(m.id))
-    .reduce((sum, m) => sum + m.fileSize, 0)
+  const selectedSize = useMemo(
+    () => media.filter((m) => selectedIds.has(m.id)).reduce((sum, m) => sum + m.fileSize, 0),
+    [media, selectedIds]
+  )
 
   // Initial loading state
   if (isLoading && media.length === 0) {
@@ -273,7 +271,8 @@ export default function MediaLibraryPage() {
             </Button>
             {selectedIds.size > 0 && (
               <span className="text-text-secondary text-sm">
-                {t('dashboard.media.select.selected', { count: selectedIds.size })} &middot; {formatFileSize(selectedSize)}
+                {t('dashboard.media.select.selected', { count: selectedIds.size })} &middot;{' '}
+                {formatFileSize(selectedSize)}
               </span>
             )}
           </div>
@@ -330,9 +329,7 @@ export default function MediaLibraryPage() {
       <AlertDialog open={showBatchDeleteDialog} onOpenChange={setShowBatchDeleteDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              {t('dashboard.media.batchDelete.title')}
-            </AlertDialogTitle>
+            <AlertDialogTitle>{t('dashboard.media.batchDelete.title')}</AlertDialogTitle>
             <AlertDialogDescription>
               {t('dashboard.media.batchDelete.description', {
                 count: selectedIds.size,

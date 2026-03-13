@@ -7,43 +7,14 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Check,
-  XCircle,
-  Loader2,
-  SkipForward,
-  ChevronRight,
-  ChevronDown,
-  Play,
-  RefreshCw,
-  Database,
-  Clock,
-} from 'lucide-react'
+import { ChevronRight, ChevronDown, Play, RefreshCw } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { formatDurationMs } from '@/lib/workflow-utils'
+import { formatDurationMs, STEP_STATUS_ICONS, STEP_STATUS_TEXT_CLASSES } from '@/lib/workflow-utils'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
-import type { WorkflowRun, WorkflowStepResult, StepStatus } from '@/types/workflow'
+import type { WorkflowRun, WorkflowStepResult } from '@/types/workflow'
 
 interface LogsTabProps {
   runs: WorkflowRun[]
-}
-
-const statusIcon: Record<StepStatus, typeof Check> = {
-  success: Check,
-  failed: XCircle,
-  running: Loader2,
-  skipped: SkipForward,
-  pending: Clock,
-  cached: Database,
-}
-
-const statusStyle: Record<StepStatus, string> = {
-  success: 'text-success',
-  failed: 'text-destructive',
-  running: 'text-info',
-  skipped: 'text-text-muted',
-  pending: 'text-text-muted',
-  cached: 'text-info/60',
 }
 
 function formatTime(iso: string): string {
@@ -62,22 +33,24 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
   const retryFromNode = useWorkflowEditorStore((s) => s.retryFromNode)
   const runFromNode = useWorkflowEditorStore((s) => s.runFromNode)
 
-  const Icon = statusIcon[step.status]
+  const Icon = STEP_STATUS_ICONS[step.status]
   const def = nodeTypeMap[step.nodeType]
   const label = def?.name ?? step.nodeType
 
   const hasDetails =
-    step.error || (step.input && Object.keys(step.input).length > 0) || (step.output && Object.keys(step.output).length > 0)
+    step.error ||
+    (step.input && Object.keys(step.input).length > 0) ||
+    (step.output && Object.keys(step.output).length > 0)
 
   const isCached = step.status === 'cached'
   const isFailed = step.status === 'failed'
 
   return (
-    <div className={cn('border-b border-border-subtle last:border-b-0', isCached && 'opacity-60')}>
+    <div className={cn('border-border-subtle border-b last:border-b-0', isCached && 'opacity-60')}>
       <div
         className={cn(
           'group/step flex w-full items-center gap-3 px-5 py-1.5 text-left transition-colors duration-100',
-          hasDetails && 'cursor-pointer hover:bg-bg-hover',
+          hasDetails && 'hover:bg-bg-hover cursor-pointer',
           !hasDetails && 'cursor-default'
         )}
       >
@@ -87,15 +60,16 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
           onClick={() => hasDetails && setExpanded(!expanded)}
           className="w-3 shrink-0"
         >
-          {hasDetails && (
-            expanded
-              ? <ChevronDown className="h-3 w-3 text-text-muted" />
-              : <ChevronRight className="h-3 w-3 text-text-muted" />
-          )}
+          {hasDetails &&
+            (expanded ? (
+              <ChevronDown className="text-text-muted h-3 w-3" />
+            ) : (
+              <ChevronRight className="text-text-muted h-3 w-3" />
+            ))}
         </button>
 
         {/* Timestamp */}
-        <span className="w-[70px] shrink-0 font-mono text-[11px] text-text-muted">
+        <span className="text-text-muted w-[70px] shrink-0 font-mono text-[11px]">
           {formatTime(step.startedAt)}
         </span>
 
@@ -103,7 +77,7 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
         <Icon
           className={cn(
             'h-3.5 w-3.5 shrink-0',
-            statusStyle[step.status],
+            STEP_STATUS_TEXT_CLASSES[step.status],
             step.status === 'running' && 'animate-spin'
           )}
         />
@@ -112,24 +86,24 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
         <button
           type="button"
           onClick={() => hasDetails && setExpanded(!expanded)}
-          className="min-w-0 flex-1 truncate text-left text-xs text-text-primary"
+          className="text-text-primary min-w-0 flex-1 truncate text-left text-xs"
         >
           {label}
           {isCached && (
-            <span className="ml-1.5 text-[10px] text-text-muted">
+            <span className="text-text-muted ml-1.5 text-[10px]">
               ({t('dashboard.workflows.executions.logs.cached')})
             </span>
           )}
         </button>
 
         {/* Duration */}
-        <span className="shrink-0 font-mono text-[11px] text-text-muted">
+        <span className="text-text-muted shrink-0 font-mono text-[11px]">
           {formatDurationMs(step.durationMs ?? null)}
         </span>
 
         {/* Error preview */}
         {step.error && (
-          <span className="max-w-[200px] shrink-0 truncate text-[11px] text-destructive">
+          <span className="text-destructive max-w-[200px] shrink-0 truncate text-[11px]">
             {step.error}
           </span>
         )}
@@ -145,7 +119,7 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
                 retryFromNode(run.id, step.nodeId)
               }}
               disabled={isRunning}
-              className="flex items-center gap-1 rounded-sm bg-destructive-muted px-1.5 py-0.5 text-[10px] font-medium text-destructive transition-colors duration-100 hover:opacity-80 disabled:opacity-40"
+              className="bg-destructive-muted text-destructive flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-medium transition-colors duration-100 hover:opacity-80 disabled:opacity-40"
             >
               <RefreshCw className="h-2.5 w-2.5" />
               {t('dashboard.workflows.executions.logs.retry')}
@@ -160,7 +134,7 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
               runFromNode(run.id, step.nodeId)
             }}
             disabled={isRunning}
-            className="flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-medium text-text-muted opacity-0 transition-all duration-100 hover:bg-bg-active hover:text-text-primary group-hover/step:opacity-100 disabled:opacity-40"
+            className="text-text-muted hover:bg-bg-active hover:text-text-primary flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-medium opacity-0 transition-all duration-100 group-hover/step:opacity-100 disabled:opacity-40"
             title={t('dashboard.workflows.executions.logs.runFromHere')}
           >
             <Play className="h-2.5 w-2.5" />
@@ -170,7 +144,7 @@ function StepRow({ step, run }: { step: WorkflowStepResult; run: WorkflowRun }) 
 
       {/* Expanded details */}
       {expanded && hasDetails && (
-        <div className="space-y-2 bg-bg-base px-5 py-3 pl-[52px]">
+        <div className="bg-bg-base space-y-2 px-5 py-3 pl-[52px]">
           {step.error && (
             <DetailBlock
               label={t('dashboard.workflows.executions.logs.error')}
@@ -207,12 +181,12 @@ function DetailBlock({
 }) {
   return (
     <div>
-      <div className="mb-1 text-[10px] font-medium uppercase tracking-wider text-text-muted">
+      <div className="text-text-muted mb-1 text-[10px] font-medium tracking-wider uppercase">
         {label}
       </div>
       <pre
         className={cn(
-          'max-h-[80px] overflow-auto rounded-md bg-bg-elevated p-2 font-mono text-[11px] leading-relaxed text-text-secondary',
+          'bg-bg-elevated text-text-secondary max-h-[80px] overflow-auto rounded-md p-2 font-mono text-[11px] leading-relaxed',
           className
         )}
       >
@@ -230,7 +204,7 @@ export function LogsTab({ runs }: LogsTabProps) {
 
   if (!run) {
     return (
-      <div className="flex h-full items-center justify-center text-xs text-text-muted">
+      <div className="text-text-muted flex h-full items-center justify-center text-xs">
         {t('dashboard.workflows.executions.empty')}
       </div>
     )
@@ -238,7 +212,7 @@ export function LogsTab({ runs }: LogsTabProps) {
 
   if (run.steps.length === 0) {
     return (
-      <div className="flex h-full items-center justify-center text-xs text-text-muted">
+      <div className="text-text-muted flex h-full items-center justify-center text-xs">
         {t('dashboard.workflows.executions.logs.noSteps')}
       </div>
     )

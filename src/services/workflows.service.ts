@@ -23,11 +23,12 @@ const ENDPOINTS = {
   run: (id: string) => `/api/workflows/${id}/run`,
   runPartial: (id: string) => `/api/workflows/${id}/run/partial`,
   runs: (id: string) => `/api/workflows/${id}/runs`,
-  runById: (workflowId: string, runId: string) =>
-    `/api/workflows/${workflowId}/runs/${runId}`,
+  runById: (workflowId: string, runId: string) => `/api/workflows/${workflowId}/runs/${runId}`,
 } as const
 
-function buildQueryString(params?: WorkflowsQueryParams | { page?: number; limit?: number }): string {
+function buildQueryString(
+  params?: WorkflowsQueryParams | { page?: number; limit?: number }
+): string {
   if (!params) return ''
   const searchParams = new URLSearchParams()
   Object.entries(params).forEach(([key, value]) => {
@@ -83,10 +84,7 @@ export async function getWorkflowRuns(
   return apiClient.get<WorkflowRunsResponse>(`${ENDPOINTS.runs(workflowId)}${query}`)
 }
 
-export async function getWorkflowRun(
-  workflowId: string,
-  runId: string
-): Promise<WorkflowRun> {
+export async function getWorkflowRun(workflowId: string, runId: string): Promise<WorkflowRun> {
   return apiClient.get<WorkflowRun>(ENDPOINTS.runById(workflowId, runId))
 }
 

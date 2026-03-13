@@ -21,9 +21,7 @@ export type ViewMode = 'editor' | 'execution'
 export type RightPanelTab = 'config' | 'preview' | 'output' | 'execution'
 type BottomPanelTab = 'executions' | 'logs'
 
-function computeNodeStepMap(
-  steps: WorkflowStepResult[],
-): Record<string, WorkflowStepResult> {
+function computeNodeStepMap(steps: WorkflowStepResult[]): Record<string, WorkflowStepResult> {
   const map: Record<string, WorkflowStepResult> = {}
   for (const step of steps) {
     map[step.nodeId] = step
@@ -77,6 +75,7 @@ interface WorkflowEditorActions {
   setViewMode: (mode: ViewMode) => void
   setActiveRun: (run: WorkflowRun | null) => void
   updateActiveRun: (run: WorkflowRun) => void
+  completeRun: (run: WorkflowRun) => void
   reset: () => void
 }
 
@@ -97,6 +96,35 @@ const initialState: WorkflowEditorState = {
   viewMode: 'editor',
   activeRun: null,
   nodeStepMap: {},
+}
+
+type StoreSet = (
+  partial:
+    | Partial<WorkflowEditorState>
+    | ((state: WorkflowEditorState) => Partial<WorkflowEditorState>)
+) => void
+type StoreGet = () => WorkflowEditorState & WorkflowEditorActions
+
+function applyRun(set: StoreSet, run: WorkflowRun): void {
+  set({
+    activeRun: run,
+    nodeStepMap: computeNodeStepMap(run.steps),
+    viewMode: 'execution',
+    isRunning: run.status === 'running',
+    selectedRunId: run.id,
+  })
+}
+
+async function execPartialRun(
+  get: StoreGet,
+  set: StoreSet,
+  params: { sourceRunId: string; fromNodeId: string; stopAfterNodeId?: string }
+): Promise<WorkflowRun | null> {
+  const { workflow } = get()
+  if (!workflow) return null
+  const run = await runPartialApi(workflow.id, params)
+  applyRun(set, run)
+  return run
 }
 
 export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEditorActions>(
@@ -172,9 +200,7 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
         return {
           workflow: {
             ...state.workflow,
-            nodes: state.workflow.nodes.map((n) =>
-              n.id === nodeId ? { ...n, position } : n
-            ),
+            nodes: state.workflow.nodes.map((n) => (n.id === nodeId ? { ...n, position } : n)),
           },
           isDirty: true,
         }
@@ -246,78 +272,25 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
     runWorkflow: async () => {
       const { workflow } = get()
       if (!workflow) return null
-      try {
-        const run = await runWorkflowApi(workflow.id)
-        // Run is returned immediately with status: 'running'. Polling handles updates.
-        set({
-          activeRun: run,
-          nodeStepMap: computeNodeStepMap(run.steps),
-          viewMode: 'execution',
-          isRunning: run.status === 'running',
-          selectedRunId: run.id,
-        })
-        return run
-      } catch {
-        throw new Error('Failed to run workflow')
-      }
+      const run = await runWorkflowApi(workflow.id)
+      applyRun(set, run)
+      return run
     },
 
     retryFromNode: async (sourceRunId, nodeId) => {
-      const { workflow } = get()
-      if (!workflow) return null
-      try {
-        const run = await runPartialApi(workflow.id, { sourceRunId, fromNodeId: nodeId })
-        set({
-          activeRun: run,
-          nodeStepMap: computeNodeStepMap(run.steps),
-          viewMode: 'execution',
-          isRunning: run.status === 'running',
-          selectedRunId: run.id,
-        })
-        return run
-      } catch {
-        throw new Error('Failed to retry from node')
-      }
+      return execPartialRun(get, set, { sourceRunId, fromNodeId: nodeId })
     },
 
     runFromNode: async (sourceRunId, nodeId) => {
-      const { workflow } = get()
-      if (!workflow) return null
-      try {
-        const run = await runPartialApi(workflow.id, { sourceRunId, fromNodeId: nodeId })
-        set({
-          activeRun: run,
-          nodeStepMap: computeNodeStepMap(run.steps),
-          viewMode: 'execution',
-          isRunning: run.status === 'running',
-          selectedRunId: run.id,
-        })
-        return run
-      } catch {
-        throw new Error('Failed to run from node')
-      }
+      return execPartialRun(get, set, { sourceRunId, fromNodeId: nodeId })
     },
 
     stepNode: async (sourceRunId, nodeId) => {
-      const { workflow } = get()
-      if (!workflow) return null
-      try {
-        const run = await runPartialApi(workflow.id, {
-          sourceRunId,
-          fromNodeId: nodeId,
-          stopAfterNodeId: nodeId,
-        })
-        set({
-          activeRun: run,
-          nodeStepMap: computeNodeStepMap(run.steps),
-          viewMode: 'execution',
-          isRunning: run.status === 'running',
-          selectedRunId: run.id,
-        })
-        return run
-      } catch {
-        throw new Error('Failed to step node')
-      }
+      return execPartialRun(get, set, {
+        sourceRunId,
+        fromNodeId: nodeId,
+        stopAfterNodeId: nodeId,
+      })
     },
 
     setStepByStepMode: (enabled) => set({ stepByStepMode: enabled }),
@@ -334,13 +307,7 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
         set({ activeRun: null, nodeStepMap: {}, viewMode: 'editor', isRunning: false })
         return
       }
-      set({
-        activeRun: run,
-        nodeStepMap: computeNodeStepMap(run.steps),
-        viewMode: 'execution',
-        isRunning: run.status === 'running',
-        selectedRunId: run.id,
-      })
+      applyRun(set, run)
     },
 
     updateActiveRun: (run) => {
@@ -351,6 +318,16 @@ export const useWorkflowEditorStore = create<WorkflowEditorState & WorkflowEdito
         nodeStepMap: computeNodeStepMap(run.steps),
         isRunning: run.status === 'running',
       })
+    },
+
+    completeRun: (run) => {
+      set((state) => ({
+        activeRun: run,
+        nodeStepMap: computeNodeStepMap(run.steps),
+        isRunning: false,
+        lastRun: run,
+        runCount: state.runCount + 1,
+      }))
     },
 
     reset: () => set(initialState),

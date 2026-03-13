@@ -131,7 +131,7 @@ export function useMediaFlow(): UseMediaFlowReturn {
   // Platform config validation state (tracks validity per platform)
   const [platformConfigValid, setPlatformConfigValid] = useState<Record<string, boolean>>({})
 
-  const handleTikTokValidationChange = useCallback((isValid: boolean, _errors: string[]) => {
+  const handleTikTokValidationChange = useCallback((isValid: boolean) => {
     setPlatformConfigValid((prev) => ({ ...prev, tiktok: isValid }))
   }, [])
 
@@ -313,7 +313,14 @@ export function useMediaFlow(): UseMediaFlowReturn {
       allPlatformConfigsValid &&
       (scheduleType !== 'scheduled' || scheduledDate !== null)
     )
-  }, [selectedPlatformIds, mediaUpload, hasValidationErrors, allPlatformConfigsValid, scheduleType, scheduledDate])
+  }, [
+    selectedPlatformIds,
+    mediaUpload,
+    hasValidationErrors,
+    allPlatformConfigsValid,
+    scheduleType,
+    scheduledDate,
+  ])
 
   // Platform selection
   const togglePlatform = useCallback((id: string) => {
@@ -376,7 +383,8 @@ export function useMediaFlow(): UseMediaFlowReturn {
     }
 
     // Strip UI-only fields before sending to backend
-    const { isCommercialContent: _ic, ...tiktokApiConfig } = platformConfigs.tiktok || {}
+    const { isCommercialContent: _, ...tiktokApiConfig } = platformConfigs.tiktok || {}
+    void _
     const apiPlatformConfigs: PlatformConfigurations = {
       ...platformConfigs,
       tiktok: Object.keys(tiktokApiConfig).length > 0 ? tiktokApiConfig : undefined,
@@ -445,7 +453,8 @@ export function useMediaFlow(): UseMediaFlowReturn {
 
     try {
       // Strip UI-only fields before sending to backend
-      const { isCommercialContent: _ic, ...tiktokDraftConfig } = platformConfigs.tiktok || {}
+      const { isCommercialContent: __, ...tiktokDraftConfig } = platformConfigs.tiktok || {}
+      void __
       const draftPlatformConfigs: PlatformConfigurations = {
         ...platformConfigs,
         tiktok: Object.keys(tiktokDraftConfig).length > 0 ? tiktokDraftConfig : undefined,

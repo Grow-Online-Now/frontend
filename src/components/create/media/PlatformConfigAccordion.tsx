@@ -113,7 +113,7 @@ export function PlatformConfigAccordion({
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pb-5 pt-1">
+            <AccordionContent className="px-4 pt-1 pb-5">
               <InstagramConfigSection
                 config={platformConfigs.instagram || {}}
                 onChange={(newConfig) => onInstagramConfigChange(newConfig)}
@@ -138,7 +138,7 @@ export function PlatformConfigAccordion({
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pb-5 pt-1">
+            <AccordionContent className="px-4 pt-1 pb-5">
               <TikTokConfigSection
                 connectionId={tiktokAccount.id}
                 config={platformConfigs.tiktok || {}}
@@ -165,7 +165,7 @@ export function PlatformConfigAccordion({
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pb-5 pt-1">
+            <AccordionContent className="px-4 pt-1 pb-5">
               <YouTubeConfigSection
                 config={platformConfigs.youtube || {}}
                 onChange={(newConfig) => onYouTubeConfigChange(newConfig)}
@@ -190,7 +190,7 @@ export function PlatformConfigAccordion({
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pb-5 pt-1">
+            <AccordionContent className="px-4 pt-1 pb-5">
               <PinterestConfigSection
                 connectionId={pinterestAccount.id}
                 config={platformConfigs.pinterest || {}}

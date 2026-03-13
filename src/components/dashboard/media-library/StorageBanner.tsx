@@ -6,17 +6,9 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HardDrive, Image, Video } from 'lucide-react'
+import { cn, formatFileSize } from '@/lib/utils'
 import { getStorageUsage } from '@/services/media.service'
 import type { StorageUsage } from '@/types/media'
-
-function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 B'
-  const units = ['B', 'KB', 'MB', 'GB']
-  const k = 1024
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  const value = bytes / Math.pow(k, i)
-  return `${value < 10 ? value.toFixed(1) : Math.round(value)} ${units[i]}`
-}
 
 interface StorageBannerProps {
   className?: string
@@ -49,7 +41,7 @@ export function StorageBanner({ className = '', refreshKey = 0 }: StorageBannerP
 
   if (isLoading) {
     return (
-      <div className={`bg-bg-elevated border-border-default rounded-xl border p-4 ${className}`}>
+      <div className={cn('bg-bg-elevated border-border-default rounded-xl border p-4', className)}>
         <div className="flex items-center gap-3">
           <div className="bg-bg-hover h-9 w-9 animate-pulse rounded-lg" />
           <div className="flex-1 space-y-2">
@@ -68,7 +60,7 @@ export function StorageBanner({ className = '', refreshKey = 0 }: StorageBannerP
   const videoPercent = totalBytes > 0 ? (byType.video.bytes / totalBytes) * 100 : 0
 
   return (
-    <div className={`bg-bg-elevated border-border-default rounded-xl border p-4 ${className}`}>
+    <div className={cn('bg-bg-elevated border-border-default rounded-xl border p-4', className)}>
       {/* Header row */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -76,9 +68,7 @@ export function StorageBanner({ className = '', refreshKey = 0 }: StorageBannerP
             <HardDrive className="text-text-secondary h-4 w-4" />
           </div>
           <div>
-            <p className="text-text-primary text-sm font-medium">
-              {formatBytes(totalBytes)}
-            </p>
+            <p className="text-text-primary text-sm font-medium">{formatFileSize(totalBytes)}</p>
             <p className="text-text-muted text-xs">
               {t('dashboard.media.storage.fileCount', { count: fileCount })}
             </p>
@@ -88,12 +78,9 @@ export function StorageBanner({ className = '', refreshKey = 0 }: StorageBannerP
 
       {/* Bar */}
       {totalBytes > 0 && (
-        <div className="mt-3 flex h-1.5 w-full overflow-hidden rounded-full bg-bg-hover">
+        <div className="bg-bg-hover mt-3 flex h-1.5 w-full overflow-hidden rounded-full">
           {imagePercent > 0 && (
-            <div
-              className="bg-info h-full transition-all"
-              style={{ width: `${imagePercent}%` }}
-            />
+            <div className="bg-info h-full transition-all" style={{ width: `${imagePercent}%` }} />
           )}
           {videoPercent > 0 && (
             <div
@@ -109,13 +96,19 @@ export function StorageBanner({ className = '', refreshKey = 0 }: StorageBannerP
         <div className="flex items-center gap-1.5">
           <Image className="text-info h-3.5 w-3.5" />
           <span className="text-text-secondary text-xs">
-            {t('dashboard.media.storage.images', { size: formatBytes(byType.image.bytes), count: byType.image.count })}
+            {t('dashboard.media.storage.images', {
+              size: formatFileSize(byType.image.bytes),
+              count: byType.image.count,
+            })}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
           <Video className="text-warning h-3.5 w-3.5" />
           <span className="text-text-secondary text-xs">
-            {t('dashboard.media.storage.videos', { size: formatBytes(byType.video.bytes), count: byType.video.count })}
+            {t('dashboard.media.storage.videos', {
+              size: formatFileSize(byType.video.bytes),
+              count: byType.video.count,
+            })}
           </span>
         </div>
       </div>

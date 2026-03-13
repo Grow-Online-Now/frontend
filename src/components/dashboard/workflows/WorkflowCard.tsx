@@ -67,7 +67,7 @@ export function WorkflowCard({ workflow, onClick, onDelete, onRename }: Workflow
   return (
     <div
       onClick={() => !isEditing && onClick(workflow.id)}
-      className="cursor-pointer rounded-xl border border-border-subtle bg-bg-elevated p-5 transition-all duration-150 hover:border-border-default hover:bg-bg-hover"
+      className="border-border-subtle bg-bg-elevated hover:border-border-default hover:bg-bg-hover cursor-pointer rounded-xl border p-5 transition-all duration-150"
     >
       {/* Row 1: Name + status + actions */}
       <div className="mb-2 flex items-center justify-between">
@@ -83,10 +83,10 @@ export function WorkflowCard({ workflow, onClick, onDelete, onRename }: Workflow
                 if (e.key === 'Escape') setIsEditing(false)
               }}
               onClick={(e) => e.stopPropagation()}
-              className="h-7 w-48 rounded-md border border-border-emphasis bg-bg-elevated px-2 text-md font-semibold tracking-tight text-text-primary outline-none focus:border-border-focus"
+              className="border-border-emphasis bg-bg-elevated text-md text-text-primary focus:border-border-focus h-7 w-48 rounded-md border px-2 font-semibold tracking-tight outline-none"
             />
           ) : (
-            <span className="text-md font-semibold tracking-tight text-text-primary">
+            <span className="text-md text-text-primary font-semibold tracking-tight">
               {t(workflow.name, { defaultValue: workflow.name })}
             </span>
           )}
@@ -96,7 +96,7 @@ export function WorkflowCard({ workflow, onClick, onDelete, onRename }: Workflow
           {workflow.status !== 'draft' && (
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-md border border-border-subtle bg-bg-elevated px-3 py-1.5 text-xs font-medium text-text-secondary transition-all duration-150 hover:border-border-default hover:bg-bg-hover"
+              className="border-border-subtle bg-bg-elevated text-text-secondary hover:border-border-default hover:bg-bg-hover flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-all duration-150"
               onClick={(e) => e.stopPropagation()}
             >
               <Play className="h-3 w-3" />
@@ -107,7 +107,7 @@ export function WorkflowCard({ workflow, onClick, onDelete, onRename }: Workflow
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="p-1 text-text-muted transition-colors duration-150 hover:text-text-secondary"
+                className="text-text-muted hover:text-text-secondary p-1 transition-colors duration-150"
                 onClick={(e) => e.stopPropagation()}
               >
                 <MoreHorizontal className="h-4 w-4" />
@@ -134,13 +134,11 @@ export function WorkflowCard({ workflow, onClick, onDelete, onRename }: Workflow
 
       {/* Row 2: Description */}
       {workflow.description && (
-        <p className="mb-4 text-sm leading-relaxed text-text-tertiary">
-          {workflow.description}
-        </p>
+        <p className="text-text-tertiary mb-4 text-sm leading-relaxed">{workflow.description}</p>
       )}
 
       {/* Row 3: Metadata */}
-      <div className="flex items-center gap-5 text-xs text-text-muted">
+      <div className="text-text-muted flex items-center gap-5 text-xs">
         <span className="flex items-center gap-1.5">
           {triggerIcon}
           {triggerLabel}

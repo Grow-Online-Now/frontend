@@ -9,11 +9,18 @@ import { BaseEdge, type EdgeProps } from '@xyflow/react'
 import type { StepStatus } from '@/types/workflow'
 import type { ViewMode } from '@/stores/workflowEditorStore'
 
+export interface CustomEdgeData {
+  viewMode?: ViewMode
+  sourceStatus?: StepStatus
+  targetStatus?: StepStatus
+  [key: string]: unknown
+}
+
 function getEdgeStyle(
   viewMode: ViewMode | undefined,
   sourceStatus: StepStatus | undefined,
   targetStatus: StepStatus | undefined,
-  selected: boolean | undefined,
+  selected: boolean | undefined
 ): { strokeColor: string; animated: boolean } {
   if (viewMode !== 'execution' || !sourceStatus) {
     // Editor mode — original dark appearance
@@ -58,14 +65,15 @@ function CustomEdgeComponent({
   selected,
   data,
 }: EdgeProps) {
+  const edgeData = data as CustomEdgeData | undefined
   const midX = (sourceX + targetX) / 2
   const edgePath = `M ${sourceX} ${sourceY} C ${midX} ${sourceY}, ${midX} ${targetY}, ${targetX} ${targetY}`
 
   const { strokeColor, animated } = getEdgeStyle(
-    data?.viewMode as ViewMode | undefined,
-    data?.sourceStatus as StepStatus | undefined,
-    data?.targetStatus as StepStatus | undefined,
-    selected,
+    edgeData?.viewMode,
+    edgeData?.sourceStatus,
+    edgeData?.targetStatus,
+    selected
   )
 
   return (

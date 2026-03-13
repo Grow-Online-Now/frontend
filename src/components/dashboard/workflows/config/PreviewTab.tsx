@@ -24,18 +24,14 @@ export function PreviewTab() {
   const outputData = stepResult?.output
 
   if (!outputData || Object.keys(outputData).length === 0) {
-    return (
-      <p className="text-sm text-text-muted">
-        {t('dashboard.workflows.editor.noPreview')}
-      </p>
-    )
+    return <p className="text-text-muted text-sm">{t('dashboard.workflows.editor.noPreview')}</p>
   }
 
   return (
     <div className="flex flex-col gap-3">
       {/* Reference hint at top */}
       {node && def && (
-        <div className="rounded-lg border border-border-subtle bg-bg-elevated p-2 text-[11px] text-text-muted">
+        <div className="border-border-subtle bg-bg-elevated text-text-muted rounded-lg border p-2 text-[11px]">
           {t('dashboard.workflows.editor.reference')}:{' '}
           <span className="font-mono" style={{ color: '#8b5cf6' }}>
             {'{{ ' + node.id + '.<key> }}'}
@@ -50,7 +46,15 @@ export function PreviewTab() {
   )
 }
 
-function PreviewEntry({ outputKey, value, nodeId }: { outputKey: string; value: unknown; nodeId: string }) {
+function PreviewEntry({
+  outputKey,
+  value,
+  nodeId,
+}: {
+  outputKey: string
+  value: unknown
+  nodeId: string
+}) {
   const [expanded, setExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -68,13 +72,13 @@ function PreviewEntry({ outputKey, value, nodeId }: { outputKey: string; value: 
   return (
     <div>
       <div className="mb-1 flex items-center gap-2">
-        <div className="flex-1 text-xs font-medium uppercase tracking-wider text-text-tertiary">
+        <div className="text-text-tertiary flex-1 text-xs font-medium tracking-wider uppercase">
           {outputKey}
         </div>
         <button
           type="button"
           onClick={handleCopy}
-          className="flex h-5 items-center gap-1 rounded px-1 text-[10px] text-text-muted transition-colors hover:text-text-secondary"
+          className="text-text-muted hover:text-text-secondary flex h-5 items-center gap-1 rounded px-1 text-[10px] transition-colors"
           title={reference}
         >
           {copied ? (
@@ -90,30 +94,28 @@ function PreviewEntry({ outputKey, value, nodeId }: { outputKey: string; value: 
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="flex w-full items-center gap-1.5 rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2 text-left text-xs text-text-secondary transition-colors hover:bg-bg-hover"
+            className="border-border-subtle bg-bg-elevated text-text-secondary hover:bg-bg-hover flex w-full items-center gap-1.5 rounded-lg border px-3 py-2 text-left text-xs transition-colors"
           >
             {expanded ? (
               <ChevronDown style={{ width: 12, height: 12 }} />
             ) : (
               <ChevronRight style={{ width: 12, height: 12 }} />
             )}
-            <span className="font-mono text-text-muted">
-              Array[{(value as unknown[]).length}]
-            </span>
+            <span className="text-text-muted font-mono">Array[{(value as unknown[]).length}]</span>
           </button>
           {expanded && (
             <div className="mt-1 flex max-h-60 flex-col gap-1 overflow-y-auto">
               {(value as unknown[]).map((item, idx) => (
                 <div
                   key={idx}
-                  className="rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2"
+                  className="border-border-subtle bg-bg-elevated rounded-lg border px-3 py-2"
                 >
                   {typeof item === 'object' && item !== null ? (
                     <div className="flex flex-col gap-1">
                       {Object.entries(item as Record<string, unknown>).map(([k, v]) => (
                         <div key={k} className="flex items-start gap-2 text-xs">
-                          <span className="shrink-0 font-mono text-text-muted">{k}:</span>
-                          <span className="break-all text-text-secondary">
+                          <span className="text-text-muted shrink-0 font-mono">{k}:</span>
+                          <span className="text-text-secondary break-all">
                             {v === null || v === undefined
                               ? '—'
                               : typeof v === 'object'
@@ -124,7 +126,7 @@ function PreviewEntry({ outputKey, value, nodeId }: { outputKey: string; value: 
                       ))}
                     </div>
                   ) : (
-                    <span className="break-all font-mono text-xs text-text-secondary">
+                    <span className="text-text-secondary font-mono text-xs break-all">
                       {String(item)}
                     </span>
                   )}
@@ -134,11 +136,11 @@ function PreviewEntry({ outputKey, value, nodeId }: { outputKey: string; value: 
           )}
         </div>
       ) : isObject ? (
-        <pre className="max-h-32 overflow-auto rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2 font-mono text-xs text-text-secondary">
+        <pre className="border-border-subtle bg-bg-elevated text-text-secondary max-h-32 overflow-auto rounded-lg border px-3 py-2 font-mono text-xs">
           {JSON.stringify(value, null, 2)}
         </pre>
       ) : (
-        <div className="break-all rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2 font-mono text-xs text-text-secondary">
+        <div className="border-border-subtle bg-bg-elevated text-text-secondary rounded-lg border px-3 py-2 font-mono text-xs break-all">
           {String(value)}
         </div>
       )}
