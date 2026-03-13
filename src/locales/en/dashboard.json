@@ -1406,7 +1406,30 @@
         "contextInput": "Context input",
         "insertVariable": "Variable",
         "availableVariables": "Available variables",
-        "resolvedValue": "Resolved value"
+        "resolvedValue": "Resolved value",
+        "subtitleEditor": {
+          "preview": "Subtitle Preview",
+          "sampleText": "Your subtitles will appear like this",
+          "dragHint": "Drag to reposition",
+          "typography": "Typography",
+          "colors": "Colors",
+          "background": "Background",
+          "animation": "Animation",
+          "font": "Font",
+          "fontSize": "Font Size",
+          "bold": "Bold",
+          "uppercase": "Uppercase",
+          "textColor": "Text Color",
+          "outlineColor": "Outline Color",
+          "outlineWidth": "Outline Width",
+          "backgroundBox": "Background Box",
+          "animationStyle": "Animation Style",
+          "animationStatic": "Static (classic)",
+          "animationDynamic": "Dynamic (word highlight)",
+          "highlightColor": "Highlight Color",
+          "highlightScale": "Highlight Scale",
+          "wordsPerGroup": "Words Per Group"
+        }
       },
       "execution": {
         "tab": "Execution",

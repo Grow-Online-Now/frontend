@@ -1109,7 +1109,30 @@
         "contextInput": "Entrée de contexte",
         "insertVariable": "Variable",
         "availableVariables": "Variables disponibles",
-        "resolvedValue": "Valeur résolue"
+        "resolvedValue": "Valeur résolue",
+        "subtitleEditor": {
+          "preview": "Aperçu des sous-titres",
+          "sampleText": "Vos sous-titres apparaîtront comme ceci",
+          "dragHint": "Glissez pour repositionner",
+          "typography": "Typographie",
+          "colors": "Couleurs",
+          "background": "Arrière-plan",
+          "animation": "Animation",
+          "font": "Police",
+          "fontSize": "Taille de police",
+          "bold": "Gras",
+          "uppercase": "Majuscules",
+          "textColor": "Couleur du texte",
+          "outlineColor": "Couleur du contour",
+          "outlineWidth": "Épaisseur du contour",
+          "backgroundBox": "Boîte de fond",
+          "animationStyle": "Style d'animation",
+          "animationStatic": "Statique (classique)",
+          "animationDynamic": "Dynamique (mot par mot)",
+          "highlightColor": "Couleur de surbrillance",
+          "highlightScale": "Échelle de surbrillance",
+          "wordsPerGroup": "Mots par groupe"
+        }
       },
       "executions": {
         "title": "Exécutions",

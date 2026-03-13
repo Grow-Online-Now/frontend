@@ -9,10 +9,28 @@ import { useRef, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
 import { VariablePicker } from './VariablePicker'
+import { SubtitleVisualEditor } from './subtitle-editor/SubtitleVisualEditor'
 import type { ConfigFieldSchema } from '@/types/workflow'
 
 const INPUT_CLASS =
   'w-full rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2 text-sm text-text-secondary outline-none transition-colors duration-150 focus:border-border-focus'
+
+const SUBTITLE_FIELD_KEYS = new Set([
+  'font_name',
+  'font_size',
+  'text_color',
+  'outline_color',
+  'outline_width',
+  'bold',
+  'position',
+  'margin_v',
+  'background_box',
+  'animation_style',
+  'highlight_color',
+  'highlight_scale',
+  'max_words_per_group',
+  'uppercase',
+])
 
 /** Detect {{ ... }} tokens in a string value */
 function hasVariableRef(value: unknown): boolean {
@@ -34,18 +52,32 @@ export function ConfigTab() {
 
   const hasUpstream = workflow?.edges.some((e) => e.targetNodeId === node.id) ?? false
 
+  const hasSubtitleFields = def.configSchema.some((f) => SUBTITLE_FIELD_KEYS.has(f.key))
+  const enableSubtitles = node.config.enable_subtitles !== false
+  const showVisualEditor = hasSubtitleFields && enableSubtitles
+
   return (
     <div className="flex flex-col gap-6">
-      {def.configSchema.map((field) => (
-        <ConfigField
-          key={field.key}
-          field={field}
+      {def.configSchema
+        .filter((field) => !showVisualEditor || !SUBTITLE_FIELD_KEYS.has(field.key))
+        .map((field) => (
+          <ConfigField
+            key={field.key}
+            field={field}
+            nodeId={node.id}
+            value={node.config[field.key]}
+            hasUpstream={hasUpstream}
+            updateNodeConfig={updateNodeConfig}
+          />
+        ))}
+
+      {showVisualEditor && (
+        <SubtitleVisualEditor
           nodeId={node.id}
-          value={node.config[field.key]}
-          hasUpstream={hasUpstream}
+          config={node.config}
           updateNodeConfig={updateNodeConfig}
         />
-      ))}
+      )}
 
       {def.configSchema.length === 0 && (
         <p className="text-text-muted text-sm">{t('dashboard.workflows.editor.noConfig')}</p>
