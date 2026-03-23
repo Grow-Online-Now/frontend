@@ -1428,7 +1428,18 @@
           "animationDynamic": "Dynamic (word highlight)",
           "highlightColor": "Highlight Color",
           "highlightScale": "Highlight Scale",
-          "wordsPerGroup": "Words Per Group"
+          "wordsPerGroup": "Words Per Group",
+          "caption": "Hook Caption",
+          "enableCaption": "Enable hook caption",
+          "captionText": "Caption Text",
+          "captionPlaceholder": "He said that live 😱 ???",
+          "captionFontSize": "Caption Font Size",
+          "captionTextColor": "Caption Text Color",
+          "captionOutlineColor": "Caption Outline Color",
+          "captionOutlineWidth": "Caption Outline Width",
+          "captionBackgroundBox": "Caption Background Box",
+          "captionDuration": "Caption Duration (seconds)",
+          "captionDurationHint": "0 = show for the entire clip"
         }
       },
       "execution": {

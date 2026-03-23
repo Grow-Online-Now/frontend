@@ -1,6 +1,7 @@
 /**
  * SubtitleCanvas
- * Renders a mock video frame with live-styled, draggable subtitle text.
+ * Renders a mock video frame with live-styled, draggable subtitle text
+ * and an optional hook caption overlay at the top.
  */
 
 import { useRef } from 'react'
@@ -29,6 +30,14 @@ interface SubtitleCanvasProps {
   highlightScale: number
   aspectRatio: string
   onPositionChange: (position: string, marginV: number) => void
+  // Hook caption props
+  enableCaption: boolean
+  captionText: string
+  captionFontSize: number
+  captionTextColor: string
+  captionOutlineColor: string
+  captionOutlineWidth: number
+  captionBackground: boolean
 }
 
 export function SubtitleCanvas({
@@ -47,6 +56,13 @@ export function SubtitleCanvas({
   highlightScale,
   aspectRatio,
   onPositionChange,
+  enableCaption,
+  captionText,
+  captionFontSize,
+  captionTextColor,
+  captionOutlineColor,
+  captionOutlineWidth,
+  captionBackground,
 }: SubtitleCanvasProps) {
   const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
@@ -56,7 +72,6 @@ export function SubtitleCanvas({
     containerRef,
     initialY,
     (newY) => {
-      // Convert back to ASS values
       const { position: pos, marginV: mv } = (() => {
         if (newY < 40) return { position: 'top', marginV: Math.round((newY / 100) * 1080) }
         if (newY > 60) return { position: 'bottom', marginV: Math.round((1 - newY / 100) * 1080) }
@@ -74,6 +89,12 @@ export function SubtitleCanvas({
   const words = sampleText.split(' ')
   const isDynamic = animationStyle === 'dynamic'
 
+  // Caption preview
+  const captionPreviewSize = scaleFontSize(captionFontSize, 9, 22)
+  const captionShadow = outlineToTextShadow(captionOutlineColor, captionOutlineWidth)
+  const captionDisplayText =
+    captionText || t('dashboard.workflows.editor.subtitleEditor.captionPlaceholder')
+
   return (
     <div className="flex flex-col items-center gap-2">
       {/* Frame */}
@@ -86,6 +107,30 @@ export function SubtitleCanvas({
           maxWidth: ratio > 1 ? '100%' : `${240 * ratio}px`,
         }}
       >
+        {/* Hook caption overlay — top of frame */}
+        {enableCaption && (
+          <div className="absolute top-[8%] left-0 right-0 flex justify-center px-3">
+            <span
+              className="inline-block text-center leading-tight select-none"
+              style={{
+                fontSize: `${captionPreviewSize}px`,
+                fontWeight: 700,
+                color: captionTextColor,
+                textShadow: captionShadow,
+                ...(captionBackground
+                  ? {
+                      background: 'rgba(0, 0, 0, 0.55)',
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                    }
+                  : {}),
+              }}
+            >
+              {captionDisplayText}
+            </span>
+          </div>
+        )}
+
         {/* Subtitle overlay */}
         <div
           onPointerDown={handlePointerDown}

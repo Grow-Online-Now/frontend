@@ -1130,7 +1130,18 @@
           "animationDynamic": "Dinámico (palabra por palabra)",
           "highlightColor": "Color de resaltado",
           "highlightScale": "Escala de resaltado",
-          "wordsPerGroup": "Palabras por grupo"
+          "wordsPerGroup": "Palabras por grupo",
+          "caption": "Gancho",
+          "enableCaption": "Activar gancho",
+          "captionText": "Texto del gancho",
+          "captionPlaceholder": "Dijo eso en vivo 😱 ???",
+          "captionFontSize": "Tamaño del gancho",
+          "captionTextColor": "Color del texto",
+          "captionOutlineColor": "Color del contorno",
+          "captionOutlineWidth": "Ancho del contorno",
+          "captionBackgroundBox": "Fondo del gancho",
+          "captionDuration": "Duración del gancho (segundos)",
+          "captionDurationHint": "0 = mostrar durante todo el clip"
         }
       },
       "executions": {

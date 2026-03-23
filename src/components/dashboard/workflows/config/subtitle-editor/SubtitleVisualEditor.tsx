@@ -37,6 +37,16 @@ export function SubtitleVisualEditor({
   const maxWordsPerGroup = Number(config.max_words_per_group ?? 4)
   const aspectRatio = String(config.aspect_ratio ?? '9:16')
 
+  // Caption config
+  const enableCaption = Boolean(config.enable_caption ?? false)
+  const captionText = String(config.caption_text ?? '')
+  const captionFontSize = Number(config.caption_font_size ?? 18)
+  const captionTextColor = String(config.caption_text_color ?? '#FFFFFF')
+  const captionOutlineColor = String(config.caption_outline_color ?? '#000000')
+  const captionOutlineWidth = Number(config.caption_outline_width ?? 2)
+  const captionBackground = Boolean(config.caption_background ?? true)
+  const captionDuration = Number(config.caption_duration ?? 0)
+
   const handleChange = (key: string, value: unknown) => {
     updateNodeConfig(nodeId, { [key]: value })
   }
@@ -67,6 +77,13 @@ export function SubtitleVisualEditor({
         highlightScale={highlightScale}
         aspectRatio={aspectRatio}
         onPositionChange={handlePositionChange}
+        enableCaption={enableCaption}
+        captionText={captionText}
+        captionFontSize={captionFontSize}
+        captionTextColor={captionTextColor}
+        captionOutlineColor={captionOutlineColor}
+        captionOutlineWidth={captionOutlineWidth}
+        captionBackground={captionBackground}
       />
 
       <SubtitleStyleControls
@@ -82,6 +99,14 @@ export function SubtitleVisualEditor({
         highlightColor={highlightColor}
         highlightScale={highlightScale}
         maxWordsPerGroup={maxWordsPerGroup}
+        enableCaption={enableCaption}
+        captionText={captionText}
+        captionFontSize={captionFontSize}
+        captionTextColor={captionTextColor}
+        captionOutlineColor={captionOutlineColor}
+        captionOutlineWidth={captionOutlineWidth}
+        captionBackground={captionBackground}
+        captionDuration={captionDuration}
         onChange={handleChange}
       />
     </div>

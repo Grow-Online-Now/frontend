@@ -61,6 +61,15 @@ interface SubtitleStyleControlsProps {
   highlightColor: string
   highlightScale: number
   maxWordsPerGroup: number
+  // Caption
+  enableCaption: boolean
+  captionText: string
+  captionFontSize: number
+  captionTextColor: string
+  captionOutlineColor: string
+  captionOutlineWidth: number
+  captionBackground: boolean
+  captionDuration: number
   onChange: (key: string, value: unknown) => void
 }
 
@@ -77,6 +86,14 @@ export function SubtitleStyleControls({
   highlightColor,
   highlightScale,
   maxWordsPerGroup,
+  enableCaption,
+  captionText,
+  captionFontSize,
+  captionTextColor,
+  captionOutlineColor,
+  captionOutlineWidth,
+  captionBackground,
+  captionDuration,
   onChange,
 }: SubtitleStyleControlsProps) {
   const { t } = useTranslation()
@@ -234,6 +251,103 @@ export function SubtitleStyleControls({
                   onChange={(e) => onChange('max_words_per_group', Number(e.target.value))}
                   className={INPUT_CLASS}
                 />
+              </FieldRow>
+            </>
+          )}
+        </div>
+      </CollapsibleGroup>
+
+      {/* Hook Caption */}
+      <CollapsibleGroup labelKey={`${prefix}.caption`}>
+        <div className="flex flex-col gap-3">
+          <label className="flex cursor-pointer items-center gap-2">
+            <input
+              type="checkbox"
+              checked={enableCaption}
+              onChange={(e) => onChange('enable_caption', e.target.checked)}
+              className="h-4 w-4 rounded"
+              style={{ accentColor: '#8b5cf6' }}
+            />
+            <span className="text-text-secondary text-sm">
+              {t(`${prefix}.enableCaption`)}
+            </span>
+          </label>
+
+          {enableCaption && (
+            <>
+              <FieldRow labelKey={`${prefix}.captionText`}>
+                <input
+                  type="text"
+                  value={captionText}
+                  onChange={(e) => onChange('caption_text', e.target.value)}
+                  placeholder={t(`${prefix}.captionPlaceholder`)}
+                  className={INPUT_CLASS}
+                />
+              </FieldRow>
+
+              <FieldRow labelKey={`${prefix}.captionFontSize`}>
+                <input
+                  type="number"
+                  value={captionFontSize}
+                  min={8}
+                  max={72}
+                  onChange={(e) => onChange('caption_font_size', Number(e.target.value))}
+                  className={INPUT_CLASS}
+                />
+              </FieldRow>
+
+              <FieldRow labelKey={`${prefix}.captionTextColor`}>
+                <ColorSwatches
+                  options={TEXT_COLOR_OPTIONS}
+                  selected={captionTextColor}
+                  onSelect={(v) => onChange('caption_text_color', v)}
+                />
+              </FieldRow>
+
+              <FieldRow labelKey={`${prefix}.captionOutlineColor`}>
+                <ColorSwatches
+                  options={OUTLINE_COLOR_OPTIONS}
+                  selected={captionOutlineColor}
+                  onSelect={(v) => onChange('caption_outline_color', v)}
+                />
+              </FieldRow>
+
+              <FieldRow labelKey={`${prefix}.captionOutlineWidth`}>
+                <input
+                  type="number"
+                  value={captionOutlineWidth}
+                  min={0}
+                  max={8}
+                  onChange={(e) => onChange('caption_outline_width', Number(e.target.value))}
+                  className={INPUT_CLASS}
+                />
+              </FieldRow>
+
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={captionBackground}
+                  onChange={(e) => onChange('caption_background', e.target.checked)}
+                  className="h-4 w-4 rounded"
+                  style={{ accentColor: '#8b5cf6' }}
+                />
+                <span className="text-text-secondary text-sm">
+                  {t(`${prefix}.captionBackgroundBox`)}
+                </span>
+              </label>
+
+              <FieldRow labelKey={`${prefix}.captionDuration`}>
+                <input
+                  type="number"
+                  value={captionDuration}
+                  min={0}
+                  max={60}
+                  onChange={(e) => onChange('caption_duration', Number(e.target.value))}
+                  className={INPUT_CLASS}
+                />
+                <p className="text-text-muted mt-1 text-xs">
+                  {t(`${prefix}.captionDurationHint`)}
+                </p>
               </FieldRow>
             </>
           )}

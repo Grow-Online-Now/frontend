@@ -30,6 +30,15 @@ const SUBTITLE_FIELD_KEYS = new Set([
   'highlight_scale',
   'max_words_per_group',
   'uppercase',
+  // Caption fields (also managed by the visual editor)
+  'enable_caption',
+  'caption_text',
+  'caption_font_size',
+  'caption_text_color',
+  'caption_outline_color',
+  'caption_outline_width',
+  'caption_background',
+  'caption_duration',
 ])
 
 /** Detect {{ ... }} tokens in a string value */

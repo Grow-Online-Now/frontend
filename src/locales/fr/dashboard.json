@@ -1131,7 +1131,18 @@
           "animationDynamic": "Dynamique (mot par mot)",
           "highlightColor": "Couleur de surbrillance",
           "highlightScale": "Échelle de surbrillance",
-          "wordsPerGroup": "Mots par groupe"
+          "wordsPerGroup": "Mots par groupe",
+          "caption": "Accroche",
+          "enableCaption": "Activer l'accroche",
+          "captionText": "Texte d'accroche",
+          "captionPlaceholder": "Il a dit ça en live 😱 ???",
+          "captionFontSize": "Taille de l'accroche",
+          "captionTextColor": "Couleur du texte",
+          "captionOutlineColor": "Couleur du contour",
+          "captionOutlineWidth": "Épaisseur du contour",
+          "captionBackgroundBox": "Fond de l'accroche",
+          "captionDuration": "Durée de l'accroche (secondes)",
+          "captionDurationHint": "0 = afficher pendant tout le clip"
         }
       },
       "executions": {
