@@ -14,6 +14,7 @@
         "automate": "Automate"
       },
       "workflows": "Workflows",
+      "automations": "Automations",
       "media": "Media Library",
       "overview": "Overview",
       "analytics": "Analytics",
@@ -1500,6 +1501,136 @@
         "logic": "Logic",
         "output": "Output",
         "ai": "AI"
+      }
+    },
+    "automations": {
+      "title": "Automations",
+      "description": "Set up automated content repurposing pipelines",
+      "createButton": "Create Automation",
+      "empty": {
+        "title": "No automations yet",
+        "description": "Create your first automation to start repurposing content automatically",
+        "cta": "Create Automation"
+      },
+      "card": {
+        "clipsPerDay": "{{count}} clips/day",
+        "lastRun": "Last run {{time}}",
+        "noRuns": "No runs yet",
+        "clipsPosted": "{{count}} clips posted",
+        "noNewContent": "No new content"
+      },
+      "status": {
+        "active": "Active",
+        "paused": "Paused",
+        "draft": "Draft"
+      },
+      "actions": {
+        "activate": "Activate",
+        "pause": "Pause",
+        "edit": "Edit",
+        "delete": "Delete",
+        "run": "Run Now",
+        "confirmDelete": "Are you sure you want to delete this automation?"
+      },
+      "wizard": {
+        "title": "Create Automation",
+        "steps": {
+          "source": "Source",
+          "clipStyle": "Clip Style",
+          "posting": "Posting",
+          "review": "Review"
+        },
+        "next": "Next",
+        "back": "Back",
+        "source": {
+          "title": "Choose your content source",
+          "description": "Select where your videos come from",
+          "youtube": {
+            "title": "YouTube Channel",
+            "description": "Fetch videos from a YouTube channel"
+          },
+          "twitch": {
+            "title": "Twitch Channel",
+            "description": "Fetch clips or VODs from a Twitch channel"
+          },
+          "channelUrl": "Channel URL",
+          "channelUrlPlaceholder": "https://www.youtube.com/@ChannelName",
+          "twitchPlaceholder": "https://www.twitch.tv/username",
+          "contentType": "Content Type",
+          "clips": "Clips",
+          "vods": "VODs"
+        },
+        "clipStyle": {
+          "title": "Clip style & settings",
+          "description": "Configure how your clips will look",
+          "presets": {
+            "title": "Subtitle Style",
+            "tiktok_viral": "TikTok Viral",
+            "tiktok_viralDesc": "Dynamic word-by-word highlight, bold uppercase",
+            "clean": "Clean",
+            "cleanDesc": "Static white subtitles, bottom position",
+            "bold": "Bold",
+            "boldDesc": "Large uppercase with cyan highlight",
+            "none": "No Subtitles",
+            "noneDesc": "Clips without subtitle overlay"
+          },
+          "customize": "Customize",
+          "clipsPerVideo": "Clips per video",
+          "durationRange": "Clip duration",
+          "minSeconds": "Min (seconds)",
+          "maxSeconds": "Max (seconds)",
+          "tone": "Tone",
+          "tones": {
+            "engaging": "Engaging",
+            "professional": "Professional",
+            "casual": "Casual",
+            "educational": "Educational",
+            "entertaining": "Entertaining",
+            "inspirational": "Inspirational"
+          }
+        },
+        "posting": {
+          "title": "Posting schedule",
+          "description": "Choose where and when to post your clips",
+          "platforms": "Platforms",
+          "platformsDescription": "Select which platforms to post to",
+          "connect": "Connect",
+          "clipsPerDay": "Clips per day",
+          "postingTimes": "Posting times",
+          "addTime": "Add time",
+          "removeTime": "Remove"
+        },
+        "review": {
+          "title": "Review & activate",
+          "description": "Review your automation settings",
+          "name": "Automation name",
+          "namePlaceholder": "My Automation",
+          "source": "Source",
+          "clipSettings": "Clip Settings",
+          "subtitleStyle": "Subtitle Style",
+          "schedule": "Schedule",
+          "activate": "Activate",
+          "saveDraft": "Save as Draft",
+          "creating": "Creating..."
+        }
+      },
+      "detail": {
+        "runs": "Runs",
+        "totalRuns": "Total Runs",
+        "totalClips": "Clips Posted",
+        "nextRun": "Next Run",
+        "configuration": "Configuration",
+        "runHistory": "Run History",
+        "noRuns": "No runs yet",
+        "runNow": "Run Now",
+        "running": "Running...",
+        "videoProcessed": "Video processed"
+      },
+      "runStatus": {
+        "running": "Running",
+        "completed": "Completed",
+        "failed": "Failed",
+        "no_new_content": "No New Content"
       }
     }
   }

@@ -22,7 +22,8 @@
       "accounts": "Cuentas",
       "settings": "Configuración",
       "comingSoon": "Pronto",
-      "workflows": "Flujos de trabajo"
+      "workflows": "Flujos de trabajo",
+      "automations": "Automatizaciones"
     },
     "createTypeModal": {
       "title": "Crear una publicación",

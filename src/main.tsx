@@ -38,6 +38,9 @@ const AccountsPage = lazy(() => import('./pages/dashboard/AccountsPage.tsx'))
 const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage.tsx'))
 const WorkflowsPage = lazy(() => import('./pages/dashboard/WorkflowsPage.tsx'))
 const WorkflowEditorPage = lazy(() => import('./pages/dashboard/WorkflowEditorPage.tsx'))
+const AutomationsPage = lazy(() => import('./pages/dashboard/AutomationsPage.tsx'))
+const AutomationWizardPage = lazy(() => import('./pages/dashboard/AutomationWizardPage.tsx'))
+const AutomationDetailPage = lazy(() => import('./pages/dashboard/AutomationDetailPage.tsx'))
 
 // Define routes that will be used with language prefix
 const localizedRoutes = [
@@ -170,6 +173,30 @@ const localizedRoutes = [
         element: (
           <Suspense fallback={<DashboardPageLoader />}>
             <WorkflowEditorPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'automations',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <AutomationsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'automations/new',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <AutomationWizardPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'automations/:id',
+        element: (
+          <Suspense fallback={<DashboardPageLoader />}>
+            <AutomationDetailPage />
           </Suspense>
         ),
       },

@@ -21,7 +21,8 @@
       "accounts": "Comptes",
       "settings": "Paramètres",
       "comingSoon": "Bientôt",
-      "workflows": "Workflows"
+      "workflows": "Workflows",
+      "automations": "Automations"
     },
     "createTypeModal": {
       "title": "Créer une publication",
