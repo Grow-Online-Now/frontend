@@ -56,8 +56,6 @@ export function useSubtitleDrag(
           const container = containerRef.current
           if (container) {
             // Read the final yPercent from the ref-based calculation
-            const rect = container.getBoundingClientRect()
-            const lastEvent = dragRef.current
             // We can't access React state here easily, so we recalculate
             // Actually we persist the final value via a closure trick
           }

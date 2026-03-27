@@ -3,8 +3,9 @@
  * Fetches node type definitions from the API
  */
 
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useMemo } from 'react'
 import { getNodeTypes } from '@/services/workflows.service'
+import { useFetchData } from '@/hooks/useFetchData'
 import type { NodeTypeDefinition, NodeCategory } from '@/types/workflow'
 
 interface UseNodeTypesReturn {
@@ -17,26 +18,9 @@ interface UseNodeTypesReturn {
 }
 
 export function useNodeTypes(): UseNodeTypesReturn {
-  const [nodeTypes, setNodeTypes] = useState<NodeTypeDefinition[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const { data, isLoading, error, refetch } = useFetchData(() => getNodeTypes(), [])
 
-  const fetchNodeTypes = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      setError(null)
-      const data = await getNodeTypes()
-      setNodeTypes(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch node types')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchNodeTypes()
-  }, [fetchNodeTypes])
+  const nodeTypes = useMemo(() => data ?? [], [data])
 
   const nodeTypeMap = useMemo(() => {
     const map: Record<string, NodeTypeDefinition> = {}
@@ -55,5 +39,5 @@ export function useNodeTypes(): UseNodeTypesReturn {
     return map
   }, [nodeTypes])
 
-  return { nodeTypes, nodeTypeMap, nodesByCategory, isLoading, error, refetch: fetchNodeTypes }
+  return { nodeTypes, nodeTypeMap, nodesByCategory, isLoading, error, refetch }
 }

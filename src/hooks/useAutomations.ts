@@ -7,6 +7,7 @@ import {
   pauseAutomation,
   triggerAutomationRun,
 } from '@/services/automations.service'
+import { useFetchData } from '@/hooks/useFetchData'
 import type { Automation, AutomationsListResponse } from '@/types/automation'
 
 export function useAutomations(params?: { status?: string }) {
@@ -41,7 +42,7 @@ export function useAutomations(params?: { status?: string }) {
         return false
       }
     },
-    [fetch],
+    [fetch]
   )
 
   const activate = useCallback(
@@ -54,7 +55,7 @@ export function useAutomations(params?: { status?: string }) {
         return false
       }
     },
-    [fetch],
+    [fetch]
   )
 
   const pause = useCallback(
@@ -67,7 +68,7 @@ export function useAutomations(params?: { status?: string }) {
         return false
       }
     },
-    [fetch],
+    [fetch]
   )
 
   const trigger = useCallback(
@@ -80,7 +81,7 @@ export function useAutomations(params?: { status?: string }) {
         return false
       }
     },
-    [fetch],
+    [fetch]
   )
 
   return {
@@ -97,27 +98,10 @@ export function useAutomations(params?: { status?: string }) {
 }
 
 export function useAutomation(id: string | undefined) {
-  const [automation, setAutomation] = useState<Automation | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  const fetch = useCallback(async () => {
-    if (!id) return
-    setIsLoading(true)
-    setError(null)
-    try {
-      const result = await getAutomation(id)
-      setAutomation(result)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load automation')
-    } finally {
-      setIsLoading(false)
-    }
+  const { data, isLoading, error, refetch } = useFetchData(async () => {
+    if (!id) return null
+    return getAutomation(id)
   }, [id])
 
-  useEffect(() => {
-    fetch()
-  }, [fetch])
-
-  return { automation, isLoading, error, refetch: fetch }
+  return { automation: data as Automation | null, isLoading, error, refetch }
 }

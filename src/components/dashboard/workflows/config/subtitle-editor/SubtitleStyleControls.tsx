@@ -268,9 +268,7 @@ export function SubtitleStyleControls({
               className="h-4 w-4 rounded"
               style={{ accentColor: '#8b5cf6' }}
             />
-            <span className="text-text-secondary text-sm">
-              {t(`${prefix}.enableCaption`)}
-            </span>
+            <span className="text-text-secondary text-sm">{t(`${prefix}.enableCaption`)}</span>
           </label>
 
           {enableCaption && (
@@ -345,9 +343,7 @@ export function SubtitleStyleControls({
                   onChange={(e) => onChange('caption_duration', Number(e.target.value))}
                   className={INPUT_CLASS}
                 />
-                <p className="text-text-muted mt-1 text-xs">
-                  {t(`${prefix}.captionDurationHint`)}
-                </p>
+                <p className="text-text-muted mt-1 text-xs">{t(`${prefix}.captionDurationHint`)}</p>
               </FieldRow>
             </>
           )}
@@ -379,9 +375,9 @@ function CollapsibleGroup({
         className="hover:bg-bg-hover flex w-full items-center gap-2 rounded-lg px-3 py-2 transition-colors duration-150"
       >
         {open ? (
-          <ChevronDown className="h-4 w-4 text-text-muted" />
+          <ChevronDown className="text-text-muted h-4 w-4" />
         ) : (
-          <ChevronRight className="h-4 w-4 text-text-muted" />
+          <ChevronRight className="text-text-muted h-4 w-4" />
         )}
         <span className="text-text-tertiary text-xs font-medium tracking-wider uppercase">
           {t(labelKey)}
@@ -392,13 +388,7 @@ function CollapsibleGroup({
   )
 }
 
-function FieldRow({
-  labelKey,
-  children,
-}: {
-  labelKey: string
-  children: React.ReactNode
-}) {
+function FieldRow({ labelKey, children }: { labelKey: string; children: React.ReactNode }) {
   const { t } = useTranslation()
   return (
     <div>

@@ -117,15 +117,12 @@ export default function AutomationDetailPage() {
             <h1 className="text-text-primary text-2xl font-semibold tracking-tight">
               {automation.name}
             </h1>
-            <Badge
-              className={`${statusColors[automation.status]} border-0 text-xs font-medium`}
-            >
+            <Badge className={`${statusColors[automation.status]} border-0 text-xs font-medium`}>
               {t(`dashboard.automations.status.${automation.status}`)}
             </Badge>
           </div>
           <p className="text-text-tertiary mt-1 text-sm">
-            {isYoutube ? 'YouTube' : 'Twitch'} —{' '}
-            {automation.sourceConfig.channelUrl}
+            {isYoutube ? 'YouTube' : 'Twitch'} — {automation.sourceConfig.channelUrl}
           </p>
         </div>
 
@@ -153,15 +150,10 @@ export default function AutomationDetailPage() {
 
       {/* Stats */}
       <div className="mt-6 grid grid-cols-3 gap-3">
-        <StatCard
-          label={t('dashboard.automations.detail.totalRuns')}
-          value={String(runs.length)}
-        />
+        <StatCard label={t('dashboard.automations.detail.totalRuns')} value={String(runs.length)} />
         <StatCard
           label={t('dashboard.automations.detail.totalClips')}
-          value={String(
-            runs.reduce((sum, r) => sum + r.postsScheduled, 0),
-          )}
+          value={String(runs.reduce((sum, r) => sum + r.postsScheduled, 0))}
         />
         <StatCard
           label={t('dashboard.automations.card.clipsPerDay', {
@@ -195,17 +187,13 @@ export default function AutomationDetailPage() {
         </h2>
 
         {runs.length === 0 ? (
-          <p className="text-text-muted mt-4 text-sm">
-            {t('dashboard.automations.detail.noRuns')}
-          </p>
+          <p className="text-text-muted mt-4 text-sm">{t('dashboard.automations.detail.noRuns')}</p>
         ) : (
           <div className="mt-3 space-y-2">
             {runs.map((run) => {
-              const StatusIcon =
-                runStatusIcons[run.status as AutomationRunStatus] || Clock
+              const StatusIcon = runStatusIcons[run.status as AutomationRunStatus] || Clock
               const colorClass =
-                runStatusColors[run.status as AutomationRunStatus] ||
-                'text-text-muted'
+                runStatusColors[run.status as AutomationRunStatus] || 'text-text-muted'
 
               return (
                 <div
@@ -217,15 +205,15 @@ export default function AutomationDetailPage() {
                   />
                   <div className="flex-1">
                     <p className="text-text-primary text-sm">
-                      {run.videoTitle || run.videoUrl || t(`dashboard.automations.runStatus.${run.status}`)}
+                      {run.videoTitle ||
+                        run.videoUrl ||
+                        t(`dashboard.automations.runStatus.${run.status}`)}
                     </p>
                     <p className="text-text-muted text-xs">
                       {new Date(run.startedAt).toLocaleString()} —{' '}
                       {run.clipsGenerated > 0 &&
                         `${run.clipsGenerated} clips, ${run.postsScheduled} posts`}
-                      {run.error && (
-                        <span className="text-error"> {run.error}</span>
-                      )}
+                      {run.error && <span className="text-error"> {run.error}</span>}
                     </p>
                   </div>
                   <Badge

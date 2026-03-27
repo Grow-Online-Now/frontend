@@ -4,6 +4,7 @@
  */
 
 import { apiClient } from '@/lib/api-client'
+import { buildQueryString } from '@/lib/query-utils'
 import type {
   Workflow,
   CreateWorkflowRequest,
@@ -25,20 +26,6 @@ const ENDPOINTS = {
   runs: (id: string) => `/api/workflows/${id}/runs`,
   runById: (workflowId: string, runId: string) => `/api/workflows/${workflowId}/runs/${runId}`,
 } as const
-
-function buildQueryString(
-  params?: WorkflowsQueryParams | { page?: number; limit?: number }
-): string {
-  if (!params) return ''
-  const searchParams = new URLSearchParams()
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined && value !== null && value !== '') {
-      searchParams.append(key, String(value))
-    }
-  })
-  const query = searchParams.toString()
-  return query ? `?${query}` : ''
-}
 
 export async function getNodeTypes(): Promise<NodeTypeDefinition[]> {
   return apiClient.get<NodeTypeDefinition[]>(ENDPOINTS.nodeTypes)
@@ -86,17 +73,4 @@ export async function getWorkflowRuns(
 
 export async function getWorkflowRun(workflowId: string, runId: string): Promise<WorkflowRun> {
   return apiClient.get<WorkflowRun>(ENDPOINTS.runById(workflowId, runId))
-}
-
-export const workflowsService = {
-  getNodeTypes,
-  getAll: getWorkflows,
-  getById: getWorkflow,
-  create: createWorkflow,
-  update: updateWorkflow,
-  delete: deleteWorkflow,
-  run: runWorkflow,
-  runPartial: runPartialWorkflow,
-  getRuns: getWorkflowRuns,
-  getRun: getWorkflowRun,
 }

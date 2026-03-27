@@ -100,7 +100,7 @@ export function SubtitleCanvas({
       {/* Frame */}
       <div
         ref={containerRef}
-        className="relative w-full max-h-[240px] overflow-hidden rounded-xl"
+        className="relative max-h-[240px] w-full overflow-hidden rounded-xl"
         style={{
           aspectRatio: ratio,
           background: 'linear-gradient(180deg, #2a2a2e 0%, #1a1a1e 50%, #222226 100%)',
@@ -109,7 +109,7 @@ export function SubtitleCanvas({
       >
         {/* Hook caption overlay — top of frame */}
         {enableCaption && (
-          <div className="absolute top-[8%] left-0 right-0 flex justify-center px-3">
+          <div className="absolute top-[8%] right-0 left-0 flex justify-center px-3">
             <span
               className="inline-block text-center leading-tight select-none"
               style={{
@@ -134,7 +134,7 @@ export function SubtitleCanvas({
         {/* Subtitle overlay */}
         <div
           onPointerDown={handlePointerDown}
-          className="absolute left-0 right-0 flex justify-center px-3"
+          className="absolute right-0 left-0 flex justify-center px-3"
           style={{
             top: `${yPercent}%`,
             transform: 'translateY(-50%)',

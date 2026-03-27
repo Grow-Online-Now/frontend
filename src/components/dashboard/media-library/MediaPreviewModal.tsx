@@ -45,7 +45,7 @@ export function MediaPreviewModal({
   const handleDownload = async () => {
     try {
       const { url } = await apiClient.get<{ url: string; expiresAt: string }>(
-        `/api/media/${media.id}/download-url`,
+        `/api/media/${media.id}/download-url`
       )
       const link = document.createElement('a')
       link.href = url

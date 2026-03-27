@@ -41,14 +41,7 @@ const PRESETS = [
   },
 ]
 
-const TONES = [
-  'engaging',
-  'professional',
-  'casual',
-  'educational',
-  'entertaining',
-  'inspirational',
-]
+const TONES = ['engaging', 'professional', 'casual', 'educational', 'entertaining', 'inspirational']
 
 export function ClipStyleStep({ state, onUpdate }: ClipStyleStepProps) {
   const { t } = useTranslation()
@@ -86,7 +79,7 @@ export function ClipStyleStep({ state, onUpdate }: ClipStyleStepProps) {
                 'border-border-default rounded-xl border p-4 text-left transition-all duration-150',
                 state.subtitles.preset === preset.key
                   ? 'border-border-focus bg-bg-hover ring-1 ring-[var(--border-focus)]'
-                  : 'hover:border-border-emphasis hover:bg-bg-hover',
+                  : 'hover:border-border-emphasis hover:bg-bg-hover'
               )}
             >
               {/* Mini preview */}
@@ -94,14 +87,10 @@ export function ClipStyleStep({ state, onUpdate }: ClipStyleStepProps) {
                 <span className={preset.style}>{preset.preview}</span>
               </div>
               <h3 className="text-text-primary text-sm font-medium">
-                {t(
-                  `dashboard.automations.wizard.clipStyle.presets.${preset.key}`,
-                )}
+                {t(`dashboard.automations.wizard.clipStyle.presets.${preset.key}`)}
               </h3>
               <p className="text-text-tertiary mt-0.5 text-xs">
-                {t(
-                  `dashboard.automations.wizard.clipStyle.presets.${preset.key}Desc`,
-                )}
+                {t(`dashboard.automations.wizard.clipStyle.presets.${preset.key}Desc`)}
               </p>
             </button>
           ))}
@@ -115,19 +104,14 @@ export function ClipStyleStep({ state, onUpdate }: ClipStyleStepProps) {
         className="text-text-secondary hover:text-text-primary flex items-center gap-1 text-sm font-medium transition-colors"
       >
         {t('dashboard.automations.wizard.clipStyle.customize')}
-        {showCustomize ? (
-          <ChevronUp className="h-4 w-4" />
-        ) : (
-          <ChevronDown className="h-4 w-4" />
-        )}
+        {showCustomize ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
       </button>
 
       {showCustomize && (
         <div className="bg-bg-subtle border-border-default space-y-4 rounded-lg border p-4">
           {/* Font, colors, etc. - simplified for v1 */}
           <p className="text-text-muted text-xs">
-            Advanced subtitle customization coming soon. Using preset styles for
-            now.
+            Advanced subtitle customization coming soon. Using preset styles for now.
           </p>
         </div>
       )}
@@ -201,9 +185,7 @@ export function ClipStyleStep({ state, onUpdate }: ClipStyleStepProps) {
           </Label>
           <Select
             value={state.clips.tone}
-            onValueChange={(value) =>
-              onUpdate({ clips: { ...state.clips, tone: value } })
-            }
+            onValueChange={(value) => onUpdate({ clips: { ...state.clips, tone: value } })}
           >
             <SelectTrigger>
               <SelectValue />
@@ -211,9 +193,7 @@ export function ClipStyleStep({ state, onUpdate }: ClipStyleStepProps) {
             <SelectContent>
               {TONES.map((tone) => (
                 <SelectItem key={tone} value={tone}>
-                  {t(
-                    `dashboard.automations.wizard.clipStyle.tones.${tone}`,
-                  )}
+                  {t(`dashboard.automations.wizard.clipStyle.tones.${tone}`)}
                 </SelectItem>
               ))}
             </SelectContent>

@@ -12,21 +12,14 @@ interface ReviewStepProps {
   isSubmitting: boolean
 }
 
-export function ReviewStep({
-  state,
-  onUpdate,
-  onSubmit,
-  isSubmitting,
-}: ReviewStepProps) {
+export function ReviewStep({ state, onUpdate, onSubmit, isSubmitting }: ReviewStepProps) {
   const { t } = useTranslation()
 
   const isYoutube = state.source.templateType === 'youtube_to_clips'
   const presetLabel =
     state.subtitles.preset === 'none'
       ? t('dashboard.automations.wizard.clipStyle.presets.none')
-      : t(
-          `dashboard.automations.wizard.clipStyle.presets.${state.subtitles.preset}`,
-        )
+      : t(`dashboard.automations.wizard.clipStyle.presets.${state.subtitles.preset}`)
 
   return (
     <div className="space-y-6">
@@ -102,9 +95,7 @@ export function ReviewStep({
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-bg-subtle rounded-lg px-4 py-3">
-      <dt className="text-text-muted text-xs font-medium uppercase tracking-wider">
-        {label}
-      </dt>
+      <dt className="text-text-muted text-xs font-medium tracking-wider uppercase">{label}</dt>
       <dd className="text-text-primary mt-1 text-sm">{value}</dd>
     </div>
   )

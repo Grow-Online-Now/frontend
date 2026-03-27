@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { SourceStep } from '@/components/dashboard/automations/wizard/SourceStep'
@@ -81,16 +81,10 @@ export default function AutomationWizardPage() {
       }
 
       await createAutomation(request)
-      toast.success(
-        activateNow
-          ? 'Automation created and activated!'
-          : 'Automation saved as draft',
-      )
+      toast.success(activateNow ? 'Automation created and activated!' : 'Automation saved as draft')
       navigate(`/${lang}/dashboard/automations`)
     } catch (err) {
-      toast.error(
-        err instanceof Error ? err.message : 'Failed to create automation',
-      )
+      toast.error(err instanceof Error ? err.message : 'Failed to create automation')
     } finally {
       setIsSubmitting(false)
     }
@@ -139,15 +133,9 @@ export default function AutomationWizardPage() {
 
       {/* Step content */}
       <div className="bg-bg-elevated border-border-default rounded-xl border p-6">
-        {currentStep === 0 && (
-          <SourceStep state={state} onUpdate={updateState} />
-        )}
-        {currentStep === 1 && (
-          <ClipStyleStep state={state} onUpdate={updateState} />
-        )}
-        {currentStep === 2 && (
-          <PostingStep state={state} onUpdate={updateState} />
-        )}
+        {currentStep === 0 && <SourceStep state={state} onUpdate={updateState} />}
+        {currentStep === 1 && <ClipStyleStep state={state} onUpdate={updateState} />}
+        {currentStep === 2 && <PostingStep state={state} onUpdate={updateState} />}
         {currentStep === 3 && (
           <ReviewStep
             state={state}

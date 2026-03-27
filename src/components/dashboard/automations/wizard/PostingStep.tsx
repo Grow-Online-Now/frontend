@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { Plus, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { useConnections } from '@/hooks/useConnections'
 import { cn } from '@/lib/utils'
@@ -59,7 +58,14 @@ export function PostingStep({ state, onUpdate }: PostingStepProps) {
   }
 
   // Platforms that support video posting
-  const videoPlatforms = ['tiktok', 'instagram', 'youtube', 'facebook', 'twitter', 'linkedin'] as const
+  const videoPlatforms = [
+    'tiktok',
+    'instagram',
+    'youtube',
+    'facebook',
+    'twitter',
+    'linkedin',
+  ] as const
 
   return (
     <div className="space-y-6">
@@ -104,7 +110,7 @@ export function PostingStep({ state, onUpdate }: PostingStepProps) {
                     ? 'border-border-focus bg-bg-hover text-text-primary ring-1 ring-[var(--border-focus)]'
                     : connection
                       ? 'border-border-default text-text-secondary hover:border-border-emphasis hover:bg-bg-hover'
-                      : 'border-border-default text-text-muted border-dashed',
+                      : 'border-border-default text-text-muted border-dashed'
                 )}
               >
                 <PlatformIcon platform={platform} size="xs" />
@@ -153,9 +159,7 @@ export function PostingStep({ state, onUpdate }: PostingStepProps) {
                 <button
                   type="button"
                   onClick={() => {
-                    const times = state.posting.postingTimes.filter(
-                      (_, i) => i !== index,
-                    )
+                    const times = state.posting.postingTimes.filter((_, i) => i !== index)
                     onUpdate({
                       posting: {
                         ...state.posting,

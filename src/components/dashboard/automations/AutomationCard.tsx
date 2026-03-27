@@ -1,11 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import {
-  Play,
-  Pause,
-  Trash2,
-  Zap,
-  MoreVertical,
-} from 'lucide-react'
+import { Play, Pause, Trash2, Zap, MoreVertical } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -15,9 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import type { Automation } from '@/types/automation'
-import type { SocialPlatform } from '@/types/connections'
 
 interface AutomationCardProps {
   automation: Automation
@@ -53,8 +45,7 @@ export function AutomationCard({
 
   const getLastRunText = () => {
     if (!lastRun) return t('dashboard.automations.card.noRuns')
-    if (lastRun.status === 'no_new_content')
-      return t('dashboard.automations.card.noNewContent')
+    if (lastRun.status === 'no_new_content') return t('dashboard.automations.card.noNewContent')
     if (lastRun.status === 'completed' && lastRun.postsScheduled > 0) {
       const timeAgo = getTimeAgo(lastRun.completedAt || lastRun.startedAt)
       return `${timeAgo} — ${t('dashboard.automations.card.clipsPosted', { count: lastRun.postsScheduled })}`
@@ -75,9 +66,7 @@ export function AutomationCard({
             <Zap className="text-text-secondary h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-text-primary text-sm font-medium">
-              {automation.name}
-            </h3>
+            <h3 className="text-text-primary text-sm font-medium">{automation.name}</h3>
             <p className="text-text-tertiary mt-0.5 text-xs">
               {isYoutube ? 'YouTube' : 'Twitch'} — {sourceConfig.channelUrl}
             </p>
@@ -85,9 +74,7 @@ export function AutomationCard({
         </div>
 
         <div className="flex items-center gap-2">
-          <Badge
-            className={`${statusColors[automation.status]} border-0 text-xs font-medium`}
-          >
+          <Badge className={`${statusColors[automation.status]} border-0 text-xs font-medium`}>
             {t(`dashboard.automations.status.${automation.status}`)}
           </Badge>
 

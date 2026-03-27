@@ -3,8 +3,8 @@
  * Hook for fetching a single workflow by ID
  */
 
-import { useState, useEffect, useCallback } from 'react'
 import { getWorkflow } from '@/services/workflows.service'
+import { useFetchData } from '@/hooks/useFetchData'
 import type { Workflow } from '@/types/workflow'
 
 interface UseWorkflowDetailReturn {
@@ -15,27 +15,10 @@ interface UseWorkflowDetailReturn {
 }
 
 export function useWorkflowDetail(id: string | undefined): UseWorkflowDetailReturn {
-  const [workflow, setWorkflow] = useState<Workflow | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  const fetchWorkflow = useCallback(async () => {
-    if (!id) return
-    try {
-      setIsLoading(true)
-      setError(null)
-      const data = await getWorkflow(id)
-      setWorkflow(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch workflow')
-    } finally {
-      setIsLoading(false)
-    }
+  const { data, isLoading, error, refetch } = useFetchData(async () => {
+    if (!id) return null
+    return getWorkflow(id)
   }, [id])
 
-  useEffect(() => {
-    fetchWorkflow()
-  }, [fetchWorkflow])
-
-  return { workflow, isLoading, error, refetch: fetchWorkflow }
+  return { workflow: data, isLoading, error, refetch }
 }

@@ -11,8 +11,7 @@ export default function AutomationsPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
-  const { automations, isLoading, remove, activate, pause, trigger } =
-    useAutomations()
+  const { automations, isLoading, remove, activate, pause, trigger } = useAutomations()
 
   const handleCreate = () => {
     navigate(`/${lang}/dashboard/automations/new`)
@@ -70,9 +69,7 @@ export default function AutomationsPage() {
               onPause={() => pause(automation.id)}
               onDelete={() => remove(automation.id)}
               onTrigger={() => trigger(automation.id)}
-              onClick={() =>
-                navigate(`/${lang}/dashboard/automations/${automation.id}`)
-              }
+              onClick={() => navigate(`/${lang}/dashboard/automations/${automation.id}`)}
             />
           ))}
         </div>

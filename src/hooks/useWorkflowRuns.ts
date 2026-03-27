@@ -3,9 +3,9 @@
  * Hook for fetching execution history for a workflow
  */
 
-import { useState, useEffect, useCallback } from 'react'
 import { getWorkflowRuns } from '@/services/workflows.service'
 import { useWorkflowEditorStore } from '@/stores/workflowEditorStore'
+import { useFetchData } from '@/hooks/useFetchData'
 import type { WorkflowRun } from '@/types/workflow'
 
 interface UseWorkflowRunsReturn {
@@ -18,29 +18,17 @@ interface UseWorkflowRunsReturn {
 
 export function useWorkflowRuns(workflowId: string | undefined): UseWorkflowRunsReturn {
   const runCount = useWorkflowEditorStore((s) => s.runCount)
-  const [runs, setRuns] = useState<WorkflowRun[]>([])
-  const [total, setTotal] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
-  const fetchRuns = useCallback(async () => {
-    if (!workflowId) return
-    try {
-      setIsLoading(true)
-      setError(null)
-      const data = await getWorkflowRuns(workflowId)
-      setRuns(data.runs)
-      setTotal(data.total)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch runs')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [workflowId])
+  const { data, isLoading, error, refetch } = useFetchData(async () => {
+    if (!workflowId) return { runs: [] as WorkflowRun[], total: 0 }
+    return getWorkflowRuns(workflowId)
+  }, [workflowId, runCount])
 
-  useEffect(() => {
-    fetchRuns()
-  }, [fetchRuns, runCount])
-
-  return { runs, total, isLoading, error, refetch: fetchRuns }
+  return {
+    runs: data?.runs ?? [],
+    total: data?.total ?? 0,
+    isLoading,
+    error,
+    refetch,
+  }
 }
