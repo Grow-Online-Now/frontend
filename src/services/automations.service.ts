@@ -5,9 +5,11 @@ import type {
   AutomationRun,
   AutomationsListResponse,
   AutomationRunsResponse,
+  AutomationPostsResponse,
   TemplatesResponse,
   CreateAutomationRequest,
   UpdateAutomationRequest,
+  ChannelMeta,
 } from '@/types/automation'
 
 const BASE = '/api/automations'
@@ -62,4 +64,20 @@ export async function getAutomationRuns(
 ): Promise<AutomationRunsResponse> {
   const query = buildQueryString(params)
   return apiClient.get<AutomationRunsResponse>(`${BASE}/${id}/runs${query}`)
+}
+
+export async function getAutomationPosts(
+  automationId: string
+): Promise<AutomationPostsResponse> {
+  return apiClient.get<AutomationPostsResponse>(`${BASE}/${automationId}/posts`)
+}
+
+export async function resolveChannel(
+  channelUrl: string,
+  platform: 'youtube' | 'twitch'
+): Promise<ChannelMeta> {
+  return apiClient.post<ChannelMeta>(`${BASE}/resolve-channel`, {
+    channelUrl,
+    platform,
+  })
 }

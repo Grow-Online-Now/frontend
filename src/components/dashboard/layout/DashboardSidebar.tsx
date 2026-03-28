@@ -37,13 +37,14 @@ import { useTheme } from '@/hooks/useTheme'
 import { useSubscription } from '@/hooks/useSubscription'
 import { WorkspaceSelector } from '@/components/dashboard/workspace/WorkspaceSelector'
 import { PLAN_DISPLAY_NAMES } from '@/types/subscription'
+import { useAutomations } from '@/hooks/useAutomations'
 
 interface NavCategory {
   labelKey: string
   items: (SidebarNavItem & { action?: 'openCreateModal' })[]
 }
 
-const navCategories: NavCategory[] = [
+const baseNavCategories: NavCategory[] = [
   {
     labelKey: 'dashboard.nav.categories.general',
     items: [
@@ -135,6 +136,20 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
   const { isDark, toggleTheme } = useTheme()
   const { subscription } = useSubscription()
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const { automations } = useAutomations()
+  const hasFailedAutomations = automations.some(
+    (a) => a.runs?.some((r) => r.status === 'failed') || a.status === 'failed'
+  )
+
+  // Build nav with dynamic dot on automations
+  const navCategories = baseNavCategories.map((cat) => ({
+    ...cat,
+    items: cat.items.map((item) =>
+      item.href === '/dashboard/automations'
+        ? { ...item, dot: hasFailedAutomations }
+        : item
+    ),
+  }))
 
   const user = session?.user
   const userName = user?.name || 'User'
@@ -228,7 +243,10 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
                       }
                     >
                       <item.icon className="size-5 opacity-70 transition-opacity group-hover:opacity-100" />
-                      <span>{t(item.labelKey)}</span>
+                      <span className="flex-1">{t(item.labelKey)}</span>
+                      {item.dot && (
+                        <span className="bg-error h-2 w-2 rounded-full" />
+                      )}
                     </NavLink>
                   )}
                 </li>

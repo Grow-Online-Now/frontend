@@ -1,10 +1,20 @@
 export type AutomationTemplateType = 'youtube_to_clips' | 'twitch_to_clips'
-export type AutomationStatus = 'active' | 'paused' | 'draft'
+export type AutomationStatus = 'active' | 'paused' | 'draft' | 'failed'
 export type AutomationRunStatus = 'running' | 'completed' | 'failed' | 'no_new_content'
+
+export interface ChannelMeta {
+  name: string
+  handle: string
+  subscriberCount: number | null
+  videoCount: number | null
+  viewCount: number | null
+  thumbnailUrl: string | null
+}
 
 export interface SourceConfig {
   channelUrl: string
   contentType?: 'clip' | 'vod'
+  channelMeta?: ChannelMeta
 }
 
 export interface ClipConfig {
@@ -95,6 +105,43 @@ export interface UpdateAutomationRequest {
   clipConfig?: ClipConfig
   subtitleConfig?: Record<string, unknown>
   postingConfig?: PostingConfig
+}
+
+export interface AutomationPostMedia {
+  id: string
+  url: string | null
+  fileName: string
+  contentType: string
+  mediaType: 'image' | 'video'
+}
+
+export interface AutomationPostAccount {
+  id: string
+  platform: string
+  displayName: string | null
+}
+
+export interface AutomationPostPlatformResult {
+  platform: string
+  status: string
+  url: string | null
+  postedAt: string | null
+}
+
+export interface AutomationPost {
+  id: string
+  caption: string
+  status: string
+  scheduled_at: string | null
+  created_at: string
+  automationRunId: string | null
+  media: AutomationPostMedia[]
+  social_accounts: AutomationPostAccount[]
+  platform_results: AutomationPostPlatformResult[]
+}
+
+export interface AutomationPostsResponse {
+  posts: AutomationPost[]
 }
 
 // Wizard step state

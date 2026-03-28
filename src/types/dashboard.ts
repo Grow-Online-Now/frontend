@@ -18,6 +18,7 @@ export interface SidebarNavItem {
   href: string
   badge?: number
   comingSoon?: boolean
+  dot?: boolean
 }
 
 // Calendar view types

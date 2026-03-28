@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Zap, Plus } from 'lucide-react'
@@ -5,16 +6,44 @@ import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { Button } from '@/components/ui/button'
 import { useAutomations } from '@/hooks/useAutomations'
-import { AutomationCard } from '@/components/dashboard/automations/AutomationCard'
+import { AutomationBoard } from '@/components/dashboard/automations/AutomationBoard'
+import { CreateAutomationPanel } from '@/components/dashboard/automations/CreateAutomationPanel'
+import { toast } from 'sonner'
 
 export default function AutomationsPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
-  const { automations, isLoading, remove, activate, pause, trigger } = useAutomations()
+  const { automations, isLoading, activate, pause, trigger, refetch } =
+    useAutomations()
 
-  const handleCreate = () => {
-    navigate(`/${lang}/dashboard/automations/new`)
+  const [showCreatePanel, setShowCreatePanel] = useState(false)
+
+  const handleRetry = async (id: string) => {
+    try {
+      await trigger(id)
+      toast.success(t('dashboard.automations.board.retryStarted'))
+    } catch {
+      toast.error(t('dashboard.automations.board.retryFailed'))
+    }
+  }
+
+  const handlePause = async (id: string) => {
+    try {
+      await pause(id)
+      toast.success(t('dashboard.automations.board.paused'))
+    } catch {
+      toast.error(t('dashboard.automations.board.pauseFailed'))
+    }
+  }
+
+  const handleResume = async (id: string) => {
+    try {
+      await activate(id)
+      toast.success(t('dashboard.automations.board.resumed'))
+    } catch {
+      toast.error(t('dashboard.automations.board.resumeFailed'))
+    }
   }
 
   if (isLoading) {
@@ -24,11 +53,11 @@ export default function AutomationsPage() {
           titleKey="dashboard.automations.title"
           descriptionKey="dashboard.automations.description"
         />
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {[1, 2].map((i) => (
+        <div className="mt-6 flex gap-4">
+          {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="bg-bg-elevated border-border-default h-48 animate-pulse rounded-xl border"
+              className="bg-bg-elevated border-border-default h-64 flex-1 animate-pulse rounded-xl border"
             />
           ))}
         </div>
@@ -42,7 +71,7 @@ export default function AutomationsPage() {
         titleKey="dashboard.automations.title"
         descriptionKey="dashboard.automations.description"
         actions={
-          <Button onClick={handleCreate} className="gap-2">
+          <Button onClick={() => setShowCreatePanel(true)} className="gap-2">
             <Plus className="h-4 w-4" />
             {t('dashboard.automations.createButton')}
           </Button>
@@ -56,24 +85,32 @@ export default function AutomationsPage() {
             titleKey="dashboard.automations.empty.title"
             descriptionKey="dashboard.automations.empty.description"
             ctaKey="dashboard.automations.empty.cta"
-            onCtaClick={handleCreate}
+            onCtaClick={() => setShowCreatePanel(true)}
           />
         </div>
       ) : (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {automations.map((automation) => (
-            <AutomationCard
-              key={automation.id}
-              automation={automation}
-              onActivate={() => activate(automation.id)}
-              onPause={() => pause(automation.id)}
-              onDelete={() => remove(automation.id)}
-              onTrigger={() => trigger(automation.id)}
-              onClick={() => navigate(`/${lang}/dashboard/automations/${automation.id}`)}
-            />
-          ))}
-        </div>
+        <>
+          <AutomationBoard
+            automations={automations}
+            onRetry={handleRetry}
+            onPause={handlePause}
+            onResume={handleResume}
+            onClick={(id) =>
+              navigate(`/${lang}/dashboard/automations/${id}`)
+            }
+          />
+        </>
       )}
+
+      {/* Create automation panel */}
+      <CreateAutomationPanel
+        open={showCreatePanel}
+        onOpenChange={setShowCreatePanel}
+        onCreated={() => {
+          setShowCreatePanel(false)
+          refetch()
+        }}
+      />
     </div>
   )
 }

@@ -5,14 +5,12 @@ import {
   Play,
   Pause,
   Trash2,
-  Loader2,
-  CheckCircle2,
-  XCircle,
-  Clock,
-  AlertTriangle,
+  RefreshCw,
+  AlertCircle,
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useAutomation } from '@/hooks/useAutomations'
 import {
   activateAutomation,
@@ -20,27 +18,18 @@ import {
   triggerAutomationRun,
   deleteAutomation,
 } from '@/services/automations.service'
-import type { AutomationRunStatus } from '@/types/automation'
+import { ChannelBanner } from '@/components/dashboard/automations/ChannelBanner'
+import { OverviewTab } from '@/components/dashboard/automations/detail/OverviewTab'
+import { ClipsTab } from '@/components/dashboard/automations/detail/ClipsTab'
+import { ConfigurationTab } from '@/components/dashboard/automations/detail/ConfigurationTab'
+import { LogsTab } from '@/components/dashboard/automations/detail/LogsTab'
 import { toast } from 'sonner'
 
 const statusColors: Record<string, string> = {
   active: 'bg-success-muted text-success',
   paused: 'bg-warning-muted text-warning',
+  failed: 'bg-error-muted text-error',
   draft: 'bg-bg-hover text-text-tertiary',
-}
-
-const runStatusIcons: Record<AutomationRunStatus, typeof CheckCircle2> = {
-  running: Loader2,
-  completed: CheckCircle2,
-  failed: XCircle,
-  no_new_content: AlertTriangle,
-}
-
-const runStatusColors: Record<AutomationRunStatus, string> = {
-  running: 'text-info',
-  completed: 'text-success',
-  failed: 'text-error',
-  no_new_content: 'text-warning',
 }
 
 export default function AutomationDetailPage() {
@@ -51,58 +40,65 @@ export default function AutomationDetailPage() {
 
   if (isLoading || !automation) {
     return (
-      <div className="mx-auto max-w-2xl">
-        <div className="bg-bg-elevated border-border-default h-64 animate-pulse rounded-xl border" />
+      <div>
+        <div className="bg-bg-elevated border-border-default h-32 animate-pulse rounded-xl border" />
+        <div className="bg-bg-elevated border-border-default mt-4 h-64 animate-pulse rounded-xl border" />
       </div>
     )
   }
 
   const isYoutube = automation.templateType === 'youtube_to_clips'
   const runs = automation.runs || []
+  const failedRuns = runs.filter((r) => r.status === 'failed')
+  const consecutiveFailures = getConsecutiveFailures(runs)
+  const channelMeta = automation.sourceConfig.channelMeta
+  const channelName = channelMeta?.name || automation.name
+  const channelHandle =
+    channelMeta?.handle || extractHandle(automation.sourceConfig.channelUrl, isYoutube)
 
   const handleActivate = async () => {
     try {
       await activateAutomation(automation.id)
-      toast.success('Automation activated')
+      toast.success(t('dashboard.automations.board.resumed'))
       refetch()
     } catch {
-      toast.error('Failed to activate')
+      toast.error(t('dashboard.automations.board.resumeFailed'))
     }
   }
 
   const handlePause = async () => {
     try {
       await pauseAutomation(automation.id)
-      toast.success('Automation paused')
+      toast.success(t('dashboard.automations.board.paused'))
       refetch()
     } catch {
-      toast.error('Failed to pause')
+      toast.error(t('dashboard.automations.board.pauseFailed'))
     }
   }
 
   const handleRun = async () => {
     try {
       await triggerAutomationRun(automation.id)
-      toast.success('Automation run started')
+      toast.success(t('dashboard.automations.board.retryStarted'))
       refetch()
     } catch {
-      toast.error('Failed to trigger run')
+      toast.error(t('dashboard.automations.board.retryFailed'))
     }
   }
 
   const handleDelete = async () => {
     try {
       await deleteAutomation(automation.id)
-      toast.success('Automation deleted')
+      toast.success(t('dashboard.automations.actions.delete'))
       navigate(`/${lang}/dashboard/automations`)
     } catch {
-      toast.error('Failed to delete')
+      toast.error(t('dashboard.automations.board.retryFailed'))
     }
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
-      {/* Header */}
+    <div>
+      {/* Back link */}
       <button
         onClick={() => navigate(`/${lang}/dashboard/automations`)}
         className="text-text-tertiary hover:text-text-primary mb-4 flex items-center gap-1 text-sm transition-colors"
@@ -111,140 +107,224 @@ export default function AutomationDetailPage() {
         {t('dashboard.automations.title')}
       </button>
 
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-text-primary text-2xl font-semibold tracking-tight">
-              {automation.name}
-            </h1>
-            <Badge className={`${statusColors[automation.status]} border-0 text-xs font-medium`}>
-              {t(`dashboard.automations.status.${automation.status}`)}
-            </Badge>
+      {/* Channel banner header */}
+      <div className="border-border-default overflow-hidden rounded-xl border">
+        <ChannelBanner
+          channelName={channelName}
+          platform={isYoutube ? 'youtube' : 'twitch'}
+          size="lg"
+        />
+
+        {/* Avatar row — overlaps banner */}
+        <div className="-mt-7 px-5">
+          <div className="relative inline-block">
+            <div className="bg-bg-active border-bg-subtle flex h-14 w-14 items-center justify-center rounded-full border-4 text-lg font-semibold">
+              {channelMeta?.thumbnailUrl ? (
+                <img
+                  src={channelMeta.thumbnailUrl}
+                  alt={channelName}
+                  className="h-full w-full rounded-full object-cover"
+                />
+              ) : (
+                channelName.charAt(0).toUpperCase()
+              )}
+            </div>
+            <div
+              className={`absolute -right-0.5 bottom-0 h-3.5 w-3.5 rounded-full border-2 ${
+                isYoutube ? 'bg-[#FF0000]' : 'bg-[#9146FF]'
+              } border-bg-subtle`}
+            />
           </div>
-          <p className="text-text-tertiary mt-1 text-sm">
-            {isYoutube ? 'YouTube' : 'Twitch'} — {automation.sourceConfig.channelUrl}
-          </p>
         </div>
 
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={handleRun}>
-            <Play className="mr-1 h-4 w-4" />
-            {t('dashboard.automations.detail.runNow')}
-          </Button>
-          {automation.status === 'active' ? (
-            <Button variant="outline" size="sm" onClick={handlePause}>
-              <Pause className="mr-1 h-4 w-4" />
-              {t('dashboard.automations.actions.pause')}
-            </Button>
-          ) : (
-            <Button variant="outline" size="sm" onClick={handleActivate}>
-              <Play className="mr-1 h-4 w-4" />
-              {t('dashboard.automations.actions.activate')}
-            </Button>
-          )}
-          <Button variant="ghost" size="sm" onClick={handleDelete}>
-            <Trash2 className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+        {/* Info + actions row — fully below banner */}
+        <div className="flex items-start justify-between px-5 pt-2 pb-5">
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-text-primary text-xl font-semibold tracking-tight">
+                {channelName}
+              </h1>
+              <Badge
+                className={`${statusColors[automation.status]} border-0 text-xs font-medium`}
+              >
+                {t(`dashboard.automations.status.${automation.status}`)}
+              </Badge>
+            </div>
+            <p className="text-text-tertiary mt-0.5 text-sm">
+              {isYoutube ? 'youtube.com/' : 'twitch.tv/'}
+              {channelHandle}
+              {channelMeta?.subscriberCount != null && (
+                <>
+                  {' · '}
+                  {formatCount(channelMeta.subscriberCount)}{' '}
+                  {t('dashboard.automations.board.subscribers')}
+                </>
+              )}
+              {channelMeta?.videoCount != null && (
+                <>
+                  {' · '}
+                  {channelMeta.videoCount}{' '}
+                  {t('dashboard.automations.board.videos')}
+                </>
+              )}
+            </p>
+          </div>
 
-      {/* Stats */}
-      <div className="mt-6 grid grid-cols-3 gap-3">
-        <StatCard label={t('dashboard.automations.detail.totalRuns')} value={String(runs.length)} />
-        <StatCard
-          label={t('dashboard.automations.detail.totalClips')}
-          value={String(runs.reduce((sum, r) => sum + r.postsScheduled, 0))}
-        />
-        <StatCard
-          label={t('dashboard.automations.card.clipsPerDay', {
-            count: automation.postingConfig.clipsPerDay,
-          })}
-          value={automation.postingConfig.postingTimes.join(', ')}
-        />
-      </div>
-
-      {/* Configuration summary */}
-      <div className="bg-bg-elevated border-border-default mt-6 rounded-xl border p-5">
-        <h2 className="text-text-primary text-sm font-semibold">
-          {t('dashboard.automations.detail.configuration')}
-        </h2>
-        <div className="mt-4 space-y-3">
-          <ConfigRow
-            label={t('dashboard.automations.wizard.review.clipSettings')}
-            value={`${automation.clipConfig.n_clips} clips, ${automation.clipConfig.clip_duration_min}-${automation.clipConfig.clip_duration_max}s, ${automation.clipConfig.tone}`}
-          />
-          <ConfigRow
-            label={t('dashboard.automations.wizard.review.schedule')}
-            value={`${automation.postingConfig.clipsPerDay} clips/day — ${automation.postingConfig.socialAccountIds.length} platform(s)`}
-          />
-        </div>
-      </div>
-
-      {/* Run history */}
-      <div className="mt-6">
-        <h2 className="text-text-primary text-sm font-semibold">
-          {t('dashboard.automations.detail.runHistory')}
-        </h2>
-
-        {runs.length === 0 ? (
-          <p className="text-text-muted mt-4 text-sm">{t('dashboard.automations.detail.noRuns')}</p>
-        ) : (
-          <div className="mt-3 space-y-2">
-            {runs.map((run) => {
-              const StatusIcon = runStatusIcons[run.status as AutomationRunStatus] || Clock
-              const colorClass =
-                runStatusColors[run.status as AutomationRunStatus] || 'text-text-muted'
-
-              return (
-                <div
-                  key={run.id}
-                  className="bg-bg-elevated border-border-default flex items-center gap-3 rounded-lg border px-4 py-3"
+          {/* Action buttons */}
+          <div className="flex gap-2">
+            {automation.status === 'active' && (
+              <>
+                <Button size="sm" onClick={handleRun} className="gap-1.5">
+                  <Play className="h-3.5 w-3.5" />
+                  {t('dashboard.automations.detail.runNow')}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePause}
+                  className="gap-1.5"
                 >
-                  <StatusIcon
-                    className={`h-4 w-4 ${colorClass} ${run.status === 'running' ? 'animate-spin' : ''}`}
-                  />
-                  <div className="flex-1">
-                    <p className="text-text-primary text-sm">
-                      {run.videoTitle ||
-                        run.videoUrl ||
-                        t(`dashboard.automations.runStatus.${run.status}`)}
-                    </p>
-                    <p className="text-text-muted text-xs">
-                      {new Date(run.startedAt).toLocaleString()} —{' '}
-                      {run.clipsGenerated > 0 &&
-                        `${run.clipsGenerated} clips, ${run.postsScheduled} posts`}
-                      {run.error && <span className="text-error"> {run.error}</span>}
-                    </p>
-                  </div>
-                  <Badge
-                    className={`${runStatusColors[run.status as AutomationRunStatus] || 'text-text-muted'} border-0 bg-transparent text-xs`}
-                  >
-                    {t(`dashboard.automations.runStatus.${run.status}`)}
-                  </Badge>
-                </div>
-              )
-            })}
+                  <Pause className="h-3.5 w-3.5" />
+                  {t('dashboard.automations.actions.pause')}
+                </Button>
+              </>
+            )}
+            {(automation.status === 'failed' ||
+              (automation.status === 'paused' && failedRuns.length > 0)) && (
+              <>
+                <Button size="sm" onClick={handleRun} className="gap-1.5">
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  {t('dashboard.automations.detail.retryNow')}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePause}
+                  className="gap-1.5"
+                >
+                  <Pause className="h-3.5 w-3.5" />
+                  {t('dashboard.automations.actions.pause')}
+                </Button>
+              </>
+            )}
+            {automation.status === 'paused' && failedRuns.length === 0 && (
+              <Button size="sm" onClick={handleActivate} className="gap-1.5">
+                <Play className="h-3.5 w-3.5" />
+                {t('dashboard.automations.actions.activate')}
+              </Button>
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleDelete}
+              className="text-text-muted hover:text-error"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      {/* Error alert banner (failed automations) */}
+      {consecutiveFailures > 0 && automation.status !== 'active' && (
+        <div className="bg-error-muted/50 border-border-default mt-4 rounded-xl border border-red-900/20 p-4">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="text-error mt-0.5 h-5 w-5 shrink-0" />
+            <div className="flex-1">
+              <p className="text-error text-sm font-medium">
+                {t('dashboard.automations.detail.pipelineFailing', {
+                  count: consecutiveFailures,
+                })}
+              </p>
+              <p className="text-text-secondary mt-1 text-sm">
+                {t('dashboard.automations.detail.pipelineFailingDesc')}
+              </p>
+              <div className="mt-3 flex gap-2">
+                <Button size="sm" onClick={handleRun} className="gap-1.5">
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  {t('dashboard.automations.detail.retryNow')}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const logsTab = document.querySelector(
+                      '[data-value="logs"]'
+                    ) as HTMLElement
+                    logsTab?.click()
+                  }}
+                  className="gap-1.5"
+                >
+                  {t('dashboard.automations.detail.viewLogs')}
+                </Button>
+                <Button variant="outline" size="sm" className="gap-1.5">
+                  {t('dashboard.automations.detail.editConfiguration')}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tabbed content */}
+      <Tabs defaultValue="overview" className="mt-6">
+        <TabsList className="h-auto w-full justify-start gap-6 rounded-none border-b border-border-default bg-transparent p-0">
+          {(['overview', 'clips', 'configuration', 'logs'] as const).map(
+            (tab) => (
+              <TabsTrigger
+                key={tab}
+                value={tab}
+                data-value={tab}
+                className="h-auto flex-none rounded-none border-0 border-b-2 border-b-transparent bg-transparent px-0 pt-0 pb-3 text-sm font-normal text-text-muted shadow-none transition-none hover:text-text-secondary data-[state=active]:border-b-text-primary data-[state=active]:bg-transparent data-[state=active]:font-medium data-[state=active]:text-text-primary data-[state=active]:shadow-none"
+              >
+                {t(`dashboard.automations.detail.tabs.${tab}`)}
+              </TabsTrigger>
+            )
+          )}
+        </TabsList>
+
+        <TabsContent value="overview" className="mt-6">
+          <OverviewTab automation={automation} />
+        </TabsContent>
+        <TabsContent value="clips" className="mt-6">
+          <ClipsTab automation={automation} />
+        </TabsContent>
+        <TabsContent value="configuration" className="mt-6">
+          <ConfigurationTab automation={automation} />
+        </TabsContent>
+        <TabsContent value="logs" className="mt-6">
+          <LogsTab automation={automation} />
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
 
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="bg-bg-elevated border-border-default rounded-lg border px-4 py-3">
-      <dt className="text-text-muted text-xs">{label}</dt>
-      <dd className="text-text-primary mt-1 text-sm font-semibold">{value}</dd>
-    </div>
-  )
+function extractHandle(url: string, isYoutube: boolean): string {
+  if (isYoutube) {
+    const match = url.match(/@([^/?\s]+)/)
+    return match ? `@${match[1]}` : url
+  }
+  const match = url.match(/twitch\.tv\/([^/?\s]+)/)
+  return match ? match[1] : url
 }
 
-function ConfigRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between">
-      <span className="text-text-tertiary text-sm">{label}</span>
-      <span className="text-text-primary text-sm">{value}</span>
-    </div>
-  )
+function formatCount(count: number): string {
+  if (count >= 1_000_000) return `${(count / 1_000_000).toFixed(1)}M`
+  if (count >= 1_000) return `${(count / 1_000).toFixed(1)}K`
+  return String(count)
+}
+
+function getConsecutiveFailures(
+  runs: NonNullable<import('@/types/automation').Automation['runs']>
+): number {
+  let count = 0
+  for (const run of runs) {
+    if (run.status === 'failed') {
+      count++
+    } else {
+      break
+    }
+  }
+  return count
 }
