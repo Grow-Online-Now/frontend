@@ -44,7 +44,7 @@ const defaultKillFeatures: KillFeature[] = [
     growOnlineStatus: 'full',
   },
   {
-    featureKey: 'workflow',
+    featureKey: 'automation',
     competitorStatus: 'manual',
     growOnlineStatus: 'auto',
   },

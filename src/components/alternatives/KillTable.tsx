@@ -14,7 +14,7 @@ interface KillTableProps {
 const featureKeys = [
   'contentCreation',
   'analytics',
-  'workflow',
+  'automation',
   'platformStrategy',
   'brandVoice',
   'hashtagStrategy',
@@ -89,7 +89,7 @@ export function KillTable({ competitor }: KillTableProps) {
 
                       {/* Grow Online (New Way) */}
                       <div className="flex items-center justify-center gap-2">
-                        {featureKey === 'workflow' ? (
+                        {featureKey === 'automation' ? (
                           <Zap className="text-primary h-5 w-5 shrink-0" />
                         ) : (
                           <Sparkles className="text-primary h-5 w-5 shrink-0" />

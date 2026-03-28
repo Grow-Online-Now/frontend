@@ -17,7 +17,6 @@ import {
   Sun,
   Moon,
   ImageIcon,
-  Workflow,
   Zap,
 } from 'lucide-react'
 import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
@@ -62,6 +61,16 @@ const baseNavCategories: NavCategory[] = [
     ],
   },
   {
+    labelKey: 'dashboard.nav.categories.automate',
+    items: [
+      {
+        labelKey: 'dashboard.nav.automations',
+        icon: Zap,
+        href: '/dashboard/automations',
+      },
+    ],
+  },
+  {
     labelKey: 'dashboard.nav.categories.create',
     items: [
       {
@@ -89,21 +98,6 @@ const baseNavCategories: NavCategory[] = [
         labelKey: 'dashboard.nav.calendar',
         icon: Calendar,
         href: '/dashboard/scheduler',
-      },
-    ],
-  },
-  {
-    labelKey: 'dashboard.nav.categories.automate',
-    items: [
-      {
-        labelKey: 'dashboard.nav.automations',
-        icon: Zap,
-        href: '/dashboard/automations',
-      },
-      {
-        labelKey: 'dashboard.nav.workflows',
-        icon: Workflow,
-        href: '/dashboard/workflows',
       },
     ],
   },

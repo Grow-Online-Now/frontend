@@ -35,8 +35,8 @@
           "old": "Métricas de Vanidad (Likes, Seguidores)",
           "new": "Métricas de Crecimiento (Conversión, ROI)"
         },
-        "workflow": {
-          "name": "Flujo de Trabajo",
+        "automation": {
+          "name": "Automatización",
           "old": "Programar y esperar lo mejor",
           "new": "Generar, Optimizar, Crecer"
         },

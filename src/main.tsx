@@ -36,8 +36,6 @@ const CreateMediaPostPage = lazy(() => import('./pages/dashboard/CreateMediaPost
 const MediaLibraryPage = lazy(() => import('./pages/dashboard/MediaLibraryPage.tsx'))
 const AccountsPage = lazy(() => import('./pages/dashboard/AccountsPage.tsx'))
 const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage.tsx'))
-const WorkflowsPage = lazy(() => import('./pages/dashboard/WorkflowsPage.tsx'))
-const WorkflowEditorPage = lazy(() => import('./pages/dashboard/WorkflowEditorPage.tsx'))
 const AutomationsPage = lazy(() => import('./pages/dashboard/AutomationsPage.tsx'))
 const AutomationWizardPage = lazy(() => import('./pages/dashboard/AutomationWizardPage.tsx'))
 const AutomationDetailPage = lazy(() => import('./pages/dashboard/AutomationDetailPage.tsx'))
@@ -157,22 +155,6 @@ const localizedRoutes = [
         element: (
           <Suspense fallback={<DashboardPageLoader />}>
             <SettingsPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'workflows',
-        element: (
-          <Suspense fallback={<DashboardPageLoader />}>
-            <WorkflowsPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'workflows/:id',
-        element: (
-          <Suspense fallback={<DashboardPageLoader />}>
-            <WorkflowEditorPage />
           </Suspense>
         ),
       },
