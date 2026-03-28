@@ -4,6 +4,7 @@ import type {
   Plan,
   CheckoutSession,
   PortalSession,
+  UsageResponse,
   BillingInterval,
   PlanType,
 } from '@/types/subscription'
@@ -11,6 +12,7 @@ import type {
 const ENDPOINTS = {
   subscription: '/api/subscriptions',
   plans: '/api/subscriptions/plans',
+  usage: '/api/subscriptions/usage',
   checkout: '/api/subscriptions/checkout',
   portal: '/api/subscriptions/portal',
   cancel: '/api/subscriptions/cancel',
@@ -29,6 +31,13 @@ export async function getSubscription(): Promise<Subscription> {
  */
 export async function getPlans(): Promise<Plan[]> {
   return apiClient.get<Plan[]>(ENDPOINTS.plans)
+}
+
+/**
+ * Get current usage statistics
+ */
+export async function getUsage(): Promise<UsageResponse> {
+  return apiClient.get<UsageResponse>(ENDPOINTS.usage)
 }
 
 /**
@@ -75,6 +84,7 @@ export async function resumeSubscription(): Promise<{ message: string }> {
 export const subscriptionService = {
   getSubscription,
   getPlans,
+  getUsage,
   createCheckoutSession,
   createPortalSession,
   cancelSubscription,

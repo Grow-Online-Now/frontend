@@ -765,12 +765,52 @@
       },
       "limits": {
         "workspaces": "Espaces de travail",
-        "postsPerMonth": "Publications/mois",
-        "platforms": "Plateformes",
+        "clipsPerMonth": "Clips/mois",
         "banner": {
           "title": "Limite d'espaces de travail atteinte",
           "description": "Vous utilisez {{current}} sur {{max}} espaces de travail avec le plan {{plan}}.",
           "upgrade": "Mettre à niveau"
+        }
+      },
+      "limitReached": {
+        "clips": {
+          "title": "Débloquez plus de clips",
+          "subtitle": "Créez plus de clips, automatisez votre pipeline de contenu et développez votre marque sans effort."
+        },
+        "workspaces": {
+          "title": "Grandissez sans limites",
+          "subtitle": "Gérez plus de marques, collaborez avec votre équipe et développez votre agence."
+        },
+        "currentUsage": "{{used}}/{{limit}} utilisés",
+        "upgradeHint": "Passez à un plan supérieur",
+        "upgradeToLabel": "Passer à {{plan}}",
+        "cancelAnytime": "Annulez à tout moment. Sans engagement.",
+        "perMonth": "/mois",
+        "features": {
+          "clips50": {
+            "title": "50 clips par mois",
+            "description": "5x plus de clips pour alimenter votre machine à contenu."
+          },
+          "clips500": {
+            "title": "500 clips par mois",
+            "description": "Volume professionnel pour les créateurs sérieux."
+          },
+          "unlimitedWorkspaces": {
+            "title": "Espaces de travail illimités",
+            "description": "Gérez toutes vos marques au même endroit."
+          },
+          "prioritySupport": {
+            "title": "Support prioritaire",
+            "description": "Obtenez de l'aide rapidement quand vous en avez besoin."
+          },
+          "teamCollaboration": {
+            "title": "Collaboration en équipe",
+            "description": "Invitez votre équipe et travaillez ensemble."
+          },
+          "apiAccess": {
+            "title": "Accès API",
+            "description": "Créez des intégrations et workflows personnalisés."
+          }
         }
       },
       "features": {
@@ -808,6 +848,18 @@
         "upgradeDescription": "Accédez à plus de fonctionnalités et des limites plus élevées",
         "changePlanTitle": "Changer de plan",
         "changePlanDescription": "Vous êtes actuellement sur {{plan}}. Choisissez un nouveau plan ci-dessous."
+      },
+      "welcome": {
+        "title": "Bienvenue sur {{plan}}",
+        "subtitle": "Votre mise à niveau est active. Voici ce que vous avez débloqué.",
+        "cta": "C'est parti",
+        "perks": {
+          "clips50": "50 clips par mois",
+          "clips500": "500 clips par mois",
+          "unlimitedWorkspaces": "Espaces de travail illimités",
+          "prioritySupport": "Support prioritaire",
+          "teamAndApi": "Collaboration en équipe & accès API"
+        }
       },
       "upgrade": {
         "title": "Mettre à niveau votre plan",

@@ -86,6 +86,11 @@
   --gradient-feature: linear-gradient(135deg, #8b5cf6, #ec4899);
 }
 
+/* Feature gradient utility — linear-gradient can't be used as bg-color */
+@utility bg-gradient-feature {
+  background: var(--gradient-feature);
+}
+
 /* Tell Tailwind about dynamic color tokens (uses CSS vars from :root) */
 @theme inline {
   --color-background: var(--color-background);

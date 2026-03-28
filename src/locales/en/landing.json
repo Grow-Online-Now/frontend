@@ -345,46 +345,46 @@
     "billedAnnually": "/user /month (billed annually)",
     "billedMonthly": "/user /month (billed monthly)",
     "contactUs": "Contact us",
+    "free": "Free",
     "badges": {
       "savePercent": "Save {{percent}}%",
       "popular": "Popular"
     },
     "tiers": {
-      "starter": {
-        "name": "Starter",
-        "description": "For creators and solopreneurs ready to grow their social presence.",
-        "cta": "Try free for 7 days",
+      "free": {
+        "name": "Free",
+        "description": "Get started and see what Grow Online can do.",
+        "cta": "Get started free",
         "features": {
-          "0": "Post to 5 social platforms",
-          "1": "AI-powered content suggestions",
-          "2": "Basic analytics dashboard",
-          "3": "Content calendar",
-          "4": "Best time to post recommendations"
+          "0": "10 clips per month",
+          "1": "1 workspace",
+          "2": "Post to all platforms",
+          "3": "Basic scheduling"
         }
       },
-      "professional": {
-        "name": "Professional",
-        "description": "For growing businesses and teams managing multiple brands.",
-        "includesPrevious": "Everything in Starter, plus:",
-        "cta": "Try free for 7 days",
+      "pro": {
+        "name": "Pro",
+        "description": "For creators and teams ready to scale content production.",
+        "includesPrevious": "Everything in Free, plus:",
+        "cta": "Start with Pro",
         "features": {
-          "0": "Unlimited social accounts",
-          "1": "Advanced AI content generation",
-          "2": "Team collaboration tools",
-          "3": "Competitor analysis",
-          "4": "Priority support"
+          "0": "50 clips per month",
+          "1": "Unlimited workspaces",
+          "2": "Basic analytics",
+          "3": "Priority support",
+          "4": "AI-powered content"
         }
       },
-      "enterprise": {
-        "name": "Enterprise",
-        "description": "For organizations with enterprise-grade security and compliance requirements.",
-        "includesPrevious": "Everything in Professional, plus:",
-        "cta": "Speak to sales",
+      "growth": {
+        "name": "Growth",
+        "description": "For agencies and power users managing multiple brands at scale.",
+        "includesPrevious": "Everything in Pro, plus:",
+        "cta": "Start with Growth",
         "features": {
-          "0": "SSO login",
-          "1": "On-premise deployment (optional)",
-          "2": "Advanced security & SLA",
-          "3": "Dedicated account manager & training"
+          "0": "500 clips per month",
+          "1": "Advanced analytics",
+          "2": "Team collaboration",
+          "3": "API access"
         }
       }
     }

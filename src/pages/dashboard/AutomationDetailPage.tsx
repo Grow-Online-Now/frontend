@@ -12,6 +12,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useAutomation } from '@/hooks/useAutomations'
+import { useUpgradePrompt } from '@/contexts/UpgradePromptContext'
+import { isLimitError } from '@/lib/api-client'
 import {
   activateAutomation,
   pauseAutomation,
@@ -37,6 +39,7 @@ export default function AutomationDetailPage() {
   const navigate = useNavigate()
   const { lang = 'en', id } = useParams<{ lang: string; id: string }>()
   const { automation, isLoading, refetch } = useAutomation(id)
+  const { showUpgradePrompt } = useUpgradePrompt()
 
   if (isLoading || !automation) {
     return (
@@ -81,8 +84,17 @@ export default function AutomationDetailPage() {
       await triggerAutomationRun(automation.id)
       toast.success(t('dashboard.automations.board.retryStarted'))
       refetch()
-    } catch {
-      toast.error(t('dashboard.automations.board.retryFailed'))
+    } catch (error) {
+      if (isLimitError(error)) {
+        showUpgradePrompt(
+          error.data.limitType as 'clips' | 'workspaces',
+          error.data.current,
+          error.data.limit,
+          error.data.plan as 'FREE' | 'PRO' | 'GROWTH'
+        )
+      } else {
+        toast.error(t('dashboard.automations.board.retryFailed'))
+      }
     }
   }
 

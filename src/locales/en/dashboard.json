@@ -1060,12 +1060,52 @@
       },
       "limits": {
         "workspaces": "Workspaces",
-        "postsPerMonth": "Posts/month",
-        "platforms": "Platforms",
+        "clipsPerMonth": "Clips/month",
         "banner": {
           "title": "Workspace limit reached",
           "description": "You're using {{current}} of {{max}} workspaces on the {{plan}} plan.",
           "upgrade": "Upgrade"
+        }
+      },
+      "limitReached": {
+        "clips": {
+          "title": "Unlock more clips",
+          "subtitle": "Create more clips, automate your content pipeline, and scale your brand effortlessly."
+        },
+        "workspaces": {
+          "title": "Grow without limits",
+          "subtitle": "Manage more brands, collaborate with your team, and scale your agency."
+        },
+        "currentUsage": "{{used}}/{{limit}} used",
+        "upgradeHint": "Upgrade for more",
+        "upgradeToLabel": "Upgrade to {{plan}}",
+        "cancelAnytime": "Cancel anytime. No lock-in.",
+        "perMonth": "/mo",
+        "features": {
+          "clips50": {
+            "title": "50 clips per month",
+            "description": "5x more clips to fuel your content machine."
+          },
+          "clips500": {
+            "title": "500 clips per month",
+            "description": "Enterprise-grade volume for serious creators."
+          },
+          "unlimitedWorkspaces": {
+            "title": "Unlimited workspaces",
+            "description": "Manage all your brands in one place."
+          },
+          "prioritySupport": {
+            "title": "Priority support",
+            "description": "Get help when you need it, fast."
+          },
+          "teamCollaboration": {
+            "title": "Team collaboration",
+            "description": "Invite your team and work together seamlessly."
+          },
+          "apiAccess": {
+            "title": "API access",
+            "description": "Build custom integrations and workflows."
+          }
         }
       },
       "features": {
@@ -1103,6 +1143,18 @@
         "upgradeDescription": "Get access to more features and higher limits",
         "changePlanTitle": "Change Plan",
         "changePlanDescription": "You're currently on {{plan}}. Choose a new plan below."
+      },
+      "welcome": {
+        "title": "Welcome to {{plan}}",
+        "subtitle": "Your upgrade is active. Here's what you've unlocked.",
+        "cta": "Let's go",
+        "perks": {
+          "clips50": "50 clips per month",
+          "clips500": "500 clips per month",
+          "unlimitedWorkspaces": "Unlimited workspaces",
+          "prioritySupport": "Priority support",
+          "teamAndApi": "Team collaboration & API access"
+        }
       },
       "upgrade": {
         "title": "Upgrade Your Plan",

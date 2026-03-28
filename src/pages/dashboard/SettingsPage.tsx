@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 import { useSession } from '@/lib/auth-client'
 import { PageHeader } from '@/components/dashboard/shared/PageHeader'
 import { DashboardCard } from '@/components/dashboard/shared/DashboardCard'
@@ -22,6 +23,9 @@ export default function SettingsPage() {
   const { data: session } = useSession()
   const navigate = useNavigate()
   const { lang = 'en' } = useParams<{ lang: string }>()
+
+  const [searchParams] = useSearchParams()
+  const initialTab = searchParams.get('success') === 'true' || searchParams.get('canceled') === 'true' ? 'billing' : 'profile'
 
   const user = session?.user
   const [name, setName] = useState(user?.name || '')
@@ -57,7 +61,7 @@ export default function SettingsPage() {
         descriptionKey="dashboard.settings.description"
       />
 
-      <Tabs defaultValue="profile" className="w-full">
+      <Tabs defaultValue={initialTab} className="w-full">
         <TabsList className="mb-6 w-full justify-start">
           <TabsTrigger value="profile">{t('dashboard.settings.tabs.profile')}</TabsTrigger>
           <TabsTrigger value="workspace">{t('dashboard.settings.tabs.workspace')}</TabsTrigger>

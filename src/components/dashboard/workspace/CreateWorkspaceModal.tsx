@@ -2,6 +2,8 @@ import { memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Loader2 } from 'lucide-react'
 import { useWorkspace } from '@/hooks/useWorkspace'
+import { useUpgradePrompt } from '@/contexts/UpgradePromptContext'
+import { isLimitError } from '@/lib/api-client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -23,6 +25,7 @@ interface CreateWorkspaceModalProps {
 function CreateWorkspaceModalComponent({ open, onOpenChange }: CreateWorkspaceModalProps) {
   const { t } = useTranslation()
   const { createWorkspace } = useWorkspace()
+  const { showUpgradePrompt } = useUpgradePrompt()
   const [name, setName] = useState('')
   const [slug, setSlug] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -49,9 +52,21 @@ function CreateWorkspaceModalComponent({ open, onOpenChange }: CreateWorkspaceMo
       setName('')
       setSlug('')
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : t('dashboard.workspace.errors.createFailed')
-      setError(message)
+      if (isLimitError(err)) {
+        onOpenChange(false)
+        setName('')
+        setSlug('')
+        showUpgradePrompt(
+          err.data.limitType as 'clips' | 'workspaces',
+          err.data.current,
+          err.data.limit,
+          err.data.plan as 'FREE' | 'PRO' | 'GROWTH'
+        )
+      } else {
+        const message =
+          err instanceof Error ? err.message : t('dashboard.workspace.errors.createFailed')
+        setError(message)
+      }
     } finally {
       setIsLoading(false)
     }

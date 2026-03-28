@@ -345,46 +345,46 @@
     "billedAnnually": "/usuario /mes (facturado anualmente)",
     "billedMonthly": "/usuario /mes (facturado mensualmente)",
     "contactUs": "Contáctanos",
+    "free": "Gratis",
     "badges": {
       "savePercent": "Ahorra {{percent}}%",
       "popular": "Popular"
     },
     "tiers": {
-      "starter": {
-        "name": "Starter",
-        "description": "Para creadores y solopreneurs listos para hacer crecer su presencia social.",
-        "cta": "Prueba gratis por 7 días",
+      "free": {
+        "name": "Gratis",
+        "description": "Empieza y descubre lo que Grow Online puede hacer.",
+        "cta": "Empezar gratis",
         "features": {
-          "0": "Publica en 5 plataformas sociales",
-          "1": "Sugerencias de contenido impulsadas por IA",
-          "2": "Panel de analíticas básico",
-          "3": "Calendario de contenido",
-          "4": "Recomendaciones del mejor momento para publicar"
+          "0": "10 clips al mes",
+          "1": "1 espacio de trabajo",
+          "2": "Publica en todas las plataformas",
+          "3": "Programación básica"
         }
       },
-      "professional": {
-        "name": "Professional",
-        "description": "Para negocios en crecimiento y equipos que gestionan múltiples marcas.",
-        "includesPrevious": "Todo lo incluido en Starter, más:",
-        "cta": "Prueba gratis por 7 días",
+      "pro": {
+        "name": "Pro",
+        "description": "Para creadores y equipos listos para escalar la producción de contenido.",
+        "includesPrevious": "Todo lo incluido en Gratis, más:",
+        "cta": "Empezar con Pro",
         "features": {
-          "0": "Cuentas sociales ilimitadas",
-          "1": "Generación de contenido IA avanzada",
-          "2": "Herramientas de colaboración en equipo",
-          "3": "Análisis de competencia",
-          "4": "Soporte prioritario"
+          "0": "50 clips al mes",
+          "1": "Espacios de trabajo ilimitados",
+          "2": "Analíticas básicas",
+          "3": "Soporte prioritario",
+          "4": "Contenido impulsado por IA"
         }
       },
-      "enterprise": {
-        "name": "Enterprise",
-        "description": "Para organizaciones con requisitos de seguridad y cumplimiento de nivel empresarial.",
-        "includesPrevious": "Todo lo incluido en Professional, más:",
-        "cta": "Hablar con ventas",
+      "growth": {
+        "name": "Growth",
+        "description": "Para agencias y usuarios avanzados que gestionan múltiples marcas a escala.",
+        "includesPrevious": "Todo lo incluido en Pro, más:",
+        "cta": "Empezar con Growth",
         "features": {
-          "0": "Inicio de sesión SSO",
-          "1": "Despliegue local (opcional)",
-          "2": "Seguridad avanzada & SLA",
-          "3": "Gerente de cuenta dedicado & capacitación"
+          "0": "500 clips al mes",
+          "1": "Analíticas avanzadas",
+          "2": "Colaboración en equipo",
+          "3": "Acceso API"
         }
       }
     }

@@ -3,6 +3,7 @@
 
 export type PlanType = 'FREE' | 'PRO' | 'GROWTH'
 export type BillingInterval = 'monthly' | 'yearly'
+export type LimitType = 'clips' | 'workspaces'
 export type SubscriptionStatus =
   | 'ACTIVE'
   | 'PAST_DUE'
@@ -13,8 +14,7 @@ export type SubscriptionStatus =
 
 export interface PlanLimits {
   maxWorkspaces: number | null
-  maxPostsPerMonth: number | null
-  maxPlatformsPerWorkspace: number | null
+  maxClipsPerMonth: number | null
 }
 
 export interface Subscription {
@@ -51,12 +51,19 @@ export interface PortalSession {
   url: string
 }
 
-export interface SubscriptionResponse {
-  subscription: Subscription
+export interface UsageResponse {
+  clips: { used: number; limit: number | null }
+  workspaces: { used: number; limit: number | null }
 }
 
-export interface PlansResponse {
-  plans: Plan[]
+export interface LimitErrorData {
+  statusCode: 403
+  error: 'LIMIT_REACHED'
+  limitType: LimitType
+  current: number
+  limit: number
+  plan: PlanType
+  message: string
 }
 
 // Display constants

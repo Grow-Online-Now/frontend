@@ -2,23 +2,32 @@ import { useState, useEffect, useCallback } from 'react'
 import {
   getSubscription,
   getPlans,
+  getUsage,
   createCheckoutSession,
   createPortalSession,
   cancelSubscription,
   resumeSubscription,
 } from '@/services/subscription.service'
 import { ApiError } from '@/lib/api-client'
-import type { Subscription, Plan, BillingInterval, PlanType } from '@/types/subscription'
+import type {
+  Subscription,
+  Plan,
+  UsageResponse,
+  BillingInterval,
+  PlanType,
+} from '@/types/subscription'
 
 interface UseSubscriptionState {
   subscription: Subscription | null
   plans: Plan[]
+  usage: UsageResponse | null
   isLoading: boolean
   error: string | null
 }
 
 interface UseSubscriptionReturn extends UseSubscriptionState {
   refetch: () => Promise<void>
+  refetchUsage: () => Promise<void>
   startCheckout: (
     plan: Exclude<PlanType, 'FREE'>,
     billingInterval: BillingInterval
@@ -34,12 +43,13 @@ interface UseSubscriptionReturn extends UseSubscriptionState {
 
 /**
  * Hook to manage subscription state and actions
- * Handles fetching subscription, plans, and billing operations
+ * Handles fetching subscription, plans, usage, and billing operations
  */
 export function useSubscription(): UseSubscriptionReturn {
   const [state, setState] = useState<UseSubscriptionState>({
     subscription: null,
     plans: [],
+    usage: null,
     isLoading: true,
     error: null,
   })
@@ -51,16 +61,21 @@ export function useSubscription(): UseSubscriptionReturn {
   const [isResuming, setIsResuming] = useState(false)
 
   /**
-   * Fetch subscription and plans
+   * Fetch subscription, plans, and usage
    */
   const fetchData = useCallback(async () => {
     setState((prev) => ({ ...prev, isLoading: true, error: null }))
 
     try {
-      const [subscription, plans] = await Promise.all([getSubscription(), getPlans()])
+      const [subscription, plans, usage] = await Promise.all([
+        getSubscription(),
+        getPlans(),
+        getUsage(),
+      ])
       setState({
         subscription,
         plans,
+        usage,
         isLoading: false,
         error: null,
       })
@@ -71,6 +86,18 @@ export function useSubscription(): UseSubscriptionReturn {
         isLoading: false,
         error: message,
       }))
+    }
+  }, [])
+
+  /**
+   * Refetch usage only (lightweight)
+   */
+  const refetchUsage = useCallback(async () => {
+    try {
+      const usage = await getUsage()
+      setState((prev) => ({ ...prev, usage }))
+    } catch {
+      // Silently fail — usage is not critical
     }
   }, [])
 
@@ -125,7 +152,6 @@ export function useSubscription(): UseSubscriptionReturn {
 
     try {
       await cancelSubscription()
-      // Refetch to get updated subscription
       await fetchData()
     } catch (err) {
       const message = err instanceof ApiError ? err.message : 'Failed to cancel subscription'
@@ -144,7 +170,6 @@ export function useSubscription(): UseSubscriptionReturn {
 
     try {
       await resumeSubscription()
-      // Refetch to get updated subscription
       await fetchData()
     } catch (err) {
       const message = err instanceof ApiError ? err.message : 'Failed to resume subscription'
@@ -162,6 +187,7 @@ export function useSubscription(): UseSubscriptionReturn {
   return {
     ...state,
     refetch: fetchData,
+    refetchUsage,
     startCheckout,
     openPortal,
     cancel,

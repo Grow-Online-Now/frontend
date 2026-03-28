@@ -69,7 +69,7 @@ export function ReviewStep({ state, onUpdate, onSubmit, isSubmitting }: ReviewSt
         <Button
           onClick={() => onSubmit(true)}
           disabled={isSubmitting || !state.name}
-          className="bg-gradient-feature flex-1 gap-2"
+          className="flex-1 gap-2"
         >
           {isSubmitting ? (
             <>

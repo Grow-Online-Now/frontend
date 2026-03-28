@@ -43,6 +43,18 @@ export class ApiError extends Error {
 }
 
 /**
+ * Check if an error is a subscription limit error (403 with LIMIT_REACHED)
+ */
+export function isLimitError(
+  error: unknown
+): error is ApiError & { data: { limitType: string; current: number; limit: number; plan: string } } {
+  if (!(error instanceof ApiError)) return false
+  if (error.status !== 403) return false
+  const data = error.data as Record<string, unknown> | undefined
+  return data?.error === 'LIMIT_REACHED' && typeof data?.limitType === 'string'
+}
+
+/**
  * Request options for API calls
  */
 interface RequestOptions extends Omit<RequestInit, 'body'> {

@@ -3,18 +3,12 @@ import { format } from 'date-fns'
 import { AlertCircle, Calendar, CreditCard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import type { Subscription } from '@/types/subscription'
+import type { Subscription, UsageResponse } from '@/types/subscription'
 import { PLAN_DISPLAY_NAMES } from '@/types/subscription'
-
-interface UsageStats {
-  workspaces: number
-  postsThisMonth: number
-  platforms: number
-}
 
 interface CurrentSubscriptionProps {
   subscription: Subscription
-  usage?: UsageStats
+  usage?: UsageResponse | null
   onChangePlan: () => void
   onManageBilling: () => void
   onCancel: () => void
@@ -159,21 +153,16 @@ export function CurrentSubscription({
           {t('dashboard.billing.usage.title')}
         </h4>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           <UsageCard
-            current={usage?.workspaces ?? 0}
+            current={usage?.clips.used ?? 0}
+            max={subscription.limits.maxClipsPerMonth}
+            labelKey="dashboard.billing.limits.clipsPerMonth"
+          />
+          <UsageCard
+            current={usage?.workspaces.used ?? 0}
             max={subscription.limits.maxWorkspaces}
             labelKey="dashboard.billing.limits.workspaces"
-          />
-          <UsageCard
-            current={usage?.postsThisMonth ?? 0}
-            max={subscription.limits.maxPostsPerMonth}
-            labelKey="dashboard.billing.limits.postsPerMonth"
-          />
-          <UsageCard
-            current={usage?.platforms ?? 0}
-            max={subscription.limits.maxPlatformsPerWorkspace}
-            labelKey="dashboard.billing.limits.platforms"
           />
         </div>
       </div>

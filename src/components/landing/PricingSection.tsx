@@ -17,7 +17,8 @@ import {
   Subheading,
 } from '@/components/common/Typography'
 import { Badge, type BadgeVariant } from '@/components/ui/badge'
-import { type Tier, tiers } from '@/config/tiers'
+import { type Tier } from '@/config/tiers'
+import { usePricingPlans } from '@/hooks/usePricingPlans'
 import { cn } from '@/lib/utils'
 
 type PricingTierConfig = {
@@ -37,45 +38,46 @@ type PricingTierConfig = {
   icon: React.ReactNode
 }
 
-const pricingTiersConfig: PricingTierConfig[] = [
-  {
-    tier: tiers[0],
-    badges: [
-      { savePercent: tiers[0].discount.annually, annualOnly: true },
-      { messageKey: 'landing.pricing.badges.popular', variant: 'success' },
-    ],
-    button: {
-      to: '/login',
+function buildPricingConfig(tiers: Tier[]): PricingTierConfig[] {
+  return [
+    {
+      tier: tiers[0], // FREE
+      button: {
+        to: '/signup',
+      },
+      icon: <Briefcase />,
     },
-    icon: <Briefcase />,
-  },
-  {
-    tier: tiers[1],
-    badges: [{ savePercent: tiers[1].discount.annually, annualOnly: true }],
-    button: {
-      variant: 'secondary',
-      to: '/login',
+    {
+      tier: tiers[1], // PRO
+      badges: [
+        { savePercent: tiers[1].discount.annually, annualOnly: true },
+        { messageKey: 'landing.pricing.badges.popular', variant: 'success' },
+      ],
+      button: {
+        to: '/signup',
+      },
+      icon: <Zap />,
     },
-    icon: <Zap />,
-  },
-  {
-    tier: tiers[2],
-    button: {
-      variant: 'secondary',
-      icon: <MessageCircle />,
-      to: tiers[2].ctaLink || '/sales',
-      target: '_blank',
+    {
+      tier: tiers[2], // GROWTH
+      badges: [{ savePercent: tiers[2].discount.annually, annualOnly: true }],
+      button: {
+        variant: 'secondary',
+        to: '/signup',
+      },
+      icon: <Sparkle />,
     },
-    icon: <Sparkle />,
-  },
-]
+  ]
+}
 
 const frequencies = ['annually', 'monthly'] as const
 type Frequency = (typeof frequencies)[number]
 
 export function Pricing() {
   const { t } = useTranslation()
+  const { tiers } = usePricingPlans()
   const [frequency, setFrequency] = useState<Frequency>(frequencies[0])
+  const pricingTiersConfig = buildPricingConfig(tiers)
 
   return (
     <Section id="pricing">
@@ -153,7 +155,7 @@ function PricingCard({ config, tierIndex, isAnnual }: PricingCardProps) {
       <div className="px-6 pt-0 pb-6">
         <div className="space-y-6">
           <div className="flex items-end gap-2">
-            {price ? (
+            {price > 0 ? (
               <>
                 <Subheading>${price}</Subheading>
                 <Paragraph size="xs" color="light" className="-translate-y-1">
@@ -161,7 +163,7 @@ function PricingCard({ config, tierIndex, isAnnual }: PricingCardProps) {
                 </Paragraph>
               </>
             ) : (
-              <Subheading>{t('landing.pricing.contactUs')}</Subheading>
+              <Subheading>{t('landing.pricing.free')}</Subheading>
             )}
           </div>
           <Button size="lg" variant={button.variant} asChild>

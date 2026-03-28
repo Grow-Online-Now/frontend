@@ -93,21 +93,15 @@ export function PricingCard({
         {/* Limits */}
         <div className="border-border-default mb-6 space-y-2.5 border-b pb-6 text-sm">
           <div className="flex justify-between">
+            <span className="text-text-muted">{t('dashboard.billing.limits.clipsPerMonth')}</span>
+            <span className="text-text-primary font-medium">
+              {formatLimit(plan.limits.maxClipsPerMonth)}
+            </span>
+          </div>
+          <div className="flex justify-between">
             <span className="text-text-muted">{t('dashboard.billing.limits.workspaces')}</span>
             <span className="text-text-primary font-medium">
               {formatLimit(plan.limits.maxWorkspaces)}
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-text-muted">{t('dashboard.billing.limits.postsPerMonth')}</span>
-            <span className="text-text-primary font-medium">
-              {formatLimit(plan.limits.maxPostsPerMonth)}
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-text-muted">{t('dashboard.billing.limits.platforms')}</span>
-            <span className="text-text-primary font-medium">
-              {formatLimit(plan.limits.maxPlatformsPerWorkspace)}
             </span>
           </div>
         </div>
