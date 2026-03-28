@@ -766,6 +766,7 @@
       "limits": {
         "workspaces": "Espaces de travail",
         "clipsPerMonth": "Clips/mois",
+        "storage": "Stockage",
         "banner": {
           "title": "Limite d'espaces de travail atteinte",
           "description": "Vous utilisez {{current}} sur {{max}} espaces de travail avec le plan {{plan}}.",
@@ -780,6 +781,10 @@
         "workspaces": {
           "title": "Grandissez sans limites",
           "subtitle": "Gérez plus de marques, collaborez avec votre équipe et développez votre agence."
+        },
+        "storage": {
+          "title": "Limite de stockage atteinte",
+          "subtitle": "Libérez de l'espace en nettoyant votre médiathèque, ou passez à un plan supérieur."
         },
         "currentUsage": "{{used}}/{{limit}} utilisés",
         "upgradeHint": "Passez à un plan supérieur",

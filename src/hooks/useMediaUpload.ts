@@ -6,7 +6,8 @@
 
 import { useState, useCallback, useRef } from 'react'
 import { requestUpload, uploadToS3, confirmUpload, deleteMedia } from '@/services/media.service'
-import { ApiError } from '@/lib/api-client'
+import { ApiError, isLimitError } from '@/lib/api-client'
+import type { LimitErrorData } from '@/types/subscription'
 import type { MediaItem, MediaUploadStatus, UploadProgress, MediaType } from '@/types/media'
 import { MEDIA_SIZE_LIMITS, ALLOWED_MIME_TYPES } from '@/types/media'
 
@@ -111,7 +112,9 @@ function validateFile(file: File): ValidationResult {
   return { valid: true, errorKey: null }
 }
 
-export function useMediaUpload(): UseMediaUploadReturn {
+export function useMediaUpload(options?: {
+  onLimitError?: (error: LimitErrorData) => void
+}): UseMediaUploadReturn {
   const [state, setState] = useState<UseMediaUploadState>({
     uploads: new Map(),
     isUploading: false,
@@ -190,6 +193,12 @@ export function useMediaUpload(): UseMediaUploadReturn {
       } catch (err) {
         if ((err as Error).message === 'Upload cancelled') {
           return // Don't update state for cancelled uploads
+        }
+
+        if (isLimitError(err) && options?.onLimitError) {
+          options.onLimitError(err.data as LimitErrorData)
+          updateUpload(id, { status: 'error', error: err.data.message as string })
+          return
         }
 
         const errorMessage =

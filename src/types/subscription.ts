@@ -3,7 +3,7 @@
 
 export type PlanType = 'FREE' | 'PRO' | 'GROWTH'
 export type BillingInterval = 'monthly' | 'yearly'
-export type LimitType = 'clips' | 'workspaces'
+export type LimitType = 'clips' | 'workspaces' | 'storage'
 export type SubscriptionStatus =
   | 'ACTIVE'
   | 'PAST_DUE'
@@ -15,6 +15,7 @@ export type SubscriptionStatus =
 export interface PlanLimits {
   maxWorkspaces: number | null
   maxClipsPerMonth: number | null
+  maxStorageBytes: number | null
 }
 
 export interface Subscription {
@@ -54,6 +55,7 @@ export interface PortalSession {
 export interface UsageResponse {
   clips: { used: number; limit: number | null }
   workspaces: { used: number; limit: number | null }
+  storage: { used: number; limit: number | null }
 }
 
 export interface LimitErrorData {
@@ -82,6 +84,15 @@ export const PLAN_COLORS: Record<PlanType, string> = {
 // Helper functions
 export function formatLimit(limit: number | null): string {
   return limit === null ? 'Unlimited' : limit.toString()
+}
+
+export function formatBytes(bytes: number): string {
+  if (bytes === 0) return '0 B'
+  const gb = bytes / (1024 * 1024 * 1024)
+  if (gb >= 1) return `${gb % 1 === 0 ? gb : gb.toFixed(1)} GB`
+  const mb = bytes / (1024 * 1024)
+  if (mb >= 1) return `${mb % 1 === 0 ? mb : mb.toFixed(1)} MB`
+  return `${Math.round(bytes / 1024)} KB`
 }
 
 export function canUpgrade(currentPlan: PlanType, targetPlan: PlanType): boolean {

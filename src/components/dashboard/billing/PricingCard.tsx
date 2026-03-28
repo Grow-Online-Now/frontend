@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import type { Plan, PlanType, BillingInterval } from '@/types/subscription'
-import { formatLimit, canUpgrade } from '@/types/subscription'
+import { formatLimit, formatBytes, canUpgrade } from '@/types/subscription'
 
 interface PricingCardProps {
   plan: Plan
@@ -96,6 +96,12 @@ export function PricingCard({
             <span className="text-text-muted">{t('dashboard.billing.limits.clipsPerMonth')}</span>
             <span className="text-text-primary font-medium">
               {formatLimit(plan.limits.maxClipsPerMonth)}
+            </span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-text-muted">{t('dashboard.billing.limits.storage')}</span>
+            <span className="text-text-primary font-medium">
+              {plan.limits.maxStorageBytes ? formatBytes(plan.limits.maxStorageBytes) : formatLimit(null)}
             </span>
           </div>
           <div className="flex justify-between">

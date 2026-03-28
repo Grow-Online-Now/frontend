@@ -4,7 +4,7 @@ import { AlertCircle, Calendar, CreditCard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { Subscription, UsageResponse } from '@/types/subscription'
-import { PLAN_DISPLAY_NAMES } from '@/types/subscription'
+import { PLAN_DISPLAY_NAMES, formatBytes } from '@/types/subscription'
 
 interface CurrentSubscriptionProps {
   subscription: Subscription
@@ -22,12 +22,15 @@ function UsageCard({
   current,
   max,
   labelKey,
+  formatter,
 }: {
   current: number
   max: number | null
   labelKey: string
+  formatter?: (v: number) => string
 }) {
   const { t } = useTranslation()
+  const fmt = formatter ?? String
   const isUnlimited = max === null
   const percentage = isUnlimited ? 0 : Math.min((current / max) * 100, 100)
   const isNearLimit = !isUnlimited && percentage >= 80
@@ -38,8 +41,8 @@ function UsageCard({
         <span className="text-muted-foreground text-sm font-medium">{t(labelKey)}</span>
       </div>
       <div className="mb-2 flex items-baseline gap-1">
-        <span className="text-foreground text-2xl font-semibold">{current}</span>
-        <span className="text-muted-foreground text-sm">/ {isUnlimited ? '∞' : max}</span>
+        <span className="text-foreground text-2xl font-semibold">{fmt(current)}</span>
+        <span className="text-muted-foreground text-sm">/ {isUnlimited ? '∞' : fmt(max)}</span>
       </div>
       <div className="bg-background h-1.5 w-full overflow-hidden rounded-full">
         <div
@@ -153,11 +156,17 @@ export function CurrentSubscription({
           {t('dashboard.billing.usage.title')}
         </h4>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-3">
           <UsageCard
             current={usage?.clips.used ?? 0}
             max={subscription.limits.maxClipsPerMonth}
             labelKey="dashboard.billing.limits.clipsPerMonth"
+          />
+          <UsageCard
+            current={usage?.storage.used ?? 0}
+            max={subscription.limits.maxStorageBytes}
+            labelKey="dashboard.billing.limits.storage"
+            formatter={formatBytes}
           />
           <UsageCard
             current={usage?.workspaces.used ?? 0}

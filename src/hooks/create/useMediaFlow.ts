@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { useConnections } from '@/hooks/useConnections'
 import { useMediaUpload, type UseMediaUploadReturn } from '@/hooks/useMediaUpload'
 import { useCreatePost } from '@/hooks/useCreatePost'
+import { useUpgradePrompt } from '@/contexts/UpgradePromptContext'
 import { MEDIA_FIRST_PLATFORMS, PLATFORM_CONFIG } from '@/config/text-flow'
 import type {
   MediaFlowScheduleType,
@@ -106,7 +107,11 @@ export function useMediaFlow(): UseMediaFlowReturn {
 
   // Compose existing hooks
   const { connections, isLoading: isLoadingConnections, connect } = useConnections()
-  const mediaUpload = useMediaUpload()
+  const { showUpgradePrompt } = useUpgradePrompt()
+  const mediaUpload = useMediaUpload({
+    onLimitError: (err) =>
+      showUpgradePrompt(err.limitType as 'clips' | 'workspaces' | 'storage', err.current, err.limit, err.plan as 'FREE' | 'PRO' | 'GROWTH'),
+  })
   const {
     submitPost: createPost,
     isLoading: isSubmitting,

@@ -1061,6 +1061,7 @@
       "limits": {
         "workspaces": "Workspaces",
         "clipsPerMonth": "Clips/month",
+        "storage": "Storage",
         "banner": {
           "title": "Workspace limit reached",
           "description": "You're using {{current}} of {{max}} workspaces on the {{plan}} plan.",
@@ -1075,6 +1076,10 @@
         "workspaces": {
           "title": "Grow without limits",
           "subtitle": "Manage more brands, collaborate with your team, and scale your agency."
+        },
+        "storage": {
+          "title": "Storage limit reached",
+          "subtitle": "Free up space by cleaning your media library, or upgrade for more storage."
         },
         "currentUsage": "{{used}}/{{limit}} used",
         "upgradeHint": "Upgrade for more",
