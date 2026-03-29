@@ -133,22 +133,69 @@
     "overview": {
       "title": "Dashboard",
       "description": "Your social media command center",
+      "greeting": {
+        "morning": "Good morning, {{name}}",
+        "afternoon": "Good afternoon, {{name}}",
+        "evening": "Good evening, {{name}}"
+      },
+      "feed": {
+        "title": "Activity",
+        "empty": "No activity yet",
+        "loadMore": "Load more",
+        "postPublished": "posted to {{count}} platform(s)",
+        "clipsCreated": "created {{count}} clips from {{title}}",
+        "socialConnected": "connected {{platform}}",
+        "automationCreated": "set up an automation"
+      },
       "quickActions": {
         "title": "Quick Actions",
         "createPost": "Create Post",
-        "connectAccount": "Connect Account",
-        "viewAnalytics": "View Analytics"
+        "viewCalendar": "View Calendar",
+        "automations": "Automations",
+        "connectSocials": {
+          "title": "Connect your social accounts",
+          "description": "Link your platforms to start posting"
+        },
+        "createFirst": {
+          "title": "Create your first post",
+          "description": "Share something with your audience"
+        }
       },
       "stats": {
-        "scheduledPosts": "Scheduled Posts",
-        "connectedAccounts": "Connected Accounts",
-        "postsThisWeek": "Posts This Week"
+        "scheduledPosts": "Scheduled",
+        "connectedAccounts": "Accounts",
+        "postsThisWeek": "This week"
+      },
+      "upcoming": {
+        "title": "Upcoming",
+        "empty": "No upcoming posts",
+        "nothingScheduled": "Nothing scheduled yet"
+      },
+      "accounts": {
+        "title": "Accounts",
+        "addMore": "Add more",
+        "connectFirst": "Connect your first account"
+      },
+      "recentPosts": {
+        "title": "Recent Posts",
+        "empty": "No posts yet",
+        "viewAll": "View all",
+        "status": {
+          "completed": "Published",
+          "pending": "Pending",
+          "failed": "Failed",
+          "draft": "Draft"
+        }
       },
       "empty": {
         "title": "Get started with Grow Online",
         "description": "Connect your first social media account to start scheduling content.",
         "cta": "Connect Account"
       }
+    },
+    "sidebar": {
+      "streak": "day streak",
+      "streakBest": "Best: {{count}} days"
     },
     "streak": {
       "title": "Posting Streak",

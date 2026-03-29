@@ -18,6 +18,7 @@ import {
   Moon,
   ImageIcon,
   Zap,
+  Flame,
 } from 'lucide-react'
 import { CreatePostTypeModal } from '@/components/dashboard/shared/CreatePostTypeModal'
 import { cn } from '@/lib/utils'
@@ -37,6 +38,8 @@ import { useSubscription } from '@/hooks/useSubscription'
 import { WorkspaceSelector } from '@/components/dashboard/workspace/WorkspaceSelector'
 import { PLAN_DISPLAY_NAMES } from '@/types/subscription'
 import { useAutomations } from '@/hooks/useAutomations'
+import { useStreak } from '@/hooks/useStreak'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 interface NavCategory {
   labelKey: string
@@ -134,6 +137,7 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
   const hasFailedAutomations = automations.some(
     (a) => a.runs?.some((r) => r.status === 'failed') || a.status === 'failed'
   )
+  const { streak } = useStreak()
 
   // Build nav with dynamic dot on automations
   const navCategories = baseNavCategories.map((cat) => ({
@@ -249,6 +253,30 @@ function DashboardSidebarComponent({ className }: DashboardSidebarProps) {
           </div>
         ))}
       </nav>
+
+      {/* Streak Indicator */}
+      {streak && streak.currentStreak > 0 && (
+        <div className="border-sidebar-border border-t px-4 py-2.5">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex items-center gap-2 px-2">
+                  <Flame className="h-4 w-4 text-warning" />
+                  <span className="text-text-primary text-sm font-semibold">
+                    {streak.currentStreak}
+                  </span>
+                  <span className="text-text-muted text-xs">
+                    {t('dashboard.sidebar.streak')}
+                  </span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="right">
+                <p>{t('dashboard.sidebar.streakBest', { count: streak.longestStreak })}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      )}
 
       {/* User Profile Section */}
       <div className="border-sidebar-border border-t p-4">

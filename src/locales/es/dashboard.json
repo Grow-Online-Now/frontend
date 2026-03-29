@@ -49,22 +49,69 @@
     "overview": {
       "title": "Panel de control",
       "description": "Tu centro de mando para redes sociales",
+      "greeting": {
+        "morning": "Buenos días, {{name}}",
+        "afternoon": "Buenas tardes, {{name}}",
+        "evening": "Buenas noches, {{name}}"
+      },
+      "feed": {
+        "title": "Actividad",
+        "empty": "Sin actividad aún",
+        "loadMore": "Cargar más",
+        "postPublished": "publicó en {{count}} plataforma(s)",
+        "clipsCreated": "creó {{count}} clips de {{title}}",
+        "socialConnected": "conectó {{platform}}",
+        "automationCreated": "configuró una automatización"
+      },
       "quickActions": {
         "title": "Acciones rápidas",
         "createPost": "Crear publicación",
-        "connectAccount": "Conectar cuenta",
-        "viewAnalytics": "Ver analíticas"
+        "viewCalendar": "Ver calendario",
+        "automations": "Automatizaciones",
+        "connectSocials": {
+          "title": "Conecta tus cuentas sociales",
+          "description": "Vincula tus plataformas para empezar a publicar"
+        },
+        "createFirst": {
+          "title": "Crea tu primera publicación",
+          "description": "Comparte algo con tu audiencia"
+        }
       },
       "stats": {
-        "scheduledPosts": "Publicaciones programadas",
-        "connectedAccounts": "Cuentas conectadas",
-        "postsThisWeek": "Publicaciones esta semana"
+        "scheduledPosts": "Programadas",
+        "connectedAccounts": "Cuentas",
+        "postsThisWeek": "Esta semana"
+      },
+      "upcoming": {
+        "title": "Próximas",
+        "empty": "Sin publicaciones próximas",
+        "nothingScheduled": "Nada programado"
+      },
+      "accounts": {
+        "title": "Cuentas",
+        "addMore": "Agregar",
+        "connectFirst": "Conecta tu primera cuenta"
+      },
+      "recentPosts": {
+        "title": "Publicaciones recientes",
+        "empty": "Sin publicaciones",
+        "viewAll": "Ver todo",
+        "status": {
+          "completed": "Publicado",
+          "pending": "Pendiente",
+          "failed": "Fallido",
+          "draft": "Borrador"
+        }
       },
       "empty": {
         "title": "Comienza con Grow Online",
         "description": "Conecta tu primera cuenta de redes sociales para empezar a programar contenido.",
         "cta": "Conectar cuenta"
       }
+    },
+    "sidebar": {
+      "streak": "días seguidos",
+      "streakBest": "Récord: {{count}} días"
     },
     "streak": {
       "title": "Racha de publicaciones",

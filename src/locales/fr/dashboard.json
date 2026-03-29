@@ -48,22 +48,69 @@
     "overview": {
       "title": "Tableau de bord",
       "description": "Votre centre de commande pour les réseaux sociaux",
+      "greeting": {
+        "morning": "Bonjour, {{name}}",
+        "afternoon": "Bon après-midi, {{name}}",
+        "evening": "Bonsoir, {{name}}"
+      },
+      "feed": {
+        "title": "Activité",
+        "empty": "Pas encore d'activité",
+        "loadMore": "Charger plus",
+        "postPublished": "a publié sur {{count}} plateforme(s)",
+        "clipsCreated": "a créé {{count}} clips de {{title}}",
+        "socialConnected": "a connecté {{platform}}",
+        "automationCreated": "a configuré une automatisation"
+      },
       "quickActions": {
         "title": "Actions rapides",
         "createPost": "Créer une publication",
-        "connectAccount": "Connecter un compte",
-        "viewAnalytics": "Voir les analytics"
+        "viewCalendar": "Voir le calendrier",
+        "automations": "Automatisations",
+        "connectSocials": {
+          "title": "Connectez vos comptes",
+          "description": "Liez vos plateformes pour commencer à publier"
+        },
+        "createFirst": {
+          "title": "Créez votre première publication",
+          "description": "Partagez quelque chose avec votre audience"
+        }
       },
       "stats": {
-        "scheduledPosts": "Publications planifiées",
-        "connectedAccounts": "Comptes connectés",
-        "postsThisWeek": "Publications cette semaine"
+        "scheduledPosts": "Planifiées",
+        "connectedAccounts": "Comptes",
+        "postsThisWeek": "Cette semaine"
+      },
+      "upcoming": {
+        "title": "À venir",
+        "empty": "Aucune publication à venir",
+        "nothingScheduled": "Rien de planifié"
+      },
+      "accounts": {
+        "title": "Comptes",
+        "addMore": "Ajouter",
+        "connectFirst": "Connectez votre premier compte"
+      },
+      "recentPosts": {
+        "title": "Publications récentes",
+        "empty": "Aucune publication",
+        "viewAll": "Tout voir",
+        "status": {
+          "completed": "Publié",
+          "pending": "En attente",
+          "failed": "Échoué",
+          "draft": "Brouillon"
+        }
       },
       "empty": {
         "title": "Commencez avec Grow Online",
         "description": "Connectez votre premier compte de réseau social pour commencer à planifier du contenu.",
         "cta": "Connecter un compte"
       }
+    },
+    "sidebar": {
+      "streak": "jours consécutifs",
+      "streakBest": "Record : {{count}} jours"
     },
     "streak": {
       "title": "Série de publications",
