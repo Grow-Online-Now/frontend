@@ -1,22 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { formatDistanceToNow } from 'date-fns'
-import { Send, Scissors, Link2, Zap } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import type { ActivityFeedItem, ActivityEventType } from '@/types/activity'
 import type { SocialPlatform } from '@/types/connections'
-import type { ComponentType } from 'react'
-
-const eventIcons: Record<ActivityEventType, ComponentType<{ className?: string }>> = {
-  post_published: Send,
-  clips_created: Scissors,
-  social_connected: Link2,
-  automation_created: Zap,
-}
-
 export function FeedEventItem({ item }: { item: ActivityFeedItem }) {
-  const Icon = eventIcons[item.type]
-
   const initials = item.userName
     .split(' ')
     .map((n) => n[0])
@@ -24,8 +12,10 @@ export function FeedEventItem({ item }: { item: ActivityFeedItem }) {
     .toUpperCase()
     .slice(0, 2)
 
+  const hasThumbnail = item.type === 'clips_created' && item.thumbnailUrl
+
   return (
-    <div className="group flex items-start gap-3 rounded-lg px-3 py-3 transition-colors duration-150 hover:bg-bg-hover">
+    <div className="group flex items-center gap-3 rounded-lg px-3 py-3 transition-colors duration-150 hover:bg-bg-hover">
       <Avatar className="h-8 w-8 shrink-0">
         <AvatarImage src={item.userImage || undefined} alt={item.userName} />
         <AvatarFallback className="bg-bg-subtle text-text-tertiary text-xs font-medium">
@@ -39,7 +29,6 @@ export function FeedEventItem({ item }: { item: ActivityFeedItem }) {
             <span className="font-medium">{item.userName}</span>{' '}
             <EventDescription type={item.type} metadata={item.metadata} />
           </p>
-          <Icon className="text-text-muted mt-0.5 h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
         </div>
 
         <p className="text-text-muted mt-1 text-xs">
@@ -53,15 +42,15 @@ export function FeedEventItem({ item }: { item: ActivityFeedItem }) {
             ))}
           </div>
         )}
-
-        {item.type === 'clips_created' && item.thumbnailUrl && (
-          <img
-            src={item.thumbnailUrl}
-            alt=""
-            className="mt-2 h-16 w-28 rounded-lg object-cover"
-          />
-        )}
       </div>
+
+      {hasThumbnail && (
+        <img
+          src={item.thumbnailUrl!}
+          alt=""
+          className="h-12 w-20 shrink-0 rounded-lg object-cover"
+        />
+      )}
     </div>
   )
 }
