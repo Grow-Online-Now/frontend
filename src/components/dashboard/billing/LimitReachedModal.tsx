@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useUpgradePrompt } from '@/contexts/UpgradePromptContext'
 import { useSubscription } from '@/hooks/useSubscription'
-import type { BillingInterval, PlanType, Plan } from '@/types/subscription'
+import type { BillingInterval, Plan } from '@/types/subscription'
 
 type SelectedPlan = 'PRO' | 'GROWTH'
 

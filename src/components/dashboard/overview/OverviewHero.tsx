@@ -9,7 +9,7 @@ interface OverviewHeroProps {
   isLoading: boolean
 }
 
-const ease = [0.16, 1, 0.3, 1]
+const ease = [0.16, 1, 0.3, 1] as const
 
 const metrics = [
   { key: 'postsThisWeek' as const, labelKey: 'dashboard.overview.stats.postsThisWeek' },

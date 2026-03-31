@@ -9,7 +9,7 @@ interface StreakCompactProps {
   isLoading: boolean
 }
 
-const ease = [0.16, 1, 0.3, 1]
+const ease = [0.16, 1, 0.3, 1] as const
 
 export function StreakCompact({ streak, isLoading }: StreakCompactProps) {
   const { t } = useTranslation()

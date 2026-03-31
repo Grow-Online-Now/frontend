@@ -197,7 +197,7 @@ export function useMediaUpload(options?: {
 
         if (isLimitError(err) && options?.onLimitError) {
           options.onLimitError(err.data as LimitErrorData)
-          updateUpload(id, { status: 'error', error: err.data.message as string })
+          updateUpload(id, { status: 'error', error: (err.data as LimitErrorData).message })
           return
         }
 

@@ -12,7 +12,7 @@ interface UpcomingPostsProps {
   isLoading: boolean
 }
 
-const ease = [0.16, 1, 0.3, 1]
+const ease = [0.16, 1, 0.3, 1] as const
 
 export function UpcomingPosts({ posts, isLoading }: UpcomingPostsProps) {
   const { t } = useTranslation()

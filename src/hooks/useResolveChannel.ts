@@ -9,7 +9,7 @@ export function useResolveChannel(
   const [channelMeta, setChannelMeta] = useState<ChannelMeta | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   useEffect(() => {
     setChannelMeta(null)

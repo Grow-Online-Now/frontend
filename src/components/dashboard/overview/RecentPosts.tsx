@@ -13,7 +13,7 @@ interface RecentPostsProps {
   isLoading: boolean
 }
 
-const ease = [0.16, 1, 0.3, 1]
+const ease = [0.16, 1, 0.3, 1] as const
 
 const statusStyles: Record<string, string> = {
   completed: 'text-success',

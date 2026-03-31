@@ -7,7 +7,7 @@ import { PlatformIcon } from '@/components/dashboard/posts/PlatformIcon'
 import { cn } from '@/lib/utils'
 import type { SocialPlatform } from '@/types/connections'
 
-const ease = [0.16, 1, 0.3, 1]
+const ease = [0.16, 1, 0.3, 1] as const
 
 export function ConnectedAccountsStrip() {
   const { t } = useTranslation()

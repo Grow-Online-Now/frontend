@@ -11,7 +11,7 @@ interface SmartQuickActionsProps {
   stats: OverviewStats | null
 }
 
-const ease = [0.16, 1, 0.3, 1]
+const ease = [0.16, 1, 0.3, 1] as const
 
 export function SmartQuickActions({ stats }: SmartQuickActionsProps) {
   const { t } = useTranslation()
